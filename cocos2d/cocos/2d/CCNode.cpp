@@ -312,7 +312,7 @@ float Node::getScale(void) const
 /// scale setter
 void Node::setScale(float scale)
 {
-    _scaleX = _scaleY = scale;
+    _scaleX = _scaleY = _scaleZ = scale;
     _transformDirty = _inverseDirty = true;
 }
 

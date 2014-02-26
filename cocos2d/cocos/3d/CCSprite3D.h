@@ -62,7 +62,7 @@ protected:
     void removeTexture();
 
     // the current rotation offset
-    float xRot, yRot, zRot;
+    //float xRot, yRot, zRot;
     Mesh *_model;
     
     Drawable _drawable;

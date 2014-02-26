@@ -18,22 +18,21 @@ bool ScrollBack::init()
     //spr->setTextureRect(Rect(0,512,512,1024));
     CCTexture2D::TexParams texRepeat = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
     spr->getTexture()->setTexParameters(texRepeat);
-    setRotation3D(Vertex3F(-30.0f,0.0f,0.0f));
+    setRotation3D(Vertex3F(-30.0,0.0f,0.0f));
     spr->setScale(1.4);
     spr->setFlippedY(true);
-    spr->setPosition(0.0f,50.0f);
+    spr->setPosition(0.0f,400);
     
 
     
     
-    //auto p1 = Player::create();
+
     //player = Sprite3D::create("Scania4.obj", "car00.png");
     player = Sprite3D::create("fighter.obj", "fighter.png");
-    //player->setScale(20);
     player->setScale(20);
-    player->setRotation3D(Vertex3F(90,0,180));
-    player->setPosition(200,480);
-    spr->addChild(player,10);
+    player->setPosition3D(Vertex3F(0,0,0));
+
+    addChild(player,10);
     
     
     scheduleUpdate();
@@ -65,7 +64,7 @@ void ScrollBack::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *event)
 
 void ScrollBack::update(float dt){
     xScroll -= speed*dt;
-    spr->setTextureRect(Rect(0,xScroll,512,960));
+    spr->setTextureRect(Rect(0,xScroll,512,1200));
     
     player->setRotation3D(Vertex3F(90,xScroll,180));
 }

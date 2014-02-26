@@ -43,7 +43,7 @@ void main(void)
     //float sf = max(0.0, dot(N, H));
     //sf = pow(sf, Shininess);
 
-    vec3 color = df*2.0 * DiffuseMaterial + 0.5;
+    vec3 color = df * 1.5 * DiffuseMaterial + 0.3;
 
     DestinationColor = vec4(color, 1);
     gl_Position = CC_PMatrix * CC_MVMatrix * Position;

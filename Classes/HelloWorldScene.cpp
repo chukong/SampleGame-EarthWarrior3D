@@ -77,8 +77,10 @@ if ( !Layer::init() )
     auto sb = ScrollBack::create();
     sb->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     this->addChild(sb);
-    
-    
+    auto fog = Sprite::create("fog.png");
+    this->addChild(fog);
+    fog->setPosition(visibleSize.width/2,visibleSize.height/2+285);
+    fog->setScaleX(visibleSize.width/10);
     
     return true;
 }

@@ -67,6 +67,8 @@
 		686EC64C18BB28FD0065154C /* car00.png in Resources */ = {isa = PBXBuildFile; fileRef = 686EC64918BB28FD0065154C /* car00.png */; };
 		686EC64D18BB28FD0065154C /* Scania4.obj in Resources */ = {isa = PBXBuildFile; fileRef = 686EC64A18BB28FD0065154C /* Scania4.obj */; };
 		686EC64E18BB28FD0065154C /* Scania4.obj in Resources */ = {isa = PBXBuildFile; fileRef = 686EC64A18BB28FD0065154C /* Scania4.obj */; };
+		686EC66018BB44010065154C /* fog.png in Resources */ = {isa = PBXBuildFile; fileRef = 686EC65F18BB44010065154C /* fog.png */; };
+		686EC66118BB44010065154C /* fog.png in Resources */ = {isa = PBXBuildFile; fileRef = 686EC65F18BB44010065154C /* fog.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -251,6 +253,7 @@
 		686EC63E18BB11250065154C /* fighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fighter.png; sourceTree = "<group>"; };
 		686EC64918BB28FD0065154C /* car00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car00.png; sourceTree = "<group>"; };
 		686EC64A18BB28FD0065154C /* Scania4.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Scania4.obj; sourceTree = "<group>"; };
+		686EC65F18BB44010065154C /* fog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fog.png; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -453,6 +456,7 @@
 				686EC63E18BB11250065154C /* fighter.png */,
 				686EC64918BB28FD0065154C /* car00.png */,
 				686EC64A18BB28FD0065154C /* Scania4.obj */,
+				686EC65F18BB44010065154C /* fog.png */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -656,6 +660,7 @@
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */,
+				686EC66018BB44010065154C /* fog.png in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
@@ -682,6 +687,7 @@
 				686EC64218BB11250065154C /* fighter.png in Resources */,
 				686EC64018BB11250065154C /* fighter.obj in Resources */,
 				5087E75417EB910900C73F5D /* CloseSelected.png in Resources */,
+				686EC66118BB44010065154C /* fog.png in Resources */,
 				5087E75517EB910900C73F5D /* HelloWorld.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -459,7 +459,7 @@ void Director::setProjection(Projection projection)
             kmGLLoadIdentity();
 
             // issue #1334
-            kmMat4PerspectiveProjection(&matrixPerspective, 60, (GLfloat)size.width/size.height, 10, zeye+size.height/2);
+            kmMat4PerspectiveProjection(&matrixPerspective, 60, (GLfloat)size.width/size.height, 1, zeye*4);
             // kmMat4PerspectiveProjection( &matrixPerspective, 60, (GLfloat)size.width/size.height, 0.1f, 1500);
 
             kmGLMultMatrix(&matrixPerspective);
