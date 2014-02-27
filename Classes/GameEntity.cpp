@@ -11,3 +11,7 @@
 Sprite3D *GameEntity::getModel(){
     return _Model;
 }
+
+Vertex3F GameEntity::getOrientation(){
+    return _orientation;
+}

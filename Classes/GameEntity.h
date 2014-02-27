@@ -18,8 +18,12 @@ public:
     CREATE_FUNC(GameEntity);
     Sprite3D *getModel();
     void remove();
+    Vertex3F getOrientation();
+    
 protected:
     Sprite3D *_Model;
+    float _radius;
+    Vertex3F _orientation;
 };
 
 

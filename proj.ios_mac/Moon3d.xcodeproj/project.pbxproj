@@ -52,6 +52,12 @@
 		50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF629517ECD46A001EB2F8 /* Icon-100.png */; };
 		50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A017ECD613001EB2F8 /* Icon-29.png */; };
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
+		68005B8E18BEE774007598C5 /* GameEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68005B8C18BEE774007598C5 /* GameEntity.cpp */; };
+		68005B8F18BEE774007598C5 /* GameEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68005B8C18BEE774007598C5 /* GameEntity.cpp */; };
+		68005B9F18BEEC75007598C5 /* AirCraft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68005B9D18BEEC75007598C5 /* AirCraft.cpp */; };
+		68005BA018BEEC75007598C5 /* AirCraft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68005B9D18BEEC75007598C5 /* AirCraft.cpp */; };
+		68005BA318BEEE66007598C5 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68005BA118BEEE66007598C5 /* Player.cpp */; };
+		68005BA418BEEE66007598C5 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68005BA118BEEE66007598C5 /* Player.cpp */; };
 		6815E1C418BDE5C9004F9944 /* car00.png in Resources */ = {isa = PBXBuildFile; fileRef = 6815E1C218BDE5C9004F9944 /* car00.png */; };
 		6815E1C518BDE5C9004F9944 /* car00.png in Resources */ = {isa = PBXBuildFile; fileRef = 6815E1C218BDE5C9004F9944 /* car00.png */; };
 		6815E1C618BDE5C9004F9944 /* DownNecker.obj in Resources */ = {isa = PBXBuildFile; fileRef = 6815E1C318BDE5C9004F9944 /* DownNecker.obj */; };
@@ -61,8 +67,8 @@
 		686EC63218BADFEF0065154C /* libcocos2dx Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC61118BADFD30065154C /* libcocos2dx Mac.a */; };
 		686EC63318BADFEF0065154C /* libcocos2dx-extensions Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC61318BADFD30065154C /* libcocos2dx-extensions Mac.a */; };
 		686EC63418BADFEF0065154C /* libCocosDenshion Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC61918BADFD30065154C /* libCocosDenshion Mac.a */; };
-		686EC63718BAE16A0065154C /* ScrollingBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 686EC63518BAE16A0065154C /* ScrollingBackground.cpp */; };
-		686EC63818BAE16A0065154C /* ScrollingBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 686EC63518BAE16A0065154C /* ScrollingBackground.cpp */; };
+		686EC63718BAE16A0065154C /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 686EC63518BAE16A0065154C /* GameLayer.cpp */; };
+		686EC63818BAE16A0065154C /* GameLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 686EC63518BAE16A0065154C /* GameLayer.cpp */; };
 		686EC63A18BAEFA70065154C /* groundLevel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 686EC63918BAEFA70065154C /* groundLevel.jpg */; };
 		686EC63B18BAEFA70065154C /* groundLevel.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 686EC63918BAEFA70065154C /* groundLevel.jpg */; };
 		686EC63F18BB11250065154C /* fighter.obj in Resources */ = {isa = PBXBuildFile; fileRef = 686EC63D18BB11250065154C /* fighter.obj */; };
@@ -252,11 +258,17 @@
 		50EF629517ECD46A001EB2F8 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
 		50EF62A017ECD613001EB2F8 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		50EF62A117ECD613001EB2F8 /* Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-50.png"; sourceTree = "<group>"; };
+		68005B8C18BEE774007598C5 /* GameEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameEntity.cpp; path = ../Classes/GameEntity.cpp; sourceTree = "<group>"; };
+		68005B8D18BEE774007598C5 /* GameEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameEntity.h; path = ../Classes/GameEntity.h; sourceTree = "<group>"; };
+		68005B9D18BEEC75007598C5 /* AirCraft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AirCraft.cpp; path = ../Classes/AirCraft.cpp; sourceTree = "<group>"; };
+		68005B9E18BEEC75007598C5 /* AirCraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AirCraft.h; path = ../Classes/AirCraft.h; sourceTree = "<group>"; };
+		68005BA118BEEE66007598C5 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = ../Classes/Player.cpp; sourceTree = "<group>"; };
+		68005BA218BEEE66007598C5 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = ../Classes/Player.h; sourceTree = "<group>"; };
 		6815E1C218BDE5C9004F9944 /* car00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car00.png; sourceTree = "<group>"; };
 		6815E1C318BDE5C9004F9944 /* DownNecker.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DownNecker.obj; sourceTree = "<group>"; };
 		6815E1D518BDEDA4004F9944 /* Done1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Done1.png; sourceTree = "<group>"; };
-		686EC63518BAE16A0065154C /* ScrollingBackground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScrollingBackground.cpp; path = ../Classes/ScrollingBackground.cpp; sourceTree = "<group>"; };
-		686EC63618BAE16A0065154C /* ScrollingBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollingBackground.h; path = ../Classes/ScrollingBackground.h; sourceTree = "<group>"; };
+		686EC63518BAE16A0065154C /* GameLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameLayer.cpp; path = ../Classes/GameLayer.cpp; sourceTree = "<group>"; };
+		686EC63618BAE16A0065154C /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = ../Classes/GameLayer.h; sourceTree = "<group>"; };
 		686EC63918BAEFA70065154C /* groundLevel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = groundLevel.jpg; sourceTree = "<group>"; };
 		686EC63D18BB11250065154C /* fighter.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fighter.obj; sourceTree = "<group>"; };
 		686EC63E18BB11250065154C /* fighter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fighter.png; sourceTree = "<group>"; };
@@ -336,8 +348,14 @@
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */,
 				1AFAF8B616D35DE700DB1158 /* HelloWorldScene.h */,
-				686EC63518BAE16A0065154C /* ScrollingBackground.cpp */,
-				686EC63618BAE16A0065154C /* ScrollingBackground.h */,
+				686EC63518BAE16A0065154C /* GameLayer.cpp */,
+				686EC63618BAE16A0065154C /* GameLayer.h */,
+				68005B8C18BEE774007598C5 /* GameEntity.cpp */,
+				68005B8D18BEE774007598C5 /* GameEntity.h */,
+				68005B9D18BEEC75007598C5 /* AirCraft.cpp */,
+				68005B9E18BEEC75007598C5 /* AirCraft.h */,
+				68005BA118BEEE66007598C5 /* Player.cpp */,
+				68005BA218BEEE66007598C5 /* Player.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -718,9 +736,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
-				686EC63718BAE16A0065154C /* ScrollingBackground.cpp in Sources */,
+				68005B9F18BEEC75007598C5 /* AirCraft.cpp in Sources */,
+				68005BA318BEEE66007598C5 /* Player.cpp in Sources */,
+				686EC63718BAE16A0065154C /* GameLayer.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
+				68005B8E18BEE774007598C5 /* GameEntity.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
 			);
@@ -731,7 +752,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5087E75717EB910900C73F5D /* AppDelegate.cpp in Sources */,
-				686EC63818BAE16A0065154C /* ScrollingBackground.cpp in Sources */,
+				68005BA418BEEE66007598C5 /* Player.cpp in Sources */,
+				68005BA018BEEC75007598C5 /* AirCraft.cpp in Sources */,
+				686EC63818BAE16A0065154C /* GameLayer.cpp in Sources */,
+				68005B8F18BEE774007598C5 /* GameEntity.cpp in Sources */,
 				5087E75817EB910900C73F5D /* HelloWorldScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 			);

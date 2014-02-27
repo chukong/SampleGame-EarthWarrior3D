@@ -10,6 +10,7 @@
 #define __Moon3d__AirCraft__
 
 #include "cocos2d.h"
+#include "GameEntity.h"
 USING_NS_CC;
 
 class AirCraft : public GameEntity

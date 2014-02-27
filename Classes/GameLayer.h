@@ -6,24 +6,23 @@
 //
 //
 
-#ifndef __Moon3d__ScrollingBackground__
-#define __Moon3d__ScrollingBackground__
+#ifndef __Moon3d__GameLayer__
+#define __Moon3d__GameLayer__
 #include "cocos2d.h"
+#include "Player.h"
+USING_NS_CC;
 
 
-class ScrollBack : public cocos2d::Layer
+class GameLayer : public Layer
 {
 public:
     virtual bool init();
     void update(float dt);
-    CREATE_FUNC(ScrollBack);
-    virtual bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event);
-    virtual void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event);
-    virtual void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *event);
+    CREATE_FUNC(GameLayer);
 protected:
     float xScroll = 0.0f;
     float speed = -60.0f;
-    cocos2d::Sprite *spr;
-    cocos2d::Sprite3D *player;
+    Sprite *spr;
+    Player *_player;
 };
-#endif /* defined(__Moon3d__ScrollingBackground__) */
+#endif /* defined(__Moon3d__GameLayer__) */
