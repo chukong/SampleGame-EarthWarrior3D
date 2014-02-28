@@ -336,7 +336,11 @@ void ObjMeshData::convertToRenderMesh(RenderMesh &renderMesh)
         {
             RenderMesh::RenderVertex vertex;
             vertex.vertex = _vertexLists[face[faceVertexIndex]._vIndex];
-            vertex.normal = _normalVertexLists[face[faceVertexIndex]._normIndex];
+            if(face[faceVertexIndex]._normIndex == -1)
+                vertex.normal = _normalVertexLists[face[faceVertexIndex]._vIndex];
+            else
+                vertex.normal = _normalVertexLists[face[faceVertexIndex]._normIndex];
+            
             if(face[faceVertexIndex]._uvIndex == -1)
                 vertex.uv = vec2(0,0);
             else
