@@ -7,14 +7,20 @@
 //
 
 #include "GameLayer.h"
-
+#include "Player.h"
+#include "Fodder.h"
+#include "QuadTree.h"
 USING_NS_CC;
 
 bool GameLayer::init()
 {
+    // variable init
+    container = new QuadTree(0, Rect(0,0, 100, 100));
+    
+    
     spr = Sprite::create("groundLevel.jpg");
     addChild(spr);
-    CCTexture2D::TexParams texRepeat = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
+    CCTexture2D::TexParams texRepeat = {GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_REPEAT};
     spr->getTexture()->setTexParameters(texRepeat);
     setRotation3D(Vertex3F(-30.0,0.0f,0.0f));
     spr->setScale(1.4);
@@ -29,7 +35,10 @@ bool GameLayer::init()
     auto enemy = Fodder::create();
     addChild(enemy);
     enemy->setPosition(0, 500);
-    Enemies.pushBack(enemy);
+    
+    container->insert(enemy);
+    
+    
     
     scheduleUpdate();
     return true;
@@ -39,16 +48,7 @@ bool GameLayer::init()
 
 void GameLayer::update(float dt){
     xScroll -= speed*dt;
-    spr->setTextureRect(Rect(0,xScroll,512,1200));
+    spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
     //Point;
-    for(const auto &enemy : Enemies) {
-        float dist =(enemy->getPosition()-_player->getPosition()).getLength();
-        float eRadius = enemy->getRadius();
-        float pRadius = _player->getRadius();
-        if(dist < (eRadius+pRadius))
-        {
-            log("touched");
-        }
-    }
     //_player->setRotation3D(Vertex3F(0,xScroll,0));
 }

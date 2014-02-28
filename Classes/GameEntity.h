@@ -10,6 +10,7 @@
 #define __Moon3d__GameEntity__
 
 #include "cocos2d.h"
+
 USING_NS_CC;
 
 class GameEntity : public Node
