@@ -226,24 +226,30 @@ bool ObjMeshData::checkBound()const
         {
             if(_faceLists[faceIndex][faceVertexIndex]._vIndex == -1)
             {
-                CCLOG( "on face %d faceVertex %d, vIndex is -1 out of bound.", faceIndex, faceVertexIndex);
+                CCLOG( "on face %d faceVertex %d, vIndex is -1 out of bound.", (int)faceIndex, (int)faceVertexIndex);
+                return false;
             }
             if(_faceLists[faceIndex][faceVertexIndex]._vIndex >= _vertexLists.size())
             {
-                CCLOG("on face %d faceVertex %d, vIndex is %d out of bound.", faceIndex, faceVertexIndex, _faceLists[faceIndex][faceVertexIndex]._vIndex);
+                CCLOG("on face %d faceVertex %d, vIndex is %d out of bound.", (int)faceIndex, (int)faceVertexIndex, _faceLists[faceIndex][faceVertexIndex]._vIndex);
+                return false;
             }
             
             if(_faceLists[faceIndex][faceVertexIndex]._normIndex >= (int)_normalVertexLists.size())
             {
-                CCLOG("on face %d faceVertex %d, normIndex is %d out of bound.", faceIndex, faceVertexIndex, _faceLists[faceIndex][faceVertexIndex]._normIndex);
+                CCLOG("on face %d faceVertex %d, normIndex is %d out of bound.", (int)faceIndex, (int)faceVertexIndex, _faceLists[faceIndex][faceVertexIndex]._normIndex);
+                return false;
             }
             
             if(_faceLists[faceIndex][faceVertexIndex]._uvIndex >= (int)_uvVertexLists.size())
             {
-                CCLOG("on face %d faceVertex %d, uvIndex is %d out of bound.", faceIndex, faceVertexIndex, _faceLists[faceIndex][faceVertexIndex]._uvIndex);
+                CCLOG("on face %d faceVertex %d, uvIndex is %d out of bound.", (int)faceIndex, (int)faceVertexIndex, _faceLists[faceIndex][faceVertexIndex]._uvIndex);
+                return false;
             }
         }
     }
+    
+    return true;
 }
 
 bool ObjMeshData::isTriangeMesh() const
@@ -424,8 +430,8 @@ Mesh::~Mesh()
 
 bool Mesh::loadFromFile(const std::string &name)
 {
-    _name = FileUtils::getInstance()->fullPathForFilename(name);
-    ifstream objFile(_name.c_str());
+    auto fileData = FileUtils::getInstance()->getDataFromFile(name);
+    std::istringstream objFile((const char*)fileData.getBytes());
     
     ObjMeshParser parser;
     
