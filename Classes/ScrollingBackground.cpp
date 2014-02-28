@@ -28,8 +28,8 @@ bool ScrollBack::init()
     
 
     //player = Sprite3D::create("Scania4.obj", "car00.png");
-    player = Sprite3D::create("DownNecker.obj", "Done1.png");
-    player->setScale(20);
+    player = Sprite3D::create("Scania4.obj", "car00.png");
+    player->setScale(200);
     player->setPosition3D(Vertex3F(0,0,0));
 
     addChild(player,10);

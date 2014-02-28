@@ -83,10 +83,10 @@ void Sprite3D::initializeModel()
 
         _model->generateVertices(_vertices, 0);
         
-        int indexCount = _model->getTriangleIndexCount();
-        _indices.resize(indexCount);
+        //int indexCount = _model->getTriangleIndexCount();
+        //_indices.resize(indexCount);
         _model->generateTriangleIndices(_indices);
-        _drawable.IndexCount = indexCount;
+        _drawable.IndexCount = _indices.size();
 
         delete _model;
         _model = NULL;
