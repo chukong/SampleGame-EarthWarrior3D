@@ -577,7 +577,11 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
+<<<<<<< HEAD
 						DevelopmentTeam = V9PGW78GXJ;
+=======
+						DevelopmentTeam = 97SFP63H5X;
+>>>>>>> 323336d2a6a3e6ce29c0a95bf30ff85ff88ccf54
 					};
 				};
 			};
@@ -863,7 +867,11 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
+<<<<<<< HEAD
 				PROVISIONING_PROFILE = "33FF386D-C106-4640-A6F3-154379CB8394";
+=======
+				PROVISIONING_PROFILE = "";
+>>>>>>> 323336d2a6a3e6ce29c0a95bf30ff85ff88ccf54
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -896,7 +904,11 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
+<<<<<<< HEAD
 				PROVISIONING_PROFILE = "33FF386D-C106-4640-A6F3-154379CB8394";
+=======
+				PROVISIONING_PROFILE = "";
+>>>>>>> 323336d2a6a3e6ce29c0a95bf30ff85ff88ccf54
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

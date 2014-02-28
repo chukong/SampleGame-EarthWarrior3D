@@ -17,9 +17,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     glview->setDesignResolutionSize(480,800,ResolutionPolicy::FIXED_HEIGHT);
     if(!glview) {
-        glview = GLView::createWithRect("Moon3d", Rect(0, 0, 480, 800));
+        glview = GLView::createWithRect("Moon3d", Rect(0, 0, 428, 640));
+        
         director->setOpenGLView(glview);
     }
+    glview->setDesignResolutionSize(640, 960, ResolutionPolicy::SHOW_ALL);
 
     // turn on display FPS
     director->setDisplayStats(true);

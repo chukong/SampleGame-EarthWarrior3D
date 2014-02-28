@@ -19,6 +19,7 @@ obj/local/armeabi/objs/cocos2dx_static/__/3d/CCMesh.o: \
  /Users/liuyuye/Desktop/adt-bundle-mac-x86_64-20131030/android-ndk-r8e/sources/cxx-stl/gnu-libstdc++/4.7/include/list \
  /Users/liuyuye/Desktop/adt-bundle-mac-x86_64-20131030/android-ndk-r8e/sources/cxx-stl/gnu-libstdc++/4.7/include/fstream \
  /Users/liuyuye/Desktop/adt-bundle-mac-x86_64-20131030/android-ndk-r8e/sources/cxx-stl/gnu-libstdc++/4.7/include/iostream \
+ /Users/liuyuye/Desktop/adt-bundle-mac-x86_64-20131030/android-ndk-r8e/sources/cxx-stl/gnu-libstdc++/4.7/include/sstream \
  /Users/liuyuye/Desktop/Moon3DWu/proj.android/../cocos2d/cocos/2d/ccMacros.h \
  /Users/liuyuye/Desktop/Moon3DWu/proj.android/../cocos2d/cocos/2d/../base/CCConsole.h \
  /Users/liuyuye/Desktop/adt-bundle-mac-x86_64-20131030/android-ndk-r8e/platforms/android-9/arch-arm/usr/include/sys/select.h \
@@ -76,6 +77,8 @@ obj/local/armeabi/objs/cocos2dx_static/__/3d/CCMesh.o: \
 /Users/liuyuye/Desktop/adt-bundle-mac-x86_64-20131030/android-ndk-r8e/sources/cxx-stl/gnu-libstdc++/4.7/include/fstream:
 
 /Users/liuyuye/Desktop/adt-bundle-mac-x86_64-20131030/android-ndk-r8e/sources/cxx-stl/gnu-libstdc++/4.7/include/iostream:
+
+/Users/liuyuye/Desktop/adt-bundle-mac-x86_64-20131030/android-ndk-r8e/sources/cxx-stl/gnu-libstdc++/4.7/include/sstream:
 
 /Users/liuyuye/Desktop/Moon3DWu/proj.android/../cocos2d/cocos/2d/ccMacros.h:
 
