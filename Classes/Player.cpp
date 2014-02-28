@@ -17,6 +17,7 @@ bool Player::init()
         _Model->setScale(1.3);
         addChild(_Model);
         _Model->setRotation3D(Vertex3F(90,0,90));
+        _radius = 40;
         
         auto listener = EventListenerTouchOneByOne::create();
         listener->setSwallowTouches(true);
@@ -34,9 +35,8 @@ bool Player::init()
 }
 void Player::update(float dt)
 {
-    //float target = getTargetAngle();
-    //setRotation3D(Vertex3F(0,fmin(fmax(targetAngle*(1-dt*returnSpeed),-70),70), 0));
-    setRotation3D(Vertex3F(0,fmin(fmax(targetAngle*(1-dt*returnSpeed*(rollReturnThreshold-fabsf(targetAngle)/maxRoll)),-maxRoll),maxRoll), 0));
+    float smoothedAngle =fmin(fmax(targetAngle*(1-dt*returnSpeed*(rollReturnThreshold-fabsf(targetAngle)/maxRoll)),-maxRoll),maxRoll);
+    setRotation3D(Vertex3F(fabsf(smoothedAngle)*0.15,smoothedAngle, 0));
     targetAngle = getRotation3D().y;
     
 }

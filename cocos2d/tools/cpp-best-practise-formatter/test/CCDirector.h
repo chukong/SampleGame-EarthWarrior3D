@@ -33,7 +33,7 @@ THE SOFTWARE.
 #include "cocoa/CCGeometry.h"
 #include "cocoa/CCArray.h"
 #include "CCGL.h"
-#include "kazmath/mat4.h"
+#include "../math/kazmath/mat4.h"
 #include "label_nodes/CCLabelAtlas.h"
 #include "ccTypeInfo.h"
 

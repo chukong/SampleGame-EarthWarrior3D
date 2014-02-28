@@ -23,10 +23,10 @@ public:
     virtual void onTouchEnded(Touch *touch, Event *event);
     void update(float dt);
     
-    float rollSpeed = 1.5;// recommended 1.5
-    float returnSpeed = 10;// recommended 4
-    float maxRoll = 75;
-    float rollReturnThreshold = 1.02;
+    const float rollSpeed = 1.5;// recommended 1.5
+    const float returnSpeed = 10;// recommended 4
+    const float maxRoll = 75;
+    const float rollReturnThreshold = 1.02;
     void setTargetAngle(float angle){targetAngle = angle;};
     void setTargetPos(Point target){targetPos = target;};
 protected:

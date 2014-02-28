@@ -19,7 +19,7 @@ public:
     Sprite3D *getModel();
     void remove();
     Vertex3F getOrientation();
-    
+    float getRadius(){return _radius;};
 protected:
     Sprite3D *_Model;
     float _radius;
