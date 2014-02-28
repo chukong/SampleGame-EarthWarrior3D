@@ -81,6 +81,8 @@
 		686EC64E18BB28FD0065154C /* Scania4.obj in Resources */ = {isa = PBXBuildFile; fileRef = 686EC64A18BB28FD0065154C /* Scania4.obj */; };
 		686EC66018BB44010065154C /* fog.png in Resources */ = {isa = PBXBuildFile; fileRef = 686EC65F18BB44010065154C /* fog.png */; };
 		686EC66118BB44010065154C /* fog.png in Resources */ = {isa = PBXBuildFile; fileRef = 686EC65F18BB44010065154C /* fog.png */; };
+		687D4C6518BF405A003C6438 /* Fodder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 687D4C6318BF405A003C6438 /* Fodder.cpp */; };
+		687D4C6618BF405A003C6438 /* Fodder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 687D4C6318BF405A003C6438 /* Fodder.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -275,6 +277,8 @@
 		686EC64918BB28FD0065154C /* car00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car00.png; sourceTree = "<group>"; };
 		686EC64A18BB28FD0065154C /* Scania4.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Scania4.obj; sourceTree = "<group>"; };
 		686EC65F18BB44010065154C /* fog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fog.png; sourceTree = "<group>"; };
+		687D4C6318BF405A003C6438 /* Fodder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Fodder.cpp; path = ../Classes/Fodder.cpp; sourceTree = "<group>"; };
+		687D4C6418BF405A003C6438 /* Fodder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Fodder.h; path = ../Classes/Fodder.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -356,6 +360,8 @@
 				68005B9E18BEEC75007598C5 /* AirCraft.h */,
 				68005BA118BEEE66007598C5 /* Player.cpp */,
 				68005BA218BEEE66007598C5 /* Player.h */,
+				687D4C6318BF405A003C6438 /* Fodder.cpp */,
+				687D4C6418BF405A003C6438 /* Fodder.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -738,6 +744,7 @@
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				68005B9F18BEEC75007598C5 /* AirCraft.cpp in Sources */,
 				68005BA318BEEE66007598C5 /* Player.cpp in Sources */,
+				687D4C6518BF405A003C6438 /* Fodder.cpp in Sources */,
 				686EC63718BAE16A0065154C /* GameLayer.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
@@ -758,6 +765,7 @@
 				68005B8F18BEE774007598C5 /* GameEntity.cpp in Sources */,
 				5087E75817EB910900C73F5D /* HelloWorldScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
+				687D4C6618BF405A003C6438 /* Fodder.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

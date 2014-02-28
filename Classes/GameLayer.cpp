@@ -23,12 +23,15 @@ bool GameLayer::init()
     
     _player = Player::create();
     _player->setPosition3D(Vertex3F(0,0,0));
-
+    
     addChild(_player,10);
     
+    auto enemy = Fodder::create();
+    addChild(enemy);
+    enemy->setPosition(0, 500);
+    Enemies.pushBack(enemy);
     
     scheduleUpdate();
-
     return true;
 }
 
@@ -37,7 +40,15 @@ bool GameLayer::init()
 void GameLayer::update(float dt){
     xScroll -= speed*dt;
     spr->setTextureRect(Rect(0,xScroll,512,1200));
-    
-    
+    //Point;
+    for(const auto &enemy : Enemies) {
+        float dist =(enemy->getPosition()-_player->getPosition()).getLength();
+        float eRadius = enemy->getRadius();
+        float pRadius = _player->getRadius();
+        if(dist < (eRadius+pRadius))
+        {
+            log("touched");
+        }
+    }
     //_player->setRotation3D(Vertex3F(0,xScroll,0));
 }
