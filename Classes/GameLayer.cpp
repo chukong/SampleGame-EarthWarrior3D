@@ -35,11 +35,7 @@ bool GameLayer::init()
     auto enemy = Fodder::create();
     addChild(enemy);
     enemy->setPosition(0, 500);
-    
     container->insert(enemy);
-    
-    
-    
     scheduleUpdate();
     return true;
 }

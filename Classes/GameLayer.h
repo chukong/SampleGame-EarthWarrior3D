@@ -9,7 +9,6 @@
 #ifndef __Moon3d__GameLayer__
 #define __Moon3d__GameLayer__
 #include "cocos2d.h"
-
 USING_NS_CC;
 class Player;
 class QuadTree;
