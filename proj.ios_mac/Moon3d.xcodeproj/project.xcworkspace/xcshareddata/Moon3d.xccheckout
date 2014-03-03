@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>60D8639B-75B2-40CE-9C8F-4B92E77765CD</string>
+	<string>603E4742-32B2-443B-AE41-CE758551B649</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Moon3d</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>BCDE2E15-C65B-4EC4-8D9D-9A092203477C</key>
-		<string>https://github.com/Wu-Hao/Moon3D.git</string>
+		<key>80488B8F-64F1-416B-B7E4-A93C6A005A84</key>
+		<string>https://github.com/yuye-liu/Moon3D.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>proj.ios_mac/Moon3d.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>BCDE2E15-C65B-4EC4-8D9D-9A092203477C</key>
+		<key>80488B8F-64F1-416B-B7E4-A93C6A005A84</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/Wu-Hao/Moon3D.git</string>
+	<string>https://github.com/yuye-liu/Moon3D.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>BCDE2E15-C65B-4EC4-8D9D-9A092203477C</string>
+	<string>80488B8F-64F1-416B-B7E4-A93C6A005A84</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>BCDE2E15-C65B-4EC4-8D9D-9A092203477C</string>
+			<string>80488B8F-64F1-416B-B7E4-A93C6A005A84</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Moon3DWu</string>
+			<string>Moon3D</string>
 		</dict>
 	</array>
 </dict>

@@ -32,6 +32,7 @@ public:
 protected:
     float targetAngle = 0;
     Point targetPos = Point(0,0);
+    Vertex3F lastPosition;
 };
 
 

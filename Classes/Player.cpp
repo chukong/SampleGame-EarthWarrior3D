@@ -29,6 +29,7 @@ bool Player::init()
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
         scheduleUpdate();
         
+        
         return true;
     }
     return false;
@@ -49,9 +50,34 @@ void Player::onTouchMoved(Touch *touch, Event *event)
 {
     Point prev = event->getCurrentTarget()->getPosition();
     Point delta =touch->getDelta();
-    setPosition(delta+prev);
-
+    log("x=%f;y=%f;lastX=%f",this->getPosition3D().x,this->getPosition3D().y,lastPosition.x);
+    if(this->getPosition3D().x<-210.0)
+    {
+        Vertex3F limitPosition = Vertex3F(-210,lastPosition.y,lastPosition.z);
+        this->setPosition3D(limitPosition);
+    }
+    else if(this->getPosition3D().y<-362)
+    {
+        Vertex3F limitPosition = Vertex3F(lastPosition.x,-362,lastPosition.z);
+        this->setPosition3D(limitPosition);
+    }
+    else if (this->getPosition3D().x>198)
+    {
+        Vertex3F limitPosition = Vertex3F(198,lastPosition.y,lastPosition.z);
+        this->setPosition3D(limitPosition);
+    }
+    else if (this->getPosition3D().y>729)
+    {
+        Vertex3F limitPosition = Vertex3F(lastPosition.x,729,lastPosition.z);
+        this->setPosition3D(limitPosition);
+    }
+    else
+    {
+        setPosition(delta+prev);
+    }
+    lastPosition = this->getPosition3D();
     setTargetAngle(targetAngle+delta.x*rollSpeed*(rollReturnThreshold-fabsf(targetAngle)/maxRoll));
+    
 }
 void Player::onTouchEnded(Touch *touch, Event *event)
 {
