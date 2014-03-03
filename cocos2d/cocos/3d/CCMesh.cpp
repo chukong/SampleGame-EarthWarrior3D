@@ -58,8 +58,13 @@ bool ObjMeshParser::parseVertex(std::istream& lineStream, ObjMeshData& meshData)
 bool ObjMeshParser::parseTextureVertex(std::istream& lineStream, ObjMeshData& meshData)
 {
     float u,v;
+    float w(0.f);
     char whiteSpaceu_v;
     lineStream>>u>>whiteSpaceu_v>>std::ws>>v>>std::ws;
+    if(!lineStream.bad() || !lineStream.eof())
+    {
+        lineStream>>w>>std::ws;
+    }
     //check
     if(lineStream.bad() || !lineStream.eof() || !std::isspace(whiteSpaceu_v))
     {
@@ -67,6 +72,10 @@ bool ObjMeshParser::parseTextureVertex(std::istream& lineStream, ObjMeshData& me
     }
     v = 1 - v;
     meshData._uvVertexLists.push_back(vec2(u,v));
+    if(w != 0.f)
+    {
+        return false;
+    }
     return true;
 }
 
