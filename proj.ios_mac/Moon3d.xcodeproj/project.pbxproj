@@ -58,6 +58,8 @@
 		68005BA018BEEC75007598C5 /* AirCraft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68005B9D18BEEC75007598C5 /* AirCraft.cpp */; };
 		68005BA318BEEE66007598C5 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68005BA118BEEE66007598C5 /* Player.cpp */; };
 		68005BA418BEEE66007598C5 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68005BA118BEEE66007598C5 /* Player.cpp */; };
+		680DB35E18C0740000DBAEFD /* QuadTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680DB35C18C0740000DBAEFD /* QuadTree.cpp */; };
+		680DB35F18C0740000DBAEFD /* QuadTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680DB35C18C0740000DBAEFD /* QuadTree.cpp */; };
 		6815E1C418BDE5C9004F9944 /* car00.png in Resources */ = {isa = PBXBuildFile; fileRef = 6815E1C218BDE5C9004F9944 /* car00.png */; };
 		6815E1C518BDE5C9004F9944 /* car00.png in Resources */ = {isa = PBXBuildFile; fileRef = 6815E1C218BDE5C9004F9944 /* car00.png */; };
 		6815E1C618BDE5C9004F9944 /* DownNecker.obj in Resources */ = {isa = PBXBuildFile; fileRef = 6815E1C318BDE5C9004F9944 /* DownNecker.obj */; };
@@ -290,6 +292,8 @@
 		68005B9E18BEEC75007598C5 /* AirCraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AirCraft.h; path = ../Classes/AirCraft.h; sourceTree = "<group>"; };
 		68005BA118BEEE66007598C5 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = ../Classes/Player.cpp; sourceTree = "<group>"; };
 		68005BA218BEEE66007598C5 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = ../Classes/Player.h; sourceTree = "<group>"; };
+		680DB35C18C0740000DBAEFD /* QuadTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = QuadTree.cpp; path = ../Classes/QuadTree.cpp; sourceTree = "<group>"; };
+		680DB35D18C0740000DBAEFD /* QuadTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuadTree.h; path = ../Classes/QuadTree.h; sourceTree = "<group>"; };
 		6815E1C218BDE5C9004F9944 /* car00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car00.png; sourceTree = "<group>"; };
 		6815E1C318BDE5C9004F9944 /* DownNecker.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DownNecker.obj; sourceTree = "<group>"; };
 		6815E1D518BDEDA4004F9944 /* Done1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Done1.png; sourceTree = "<group>"; };
@@ -389,6 +393,8 @@
 				68005BA218BEEE66007598C5 /* Player.h */,
 				687D4C6318BF405A003C6438 /* Fodder.cpp */,
 				687D4C6418BF405A003C6438 /* Fodder.h */,
+				680DB35C18C0740000DBAEFD /* QuadTree.cpp */,
+				680DB35D18C0740000DBAEFD /* QuadTree.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -577,11 +583,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-<<<<<<< HEAD
-						DevelopmentTeam = V9PGW78GXJ;
-=======
 						DevelopmentTeam = 97SFP63H5X;
->>>>>>> 323336d2a6a3e6ce29c0a95bf30ff85ff88ccf54
 					};
 				};
 			};
@@ -781,6 +783,7 @@
 				687D4C6518BF405A003C6438 /* Fodder.cpp in Sources */,
 				686EC63718BAE16A0065154C /* GameLayer.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				680DB35E18C0740000DBAEFD /* QuadTree.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				68005B8E18BEE774007598C5 /* GameEntity.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
@@ -794,6 +797,7 @@
 			files = (
 				5087E75717EB910900C73F5D /* AppDelegate.cpp in Sources */,
 				68005BA418BEEE66007598C5 /* Player.cpp in Sources */,
+				680DB35F18C0740000DBAEFD /* QuadTree.cpp in Sources */,
 				68005BA018BEEC75007598C5 /* AirCraft.cpp in Sources */,
 				686EC63818BAE16A0065154C /* GameLayer.cpp in Sources */,
 				68005B8F18BEE774007598C5 /* GameEntity.cpp in Sources */,
@@ -867,11 +871,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
-<<<<<<< HEAD
-				PROVISIONING_PROFILE = "33FF386D-C106-4640-A6F3-154379CB8394";
-=======
 				PROVISIONING_PROFILE = "";
->>>>>>> 323336d2a6a3e6ce29c0a95bf30ff85ff88ccf54
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -904,11 +904,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
-<<<<<<< HEAD
-				PROVISIONING_PROFILE = "33FF386D-C106-4640-A6F3-154379CB8394";
-=======
 				PROVISIONING_PROFILE = "";
->>>>>>> 323336d2a6a3e6ce29c0a95bf30ff85ff88ccf54
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

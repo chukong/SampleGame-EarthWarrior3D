@@ -9,11 +9,9 @@
 #ifndef __Moon3d__GameLayer__
 #define __Moon3d__GameLayer__
 #include "cocos2d.h"
-#include "Player.h"
-#include "Fodder.h"
 USING_NS_CC;
-
-
+class Player;
+class QuadTree;
 class GameLayer : public Layer
 {
 public:
@@ -25,6 +23,6 @@ protected:
     float speed = -60.0f;
     Sprite *spr;
     Player *_player;
-    Vector<GameEntity*> Enemies;
+    QuadTree *container;
 };
 #endif /* defined(__Moon3d__GameLayer__) */
