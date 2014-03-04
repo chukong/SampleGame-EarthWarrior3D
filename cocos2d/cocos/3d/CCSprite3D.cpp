@@ -193,6 +193,7 @@ void Sprite3D::onDraw()
 
     //CC_NODE_DRAW_SETUP();
     //glDisable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
     
     getShaderProgram()->use();
     getShaderProgram()->setUniformsForBuiltins(_modelViewTransform);
