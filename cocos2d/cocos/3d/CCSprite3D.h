@@ -55,7 +55,7 @@ protected:
     void setModel(Mesh *model);
     bool buildProgram(bool textured);
     void buildBuffers();
-    void draw();
+    void draw(Renderer* renderer, const kmMat4 &transform, bool transformUpdated);
     void onDraw();
     void setTexture(Texture2D* texture);
     void updateBlendFunc();

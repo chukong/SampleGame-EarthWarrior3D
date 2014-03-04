@@ -174,7 +174,7 @@ void Sprite3D::buildBuffers()
 }
 
 #endif
-void Sprite3D::draw()
+void Sprite3D::draw(Renderer* renderer, const kmMat4 &transform, bool transformUpdated)
 {
     _customCommand.init(_globalZOrder);
     _customCommand.func = CC_CALLBACK_0(Sprite3D::onDraw, this);

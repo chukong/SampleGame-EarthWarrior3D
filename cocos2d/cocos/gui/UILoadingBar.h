@@ -29,7 +29,7 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-namespace gui {
+namespace ui {
 
 typedef enum
 {
@@ -106,12 +106,16 @@ public:
      */
     void setScale9Enabled(bool enabled);
     
+    bool isScale9Enabled();
+    
     /**
      * Sets capinsets for loadingbar, if loadingbar is using scale9 renderer.
      *
      * @param capInsets    capinsets for loadingbar
      */
     void setCapInsets(const Rect &capInsets);
+    
+    const Rect& getCapInsets();
     
     //override "ignoreContentAdaptWithSize" method of widget.
     virtual void ignoreContentAdaptWithSize(bool ignore) override;

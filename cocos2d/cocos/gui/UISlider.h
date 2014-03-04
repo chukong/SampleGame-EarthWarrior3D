@@ -29,7 +29,7 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-namespace gui {
+namespace ui {
 
 typedef enum
 {
@@ -77,6 +77,8 @@ public:
      */
     void setScale9Enabled(bool able);
     
+    bool isScale9Enabled();
+    
     /**
      * Sets capinsets for slider, if slider is using scale9 renderer.
      *
@@ -91,12 +93,16 @@ public:
      */
     void setCapInsetsBarRenderer(const Rect &capInsets);
     
+    const Rect& getCapInsetsBarRenderer();
+    
     /**
      * Sets capinsets for slider, if slider is using scale9 renderer.
      *
      * @param capInsets    capinsets for slider
      */
     void setCapInsetProgressBarRebderer(const Rect &capInsets);
+    
+    const Rect& getCapInsetsProgressBarRebderer();
     
     /**
      * Load textures for slider ball.

@@ -212,11 +212,6 @@ THE SOFTWARE.
 #include "CCSpriteFrame.h"
 #include "CCSpriteFrameCache.h"
 
-// 3d_nodes
-#include "CCMesh.h"
-#include "CCSprite3D.h"
-
-
 // support
 #include "ccUTF8.h"
 #include "CCNotificationCenter.h"
@@ -264,6 +259,10 @@ THE SOFTWARE.
 // component
 #include "CCComponent.h"
 #include "CCComponentContainer.h"
+
+// 3d
+#include "3d/CCSprite3D.h"
+#include "3d/CCMesh.h"
 
 // Deprecated include
 #include "CCDeprecated.h"

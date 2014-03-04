@@ -1054,10 +1054,10 @@ void NodeLoader::onHandlePropTypeFloat(Node * pNode, Node * pParent, const char*
 void NodeLoader::onHandlePropTypeDegrees(Node * pNode, Node * pParent, const char* pPropertyName, float pDegrees, CCBReader * ccbReader) {
     if(strcmp(pPropertyName, PROPERTY_ROTATION) == 0) {
         pNode->setRotation(pDegrees);
-    } else if(strcmp(pPropertyName, PROPERTY_rotationZ_X) == 0) {
-        pNode->setRotationSkewX(pDegrees);
+    } else if(strcmp(pPropertyName, PROPERTY_ROTATIONX) == 0) {
+        pNode->setRotationX(pDegrees);
     } else if(strcmp(pPropertyName, PROPERTY_ROTATIONY) == 0) {
-        pNode->setRotationSkewY(pDegrees);
+        pNode->setRotationY(pDegrees);
     }
     else {
         ASSERT_FAIL_UNEXPECTED_PROPERTY(pPropertyName);

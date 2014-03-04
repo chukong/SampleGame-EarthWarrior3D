@@ -39,16 +39,16 @@ Copyright (c) 2013-2014 Chukong Technologies
 #define CREATE_FUNC(__TYPE__) \
 static __TYPE__* create() \
 { \
-    auto ret = new __TYPE__(); \
-    if (ret && ret->init()) \
+    __TYPE__ *pRet = new __TYPE__(); \
+    if (pRet && pRet->init()) \
     { \
-        ret->autorelease(); \
-        return ret; \
+        pRet->autorelease(); \
+        return pRet; \
     } \
     else \
     { \
-        delete ret; \
-        ret = NULL; \
+        delete pRet; \
+        pRet = NULL; \
         return NULL; \
     } \
 }
@@ -61,16 +61,16 @@ static __TYPE__* create() \
 #define NODE_FUNC(__TYPE__) \
 CC_DEPRECATED_ATTRIBUTE static __TYPE__* node() \
 { \
-    auto ret = new __TYPE__(); \
-    if (ret && ret->init()) \
+    __TYPE__ *pRet = new __TYPE__(); \
+    if (pRet && pRet->init()) \
     { \
-        ret->autorelease(); \
-        return ret; \
+        pRet->autorelease(); \
+        return pRet; \
     } \
     else \
     { \
-        delete ret; \
-        ret = NULL; \
+        delete pRet; \
+        pRet = NULL; \
         return NULL; \
     } \
 }
