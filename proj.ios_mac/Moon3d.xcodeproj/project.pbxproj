@@ -58,6 +58,10 @@
 		68005BA018BEEC75007598C5 /* AirCraft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68005B9D18BEEC75007598C5 /* AirCraft.cpp */; };
 		68005BA318BEEE66007598C5 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68005BA118BEEE66007598C5 /* Player.cpp */; };
 		68005BA418BEEE66007598C5 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 68005BA118BEEE66007598C5 /* Player.cpp */; };
+		680A315318C5CDE500D073CD /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680A315118C5CDE500D073CD /* Bullet.cpp */; };
+		680A315418C5CDE500D073CD /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680A315118C5CDE500D073CD /* Bullet.cpp */; };
+		680A315718C5D52300D073CD /* BulletController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680A315518C5D52300D073CD /* BulletController.cpp */; };
+		680A315818C5D52300D073CD /* BulletController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680A315518C5D52300D073CD /* BulletController.cpp */; };
 		680DB35E18C0740000DBAEFD /* QuadTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680DB35C18C0740000DBAEFD /* QuadTree.cpp */; };
 		680DB35F18C0740000DBAEFD /* QuadTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680DB35C18C0740000DBAEFD /* QuadTree.cpp */; };
 		6815E1C418BDE5C9004F9944 /* car00.png in Resources */ = {isa = PBXBuildFile; fileRef = 6815E1C218BDE5C9004F9944 /* car00.png */; };
@@ -294,6 +298,10 @@
 		68005B9E18BEEC75007598C5 /* AirCraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AirCraft.h; path = ../Classes/AirCraft.h; sourceTree = "<group>"; };
 		68005BA118BEEE66007598C5 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = ../Classes/Player.cpp; sourceTree = "<group>"; };
 		68005BA218BEEE66007598C5 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Player.h; path = ../Classes/Player.h; sourceTree = "<group>"; };
+		680A315118C5CDE500D073CD /* Bullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bullet.cpp; path = ../Classes/Bullet.cpp; sourceTree = "<group>"; };
+		680A315218C5CDE500D073CD /* Bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bullet.h; path = ../Classes/Bullet.h; sourceTree = "<group>"; };
+		680A315518C5D52300D073CD /* BulletController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BulletController.cpp; path = ../Classes/BulletController.cpp; sourceTree = "<group>"; };
+		680A315618C5D52300D073CD /* BulletController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BulletController.h; path = ../Classes/BulletController.h; sourceTree = "<group>"; };
 		680DB35C18C0740000DBAEFD /* QuadTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = QuadTree.cpp; path = ../Classes/QuadTree.cpp; sourceTree = "<group>"; };
 		680DB35D18C0740000DBAEFD /* QuadTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuadTree.h; path = ../Classes/QuadTree.h; sourceTree = "<group>"; };
 		6815E1C218BDE5C9004F9944 /* car00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car00.png; sourceTree = "<group>"; };
@@ -398,6 +406,10 @@
 				687D4C6418BF405A003C6438 /* Fodder.h */,
 				680DB35C18C0740000DBAEFD /* QuadTree.cpp */,
 				680DB35D18C0740000DBAEFD /* QuadTree.h */,
+				680A315118C5CDE500D073CD /* Bullet.cpp */,
+				680A315218C5CDE500D073CD /* Bullet.h */,
+				680A315518C5D52300D073CD /* BulletController.cpp */,
+				680A315618C5D52300D073CD /* BulletController.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -787,9 +799,11 @@
 				68005B9F18BEEC75007598C5 /* AirCraft.cpp in Sources */,
 				68005BA318BEEE66007598C5 /* Player.cpp in Sources */,
 				687D4C6518BF405A003C6438 /* Fodder.cpp in Sources */,
+				680A315718C5D52300D073CD /* BulletController.cpp in Sources */,
 				686EC63718BAE16A0065154C /* GameLayer.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				680DB35E18C0740000DBAEFD /* QuadTree.cpp in Sources */,
+				680A315318C5CDE500D073CD /* Bullet.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				68005B8E18BEE774007598C5 /* GameEntity.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
@@ -805,7 +819,9 @@
 				68005BA418BEEE66007598C5 /* Player.cpp in Sources */,
 				680DB35F18C0740000DBAEFD /* QuadTree.cpp in Sources */,
 				68005BA018BEEC75007598C5 /* AirCraft.cpp in Sources */,
+				680A315818C5D52300D073CD /* BulletController.cpp in Sources */,
 				686EC63818BAE16A0065154C /* GameLayer.cpp in Sources */,
+				680A315418C5CDE500D073CD /* Bullet.cpp in Sources */,
 				68005B8F18BEE774007598C5 /* GameEntity.cpp in Sources */,
 				5087E75817EB910900C73F5D /* HelloWorldScene.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,

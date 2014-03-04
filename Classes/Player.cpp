@@ -7,6 +7,7 @@
 //
 
 #include "Player.h"
+#include "Bullet.h"
 
 bool Player::init()
 {
@@ -28,8 +29,8 @@ bool Player::init()
         
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
         scheduleUpdate();
-        //_Model->setOutline(5.0, Color3B(0,0,0));
-        
+        static_cast<Sprite3D*>(_Model)->setOutline(5.0, Color3B(0,0,0));
+        schedule(schedule_selector(Player::shoot), 0.1, -1, 0);
         return true;
     }
     return false;
@@ -59,5 +60,10 @@ void Player::onTouchMoved(Touch *touch, Event *event)
 }
 void Player::onTouchEnded(Touch *touch, Event *event)
 {
-    
+}
+
+void Player::shoot(float dt)
+{
+    auto projectile = Bullet::create();
+    getParent()->addChild(projectile);
 }

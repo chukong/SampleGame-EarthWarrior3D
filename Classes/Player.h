@@ -29,6 +29,8 @@ public:
     const float rollReturnThreshold = 1.02;
     void setTargetAngle(float angle){targetAngle = angle;};
     void setTargetPos(Point target){targetPos = target;};
+    
+    virtual void shoot(float dt);
 protected:
     float targetAngle = 0;
     Point targetPos = Point(0,0);

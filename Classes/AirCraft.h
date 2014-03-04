@@ -19,6 +19,7 @@ public:
     void hurt(float damage);
     float getHP();
     void die();
+    virtual void shoot();
 protected:
     float _HP;// hit points
     

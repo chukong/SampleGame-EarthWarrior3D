@@ -226,14 +226,12 @@ void Sprite3D::onDraw()
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
         
-        glDisable(GL_DEPTH_TEST);
-        CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, _drawable.IndexCount/2);
+        CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, _drawable.IndexCount);
+        glCullFace(GL_BACK);
     }
-    
-    
-    
+
     // ********** Base Draw *************
-    glCullFace(GL_BACK);
+    
     getShaderProgram()->use();
     getShaderProgram()->setUniformsForBuiltins(_modelViewTransform);
 
@@ -284,7 +282,8 @@ void Sprite3D::onDraw()
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
     glDisable(GL_DEPTH_TEST);
-    CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, _drawable.IndexCount/2);
+    CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, _drawable.IndexCount);
+    
 }
 
 void Sprite3D::setTextureName(const std::string& textureName)
