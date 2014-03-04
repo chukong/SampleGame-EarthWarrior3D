@@ -54,25 +54,8 @@ void Player::onTouchMoved(Touch *touch, Event *event)
     setTargetAngle(targetAngle+delta.x*rollSpeed*(rollReturnThreshold-fabsf(targetAngle)/maxRoll));
     
     Point shiftPosition = delta+prev;
-    
-    if (shiftPosition.x<-200)
-    {
-        return;
-    }
-    else if(shiftPosition.y>737)
-    {
-        return;
-    }
-    else if(shiftPosition.x>206)
-    {
-        return;
-    }
-    else if(shiftPosition.x<-376)
-    {
-        return;
-    }
   
-    setPosition(shiftPosition);
+    setPosition(shiftPosition.getClampPoint(Point(-200,-376),Point(206,737)));
 }
 void Player::onTouchEnded(Touch *touch, Event *event)
 {
