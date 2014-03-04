@@ -40,6 +40,24 @@ struct Drawable {
     ssize_t IndexCount;
 };
 
+struct UniformHandles
+{
+    GLuint NormalMatrix;
+    GLuint LightPosition;
+    GLint AmbientMaterial;
+    GLint SpecularMaterial;
+    GLint DiffuseMaterial;
+    GLint Shininess;
+    GLint Sampler;
+};
+
+struct AttributeHandles
+{
+    GLint Position;
+    GLint Normal;
+    GLint TextureCoord;
+};
+
 class Sprite3D : public Node
 {
 public:
@@ -56,7 +74,7 @@ protected:
     bool buildProgram(bool textured);
     void buildBuffers();
     void draw(Renderer* renderer, const kmMat4 &transform, bool transformUpdated);
-    void onDraw();
+    void onDraw(const kmMat4 &transform, bool transformUpdated);
     void setTexture(Texture2D* texture);
     void updateBlendFunc();
     void setTextureName(const std::string& textureName);
@@ -79,6 +97,11 @@ protected:
     float _outLineWidth;
     Color3B _outlineColor;
     GLProgram *_outlineShader;
+
+    UniformHandles _uniforms;
+    UniformHandles _uniformsOutline;
+    AttributeHandles _attributes;
+    AttributeHandles _attributesOutline;
 };
 
 NS_CC_END

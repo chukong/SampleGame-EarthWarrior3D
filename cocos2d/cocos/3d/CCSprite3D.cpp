@@ -27,28 +27,6 @@ NS_CC_BEGIN
 #include "Textured.es2.frag.h"
 #include "Colored.es2.frag.h"
 
-struct UniformHandles
-{
-    GLuint NormalMatrix;
-    GLuint LightPosition;
-    GLint AmbientMaterial;
-    GLint SpecularMaterial;
-    GLint DiffuseMaterial;
-    GLint Shininess;
-    GLint Sampler;
-};
-
-struct AttributeHandles
-{
-    GLint Position;
-    GLint Normal;
-    GLint TextureCoord;
-};
-UniformHandles m_uniforms;
-UniformHandles m_uniformsOutline;
-AttributeHandles m_attributes;
-AttributeHandles m_attributesOutline;
-
 Sprite3D* Sprite3D::create(const std::string &modelPath, const std::string &texturePath)
 {
     auto ret = new Sprite3D;
@@ -127,19 +105,19 @@ bool Sprite3D::buildProgram(bool textured)
     shaderProgram->updateUniforms();
 
     // Extract the handles to attributes and uniforms.
-    m_attributes.Position = shaderProgram->getAttribLocation("Position");
-    m_attributes.Normal = shaderProgram->getAttribLocation("Normal");
+    _attributes.Position = shaderProgram->getAttribLocation("Position");
+    _attributes.Normal = shaderProgram->getAttribLocation("Normal");
     
-    m_uniforms.DiffuseMaterial = shaderProgram->getUniformLocation("DiffuseMaterial");
+    _uniforms.DiffuseMaterial = shaderProgram->getUniformLocation("DiffuseMaterial");
     if (textured) {
-        m_attributes.TextureCoord = shaderProgram->getAttribLocation("TextureCoord");
-        m_uniforms.Sampler = shaderProgram->getUniformLocation("Sampler");
+        _attributes.TextureCoord = shaderProgram->getAttribLocation("TextureCoord");
+        _uniforms.Sampler = shaderProgram->getUniformLocation("Sampler");
     }
     else {
-        m_attributes.TextureCoord = 0;
-        m_uniforms.Sampler = 0;
+        _attributes.TextureCoord = 0;
+        _uniforms.Sampler = 0;
     }
-    m_uniforms.NormalMatrix = shaderProgram->getUniformLocation("NormalMatrix");
+    _uniforms.NormalMatrix = shaderProgram->getUniformLocation("NormalMatrix");
     setShaderProgram(shaderProgram);
     return true;
 }
@@ -177,25 +155,25 @@ void Sprite3D::buildBuffers()
 void Sprite3D::draw(Renderer* renderer, const kmMat4 &transform, bool transformUpdated)
 {
     _customCommand.init(_globalZOrder);
-    _customCommand.func = CC_CALLBACK_0(Sprite3D::onDraw, this);
+    _customCommand.func = CC_CALLBACK_0(Sprite3D::onDraw, this, transform, transformUpdated);
     Director::getInstance()->getRenderer()->addCommand(&_customCommand);
 }
 
-void Sprite3D::onDraw()
+void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
 {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     // ********** Base Draw *************
     
     getShaderProgram()->use();
-    getShaderProgram()->setUniformsForBuiltins(_modelViewTransform);
+    getShaderProgram()->setUniformsForBuiltins(transform);
 
     GL::blendFunc( _blendFunc.src, _blendFunc.dst );
     kmGLLoadIdentity();
     
 	if (_texture->getName()) {
         GL::bindTexture2D(_texture->getName());
-        glUniform1i(m_uniforms.Sampler, 0);
+        glUniform1i(_uniforms.Sampler, 0);
         GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POS_COLOR_TEX );
     }
     else {
@@ -203,27 +181,27 @@ void Sprite3D::onDraw()
     }
     
     // Set the diffuse color.
-    glUniform3f(m_uniforms.DiffuseMaterial,1, 1, 1);
+    glUniform3f(_uniforms.DiffuseMaterial,1, 1, 1);
     
     // Initialize various state.
-    glEnableVertexAttribArray(m_attributes.Position);
-    glEnableVertexAttribArray(m_attributes.Normal);
+    glEnableVertexAttribArray(_attributes.Position);
+    glEnableVertexAttribArray(_attributes.Normal);
     if (_texture->getName())
-        glEnableVertexAttribArray(m_attributes.TextureCoord);
+        glEnableVertexAttribArray(_attributes.TextureCoord);
 
     // Set the normal matrix.
     // It's orthogonal, so its Inverse-Transpose is itself!
     kmMat3 normals;
     kmMat3AssignMat4(&normals, &_modelViewTransform);
-    glUniformMatrix3fv(m_uniforms.NormalMatrix, 1, 0, &normals.mat[0]);
+    glUniformMatrix3fv(_uniforms.NormalMatrix, 1, 0, &normals.mat[0]);
 
     // Draw the surface using VBOs
     int stride = sizeof(vec3) + sizeof(vec3) + sizeof(vec2);
     const GLvoid* normalOffset = (const GLvoid*) sizeof(vec3);
     const GLvoid* texCoordOffset = (const GLvoid*) (2 * sizeof(vec3));
-    GLint position = m_attributes.Position;
-    GLint normal = m_attributes.Normal;
-    GLint texCoord = m_attributes.TextureCoord;
+    GLint position = _attributes.Position;
+    GLint normal = _attributes.Normal;
+    GLint texCoord = _attributes.TextureCoord;
 
     glBindBuffer(GL_ARRAY_BUFFER, _drawable.VertexBuffer);
     glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, stride, 0);
@@ -247,20 +225,20 @@ void Sprite3D::onDraw()
         GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION );
         
         // Initialize various state.
-        glEnableVertexAttribArray(m_attributesOutline.Position);
-        glEnableVertexAttribArray(m_attributesOutline.Normal);
+        glEnableVertexAttribArray(_attributesOutline.Position);
+        glEnableVertexAttribArray(_attributesOutline.Normal);
         
         // Set the normal matrix.
         // It's orthogonal, so its Inverse-Transpose is itself!
         //kmMat3 normals;
         kmMat3AssignMat4(&normals, &_modelViewTransform);
-        glUniformMatrix3fv(m_uniformsOutline.NormalMatrix, 1, 0, &normals.mat[0]);
+        glUniformMatrix3fv(_uniformsOutline.NormalMatrix, 1, 0, &normals.mat[0]);
         
         // Draw the surface using VBOs
         stride = sizeof(vec3) + sizeof(vec3) + sizeof(vec2);
         normalOffset = (const GLvoid*) sizeof(vec3);
-        position = m_attributesOutline.Position;
-        normal = m_attributesOutline.Normal;
+        position = _attributesOutline.Position;
+        normal = _attributesOutline.Normal;
         
         glBindBuffer(GL_ARRAY_BUFFER, _drawable.VertexBuffer);
         glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, stride, 0);
@@ -342,9 +320,9 @@ void Sprite3D::setOutline(float width, Color3B color)
         
         _outlineShader->link();
         _outlineShader->updateUniforms();
-        m_attributesOutline.Position = _outlineShader->getAttribLocation("Position");
-        m_attributesOutline.Normal = _outlineShader->getAttribLocation("Normal");
-        m_uniformsOutline.NormalMatrix = _outlineShader->getUniformLocation("NormalMatrix");
+        _attributesOutline.Position = _outlineShader->getAttribLocation("Position");
+        _attributesOutline.Normal = _outlineShader->getAttribLocation("Normal");
+        _uniformsOutline.NormalMatrix = _outlineShader->getUniformLocation("NormalMatrix");
     }
 }
 
