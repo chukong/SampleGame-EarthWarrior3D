@@ -1,4 +1,4 @@
-static const char* ColorLighting1 = STRINGIFY(
+static const char* baseColoredFrag = STRINGIFY(
 
 #ifdef GL_ES
 varying lowp vec4 DestinationColor;
@@ -14,5 +14,14 @@ void main(void)
 {
     gl_FragColor =  DestinationColor;
     gl_FragColor.a = 1.0;
+}
+);
+
+
+// pure black frag shader
+static const char* blackFrag = STRINGIFY(
+void main(void)
+{
+    gl_FragColor =  vec4(0.0,0.0,0.0,1.0);
 }
 );

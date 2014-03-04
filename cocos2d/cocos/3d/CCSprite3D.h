@@ -44,6 +44,7 @@ class Sprite3D : public Node
 {
 public:
     static Sprite3D* create(const std::string &modelPath, const std::string &texturePath="");
+    void setOutline(float width, Color3B color);
 
 protected:
     Sprite3D();
@@ -73,6 +74,11 @@ protected:
     BlendFunc _blendFunc;
     Texture2D *_texture;
     CustomCommand _customCommand;
+    
+    bool _outLine = false;
+    float _outLineWidth;
+    Color3B _outlineColor;
+    GLProgram *_outlineShader;
 };
 
 NS_CC_END

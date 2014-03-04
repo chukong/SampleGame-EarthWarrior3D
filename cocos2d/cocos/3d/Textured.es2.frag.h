@@ -1,4 +1,4 @@
-static const char* SimpleFragmentShader = STRINGIFY(
+static const char* baseTexturedFrag = STRINGIFY(
 
 #ifdef GL_ES
 varying lowp vec4 DestinationColor;
@@ -13,6 +13,5 @@ uniform sampler2D Sampler;
 void main(void)
 {
     gl_FragColor = texture2D(Sampler, TextureCoordOut) * DestinationColor;
-    //gl_FragColor.a = 1.0;
 }
 );

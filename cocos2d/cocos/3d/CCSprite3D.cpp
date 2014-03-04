@@ -23,9 +23,9 @@ NS_CC_BEGIN
 
 #define STRINGIFY(A)  #A
 //#include "../Shaders/TexturedLighting.es2.vert.h"
-#include "TexturedLighting1.es2.vert.h"
-#include "TexturedLighting.es2.frag.h"
-#include "ColorLighting1.es2.frag.h"
+#include "Textured.es2.vert.h"
+#include "Textured.es2.frag.h"
+#include "Colored.es2.frag.h"
 
 struct UniformHandles
 {
@@ -110,10 +110,10 @@ bool Sprite3D::buildProgram(bool textured)
 
     // Create the GLSL program.
     if (textured) {
-        shaderProgram->initWithByteArrays(SimpleVertexShader1, SimpleFragmentShader);
+        shaderProgram->initWithByteArrays(baseVertexShader, baseTexturedFrag);
     }
     else
-        shaderProgram->initWithByteArrays(SimpleVertexShader1, ColorLighting1);
+        shaderProgram->initWithByteArrays(baseVertexShader, baseColoredFrag);
 
     //glUseProgram(_program);
 
@@ -137,16 +137,8 @@ bool Sprite3D::buildProgram(bool textured)
         m_attributes.TextureCoord = 0;
         m_uniforms.Sampler = 0;
     }
-//    m_uniforms.Projection = shaderProgram->getUniformLocation("Projection");
-//    m_uniforms.Modelview = shaderProgram->getUniformLocation("Modelview");
     m_uniforms.NormalMatrix = shaderProgram->getUniformLocation("NormalMatrix");
-    m_uniforms.LightPosition = shaderProgram->getUniformLocation("LightPosition");
-    m_uniforms.AmbientMaterial = shaderProgram->getUniformLocation("AmbientMaterial");
-    m_uniforms.SpecularMaterial = shaderProgram->getUniformLocation("SpecularMaterial");
-    m_uniforms.Shininess = shaderProgram->getUniformLocation("Shininess");
-
     setShaderProgram(shaderProgram);
-
     return true;
 }
 
@@ -189,12 +181,59 @@ void Sprite3D::draw()
 
 void Sprite3D::onDraw()
 {
-    float _contentScale = _scaleX;
-
-    //CC_NODE_DRAW_SETUP();
-    //glDisable(GL_CULL_FACE);
+    glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
+    if(_outLine)
+    {
+        // ******* Outline Draw **********
+        glCullFace(GL_FRONT);
+        _outlineShader->use();
+        _outlineShader->setUniformsForBuiltins(_modelViewTransform);
+        GL::blendFunc( _blendFunc.src, _blendFunc.dst );
+        kmGLLoadIdentity();
+        GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION );
+        // Set the diffuse color.
+        glUniform3f(m_uniforms.DiffuseMaterial,1, 1, 1);
+        
+        // Initialize various state.
+        glEnableVertexAttribArray(m_attributes.Position);
+        glEnableVertexAttribArray(m_attributes.Normal);
+        if (_texture->getName())
+            glEnableVertexAttribArray(m_attributes.TextureCoord);
+        
+        // Set the normal matrix.
+        // It's orthogonal, so its Inverse-Transpose is itself!
+        kmMat3 normals;
+        kmMat3AssignMat4(&normals, &_modelViewTransform);
+        glUniformMatrix3fv(m_uniforms.NormalMatrix, 1, 0, &normals.mat[0]);
+        
+        // Draw the surface using VBOs
+        int stride = sizeof(vec3) + sizeof(vec3) + sizeof(vec2);
+        const GLvoid* normalOffset = (const GLvoid*) sizeof(vec3);
+        const GLvoid* texCoordOffset = (const GLvoid*) (2 * sizeof(vec3));
+        GLint position = m_attributes.Position;
+        GLint normal = m_attributes.Normal;
+        GLint texCoord = m_attributes.TextureCoord;
+        
+        glBindBuffer(GL_ARRAY_BUFFER, _drawable.VertexBuffer);
+        glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, stride, 0);
+        glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, stride, normalOffset);
+        if (_texture->getName())
+            glVertexAttribPointer(texCoord, 2, GL_FLOAT, GL_FALSE, stride, texCoordOffset);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _drawable.IndexBuffer);
+        glDrawElements(GL_TRIANGLES, _drawable.IndexCount, GL_UNSIGNED_SHORT, 0);
+        
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        
+        glDisable(GL_DEPTH_TEST);
+        CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, _drawable.IndexCount/2);
+    }
     
+    
+    
+    // ********** Base Draw *************
+    glCullFace(GL_BACK);
     getShaderProgram()->use();
     getShaderProgram()->setUniformsForBuiltins(_modelViewTransform);
 
@@ -210,29 +249,14 @@ void Sprite3D::onDraw()
         GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION );
     }
     
-    // Set up some default material parameters.
-    glUniform3f(m_uniforms.AmbientMaterial, 0.1f, 0.1f, 0.1f);
-    glUniform3f(m_uniforms.SpecularMaterial, 0.5, 0.5, 0.5);
-    glUniform1f(m_uniforms.Shininess, 10);
-    //glUniform1f(m_uniforms.Shininess, 0);
-    
     // Set the diffuse color.
-    vec3 color = vec3(1,1, 1.1) * .50;
-    glUniform3f(m_uniforms.DiffuseMaterial, color.x, color.y, color.z);
-    //glVertexAttrib3f(m_attributes.DiffuseMaterial, color.x, color.y, color.z);
+    glUniform3f(m_uniforms.DiffuseMaterial,1, 1, 1);
     
     // Initialize various state.
     glEnableVertexAttribArray(m_attributes.Position);
     glEnableVertexAttribArray(m_attributes.Normal);
     if (_texture->getName())
         glEnableVertexAttribArray(m_attributes.TextureCoord);
-    glEnable(GL_DEPTH_TEST);
-
-    // Set the light position.
-    vec3 lightPosition = vec3(-2.25, 0.25, 1);
-    lightPosition.Normalize();
-    vec4 lp = vec4(lightPosition.x, lightPosition.y, lightPosition.z, 0);
-    glUniform3fv(m_uniforms.LightPosition, 1, lp.Pointer());
 
     // Set the normal matrix.
     // It's orthogonal, so its Inverse-Transpose is itself!
@@ -256,20 +280,11 @@ void Sprite3D::onDraw()
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _drawable.IndexBuffer);
     glDrawElements(GL_TRIANGLES, _drawable.IndexCount, GL_UNSIGNED_SHORT, 0);
     
-    //glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-
-    
-    /*glDisableVertexAttribArray(m_attributes.Position);
-    glDisableVertexAttribArray(m_attributes.Normal);
-    if ([texture_ name])
-        glDisableVertexAttribArray(m_attributes.TextureCoord);*/
-
     glDisable(GL_DEPTH_TEST);
-    CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, _drawable.IndexCount);
-    //glEnable(GL_CULL_FACE);
+    CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, _drawable.IndexCount/2);
 }
 
 void Sprite3D::setTextureName(const std::string& textureName)
@@ -319,6 +334,27 @@ void Sprite3D::setTexture(Texture2D* texture)
         this->updateBlendFunc();
         buildProgram( _texture->getName() != 0);
 	}
+}
+
+void Sprite3D::setOutline(float width, Color3B color)
+{
+    if(width >0)
+    {
+        _outLine = true;
+        _outLineWidth = width;
+        _outlineColor = color;
+        _outlineShader = new GLProgram();
+        _outlineShader->initWithByteArrays(outLineShader, blackFrag);
+        _outlineShader->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_POSITION, GLProgram::VERTEX_ATTRIB_POSITION);
+        _outlineShader->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_COLOR, GLProgram::VERTEX_ATTRIB_COLOR);
+        _outlineShader->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_TEX_COORD, GLProgram::VERTEX_ATTRIB_TEX_COORDS);
+        
+        _outlineShader->link();
+        _outlineShader->updateUniforms();
+        m_attributes.Position = _outlineShader->getAttribLocation("Position");
+        m_attributes.Normal = _outlineShader->getAttribLocation("Normal");
+        m_uniforms.NormalMatrix = _outlineShader->getUniformLocation("NormalMatrix");
+    }
 }
 
 NS_CC_END

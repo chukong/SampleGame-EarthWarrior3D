@@ -10,7 +10,7 @@
 
 bool Player::init()
 {
-    _Model = Sprite3D::create("DownNecker2.obj", "Done1.png");
+    _Model = Sprite3D::create("DownNecker.obj", "Done1.png");
     //_Model = Sprite3D::create("Scania4.obj", "car00.png");
     if(_Model)
     {
@@ -28,7 +28,7 @@ bool Player::init()
         
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
         scheduleUpdate();
-        
+        //_Model->setOutline(5.0, Color3B(0,0,0));
         
         return true;
     }

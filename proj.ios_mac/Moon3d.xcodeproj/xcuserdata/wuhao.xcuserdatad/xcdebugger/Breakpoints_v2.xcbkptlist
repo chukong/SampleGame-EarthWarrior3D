@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../cocos2d/cocos/3d/CCSprite3D.cpp"
-            timestampString = "414919367.857393"
+            timestampString = "415613842.900249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
             landmarkName = "Sprite3D::onDraw()"
             landmarkType = "5">
          </BreakpointContent>
