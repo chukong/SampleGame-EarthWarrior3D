@@ -30,8 +30,8 @@ void main(void)
     vec4 pos = Position;
     vec3 normal = Normal;
     //pos.xyz += vec3(1.0);
-    pos.xyz += normalize(normal) * 0.0;
-    gl_Position = CC_PMatrix * CC_MVMatrix * Position;
+    pos.xyz += Normal * 1.0;
+    gl_Position = CC_PMatrix * CC_MVMatrix * pos;
     //gl_Position.xyz += normalize(NormalMatrix * Normal) * 0.01;
 }
 );
