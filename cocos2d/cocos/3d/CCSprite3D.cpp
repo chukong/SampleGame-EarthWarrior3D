@@ -185,47 +185,6 @@ void Sprite3D::onDraw()
 {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
-    if(_outLine)
-    {
-        // ******* Outline Draw **********
-        glCullFace(GL_FRONT);
-        _outlineShader->use();
-        _outlineShader->setUniformsForBuiltins(_modelViewTransform);
-        GL::blendFunc( _blendFunc.src, _blendFunc.dst );
-        kmGLLoadIdentity();
-        GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION );
-        // Set the diffuse color.
-        //glUniform3f(m_uniformsOutline.DiffuseMaterial,1, 1, 1);
-        
-        // Initialize various state.
-        glEnableVertexAttribArray(m_attributesOutline.Position);
-        glEnableVertexAttribArray(m_attributesOutline.Normal);
-        
-        // Set the normal matrix.
-        // It's orthogonal, so its Inverse-Transpose is itself!
-        kmMat3 normals;
-        kmMat3AssignMat4(&normals, &_modelViewTransform);
-        glUniformMatrix3fv(m_uniformsOutline.NormalMatrix, 1, 0, &normals.mat[0]);
-        
-        // Draw the surface using VBOs
-        int stride = sizeof(vec3) + sizeof(vec3) + sizeof(vec2);
-        const GLvoid* normalOffset = (const GLvoid*) sizeof(vec3);
-        GLint position = m_attributesOutline.Position;
-        GLint normal = m_attributesOutline.Normal;
-        
-        glBindBuffer(GL_ARRAY_BUFFER, _drawable.VertexBuffer);
-        glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, stride, 0);
-        glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, stride, normalOffset);
-
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _drawable.IndexBuffer);
-        glDrawElements(GL_TRIANGLES, _drawable.IndexCount, GL_UNSIGNED_SHORT, 0);
-        
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-        
-        CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, _drawable.IndexCount);
-        glCullFace(GL_BACK);
-    }
     // ********** Base Draw *************
     
     getShaderProgram()->use();
@@ -277,8 +236,48 @@ void Sprite3D::onDraw()
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
+    if(_outLine)
+    {
+        // ******* Outline Draw **********
+        glCullFace(GL_FRONT);
+        _outlineShader->use();
+        _outlineShader->setUniformsForBuiltins(_modelViewTransform);
+        //GL::blendFunc( _blendFunc.src, _blendFunc.dst );
+        kmGLLoadIdentity();
+        GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION );
+        
+        // Initialize various state.
+        glEnableVertexAttribArray(m_attributesOutline.Position);
+        glEnableVertexAttribArray(m_attributesOutline.Normal);
+        
+        // Set the normal matrix.
+        // It's orthogonal, so its Inverse-Transpose is itself!
+        //kmMat3 normals;
+        kmMat3AssignMat4(&normals, &_modelViewTransform);
+        glUniformMatrix3fv(m_uniformsOutline.NormalMatrix, 1, 0, &normals.mat[0]);
+        
+        // Draw the surface using VBOs
+        stride = sizeof(vec3) + sizeof(vec3) + sizeof(vec2);
+        normalOffset = (const GLvoid*) sizeof(vec3);
+        position = m_attributesOutline.Position;
+        normal = m_attributesOutline.Normal;
+        
+        glBindBuffer(GL_ARRAY_BUFFER, _drawable.VertexBuffer);
+        glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, stride, 0);
+        glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, stride, normalOffset);
+        
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _drawable.IndexBuffer);
+        glDrawElements(GL_TRIANGLES, _drawable.IndexCount, GL_UNSIGNED_SHORT, 0);
+        
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        
+        CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, _drawable.IndexCount);
+        glCullFace(GL_BACK);
+    }
     glDisable(GL_DEPTH_TEST);
     CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, _drawable.IndexCount);
+    
 }
 
 void Sprite3D::setTextureName(const std::string& textureName)
@@ -340,8 +339,6 @@ void Sprite3D::setOutline(float width, Color3B color)
         _outlineShader = new GLProgram();
         _outlineShader->initWithByteArrays(outLineShader, blackFrag);
         _outlineShader->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_POSITION, GLProgram::VERTEX_ATTRIB_POSITION);
-        _outlineShader->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_COLOR, GLProgram::VERTEX_ATTRIB_COLOR);
-        _outlineShader->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_TEX_COORD, GLProgram::VERTEX_ATTRIB_TEX_COORDS);
         
         _outlineShader->link();
         _outlineShader->updateUniforms();
