@@ -24,5 +24,6 @@ protected:
     Sprite *spr;
     Player *_player;
     QuadTree *container;
+    void createCraft(float dt);
 };
 #endif /* defined(__Moon3d__GameLayer__) */
