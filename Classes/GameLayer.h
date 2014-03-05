@@ -24,8 +24,12 @@ protected:
     float speed = -60.0f;
     Sprite *spr;
     Player *_player;
+
     QuadTree *_collisionTree;
     
     AirCraft *_testDummy;
+
+    QuadTree *container;
+    void createCraft(float dt);
 };
 #endif /* defined(__Moon3d__GameLayer__) */
