@@ -176,7 +176,7 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
     
     // Initialize various state.
     glEnableVertexAttribArray(_attributes.Position);
-    glEnableVertexAttribArray(_attributes.Normal);
+    //glEnableVertexAttribArray(_attributes.Normal);
     if (_texture->getName())
         glEnableVertexAttribArray(_attributes.TextureCoord);
 
@@ -196,7 +196,7 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
 
     glBindBuffer(GL_ARRAY_BUFFER, _drawable.VertexBuffer);
     glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, stride, 0);
-    glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, stride, normalOffset);
+    //glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, stride, normalOffset);
     if (_texture->getName())
         glVertexAttribPointer(texCoord, 2, GL_FLOAT, GL_FALSE, stride, texCoordOffset);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _drawable.IndexBuffer);
@@ -224,7 +224,9 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
         //kmMat3 normals;
         kmMat3AssignMat4(&normals, &_modelViewTransform);
         glUniformMatrix3fv(_uniformsOutline.NormalMatrix, 1, 0, &normals.mat[0]);
-        
+        glUniform1f(_uniformsOutline.OutlineWidth, _outLineWidth);
+        Color4F fOutlineColor(_outlineColor);
+        glUniform3f(_uniformsOutline.OutlineColor,fOutlineColor.r,fOutlineColor.g,fOutlineColor.b);
         // Draw the surface using VBOs
         stride = sizeof(vec3) + sizeof(vec3) + sizeof(vec2);
         normalOffset = (const GLvoid*) sizeof(vec3);
@@ -314,5 +316,7 @@ void Sprite3D::setOutline(float width, Color3B color)
         _attributesOutline.Position = _outlineShader->getAttribLocation("Position");
         _attributesOutline.Normal = _outlineShader->getAttribLocation("Normal");
         _uniformsOutline.NormalMatrix = _outlineShader->getUniformLocation("NormalMatrix");
+        _uniformsOutline.OutlineWidth = _outlineShader->getUniformLocation("OutlineWidth");
+        _uniformsOutline.OutlineColor = _outlineShader->getUniformLocation("OutLineColor");
     }
 }

@@ -39,6 +39,8 @@ struct Drawable {
 struct UniformHandles
 {
     GLuint NormalMatrix;
+    GLuint OutlineWidth;
+    GLuint OutlineColor;
     GLint DiffuseMaterial;
     GLint Sampler;
 };
