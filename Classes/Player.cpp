@@ -11,13 +11,13 @@
 
 bool Player::init()
 {
-    _Model = Sprite3D::create("DownNecker.obj", "Done1.png");
+    _Model = Sprite3D::create("playerv001.obj", "playerv002_1024.png");
     //_Model = Sprite3D::create("Scania4.obj", "car00.png");
     if(_Model)
     {
-        _Model->setScale(1.8);
+        _Model->setScale(30.8);
         addChild(_Model);
-        _Model->setRotation3D(Vertex3F(90,0,90));
+        _Model->setRotation3D(Vertex3F(90,0,0));
         _radius = 40;
         
         auto listener = EventListenerTouchOneByOne::create();

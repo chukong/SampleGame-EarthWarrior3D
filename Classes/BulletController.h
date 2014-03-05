@@ -16,7 +16,7 @@ class BulletController
 {
 public:
     static BulletController *getInstance();
-
+    static void resetInstance();
 protected:
     std::vector<Bullet*> bullets;
     static BulletController *s_instance;
