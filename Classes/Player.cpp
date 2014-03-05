@@ -9,6 +9,8 @@
 #include "Player.h"
 #include "Bullet.h"
 #include "3d/Sprite3D.h"
+#include "BulletController.h"
+#include "consts.h"
 
 bool Player::init()
 {
@@ -57,7 +59,7 @@ void Player::onTouchMoved(Touch *touch, Event *event)
     
     Point shiftPosition = delta+prev;
   
-    setPosition(shiftPosition.getClampPoint(Point(-200,-376),Point(206,737)));
+    setPosition(shiftPosition.getClampPoint(Point(PLAYER_LIMIT_LEFT,PLAYER_LIMIT_BOT),Point(PLAYER_LIMIT_RIGHT,PLAYER_LIMIT_TOP)));
 }
 void Player::onTouchEnded(Touch *touch, Event *event)
 {
@@ -65,6 +67,5 @@ void Player::onTouchEnded(Touch *touch, Event *event)
 
 void Player::shoot(float dt)
 {
-    auto projectile = Bullet::create();
-    getParent()->addChild(projectile);
+    BulletController::spawnBullet(kPlayerBullet, getPosition(), Point(0,1600));
 }

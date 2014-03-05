@@ -10,18 +10,22 @@
 #define __Moon3d__BulletController__
 
 #include "cocos2d.h"
+USING_NS_CC;
 class Bullet;
 
 class BulletController
 {
 public:
-    static BulletController *getInstance();
-    static void resetInstance();
+    static void reset();
+    static bool init(Node *bulletLayer);
+    static void spawnBullet(int type, Point pos, Point vec);
+    static void update(float dt);
 protected:
-    std::vector<Bullet*> bullets;
-    static BulletController *s_instance;
-    bool init();
-    BulletController();
+    static Vector<Bullet*> _bullets;
+    //static BulletController *s_instance;
+    static bool _inited;
+    static Node *_bulletLayer;
+    static Rect bound;
 };
 
 #endif /* defined(__Moon3d__BulletController__) */
