@@ -11,6 +11,8 @@
 
 #include "cocos2d.h"
 #include "AirCraft.h"
+
+
 USING_NS_CC;
 
 class Player : public AirCraft

@@ -205,15 +205,15 @@ bool ControlSwitchSprite::initWithMaskSprite(
         // Set up the mask with the Mask shader
         setMaskTexture(maskSprite->getTexture());
         GLProgram* pProgram = new GLProgram();
-        pProgram->initWithByteArrays(ccPositionTextureColor_vert, ccExSwitchMask_frag);
+        pProgram->initWithVertexShaderByteArray(ccPositionTextureColor_vert, ccExSwitchMask_frag);
         setShaderProgram(pProgram);
         pProgram->release();
 
         CHECK_GL_ERROR_DEBUG();
 
-        getShaderProgram()->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_POSITION, GLProgram::VERTEX_ATTRIB_POSITION);
-        getShaderProgram()->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_COLOR, GLProgram::VERTEX_ATTRIB_COLOR);
-        getShaderProgram()->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_TEX_COORD, GLProgram::VERTEX_ATTRIB_TEX_COORDS);
+        getShaderProgram()->addAttribute(GLProgram::ATTRIBUTE_NAME_POSITION, GLProgram::VERTEX_ATTRIB_POSITION);
+        getShaderProgram()->addAttribute(GLProgram::ATTRIBUTE_NAME_COLOR, GLProgram::VERTEX_ATTRIB_COLOR);
+        getShaderProgram()->addAttribute(GLProgram::ATTRIBUTE_NAME_TEX_COORD, GLProgram::VERTEX_ATTRIB_TEX_COORDS);
         CHECK_GL_ERROR_DEBUG();
 
         getShaderProgram()->link();

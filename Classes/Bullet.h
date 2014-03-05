@@ -12,12 +12,17 @@
 #include "cocos2d.h"
 #include "GameEntity.h"
 
+
+
 class Bullet : public GameEntity
 {
 public:
     CREATE_FUNC(Bullet);
     bool init();
-    void update(float dt);
+    void setVector(Point vec);
+    Point getVector();
+protected:
+    Point _vector;
 };
 
 #endif /* defined(__Moon3d__Bullet__) */

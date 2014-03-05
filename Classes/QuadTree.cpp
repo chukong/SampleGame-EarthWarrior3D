@@ -14,18 +14,21 @@ QuadTree::QuadTree(int lvl, Rect rect)
     _rect = rect;
     for(int i = 0; i<4; i++)
     {
-        _nodes[i]= NULL;
+        _nodes[i]= nullptr;
     }
 }
 
 void QuadTree::clear()
 {
     _entities.clear();
-    for(int i = 0; i<4; i++)
+    if(_nodes[0])
     {
-        _nodes[i]->clear();
-        delete _nodes[i];
-        _nodes[i] = NULL;
+        for(int i = 0; i<4; i++)
+        {
+            _nodes[i]->clear();
+            //delete _nodes[i];
+            _nodes[i] = nullptr;
+        }
     }
 }
 
@@ -39,6 +42,7 @@ void QuadTree::split()
     _nodes[1] = new QuadTree(_lvl+1, Rect(x,y,w,h));
     _nodes[2] = new QuadTree(_lvl+1, Rect(x,y+h,w,h));
     _nodes[3] = new QuadTree(_lvl+1, Rect(x+w,y+h,w,h));
+    log("split");
 }
 
 int QuadTree::getIndex(GameEntity * entity)
@@ -102,7 +106,7 @@ void QuadTree::insert(GameEntity *entity)
     }
 }
 
-Vector<GameEntity*> QuadTree::retrieve(Vector<GameEntity*> list, GameEntity* entity)
+Vector<GameEntity*> QuadTree::retrieve(Vector<GameEntity*> &list, GameEntity* entity)
 {
     int index = getIndex(entity);
     if(index != -1 && _nodes[0])

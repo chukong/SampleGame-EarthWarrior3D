@@ -30,7 +30,7 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-namespace gui{
+namespace ui{
 
 typedef enum
 {
@@ -149,6 +149,8 @@ public:
      * @param margin
      */
     void setItemsMargin(float margin);
+    
+    float getItemsMargin();
     
     virtual void sortAllChildren() override;
     

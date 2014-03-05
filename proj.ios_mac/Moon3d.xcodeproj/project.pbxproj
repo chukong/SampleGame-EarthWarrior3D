@@ -106,6 +106,10 @@
 		68B9376118C0336A00CE1505 /* libCocosDenshion iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC62718BADFD30065154C /* libCocosDenshion iOS.a */; };
 		68BB2B1618C4720000158010 /* DownNecker2.obj in Resources */ = {isa = PBXBuildFile; fileRef = 68BB2B1518C4720000158010 /* DownNecker2.obj */; };
 		68BB2B1718C4720000158010 /* DownNecker2.obj in Resources */ = {isa = PBXBuildFile; fileRef = 68BB2B1518C4720000158010 /* DownNecker2.obj */; };
+		A044DE7718C69F8000B6CCBD /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A044DE6F18C69F8000B6CCBD /* Mesh.cpp */; };
+		A044DE7818C69F8000B6CCBD /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A044DE6F18C69F8000B6CCBD /* Mesh.cpp */; };
+		A044DE7918C69F8000B6CCBD /* Sprite3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A044DE7118C69F8000B6CCBD /* Sprite3D.cpp */; };
+		A044DE7A18C69F8000B6CCBD /* Sprite3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A044DE7118C69F8000B6CCBD /* Sprite3D.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -320,6 +324,7 @@
 		680A315C18C6471000D073CD /* diji02_v002_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diji02_v002_1024.png; sourceTree = "<group>"; };
 		680A315D18C6471000D073CD /* playerv001.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = playerv001.obj; sourceTree = "<group>"; };
 		680A315E18C6471000D073CD /* playerv002_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playerv002_1024.png; sourceTree = "<group>"; };
+		680A316C18C7065400D073CD /* consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = consts.h; path = ../Classes/3d/consts.h; sourceTree = "<group>"; };
 		680DB35C18C0740000DBAEFD /* QuadTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = QuadTree.cpp; path = ../Classes/QuadTree.cpp; sourceTree = "<group>"; };
 		680DB35D18C0740000DBAEFD /* QuadTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuadTree.h; path = ../Classes/QuadTree.h; sourceTree = "<group>"; };
 		6815E1C218BDE5C9004F9944 /* car00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car00.png; sourceTree = "<group>"; };
@@ -336,6 +341,14 @@
 		687D4C6318BF405A003C6438 /* Fodder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Fodder.cpp; path = ../Classes/Fodder.cpp; sourceTree = "<group>"; };
 		687D4C6418BF405A003C6438 /* Fodder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Fodder.h; path = ../Classes/Fodder.h; sourceTree = "<group>"; };
 		68BB2B1518C4720000158010 /* DownNecker2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DownNecker2.obj; sourceTree = "<group>"; };
+		A044DE6F18C69F8000B6CCBD /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
+		A044DE7018C69F8000B6CCBD /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
+		A044DE7118C69F8000B6CCBD /* Sprite3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite3D.cpp; sourceTree = "<group>"; };
+		A044DE7218C69F8000B6CCBD /* Sprite3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite3D.h; sourceTree = "<group>"; };
+		A044DE7318C69F8000B6CCBD /* Colored.es2.frag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colored.es2.frag.h; sourceTree = "<group>"; };
+		A044DE7418C69F8000B6CCBD /* Textured.es2.frag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Textured.es2.frag.h; sourceTree = "<group>"; };
+		A044DE7518C69F8000B6CCBD /* Textured.es2.vert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Textured.es2.vert.h; sourceTree = "<group>"; };
+		A044DE7618C69F8000B6CCBD /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -408,6 +421,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A044DE6E18C69F8000B6CCBD /* 3d */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */,
@@ -428,6 +442,7 @@
 				680A315218C5CDE500D073CD /* Bullet.h */,
 				680A315518C5D52300D073CD /* BulletController.cpp */,
 				680A315618C5D52300D073CD /* BulletController.h */,
+				680A316C18C7065400D073CD /* consts.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -569,6 +584,22 @@
 			);
 			name = Resources;
 			path = ../Resources;
+			sourceTree = "<group>";
+		};
+		A044DE6E18C69F8000B6CCBD /* 3d */ = {
+			isa = PBXGroup;
+			children = (
+				A044DE6F18C69F8000B6CCBD /* Mesh.cpp */,
+				A044DE7018C69F8000B6CCBD /* Mesh.h */,
+				A044DE7118C69F8000B6CCBD /* Sprite3D.cpp */,
+				A044DE7218C69F8000B6CCBD /* Sprite3D.h */,
+				A044DE7318C69F8000B6CCBD /* Colored.es2.frag.h */,
+				A044DE7418C69F8000B6CCBD /* Textured.es2.frag.h */,
+				A044DE7518C69F8000B6CCBD /* Textured.es2.vert.h */,
+				A044DE7618C69F8000B6CCBD /* Vector.h */,
+			);
+			name = 3d;
+			path = ../Classes/3d;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -835,12 +866,14 @@
 				68005B9F18BEEC75007598C5 /* AirCraft.cpp in Sources */,
 				68005BA318BEEE66007598C5 /* Player.cpp in Sources */,
 				687D4C6518BF405A003C6438 /* Fodder.cpp in Sources */,
+				A044DE7918C69F8000B6CCBD /* Sprite3D.cpp in Sources */,
 				680A315718C5D52300D073CD /* BulletController.cpp in Sources */,
 				686EC63718BAE16A0065154C /* GameLayer.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				680DB35E18C0740000DBAEFD /* QuadTree.cpp in Sources */,
 				680A315318C5CDE500D073CD /* Bullet.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
+				A044DE7718C69F8000B6CCBD /* Mesh.cpp in Sources */,
 				68005B8E18BEE774007598C5 /* GameEntity.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
@@ -853,7 +886,9 @@
 			files = (
 				5087E75717EB910900C73F5D /* AppDelegate.cpp in Sources */,
 				68005BA418BEEE66007598C5 /* Player.cpp in Sources */,
+				A044DE7818C69F8000B6CCBD /* Mesh.cpp in Sources */,
 				680DB35F18C0740000DBAEFD /* QuadTree.cpp in Sources */,
+				A044DE7A18C69F8000B6CCBD /* Sprite3D.cpp in Sources */,
 				68005BA018BEEC75007598C5 /* AirCraft.cpp in Sources */,
 				680A315818C5D52300D073CD /* BulletController.cpp in Sources */,
 				686EC63818BAE16A0065154C /* GameLayer.cpp in Sources */,

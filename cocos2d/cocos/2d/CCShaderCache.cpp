@@ -333,9 +333,9 @@ void ShaderCache::loadDefaultShader(GLProgram *p, int type)
 
             break;
         case kShaderType_Position_uColor:
-            p->initWithByteArrays(ccPosition_uColor_vert, ccPosition_uColor_frag);    
+            p->initWithByteArrays(ccPosition_uColor_vert, ccPosition_uColor_frag);
             
-            p->bindAttribLocation("aVertex", GLProgram::VERTEX_ATTRIB_POSITION);    
+            p->bindAttribLocation("aVertex", GLProgram::VERTEX_ATTRIB_POSITION);
             
             break;
         case kShaderType_PositionLengthTexureColor:
