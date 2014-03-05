@@ -21,10 +21,14 @@ public:
     void remove();
     Vertex3F getOrientation();
     float getRadius(){return _radius;};
+    void setType(int type){_type = type;};
+    int getType(){return _type;};
 protected:
     Node *_Model;
     float _radius;
     Vertex3F _orientation;
+    int _type;
+    
 };
 
 

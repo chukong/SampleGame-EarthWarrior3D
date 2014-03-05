@@ -23,7 +23,7 @@ public:
     void split(); // split to 4 child nodes
     int getIndex(GameEntity *entity); // determine which node it belongs to
     void insert(GameEntity *entity);
-    Vector<GameEntity*> retrieve(Vector<GameEntity*> list, GameEntity *entity);
+    Vector<GameEntity*> retrieve(Vector<GameEntity*> &list, GameEntity *entity);
     QuadTree(int lvl, Rect rect);
 protected:
     int _lvl=0; // current level, 0 is top

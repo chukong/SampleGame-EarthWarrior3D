@@ -12,6 +12,7 @@
 USING_NS_CC;
 class Player;
 class QuadTree;
+class AirCraft;
 class GameLayer : public Layer
 {
 public:
@@ -23,6 +24,8 @@ protected:
     float speed = -60.0f;
     Sprite *spr;
     Player *_player;
-    QuadTree *container;
+    QuadTree *_collisionTree;
+    
+    AirCraft *_testDummy;
 };
 #endif /* defined(__Moon3d__GameLayer__) */

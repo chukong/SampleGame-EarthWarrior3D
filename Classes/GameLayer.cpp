@@ -11,12 +11,14 @@
 #include "Fodder.h"
 #include "QuadTree.h"
 #include "BulletController.h"
+#include "consts.h"
+#include "Bullet.h"
 USING_NS_CC;
 
 bool GameLayer::init()
 {
     // variable init
-    container = new QuadTree(0, Rect(0,0, 100, 100));
+    _collisionTree = new QuadTree(0, BOUND_RECT);
     
     
     spr = Sprite::create("groundLevel.jpg");
@@ -33,11 +35,12 @@ bool GameLayer::init()
     
     addChild(_player,10);
     
-    auto enemy = Fodder::create();
-    addChild(enemy);
-    enemy->setPosition(0, 500);
-    container->insert(enemy);
-    
+    _testDummy = Fodder::create();
+    addChild(_testDummy);
+    _testDummy->setPosition(0, 500);
+
+    Vector<Node*> test;
+    test.clear();
     
     
     
@@ -51,7 +54,16 @@ bool GameLayer::init()
 void GameLayer::update(float dt){
     xScroll -= speed*dt;
     spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
+    for ( auto i : BulletController::bullets )
+    {
+        if(i->getPosition().getDistance(_testDummy->getPosition()) <
+           (i->getRadius() + _testDummy->getRadius()))
+        {
+            log("hit");
+        }
+    }
+    
     BulletController::update(dt);
-    //Point;
-    //_player->setRotation3D(Vertex3F(0,xScroll,0));
+    
+    _collisionTree->clear();
 }

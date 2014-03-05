@@ -12,14 +12,14 @@
 
 Node* BulletController::_bulletLayer = nullptr;
 bool BulletController::_inited = false;
-Vector<Bullet*> BulletController::_bullets;
-Rect BulletController::bound = Rect(-380,PLAYER_LIMIT_BOT-60,760,PLAYER_LIMIT_TOP-PLAYER_LIMIT_BOT+180 );
+Vector<Bullet*> BulletController::bullets;
+
 
 
 void BulletController::reset(){
     BulletController::_inited = false;
     BulletController::_bulletLayer = nullptr;
-    BulletController::_bullets.clear();
+    BulletController::bullets.clear();
 }
 bool BulletController::init(Node *bulletLayer){
     if(bulletLayer)
@@ -43,7 +43,7 @@ void BulletController::spawnBullet(int type, Point pos, Point vec)
     }
     if(bullet)
     {
-        BulletController::_bullets.pushBack(bullet);
+        BulletController::bullets.pushBack(bullet);
         BulletController::_bulletLayer->addChild(bullet);
         bullet->setPosition(pos);
         bullet->setVector(vec);
@@ -53,13 +53,14 @@ void BulletController::update(float dt)
 {
 
     Point temp;
-    for ( auto &i : BulletController::_bullets ) {
+    for ( auto &i : BulletController::bullets )
+    {
         //remove bullets if its out of the screen
         temp =i->getPosition();
-        if(!BulletController::bound.containsPoint(temp))
+        if(!BOUND_RECT.containsPoint(temp))
         {
             i->removeFromParent();
-            BulletController::_bullets.eraseObject(i);
+            BulletController::bullets.eraseObject(i);
         }
         else
         {

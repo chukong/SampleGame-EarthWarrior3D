@@ -29,7 +29,7 @@ void main(void)
 {
     vec4 pos = Position;
     vec3 normal = Normal;
-    pos.xyz += Normal * 0.05;
+    pos.xyz += Normal * 0.1;
     gl_Position = CC_PMatrix * CC_MVMatrix * pos;
 }
 );

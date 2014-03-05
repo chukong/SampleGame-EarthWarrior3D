@@ -20,12 +20,12 @@ public:
     static bool init(Node *bulletLayer);
     static void spawnBullet(int type, Point pos, Point vec);
     static void update(float dt);
+    static Vector<Bullet*> bullets;
+
 protected:
-    static Vector<Bullet*> _bullets;
-    //static BulletController *s_instance;
+        //static BulletController *s_instance;
     static bool _inited;
     static Node *_bulletLayer;
-    static Rect bound;
 };
 
 #endif /* defined(__Moon3d__BulletController__) */

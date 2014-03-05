@@ -18,7 +18,7 @@ bool Player::init()
     //_Model = Sprite3D::create("Scania4.obj", "car00.png");
     if(_Model)
     {
-        _Model->setScale(30.8);
+        _Model->setScale(10.0);
         addChild(_Model);
         _Model->setRotation3D(Vertex3F(90,0,0));
         _radius = 40;
@@ -33,7 +33,8 @@ bool Player::init()
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
         scheduleUpdate();
         static_cast<Sprite3D*>(_Model)->setOutline(5.0, Color3B(0,0,0));
-        schedule(schedule_selector(Player::shoot), 0.1, -1, 0);
+        schedule(schedule_selector(Player::shoot), 2, -1, 0);
+        _type = kPlayer;
         return true;
     }
     return false;
@@ -67,5 +68,5 @@ void Player::onTouchEnded(Touch *touch, Event *event)
 
 void Player::shoot(float dt)
 {
-    BulletController::spawnBullet(kPlayerBullet, getPosition(), Point(0,1600));
+    BulletController::spawnBullet(kPlayerBullet, getPosition(), Point(0,160));
 }

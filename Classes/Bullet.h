@@ -11,10 +11,7 @@
 
 #include "cocos2d.h"
 #include "GameEntity.h"
-enum{
-    kPlayerBullet,
-    kPlayerMissils
-};
+
 
 
 class Bullet : public GameEntity
@@ -24,10 +21,7 @@ public:
     bool init();
     void setVector(Point vec);
     Point getVector();
-    void setType(int type){_type = type;};
-    int getType(){return _type;};
 protected:
-    int _type;
     Point _vector;
 };
 

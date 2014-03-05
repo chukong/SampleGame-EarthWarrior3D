@@ -8,6 +8,7 @@
 
 #include "Fodder.h"
 #include "3d/Sprite3D.h"
+#include "consts.h"
 
 bool Fodder::init()
 {
@@ -19,6 +20,7 @@ bool Fodder::init()
         _Model->setRotation3D(Vertex3F(90,0,0));
                 static_cast<Sprite3D*>(_Model)->setOutline(5.0, Color3B(0,0,0));
         _radius=40;
+        _type = kEnemy;
         return true;
     }
     return false;
