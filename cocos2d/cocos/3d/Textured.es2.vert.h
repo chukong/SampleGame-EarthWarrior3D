@@ -24,12 +24,13 @@ static const char* outLineShader = STRINGIFY(
                                                 
 attribute vec4 Position;
 attribute vec3 Normal;
+uniform float OutlineWidth;
 uniform mat3 NormalMatrix;
 void main(void)
 {
     vec4 pos = Position;
     vec3 normal = Normal;
-    pos.xyz += Normal * 0.05;
+    pos.xyz += Normal * OutlineWidth;
     gl_Position = CC_PMatrix * CC_MVMatrix * pos;
 }
 );

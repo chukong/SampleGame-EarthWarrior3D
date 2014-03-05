@@ -29,7 +29,6 @@ NS_CC_BEGIN
 
 struct UniformHandles
 {
-    GLuint NormalMatrix;
     GLuint LightPosition;
     GLint AmbientMaterial;
     GLint SpecularMaterial;
@@ -38,6 +37,12 @@ struct UniformHandles
     GLint Sampler;
 };
 
+struct OutLineUniformHandles
+{
+    GLuint NormalMatrix;
+    GLuint OutlineWidth;
+    GLuint OutlineColor;
+};
 struct AttributeHandles
 {
     GLint Position;
@@ -45,7 +50,7 @@ struct AttributeHandles
     GLint TextureCoord;
 };
 UniformHandles m_uniforms;
-UniformHandles m_uniformsOutline;
+OutLineUniformHandles m_uniformsOutline;
 AttributeHandles m_attributes;
 AttributeHandles m_attributesOutline;
 
@@ -258,6 +263,9 @@ void Sprite3D::onDraw()
         //kmMat3 normals;
         kmMat3AssignMat4(&normals, &_modelViewTransform);
         glUniformMatrix3fv(m_uniformsOutline.NormalMatrix, 1, 0, &normals.mat[0]);
+        glUniform1f(m_uniformsOutline.OutlineWidth, _outLineWidth);
+        Color4F fOutlineColor(_outlineColor);
+        glUniform3f(m_uniformsOutline.OutlineColor, fOutlineColor.r, fOutlineColor.g, fOutlineColor.b);
         
         // Draw the surface using VBOs
         stride = sizeof(vec3) + sizeof(vec3) + sizeof(vec2);
@@ -346,6 +354,8 @@ void Sprite3D::setOutline(float width, Color3B color)
         m_attributesOutline.Position = _outlineShader->getAttribLocation("Position");
         m_attributesOutline.Normal = _outlineShader->getAttribLocation("Normal");
         m_uniformsOutline.NormalMatrix = _outlineShader->getUniformLocation("NormalMatrix");
+        m_uniformsOutline.OutlineWidth = _outlineShader->getUniformLocation("OutlineWidth");
+        m_uniformsOutline.OutlineColor = _outlineShader->getUniformLocation("OutLineColor");
     }
 }
 
