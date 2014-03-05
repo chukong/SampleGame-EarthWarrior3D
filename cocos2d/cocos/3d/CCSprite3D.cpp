@@ -128,7 +128,7 @@ bool Sprite3D::buildProgram(bool textured)
 
     // Extract the handles to attributes and uniforms.
     m_attributes.Position = shaderProgram->getAttribLocation("Position");
-    m_attributes.Normal = shaderProgram->getAttribLocation("Normal");
+    //m_attributes.Normal = shaderProgram->getAttribLocation("Normal");
     
     m_uniforms.DiffuseMaterial = shaderProgram->getUniformLocation("DiffuseMaterial");
     if (textured) {
@@ -139,7 +139,7 @@ bool Sprite3D::buildProgram(bool textured)
         m_attributes.TextureCoord = 0;
         m_uniforms.Sampler = 0;
     }
-    m_uniforms.NormalMatrix = shaderProgram->getUniformLocation("NormalMatrix");
+    //m_uniforms.NormalMatrix = shaderProgram->getUniformLocation("NormalMatrix");
     setShaderProgram(shaderProgram);
     return true;
 }
@@ -207,7 +207,7 @@ void Sprite3D::onDraw()
     
     // Initialize various state.
     glEnableVertexAttribArray(m_attributes.Position);
-    glEnableVertexAttribArray(m_attributes.Normal);
+    //glEnableVertexAttribArray(m_attributes.Normal);
     if (_texture->getName())
         glEnableVertexAttribArray(m_attributes.TextureCoord);
 
@@ -215,19 +215,19 @@ void Sprite3D::onDraw()
     // It's orthogonal, so its Inverse-Transpose is itself!
     kmMat3 normals;
     kmMat3AssignMat4(&normals, &_modelViewTransform);
-    glUniformMatrix3fv(m_uniforms.NormalMatrix, 1, 0, &normals.mat[0]);
+    //åglUniformMatrix3fv(m_uniforms.NormalMatrix, 1, 0, &normals.mat[0]);
 
     // Draw the surface using VBOs
     int stride = sizeof(vec3) + sizeof(vec3) + sizeof(vec2);
     const GLvoid* normalOffset = (const GLvoid*) sizeof(vec3);
     const GLvoid* texCoordOffset = (const GLvoid*) (2 * sizeof(vec3));
     GLint position = m_attributes.Position;
-    GLint normal = m_attributes.Normal;
+    //GLint normal = m_attributes.Normal;
     GLint texCoord = m_attributes.TextureCoord;
 
     glBindBuffer(GL_ARRAY_BUFFER, _drawable.VertexBuffer);
     glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, stride, 0);
-    glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, stride, normalOffset);
+    //glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, stride, normalOffset);
     if (_texture->getName())
         glVertexAttribPointer(texCoord, 2, GL_FLOAT, GL_FALSE, stride, texCoordOffset);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _drawable.IndexBuffer);
@@ -259,12 +259,10 @@ void Sprite3D::onDraw()
         // Draw the surface using VBOs
         stride = sizeof(vec3) + sizeof(vec3) + sizeof(vec2);
         normalOffset = (const GLvoid*) sizeof(vec3);
-        position = m_attributesOutline.Position;
-        normal = m_attributesOutline.Normal;
         
         glBindBuffer(GL_ARRAY_BUFFER, _drawable.VertexBuffer);
-        glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, stride, 0);
-        glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, stride, normalOffset);
+        glVertexAttribPointer(m_attributesOutline.Position, 3, GL_FLOAT, GL_FALSE, stride, 0);
+        glVertexAttribPointer(m_attributesOutline.Normal, 3, GL_FLOAT, GL_FALSE, stride, normalOffset);
         
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _drawable.IndexBuffer);
         glDrawElements(GL_TRIANGLES, _drawable.IndexCount, GL_UNSIGNED_SHORT, 0);
