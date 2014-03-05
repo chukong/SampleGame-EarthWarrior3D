@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "Fodder.h"
 #include "QuadTree.h"
+#include "PublicApi.h"
 USING_NS_CC;
 
 bool GameLayer::init()
@@ -25,22 +26,42 @@ bool GameLayer::init()
     setRotation3D(Vertex3F(-30.0,0.0f,0.0f));
     spr->setScale(1.4);
     spr->setFlippedY(true);
-    spr->setPosition(0.0f,400);
+    spr->setPosition(0.0f,400.0f);
     
     _player = Player::create();
     _player->setPosition3D(Vertex3F(0,0,0));
     
     addChild(_player,10);
     
-    auto enemy = Fodder::create();
-    addChild(enemy);
-    enemy->setPosition(0, 500);
-    container->insert(enemy);
+    this->schedule(schedule_selector(GameLayer::createCraft) , 2.0, -1, 0.0);
     scheduleUpdate();
+    
     return true;
 }
 
-
+void GameLayer::createCraft(float dt)
+{
+    std::vector<int> startPointVec;
+    startPointVec.push_back(-500);
+    startPointVec.push_back(-300);
+    startPointVec.push_back(-100);
+    startPointVec.push_back(100);
+    startPointVec.push_back(300);
+    startPointVec.push_back(500);
+    
+    int vectSize = startPointVec.size();
+    
+    for (int i = 0; i<vectSize; i++)
+    {
+        int selectNum = rand()%startPointVec.size();
+        int startPointX = startPointVec[selectNum];
+        
+        auto enemy = Fodder::create();
+        addChild(enemy);
+        enemy->setPosition(startPointX, 800.0f);
+        container->insert(enemy);
+    }
+}
 
 void GameLayer::update(float dt){
     xScroll -= speed*dt;
@@ -48,3 +69,5 @@ void GameLayer::update(float dt){
     //Point;
     //_player->setRotation3D(Vertex3F(0,xScroll,0));
 }
+
+

@@ -29,7 +29,6 @@ bool Player::init()
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
         scheduleUpdate();
         
-        
         return true;
     }
     return false;
