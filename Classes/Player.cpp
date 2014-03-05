@@ -7,16 +7,18 @@
 //
 
 #include "Player.h"
+#include "Bullet.h"
+#include "3d/Sprite3D.h"
 
 bool Player::init()
 {
-    _Model = Sprite3D::create("DownNecker2.obj", "Done1.png");
+    _Model = Sprite3D::create("playerv001.obj", "playerv002_1024.png");
     //_Model = Sprite3D::create("Scania4.obj", "car00.png");
     if(_Model)
     {
-        _Model->setScale(5.3);
+        _Model->setScale(30.8);
         addChild(_Model);
-        _Model->setRotation3D(Vertex3F(90,0,90));
+        _Model->setRotation3D(Vertex3F(90,0,0));
         _radius = 40;
         
         auto listener = EventListenerTouchOneByOne::create();
@@ -28,7 +30,8 @@ bool Player::init()
         
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
         scheduleUpdate();
-        
+        static_cast<Sprite3D*>(_Model)->setOutline(5.0, Color3B(0,0,0));
+        schedule(schedule_selector(Player::shoot), 0.1, -1, 0);
         return true;
     }
     return false;
@@ -58,5 +61,10 @@ void Player::onTouchMoved(Touch *touch, Event *event)
 }
 void Player::onTouchEnded(Touch *touch, Event *event)
 {
-    
+}
+
+void Player::shoot(float dt)
+{
+    auto projectile = Bullet::create();
+    getParent()->addChild(projectile);
 }

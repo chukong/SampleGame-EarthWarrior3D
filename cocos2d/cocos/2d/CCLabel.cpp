@@ -79,16 +79,16 @@ Label* Label::createWithTTF(const std::string& text, const std::string& fontFile
     return createWithTTF(ttfConfig,text,alignment,lineSize);
 }
 
-Label* Label::createWithBMFont(const std::string& bmfontFilePath, const std::string& text,const TextHAlignment& alignment /* = TextHAlignment::CENTER */, int lineSize /* = 0 */)
+Label* Label::createWithBMFont(const std::string& bmfontFilePath, const std::string& text,const TextHAlignment& alignment /* = TextHAlignment::LEFT */, int lineWidth /* = 0 */, const Point& imageOffset /* = Point::ZERO */)
 {
     Label *ret = new Label(nullptr,alignment);
 
     if (!ret)
         return nullptr;
 
-    if (ret->setBMFontFilePath(bmfontFilePath))
+    if (ret->setBMFontFilePath(bmfontFilePath,imageOffset))
     {
-        ret->setMaxLineWidth(lineSize);
+        ret->setMaxLineWidth(lineWidth);
         ret->setString(text);
         ret->autorelease();
         return ret;
@@ -299,9 +299,9 @@ bool Label::setTTFConfig(const TTFConfig& ttfConfig)
     return initWithFontAtlas(newAtlas,ttfConfig.distanceFieldEnabled,true);
 }
 
-bool Label::setBMFontFilePath(const std::string& bmfontFilePath)
+bool Label::setBMFontFilePath(const std::string& bmfontFilePath, const Point& imageOffset /* = Point::ZERO */)
 {
-    FontAtlas *newAtlas = FontAtlasCache::getFontAtlasFNT(bmfontFilePath);
+    FontAtlas *newAtlas = FontAtlasCache::getFontAtlasFNT(bmfontFilePath,imageOffset);
 
     if (!newAtlas)
         return false;
@@ -679,24 +679,32 @@ void Label::onDraw()
     CC_PROFILER_STOP("Label - draw");
 }
 
-void Label::draw()
+void Label::draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated)
 {
     _customCommand.init(_globalZOrder);
     _customCommand.func = CC_CALLBACK_0(Label::onDraw, this);
-    Director::getInstance()->getRenderer()->addCommand(&_customCommand);
+    renderer->addCommand(&_customCommand);
 }
 
-void Label::visit()
+void Label::visit(Renderer *renderer, const kmMat4 &parentTransform, bool parentTransformUpdated)
 {
     if (! _visible)
     {
         return;
     }
     
-    kmGLPushMatrix();
+    bool dirty = parentTransformUpdated || _transformUpdated;
+    if(dirty)
+        _modelViewTransform = transform(parentTransform);
+    _transformUpdated = false;
 
-    transform();
-    draw();
+    // IMPORTANT:
+    // To ease the migration to v3.0, we still support the kmGL stack,
+    // but it is deprecated and your code should not rely on it
+    kmGLPushMatrix();
+    kmGLLoadMatrix(&_modelViewTransform);
+
+    draw(renderer, _modelViewTransform, dirty);
 
     kmGLPopMatrix();
 

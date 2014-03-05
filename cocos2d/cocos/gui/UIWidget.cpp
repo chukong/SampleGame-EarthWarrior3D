@@ -28,7 +28,7 @@ THE SOFTWARE.
 
 NS_CC_BEGIN
 
-namespace gui {
+namespace ui {
     
 Widget::Widget():
 _enabled(true),
@@ -108,11 +108,11 @@ void Widget::onExit()
     Node::onExit();
 }
     
-void Widget::visit()
+void Widget::visit(Renderer *renderer, const kmMat4 &parentTransform, bool parentTransformUpdated)
 {
     if (_enabled)
     {
-        Node::visit();
+        Node::visit(renderer, parentTransform, parentTransformUpdated);
     }    
 }
 
@@ -1057,14 +1057,19 @@ void Widget::copyProperties(Widget *widget)
     setScaleX(widget->getScaleX());
     setScaleY(widget->getScaleY());
     setRotation(widget->getRotation());
-    setRotationSkewX(widget->getRotationSkewX());
-    setRotationSkewY(widget->getRotationSkewY());
+    setRotationX(widget->getRotationX());
+    setRotationY(widget->getRotationY());
     setFlipX(widget->isFlipX());
     setFlipY(widget->isFlipY());
     setColor(widget->getColor());
     setOpacity(widget->getOpacity());
     setCascadeOpacityEnabled(widget->isCascadeOpacityEnabled());
     setCascadeColorEnabled(widget->isCascadeColorEnabled());
+    Map<int, LayoutParameter*>& layoutParameterDic = widget->_layoutParameterDictionary;
+    for (auto iter = layoutParameterDic.begin(); iter != layoutParameterDic.end(); ++iter)
+    {
+        setLayoutParameter(iter->second->clone());
+    }
     onSizeChanged();
 }
 

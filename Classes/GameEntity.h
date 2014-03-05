@@ -17,12 +17,12 @@ class GameEntity : public Node
 {
 public:
     CREATE_FUNC(GameEntity);
-    Sprite3D *getModel();
+    Node *getModel();
     void remove();
     Vertex3F getOrientation();
     float getRadius(){return _radius;};
 protected:
-    Sprite3D *_Model;
+    Node *_Model;
     float _radius;
     Vertex3F _orientation;
 };

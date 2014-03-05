@@ -7,17 +7,17 @@
 //
 
 #include "Fodder.h"
+#include "3d/Sprite3D.h"
 #include "PublicApi.h"
-
 bool Fodder::init()
 {
-    
-    _Model = Sprite3D::create("fighter.obj", "fighter.png");
+    _Model = Sprite3D::create("diji1_v001.obj", "diji02_v002_1024.png");
     if(_Model)
     {
-        _Model->setScale(20);
+        _Model->setScale(10);
         addChild(_Model);
         _Model->setRotation3D(Vertex3F(90,0,0));
+                static_cast<Sprite3D*>(_Model)->setOutline(5.0, Color3B(0,0,0));
         _radius=40;
         move(3.0,Point(0.0f,-visible_size_macro.height*1.5));
         //this->schedule(schedule_selector(Fodder::acrobacy) , 0.1, -1, 0.0);

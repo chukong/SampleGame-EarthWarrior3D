@@ -8,7 +8,7 @@
 
 #include "GameEntity.h"
 
-Sprite3D *GameEntity::getModel(){
+Node *GameEntity::getModel(){
     return _Model;
 }
 

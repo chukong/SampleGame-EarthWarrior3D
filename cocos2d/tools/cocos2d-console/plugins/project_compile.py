@@ -32,7 +32,7 @@ class CCPluginCompile(cocos.CCPlugin):
 
     def _add_custom_options(self, parser):
         from optparse import OptionGroup
-        parser.add_option("-m", "--mode", dest="mode", type="string", default='debug',
+        parser.add_option("-m", "--mode", dest="mode", default='debug',
                           help="Set the compile mode, should be debug|release, default is debug.")
         parser.add_option("-j", "--jobs", dest="jobs", type='int', default=1,
                           help="Allow N jobs at once.")
@@ -49,38 +49,27 @@ class CCPluginCompile(cocos.CCPlugin):
 
         parser.set_usage(usage)
 
-        pass
-
     def _check_custom_options(self, options):
-        self._mode = 'debug'
-        if options.mode:
-            if options.mode == 'debug':
-                self._mode = 'debug'
-            elif options.mode == 'release':
-                self._mode = 'release'
 
+        if options.mode != 'release':
+            options.mode = 'debug'
+
+        self._mode = options.mode
         cocos.Logging.info('Building mode: %s' % self._mode)
 
-        android_platform = options.android_platform
-        if not android_platform:
-            cocos.Logging.info('Android platform not specified, searching a default one...')
-            android_platform = cocos.select_default_android_platform()
-            if android_platform is None:
-                 cocos.Logging.warning('No valid android platform found, will not generate apk.')
+        self._ap = options.android_platform
+        self._jobs = options.jobs
 
-        self._ap = android_platform
-
-        self._jobs = 1
-        if options.jobs:
-            self._jobs = options.jobs
-    pass
-
-
-############### functions for android platform ##############
 
     def build_android(self):
         if not self._platforms.is_android_active():
             return
+        if not self._ap:
+            cocos.Logging.info('Android platform not specified, searching a default one...')
+            self._ap = cocos.select_default_android_platform()
+            if self._ap is None:
+                 cocos.Logging.warning('No valid android platform found, will not generate apk.')
+
         project_dir = self._platforms.project_path()
 
         # for debug reason, depart 2 step here:
