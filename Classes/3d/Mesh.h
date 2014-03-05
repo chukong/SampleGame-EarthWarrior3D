@@ -5,11 +5,7 @@
 #include <string>
 #include <vector>
 
-#include "CCGL.h"
-#include "CCPlatformMacros.h"
 #include "Vector.h"
-
-NS_CC_BEGIN
 
 struct Face
 {
@@ -92,7 +88,5 @@ private:
     RenderMesh _renderableMesh;
     
 };
-
-NS_CC_END
 
 #endif // __CCMESH_H_

@@ -6,18 +6,9 @@
 //
 //
 
-#include "CCSprite3D.h"
-#include "CCMesh.h"
-#include "CCTexture2D.h"
-#include "CCGLProgram.h"
-#include "CCDirector.h"
-#include "CCTextureCache.h"
-#include "renderer/CCRenderer.h"
+#include "Sprite3D.h"
 
-#include "kazmath/kazmath.h"
-#include "kazmath/GL/matrix.h"
-
-NS_CC_BEGIN
+using namespace cocos2d;
 
 #define USE_VBO
 
@@ -325,5 +316,3 @@ void Sprite3D::setOutline(float width, Color3B color)
         _uniformsOutline.NormalMatrix = _outlineShader->getUniformLocation("NormalMatrix");
     }
 }
-
-NS_CC_END

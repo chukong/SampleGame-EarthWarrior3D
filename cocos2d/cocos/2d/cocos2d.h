@@ -260,10 +260,6 @@ THE SOFTWARE.
 #include "CCComponent.h"
 #include "CCComponentContainer.h"
 
-// 3d
-#include "3d/CCSprite3D.h"
-#include "3d/CCMesh.h"
-
 // Deprecated include
 #include "CCDeprecated.h"
 

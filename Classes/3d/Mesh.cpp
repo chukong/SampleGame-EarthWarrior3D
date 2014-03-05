@@ -1,18 +1,14 @@
-#include "CCMesh.h"
+#include "Mesh.h"
 
 #include <list>
 #include <fstream>
 #include <iostream>
 #include <sstream>
 
-#include "CCGL.h"
-#include "ccMacros.h"
-#include "CCFileUtils.h"
-
+#include "cocos2d.h"
 
 using namespace std;
-
-NS_CC_BEGIN
+using namespace cocos2d;
 
 class ObjMeshParser
 {
@@ -520,5 +516,3 @@ void Mesh::generateTriangleIndices(vector<unsigned short>& indices) const
 //        *index++ = f->face.z;
 //    }
 }
-
-NS_CC_END

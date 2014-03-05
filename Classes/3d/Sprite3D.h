@@ -21,18 +21,14 @@
  * with the Cocos2D framework.
  */
 
-#ifndef __CCSPRITE3D_H_
-#define __CCSPRITE3D_H_
+#ifndef __SPRITE3D_H_
+#define __SPRITE3D_H_
 
 #include <vector>
 
-#include "CCNode.h"
-#include "renderer/CCCustomCommand.h"
+#include "cocos2d.h"
 
-NS_CC_BEGIN
-
-class Texture2D;
-class Mesh;
+#include "Mesh.h"
 
 struct Drawable {
     GLuint VertexBuffer;
@@ -58,11 +54,11 @@ struct AttributeHandles
     GLint TextureCoord;
 };
 
-class Sprite3D : public Node
+class Sprite3D : public cocos2d::Node
 {
 public:
     static Sprite3D* create(const std::string &modelPath, const std::string &texturePath="");
-    void setOutline(float width, Color3B color);
+    void setOutline(float width, cocos2d::Color3B color);
 
 protected:
     Sprite3D();
@@ -73,9 +69,9 @@ protected:
     void setModel(Mesh *model);
     bool buildProgram(bool textured);
     void buildBuffers();
-    void draw(Renderer* renderer, const kmMat4 &transform, bool transformUpdated);
+    void draw(cocos2d::Renderer* renderer, const kmMat4 &transform, bool transformUpdated);
     void onDraw(const kmMat4 &transform, bool transformUpdated);
-    void setTexture(Texture2D* texture);
+    void setTexture(cocos2d::Texture2D* texture);
     void updateBlendFunc();
     void setTextureName(const std::string& textureName);
     void removeTexture();
@@ -89,14 +85,14 @@ protected:
     std::vector<GLfloat> _vertices;
     std::vector<GLushort> _indices;
 
-    BlendFunc _blendFunc;
-    Texture2D *_texture;
-    CustomCommand _customCommand;
+    cocos2d::BlendFunc _blendFunc;
+    cocos2d::Texture2D *_texture;
+    cocos2d::CustomCommand _customCommand;
     
     bool _outLine = false;
     float _outLineWidth;
-    Color3B _outlineColor;
-    GLProgram *_outlineShader;
+    cocos2d::Color3B _outlineColor;
+    cocos2d::GLProgram *_outlineShader;
 
     UniformHandles _uniforms;
     UniformHandles _uniformsOutline;
@@ -104,6 +100,4 @@ protected:
     AttributeHandles _attributesOutline;
 };
 
-NS_CC_END
-
-#endif // __CCSPRITE3D_H_
+#endif // __SPRITE3D_H_

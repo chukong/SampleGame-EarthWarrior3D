@@ -8,6 +8,7 @@
 
 #include "Player.h"
 #include "Bullet.h"
+#include "3d/Sprite3D.h"
 
 bool Player::init()
 {
