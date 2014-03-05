@@ -21,6 +21,7 @@ public:
 protected:
     void update(float dt);
     //void acrobacy(float dt);
+    void RemoveFodder();
     const float rollSpeed = 3.5;// recommended 1.5
     float smoothAngle = 0.0f;
 };

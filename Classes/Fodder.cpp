@@ -19,7 +19,7 @@ bool Fodder::init()
         _Model->setRotation3D(Vertex3F(90,0,0));
                 static_cast<Sprite3D*>(_Model)->setOutline(5.0, Color3B(0,0,0));
         _radius=40;
-        move(3.0,Point(0.0f,-visible_size_macro.height*1.5));
+        
         //this->schedule(schedule_selector(Fodder::acrobacy) , 0.1, -1, 0.0);
         this->scheduleUpdate();
         return true;
@@ -29,8 +29,11 @@ bool Fodder::init()
 
 void Fodder::move(float duration, const Point& position)
 {
-    MoveTo*  MoveToB = MoveTo::create(duration,position);
-    this->runAction(MoveToB);
+    MoveTo*  MoveDownOutScreen = MoveTo::create(duration,position);
+    
+    CallFuncN *callBack = CallFuncN::create(callfunc_selector(Fodder::RemoveFodder));
+    
+    this->runAction(Sequence::create(MoveDownOutScreen,callBack,NULL));
 }
 /*
 void Fodder::acrobacy(float dt)
@@ -42,4 +45,9 @@ void Fodder::update(float dt)
 {
     this->setRotation3D(Vertex3F(0,smoothAngle,0));
     smoothAngle+=rollSpeed;
+}
+void Fodder::RemoveFodder()
+{
+    this->removeFromParentAndCleanup(true);
+    //this->removeFromParent();
 }

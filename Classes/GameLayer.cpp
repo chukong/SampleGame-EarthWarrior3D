@@ -60,6 +60,7 @@ void GameLayer::createCraft(float dt)
         addChild(enemy);
         enemy->setPosition(startPointX, 800.0f);
         container->insert(enemy);
+        enemy->move(3.0,Point(enemy->getPosition3D().x,-visible_size_macro.height*1.5));
     }
 }
 
