@@ -59,8 +59,7 @@ void BulletController::update(float dt)
         temp =i->getPosition();
         if(!BOUND_RECT.containsPoint(temp))
         {
-            i->removeFromParent();
-            BulletController::bullets.eraseObject(i);
+            BulletController::erase(i);
         }
         else
         {
@@ -68,4 +67,9 @@ void BulletController::update(float dt)
             i->setPosition(temp+(i->getVector()*dt));
         }
     }
+}
+void BulletController::erase(Bullet* b)
+{
+    b->removeFromParent();
+    BulletController::bullets.eraseObject(b);
 }

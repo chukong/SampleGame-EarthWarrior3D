@@ -88,7 +88,16 @@ void GameLayer::update(float dt){
         if(i->getPosition().getDistance(_testDummy->getPosition()) <
            (i->getRadius() + _testDummy->getRadius()))
         {
-            log("hit");
+            auto part1 = ParticleSystemQuad::create("toonSmoke.plist");
+            part1->setPosition(_testDummy->getPosition());
+            auto part2 = ParticleSystemQuad::create("flare.plist");
+            part2->setPosition(_testDummy->getPosition());
+            part1->setRotation3D(Vertex3F(30,0,0));
+            addChild(part1);
+            addChild(part2);
+            part1->setAutoRemoveOnFinish(true);
+            part2->setAutoRemoveOnFinish(true);
+            BulletController::erase(i);
         }
     }
     

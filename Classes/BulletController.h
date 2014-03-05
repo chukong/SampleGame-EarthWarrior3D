@@ -21,6 +21,7 @@ public:
     static void spawnBullet(int type, Point pos, Point vec);
     static void update(float dt);
     static Vector<Bullet*> bullets;
+    static void erase(Bullet* b);
 
 protected:
         //static BulletController *s_instance;
