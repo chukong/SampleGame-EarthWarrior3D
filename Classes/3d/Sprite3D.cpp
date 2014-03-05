@@ -176,7 +176,7 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
     
     // Initialize various state.
     glEnableVertexAttribArray(_attributes.Position);
-    glEnableVertexAttribArray(_attributes.Normal);
+    //glEnableVertexAttribArray(_attributes.Normal);
     if (_texture->getName())
         glEnableVertexAttribArray(_attributes.TextureCoord);
 
@@ -196,7 +196,7 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
 
     glBindBuffer(GL_ARRAY_BUFFER, _drawable.VertexBuffer);
     glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, stride, 0);
-    glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, stride, normalOffset);
+    //glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, stride, normalOffset);
     if (_texture->getName())
         glVertexAttribPointer(texCoord, 2, GL_FLOAT, GL_FALSE, stride, texCoordOffset);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _drawable.IndexBuffer);
