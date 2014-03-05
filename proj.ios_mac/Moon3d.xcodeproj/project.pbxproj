@@ -324,6 +324,7 @@
 		680A315C18C6471000D073CD /* diji02_v002_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diji02_v002_1024.png; sourceTree = "<group>"; };
 		680A315D18C6471000D073CD /* playerv001.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = playerv001.obj; sourceTree = "<group>"; };
 		680A315E18C6471000D073CD /* playerv002_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playerv002_1024.png; sourceTree = "<group>"; };
+		680A316C18C7065400D073CD /* consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = consts.h; path = ../Classes/3d/consts.h; sourceTree = "<group>"; };
 		680DB35C18C0740000DBAEFD /* QuadTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = QuadTree.cpp; path = ../Classes/QuadTree.cpp; sourceTree = "<group>"; };
 		680DB35D18C0740000DBAEFD /* QuadTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuadTree.h; path = ../Classes/QuadTree.h; sourceTree = "<group>"; };
 		6815E1C218BDE5C9004F9944 /* car00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car00.png; sourceTree = "<group>"; };
@@ -441,6 +442,7 @@
 				680A315218C5CDE500D073CD /* Bullet.h */,
 				680A315518C5D52300D073CD /* BulletController.cpp */,
 				680A315618C5D52300D073CD /* BulletController.h */,
+				680A316C18C7065400D073CD /* consts.h */,
 			);
 			name = Classes;
 			path = ../classes;

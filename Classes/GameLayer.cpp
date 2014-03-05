@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "Fodder.h"
 #include "QuadTree.h"
+#include "BulletController.h"
 USING_NS_CC;
 
 bool GameLayer::init()
@@ -36,6 +37,11 @@ bool GameLayer::init()
     addChild(enemy);
     enemy->setPosition(0, 500);
     container->insert(enemy);
+    
+    
+    
+    
+    BulletController::init(this);
     scheduleUpdate();
     return true;
 }
@@ -45,6 +51,7 @@ bool GameLayer::init()
 void GameLayer::update(float dt){
     xScroll -= speed*dt;
     spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
+    BulletController::update(dt);
     //Point;
     //_player->setRotation3D(Vertex3F(0,xScroll,0));
 }

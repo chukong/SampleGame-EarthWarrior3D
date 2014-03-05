@@ -590,9 +590,10 @@ void Sprite::updateTransform(void)
 void Sprite::draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated)
 {
     // Don't do calculate the culling if the transform was not updated
-    _insideBounds = transformUpdated ? isInsideBounds() : _insideBounds;
+    //_insideBounds = transformUpdated ? isInsideBounds() : _insideBounds;
 
-    if(_insideBounds)
+    //if(_insideBounds)
+    if(true)
     {
         _quadCommand.init(_globalZOrder, _texture->getName(), _shaderProgram, _blendFunc, &_quad, 1, transform);
         renderer->addCommand(&_quadCommand);

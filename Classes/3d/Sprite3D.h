@@ -39,11 +39,7 @@ struct Drawable {
 struct UniformHandles
 {
     GLuint NormalMatrix;
-    GLuint LightPosition;
-    GLint AmbientMaterial;
-    GLint SpecularMaterial;
     GLint DiffuseMaterial;
-    GLint Shininess;
     GLint Sampler;
 };
 

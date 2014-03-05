@@ -15,13 +15,16 @@ bool Bullet::init()
     {
         addChild(_Model);
         _radius=10;
-        scheduleUpdate();
         return true;
     }
     return false;
 }
-
-void Bullet::update(float dt)
+void Bullet::setVector(Point vec)
 {
-    setPositionY(getPositionY()+dt*1600);
+    _vector = vec;
+}
+
+Point Bullet::getVector()
+{
+    return _vector;
 }
