@@ -16,7 +16,7 @@ bool Fodder::init()
         _Model->setScale(10);
         addChild(_Model);
         _Model->setRotation3D(Vertex3F(90,0,0));
-                static_cast<Sprite3D*>(_Model)->setOutline(5.0, Color3B(0,0,0));
+                static_cast<Sprite3D*>(_Model)->setOutline(0.3, Color3B(255,0,0));
         _radius=40;
         return true;
     }

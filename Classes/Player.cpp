@@ -29,7 +29,7 @@ bool Player::init()
         
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
         scheduleUpdate();
-        static_cast<Sprite3D*>(_Model)->setOutline(5.0, Color3B(0,0,0));
+        static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B(0,255,0));
         schedule(schedule_selector(Player::shoot), 0.1, -1, 0);
         return true;
     }
