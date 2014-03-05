@@ -7,6 +7,7 @@
 //
 
 #include "Fodder.h"
+#include "3d/Sprite3D.h"
 
 bool Fodder::init()
 {

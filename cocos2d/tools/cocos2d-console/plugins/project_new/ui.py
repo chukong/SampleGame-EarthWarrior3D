@@ -30,8 +30,6 @@ import shutil
 import threading
 import time
 
-from core import CocosProject
-
 #import head files by python version.
 if int(platform.python_version().split('.')[0])>=3:
     from tkinter import *
@@ -77,18 +75,19 @@ class ThreadedTask(threading.Thread):
         putMsg = "begin@%d@%d@%s" %(0, 100, "begin create")
         self.queue.put(putMsg)
 
-        project = CocosProject()
-        breturn = project.createPlatformProjects(
-            self.projectName,
-            self.packageName,
+        from core import create_platform_projects
+        breturn = create_platform_projects(
             self.language,
+            self.projectName,
             self.projectPath,
-            self.newProjectCallBack
+            self.packageName,
+            has_native = True,
+            callbackfun = self.newProjectCallBack
         )
         if breturn:
-            putMsg = "end@%d@%d@%s" %(100, 100, "create successful")
+            putMsg = "end@%d@%d@%s" %(100, 100, "Projected created successfully")
         else:
-            putMsg = "end@%d@%d@%s" %(100, 100, "create failure")
+            putMsg = "end@%d@%d@%s" %(100, 100, "Failed to create project")
         self.queue.put(putMsg)
 
     def newProjectCallBack(self, step, totalStep, showMsg):
@@ -176,7 +175,7 @@ class TkCocosDialog(Frame):
         scnHeight = self.parent.winfo_screenheight()
         tmpcnf = '%dx%d+%d+%d'%(curWidth, curHeight, int((scnWidth-curWidth)/2), int((scnHeight-curHeight)/2))
         self.parent.geometry(tmpcnf)
-        self.parent.title("Cocos Project Creator")
+        self.parent.title("Cocos2d Project Creator")
 
         #fix size
         #self.parent.maxsize(curWidth, curHeight)

@@ -1850,16 +1850,6 @@
 		46A1743F1807D37B005B8026 /* cpSpace.h in Headers */ = {isa = PBXBuildFile; fileRef = 46A169571807AFD6005B8026 /* cpSpace.h */; };
 		46A174401807D37B005B8026 /* cpSpatialIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = 46A169581807AFD6005B8026 /* cpSpatialIndex.h */; };
 		46A174411807D37B005B8026 /* cpVect.h in Headers */ = {isa = PBXBuildFile; fileRef = 46A169591807AFD6005B8026 /* cpVect.h */; };
-		5032539718B68C1C00E8922E /* CCMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5032538E18B68C1C00E8922E /* CCMesh.cpp */; };
-		5032539818B68C1C00E8922E /* CCMesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5032538E18B68C1C00E8922E /* CCMesh.cpp */; };
-		5032539918B68C1C00E8922E /* CCMesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 5032538F18B68C1C00E8922E /* CCMesh.h */; };
-		5032539A18B68C1C00E8922E /* CCMesh.h in Headers */ = {isa = PBXBuildFile; fileRef = 5032538F18B68C1C00E8922E /* CCMesh.h */; };
-		5032539B18B68C1C00E8922E /* CCSprite3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5032539018B68C1C00E8922E /* CCSprite3D.cpp */; };
-		5032539C18B68C1C00E8922E /* CCSprite3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5032539018B68C1C00E8922E /* CCSprite3D.cpp */; };
-		5032539D18B68C1C00E8922E /* CCSprite3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 5032539118B68C1C00E8922E /* CCSprite3D.h */; };
-		5032539E18B68C1C00E8922E /* CCSprite3D.h in Headers */ = {isa = PBXBuildFile; fileRef = 5032539118B68C1C00E8922E /* CCSprite3D.h */; };
-		503253A718B68C1C00E8922E /* Vector.h in Headers */ = {isa = PBXBuildFile; fileRef = 5032539618B68C1C00E8922E /* Vector.h */; };
-		503253A818B68C1C00E8922E /* Vector.h in Headers */ = {isa = PBXBuildFile; fileRef = 5032539618B68C1C00E8922E /* Vector.h */; };
 		503253C918B68D6600E8922E /* aabb.c in Sources */ = {isa = PBXBuildFile; fileRef = 503253AA18B68D6600E8922E /* aabb.c */; };
 		503253CA18B68D6600E8922E /* aabb.c in Sources */ = {isa = PBXBuildFile; fileRef = 503253AA18B68D6600E8922E /* aabb.c */; };
 		503253CB18B68D6600E8922E /* aabb.h in Headers */ = {isa = PBXBuildFile; fileRef = 503253AB18B68D6600E8922E /* aabb.h */; };
@@ -1946,48 +1936,6 @@
 		59A79D561821E26E00F19697 /* CCEventMouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 59A79D4F1821E26E00F19697 /* CCEventMouse.cpp */; };
 		59A79D571821E26E00F19697 /* CCEventMouse.h in Headers */ = {isa = PBXBuildFile; fileRef = 59A79D501821E26E00F19697 /* CCEventMouse.h */; };
 		59A79D581821E26E00F19697 /* CCEventMouse.h in Headers */ = {isa = PBXBuildFile; fileRef = 59A79D501821E26E00F19697 /* CCEventMouse.h */; };
-		680A312318C5BB7D00D073CD /* Colored.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312018C5BB7D00D073CD /* Colored.es2.frag.h */; };
-		680A312418C5BB7D00D073CD /* Colored.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312018C5BB7D00D073CD /* Colored.es2.frag.h */; };
-		680A312518C5BB7D00D073CD /* Colored.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312018C5BB7D00D073CD /* Colored.es2.frag.h */; };
-		680A312618C5BB7D00D073CD /* Colored.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312018C5BB7D00D073CD /* Colored.es2.frag.h */; };
-		680A312718C5BB7D00D073CD /* Colored.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312018C5BB7D00D073CD /* Colored.es2.frag.h */; };
-		680A312818C5BB7D00D073CD /* Colored.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312018C5BB7D00D073CD /* Colored.es2.frag.h */; };
-		680A312918C5BB7D00D073CD /* Colored.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312018C5BB7D00D073CD /* Colored.es2.frag.h */; };
-		680A312A18C5BB7D00D073CD /* Colored.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312018C5BB7D00D073CD /* Colored.es2.frag.h */; };
-		680A312B18C5BB7D00D073CD /* Colored.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312018C5BB7D00D073CD /* Colored.es2.frag.h */; };
-		680A312C18C5BB7D00D073CD /* Colored.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312018C5BB7D00D073CD /* Colored.es2.frag.h */; };
-		680A312D18C5BB7D00D073CD /* Colored.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312018C5BB7D00D073CD /* Colored.es2.frag.h */; };
-		680A312E18C5BB7D00D073CD /* Colored.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312018C5BB7D00D073CD /* Colored.es2.frag.h */; };
-		680A312F18C5BB7D00D073CD /* Colored.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312018C5BB7D00D073CD /* Colored.es2.frag.h */; };
-		680A313018C5BB7D00D073CD /* Colored.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312018C5BB7D00D073CD /* Colored.es2.frag.h */; };
-		680A313118C5BB7D00D073CD /* Textured.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312118C5BB7D00D073CD /* Textured.es2.frag.h */; };
-		680A313218C5BB7D00D073CD /* Textured.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312118C5BB7D00D073CD /* Textured.es2.frag.h */; };
-		680A313318C5BB7D00D073CD /* Textured.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312118C5BB7D00D073CD /* Textured.es2.frag.h */; };
-		680A313418C5BB7D00D073CD /* Textured.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312118C5BB7D00D073CD /* Textured.es2.frag.h */; };
-		680A313518C5BB7D00D073CD /* Textured.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312118C5BB7D00D073CD /* Textured.es2.frag.h */; };
-		680A313618C5BB7D00D073CD /* Textured.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312118C5BB7D00D073CD /* Textured.es2.frag.h */; };
-		680A313718C5BB7D00D073CD /* Textured.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312118C5BB7D00D073CD /* Textured.es2.frag.h */; };
-		680A313818C5BB7D00D073CD /* Textured.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312118C5BB7D00D073CD /* Textured.es2.frag.h */; };
-		680A313918C5BB7D00D073CD /* Textured.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312118C5BB7D00D073CD /* Textured.es2.frag.h */; };
-		680A313A18C5BB7D00D073CD /* Textured.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312118C5BB7D00D073CD /* Textured.es2.frag.h */; };
-		680A313B18C5BB7D00D073CD /* Textured.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312118C5BB7D00D073CD /* Textured.es2.frag.h */; };
-		680A313C18C5BB7D00D073CD /* Textured.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312118C5BB7D00D073CD /* Textured.es2.frag.h */; };
-		680A313D18C5BB7D00D073CD /* Textured.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312118C5BB7D00D073CD /* Textured.es2.frag.h */; };
-		680A313E18C5BB7D00D073CD /* Textured.es2.frag.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312118C5BB7D00D073CD /* Textured.es2.frag.h */; };
-		680A313F18C5BB7D00D073CD /* Textured.es2.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312218C5BB7D00D073CD /* Textured.es2.vert.h */; };
-		680A314018C5BB7D00D073CD /* Textured.es2.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312218C5BB7D00D073CD /* Textured.es2.vert.h */; };
-		680A314118C5BB7D00D073CD /* Textured.es2.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312218C5BB7D00D073CD /* Textured.es2.vert.h */; };
-		680A314218C5BB7D00D073CD /* Textured.es2.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312218C5BB7D00D073CD /* Textured.es2.vert.h */; };
-		680A314318C5BB7D00D073CD /* Textured.es2.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312218C5BB7D00D073CD /* Textured.es2.vert.h */; };
-		680A314418C5BB7D00D073CD /* Textured.es2.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312218C5BB7D00D073CD /* Textured.es2.vert.h */; };
-		680A314518C5BB7D00D073CD /* Textured.es2.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312218C5BB7D00D073CD /* Textured.es2.vert.h */; };
-		680A314618C5BB7D00D073CD /* Textured.es2.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312218C5BB7D00D073CD /* Textured.es2.vert.h */; };
-		680A314718C5BB7D00D073CD /* Textured.es2.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312218C5BB7D00D073CD /* Textured.es2.vert.h */; };
-		680A314818C5BB7D00D073CD /* Textured.es2.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312218C5BB7D00D073CD /* Textured.es2.vert.h */; };
-		680A314918C5BB7D00D073CD /* Textured.es2.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312218C5BB7D00D073CD /* Textured.es2.vert.h */; };
-		680A314A18C5BB7D00D073CD /* Textured.es2.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312218C5BB7D00D073CD /* Textured.es2.vert.h */; };
-		680A314B18C5BB7D00D073CD /* Textured.es2.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312218C5BB7D00D073CD /* Textured.es2.vert.h */; };
-		680A314C18C5BB7D00D073CD /* Textured.es2.vert.h in Headers */ = {isa = PBXBuildFile; fileRef = 680A312218C5BB7D00D073CD /* Textured.es2.vert.h */; };
 		74AC80E553789C6DE3EC737A /* CCRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 74AC8EB8FE47EED9B30B7106 /* CCRenderer.cpp */; };
 		74AC819B780D9EB49CC421AB /* CCRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AC8DF0EA49A124E1B11681 /* CCRenderer.h */; };
 		74AC81CAB5F3883FCC2A4A5B /* CCQuadCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 74AC8C4AE1EB0FCB287E7396 /* CCQuadCommand.h */; };
@@ -3157,11 +3105,6 @@
 		46A170761807CE7A005B8026 /* CCPhysicsShape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCPhysicsShape.h; sourceTree = "<group>"; };
 		46A170771807CE7A005B8026 /* CCPhysicsWorld.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CCPhysicsWorld.cpp; sourceTree = "<group>"; };
 		46A170781807CE7A005B8026 /* CCPhysicsWorld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CCPhysicsWorld.h; sourceTree = "<group>"; };
-		5032538E18B68C1C00E8922E /* CCMesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCMesh.cpp; sourceTree = "<group>"; };
-		5032538F18B68C1C00E8922E /* CCMesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMesh.h; sourceTree = "<group>"; };
-		5032539018B68C1C00E8922E /* CCSprite3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSprite3D.cpp; sourceTree = "<group>"; };
-		5032539118B68C1C00E8922E /* CCSprite3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSprite3D.h; sourceTree = "<group>"; };
-		5032539618B68C1C00E8922E /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
 		503253AA18B68D6600E8922E /* aabb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aabb.c; sourceTree = "<group>"; };
 		503253AB18B68D6600E8922E /* aabb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aabb.h; sourceTree = "<group>"; };
 		503253AC18B68D6600E8922E /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
@@ -3207,9 +3150,6 @@
 		59A79D4E1821E26E00F19697 /* CCEventListenerMouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEventListenerMouse.h; sourceTree = "<group>"; };
 		59A79D4F1821E26E00F19697 /* CCEventMouse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCEventMouse.cpp; sourceTree = "<group>"; };
 		59A79D501821E26E00F19697 /* CCEventMouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEventMouse.h; sourceTree = "<group>"; };
-		680A312018C5BB7D00D073CD /* Colored.es2.frag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colored.es2.frag.h; sourceTree = "<group>"; };
-		680A312118C5BB7D00D073CD /* Textured.es2.frag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Textured.es2.frag.h; sourceTree = "<group>"; };
-		680A312218C5BB7D00D073CD /* Textured.es2.vert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Textured.es2.vert.h; sourceTree = "<group>"; };
 		74AC800F4905C8827A44EED3 /* CCMaterialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMaterialManager.h; sourceTree = "<group>"; };
 		74AC80EEB031D67E86B45096 /* CCFrustum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCFrustum.cpp; sourceTree = "<group>"; };
 		74AC80F6E92FC29EA536D7F8 /* CCRenderCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCRenderCommand.cpp; sourceTree = "<group>"; };
@@ -3427,7 +3367,6 @@
 				46A15FCE1807A544005B8026 /* README.md */,
 				50DC5180187B817900A9C23F /* RELEASE_NOTES.md */,
 				46A169A11807B037005B8026 /* 2d */,
-				5032538D18B68C1C00E8922E /* 3d */,
 				46A15FD01807A56F005B8026 /* audio */,
 				1A5700A2180BC5E60088DEC7 /* base */,
 				1AD71CF7180E26E600808F54 /* editor-support */,
@@ -5502,22 +5441,6 @@
 			path = ../cocos/math;
 			sourceTree = "<group>";
 		};
-		5032538D18B68C1C00E8922E /* 3d */ = {
-			isa = PBXGroup;
-			children = (
-				680A312018C5BB7D00D073CD /* Colored.es2.frag.h */,
-				680A312118C5BB7D00D073CD /* Textured.es2.frag.h */,
-				680A312218C5BB7D00D073CD /* Textured.es2.vert.h */,
-				5032538E18B68C1C00E8922E /* CCMesh.cpp */,
-				5032538F18B68C1C00E8922E /* CCMesh.h */,
-				5032539018B68C1C00E8922E /* CCSprite3D.cpp */,
-				5032539118B68C1C00E8922E /* CCSprite3D.h */,
-				5032539618B68C1C00E8922E /* Vector.h */,
-			);
-			name = 3d;
-			path = ../cocos/3d;
-			sourceTree = "<group>";
-		};
 		503253A918B68D6600E8922E /* kazmath */ = {
 			isa = PBXGroup;
 			children = (
@@ -5703,7 +5626,6 @@
 				2AC795E118628723005EC8E1 /* EventData.h in Headers */,
 				2AC795E218628723005EC8E1 /* BoundingBoxAttachment.h in Headers */,
 				06CAAAC9186AD7EE0012A414 /* TriggerMng.h in Headers */,
-				680A313F18C5BB7D00D073CD /* Textured.es2.vert.h in Headers */,
 				1ABA68B01888D700007D1BB4 /* CCFontCharMap.h in Headers */,
 				503253DD18B68D6600E8922E /* mat4.h in Headers */,
 				1AA2063F1848437900053418 /* CCMap.h in Headers */,
@@ -5736,7 +5658,6 @@
 				1A57006F180BC5A10088DEC7 /* CCActionEase.h in Headers */,
 				1A570073180BC5A10088DEC7 /* CCActionGrid.h in Headers */,
 				06CAAAD1186AD8010012A414 /* ObjectFactory.h in Headers */,
-				503253A718B68C1C00E8922E /* Vector.h in Headers */,
 				A023FA34185198C800E10CD1 /* ccShader_PositionTextureColor_noMVP_frag.h in Headers */,
 				1A570077180BC5A10088DEC7 /* CCActionGrid3D.h in Headers */,
 				1A57007B180BC5A10088DEC7 /* CCActionInstant.h in Headers */,
@@ -5802,7 +5723,6 @@
 				1A5701A7180BCB590088DEC7 /* CCFontAtlasCache.h in Headers */,
 				1A5701B3180BCB590088DEC7 /* CCFontFNT.h in Headers */,
 				1A5701B7180BCB5A0088DEC7 /* CCFontFreeType.h in Headers */,
-				5032539D18B68C1C00E8922E /* CCSprite3D.h in Headers */,
 				1A5701BB180BCB5A0088DEC7 /* CCLabel.h in Headers */,
 				1A5701BF180BCB5A0088DEC7 /* CCLabelAtlas.h in Headers */,
 				1A5701C3180BCB5A0088DEC7 /* CCLabelBMFont.h in Headers */,
@@ -5838,7 +5758,6 @@
 				1A57025B180BCC6F0088DEC7 /* ccShader_PositionTexture_uColor_frag.h in Headers */,
 				1A57025D180BCC6F0088DEC7 /* ccShader_PositionTexture_uColor_vert.h in Headers */,
 				1A57025F180BCC6F0088DEC7 /* ccShader_PositionTexture_vert.h in Headers */,
-				680A313118C5BB7D00D073CD /* Textured.es2.frag.h in Headers */,
 				503253ED18B68D6600E8922E /* ray2.h in Headers */,
 				593BDCF4184D0A6E00C21E48 /* CCCustomCommand.h in Headers */,
 				1A570261180BCC6F0088DEC7 /* ccShader_PositionTextureA8Color_frag.h in Headers */,
@@ -5862,7 +5781,6 @@
 				1A5702B7180BCDF40088DEC7 /* CCVertex.h in Headers */,
 				1A5702BA180BCDFC0088DEC7 /* ccUtils.h in Headers */,
 				1A5702C0180BCE2A0088DEC7 /* CCIMEDelegate.h in Headers */,
-				5032539918B68C1C00E8922E /* CCMesh.h in Headers */,
 				1A5702C4180BCE2A0088DEC7 /* CCIMEDispatcher.h in Headers */,
 				1A5702CA180BCE370088DEC7 /* CCTextFieldTTF.h in Headers */,
 				1A5702D5180BCE570088DEC7 /* CCTexture2D.h in Headers */,
@@ -6018,7 +5936,6 @@
 				1A8C5A05180E930E00EF57C3 /* CCUtilMath.h in Headers */,
 				503253E118B68D6600E8922E /* neon_matrix_impl.h in Headers */,
 				1A8C5A07180E930E00EF57C3 /* CocoStudio.h in Headers */,
-				680A312318C5BB7D00D073CD /* Colored.es2.frag.h in Headers */,
 				59A79D571821E26E00F19697 /* CCEventMouse.h in Headers */,
 				1A8C5A0F180E930E00EF57C3 /* DictionaryHelper.h in Headers */,
 				74AC82C9892F007745926C93 /* CCFrustum.h in Headers */,
@@ -6040,7 +5957,6 @@
 				15A71DA71892291500F30AC0 /* lua_extensions.h in Headers */,
 				1A3B1F7F180E88C300497A22 /* CCLuaBridge.h in Headers */,
 				15A71D9518921E6900F30AC0 /* udp.h in Headers */,
-				680A314C18C5BB7D00D073CD /* Textured.es2.vert.h in Headers */,
 				15A71D8518921E6900F30AC0 /* socket.h in Headers */,
 				1A3B1F83180E88C300497A22 /* CCLuaEngine.h in Headers */,
 				15A71D9D18921E6900F30AC0 /* usocket.h in Headers */,
@@ -6056,10 +5972,8 @@
 				1A3B1F97180E88C300497A22 /* lua_cocos2dx_extension_manual.h in Headers */,
 				15A71D9918921E6900F30AC0 /* unix.h in Headers */,
 				1A3B1F9B180E88C300497A22 /* lua_cocos2dx_manual.hpp in Headers */,
-				680A313E18C5BB7D00D073CD /* Textured.es2.frag.h in Headers */,
 				1A3B1F9F180E88C300497A22 /* Lua_web_socket.h in Headers */,
 				15A71D6918921E6900F30AC0 /* inet.h in Headers */,
-				680A313018C5BB7D00D073CD /* Colored.es2.frag.h in Headers */,
 				1A3B1FA3180E88C300497A22 /* LuaBasicConversions.h in Headers */,
 				15A71D7518921E6900F30AC0 /* luasocket_io.h in Headers */,
 				1A3B1FA7180E88C300497A22 /* LuaOpengl.h in Headers */,
@@ -6097,7 +6011,6 @@
 				15A71DA61892291500F30AC0 /* lua_extensions.h in Headers */,
 				1A3B1F7E180E88C300497A22 /* CCLuaBridge.h in Headers */,
 				15A71D9418921E6900F30AC0 /* udp.h in Headers */,
-				680A314518C5BB7D00D073CD /* Textured.es2.vert.h in Headers */,
 				15A71D8418921E6900F30AC0 /* socket.h in Headers */,
 				1A3B1F82180E88C300497A22 /* CCLuaEngine.h in Headers */,
 				15A71D9C18921E6900F30AC0 /* usocket.h in Headers */,
@@ -6113,10 +6026,8 @@
 				1A3B1F96180E88C300497A22 /* lua_cocos2dx_extension_manual.h in Headers */,
 				15A71D9818921E6900F30AC0 /* unix.h in Headers */,
 				1A3B1F9A180E88C300497A22 /* lua_cocos2dx_manual.hpp in Headers */,
-				680A313718C5BB7D00D073CD /* Textured.es2.frag.h in Headers */,
 				1A3B1F9E180E88C300497A22 /* Lua_web_socket.h in Headers */,
 				15A71D6818921E6900F30AC0 /* inet.h in Headers */,
-				680A312918C5BB7D00D073CD /* Colored.es2.frag.h in Headers */,
 				1A3B1FA2180E88C300497A22 /* LuaBasicConversions.h in Headers */,
 				15A71D7418921E6900F30AC0 /* luasocket_io.h in Headers */,
 				1A3B1FA6180E88C300497A22 /* LuaOpengl.h in Headers */,
@@ -6157,7 +6068,6 @@
 				46A174231807D379005B8026 /* cpSimpleMotor.h in Headers */,
 				46A1741D1807D379005B8026 /* cpGearJoint.h in Headers */,
 				46A1742B1807D379005B8026 /* cpSpace.h in Headers */,
-				680A314118C5BB7D00D073CD /* Textured.es2.vert.h in Headers */,
 				46A174261807D379005B8026 /* cpArbiter.h in Headers */,
 				46A174211807D379005B8026 /* cpRatchetJoint.h in Headers */,
 				46A174111807D372005B8026 /* chipmunk_ffi.h in Headers */,
@@ -6166,11 +6076,9 @@
 				46A174101807D372005B8026 /* chipmunk.h in Headers */,
 				46A174131807D372005B8026 /* chipmunk_types.h in Headers */,
 				46A1741C1807D379005B8026 /* cpDampedSpring.h in Headers */,
-				680A312518C5BB7D00D073CD /* Colored.es2.frag.h in Headers */,
 				46A1741F1807D379005B8026 /* cpPinJoint.h in Headers */,
 				46A1742A1807D379005B8026 /* cpShape.h in Headers */,
 				46A174271807D379005B8026 /* cpBB.h in Headers */,
-				680A313318C5BB7D00D073CD /* Textured.es2.frag.h in Headers */,
 				46A1741B1807D379005B8026 /* cpDampedRotarySpring.h in Headers */,
 				46A1742C1807D379005B8026 /* cpSpatialIndex.h in Headers */,
 				46A174201807D379005B8026 /* cpPivotJoint.h in Headers */,
@@ -6190,7 +6098,6 @@
 				1AAF5293180E2ECC000584C8 /* b2Distance.h in Headers */,
 				1AAF5295180E2ECC000584C8 /* b2DynamicTree.h in Headers */,
 				1AAF5297180E2ECC000584C8 /* b2TimeOfImpact.h in Headers */,
-				680A314218C5BB7D00D073CD /* Textured.es2.vert.h in Headers */,
 				1AAF5298180E2ED2000584C8 /* Box2D.h in Headers */,
 				1AAF52B1180E2EE9000584C8 /* b2ChainShape.h in Headers */,
 				1AAF52B3180E2EE9000584C8 /* b2CircleShape.h in Headers */,
@@ -6206,10 +6113,8 @@
 				1AAF52D0180E2EEF000584C8 /* b2StackAllocator.h in Headers */,
 				1AAF52D2180E2EEF000584C8 /* b2Timer.h in Headers */,
 				1AAF52D4180E2EF5000584C8 /* b2Body.h in Headers */,
-				680A313418C5BB7D00D073CD /* Textured.es2.frag.h in Headers */,
 				1AAF52D6180E2EF5000584C8 /* b2ContactManager.h in Headers */,
 				1AAF52D8180E2EF5000584C8 /* b2Fixture.h in Headers */,
-				680A312618C5BB7D00D073CD /* Colored.es2.frag.h in Headers */,
 				1AAF52DA180E2EF5000584C8 /* b2Island.h in Headers */,
 				1AAF52DB180E2EF5000584C8 /* b2TimeStep.h in Headers */,
 				1AAF52DD180E2EF5000584C8 /* b2World.h in Headers */,
@@ -6244,10 +6149,7 @@
 			files = (
 				46A160421807A5D4005B8026 /* Export.h in Headers */,
 				46A160471807A5D4005B8026 /* CDOpenALSupport.h in Headers */,
-				680A312718C5BB7D00D073CD /* Colored.es2.frag.h in Headers */,
 				46A160461807A5D4005B8026 /* CDConfig.h in Headers */,
-				680A313518C5BB7D00D073CD /* Textured.es2.frag.h in Headers */,
-				680A314318C5BB7D00D073CD /* Textured.es2.vert.h in Headers */,
 				46A160491807A5D4005B8026 /* CDXMacOSXSupport.h in Headers */,
 				46A160441807A5D4005B8026 /* CDAudioManager.h in Headers */,
 				46A1604E1807A5D4005B8026 /* SimpleAudioEngine_objc.h in Headers */,
@@ -6265,15 +6167,12 @@
 				460E477E18080902000CDD6D /* CCControl.h in Headers */,
 				460E47B11808090B000CDD6D /* CCEditBoxImpl.h in Headers */,
 				460E47B31808090B000CDD6D /* CCEditBoxImplAndroid.h in Headers */,
-				680A313218C5BB7D00D073CD /* Textured.es2.frag.h in Headers */,
-				680A314018C5BB7D00D073CD /* Textured.es2.vert.h in Headers */,
 				460E47B61808090B000CDD6D /* CCEditBoxImplMac.h in Headers */,
 				460E477B180808F5000CDD6D /* ExtensionMacros.h in Headers */,
 				460E479118080902000CDD6D /* CCControlUtils.h in Headers */,
 				460E468118080832000CDD6D /* cocos-ext.h in Headers */,
 				460E47B41808090B000CDD6D /* CCEditBoxImplIOS.h in Headers */,
 				460E47CC18080913000CDD6D /* CCScrollView.h in Headers */,
-				680A312418C5BB7D00D073CD /* Colored.es2.frag.h in Headers */,
 				460E47B01808090B000CDD6D /* CCEditBox.h in Headers */,
 				460E478918080902000CDD6D /* CCControlSaturationBrightnessPicker.h in Headers */,
 				460E47D018080913000CDD6D /* CCTableView.h in Headers */,
@@ -6300,7 +6199,6 @@
 			files = (
 				2AFCB8211863D67F00EB4B5C /* jsb_cocos2dx_spine_auto.cpp in Headers */,
 				1A2C7937181A1257004E5527 /* js_bindings_config.h in Headers */,
-				680A312818C5BB7D00D073CD /* Colored.es2.frag.h in Headers */,
 				1A2C790F181A1257004E5527 /* js_bindings_chipmunk_auto_classes.h in Headers */,
 				1A2C7935181A1257004E5527 /* jsb_cocos2dx_extension_manual.h in Headers */,
 				1A2C791F181A1257004E5527 /* js_bindings_chipmunk_registration.h in Headers */,
@@ -6325,9 +6223,7 @@
 				1A2C7945181A1257004E5527 /* jsb_helper.h in Headers */,
 				1A2C7957181A1257004E5527 /* js_bindings_system_functions_registration.h in Headers */,
 				1A2C7943181A1257004E5527 /* js_manual_conversions.h in Headers */,
-				680A313618C5BB7D00D073CD /* Textured.es2.frag.h in Headers */,
 				1A2C7929181A1257004E5527 /* js_bindings_ccbreader.h in Headers */,
-				680A314418C5BB7D00D073CD /* Textured.es2.vert.h in Headers */,
 				1A2C7951181A1257004E5527 /* jsb_opengl_registration.h in Headers */,
 				1A2C7876181A11EC004E5527 /* jsb_cocos2dx_auto.hpp in Headers */,
 				1A2C7882181A11EC004E5527 /* jsb_cocos2dx_builder_auto.hpp in Headers */,
@@ -6552,7 +6448,6 @@
 				1AD71E00180E26E600808F54 /* CCParticleSystemQuadLoader.h in Headers */,
 				1AD71E04180E26E600808F54 /* CCScale9SpriteLoader.h in Headers */,
 				1AD71E08180E26E600808F54 /* CCScrollViewLoader.h in Headers */,
-				503253A818B68C1C00E8922E /* Vector.h in Headers */,
 				1AD71E0C180E26E600808F54 /* CCSpriteLoader.h in Headers */,
 				1AD71E0E180E26E600808F54 /* CocosBuilder.h in Headers */,
 				1AD71E98180E26E600808F54 /* Animation.h in Headers */,
@@ -6581,7 +6476,6 @@
 				1A85BA0E1845F31700260FC0 /* CCVector.h in Headers */,
 				1AD71EE0180E26E600808F54 /* Slot.h in Headers */,
 				1AD71EE4180E26E600808F54 /* SlotData.h in Headers */,
-				680A313818C5BB7D00D073CD /* Textured.es2.frag.h in Headers */,
 				1AD71EE8180E26E600808F54 /* spine-cocos2dx.h in Headers */,
 				1AD71EEA180E26E600808F54 /* spine.h in Headers */,
 				1AAF536D180E3374000584C8 /* HttpClient.h in Headers */,
@@ -6592,7 +6486,6 @@
 				1AAF5375180E3374000584C8 /* SocketIO.h in Headers */,
 				1AAF5379180E3374000584C8 /* WebSocket.h in Headers */,
 				1AAF5852180E40B9000584C8 /* LocalStorage.h in Headers */,
-				680A312A18C5BB7D00D073CD /* Colored.es2.frag.h in Headers */,
 				1A9DCA14180E6955007A3AD4 /* ccConfig.h in Headers */,
 				1A9DCA18180E6955007A3AD4 /* CCConfiguration.h in Headers */,
 				1A9DCA20180E6955007A3AD4 /* CCDirector.h in Headers */,
@@ -6601,7 +6494,6 @@
 				1A9DCA2A180E6955007A3AD4 /* CCGLBufferedNode.h in Headers */,
 				1A9DCA2C180E6955007A3AD4 /* ccMacros.h in Headers */,
 				1A0DB7321823827C0025743D /* CCGL.h in Headers */,
-				680A314618C5BB7D00D073CD /* Textured.es2.vert.h in Headers */,
 				1A9DCA2E180E6955007A3AD4 /* CCProtocols.h in Headers */,
 				1A9DCA32180E6955007A3AD4 /* CCScheduler.h in Headers */,
 				1A9DCA3A180E6955007A3AD4 /* cocos2d.h in Headers */,
@@ -6650,7 +6542,6 @@
 				1A8C59CE180E930E00EF57C3 /* CCDataReaderHelper.h in Headers */,
 				1A8C59D2180E930E00EF57C3 /* CCDatas.h in Headers */,
 				ED9C6A9718599AD8000A5232 /* CCNodeGrid.h in Headers */,
-				5032539E18B68C1C00E8922E /* CCSprite3D.h in Headers */,
 				1A8C59D6180E930E00EF57C3 /* CCDecorativeDisplay.h in Headers */,
 				1A8C59DA180E930E00EF57C3 /* CCDisplayFactory.h in Headers */,
 				1A8C59DE180E930E00EF57C3 /* CCDisplayManager.h in Headers */,
@@ -6660,7 +6551,6 @@
 				1A8C59EA180E930E00EF57C3 /* CCSGUIReader.h in Headers */,
 				1A8C59EE180E930E00EF57C3 /* CCSkin.h in Headers */,
 				B37510801823ACA100B3BA6A /* CCPhysicsHelper_chipmunk.h in Headers */,
-				5032539A18B68C1C00E8922E /* CCMesh.h in Headers */,
 				A023FA35185198C800E10CD1 /* ccShader_PositionTextureColor_noMVP_frag.h in Headers */,
 				1A8C59F2180E930E00EF57C3 /* CCSpriteFrameCacheHelper.h in Headers */,
 				1A8C59F6180E930E00EF57C3 /* CCSSceneReader.h in Headers */,
@@ -6687,15 +6577,12 @@
 				460E47D418080914000CDD6D /* CCScrollView.h in Headers */,
 				460E479918080904000CDD6D /* CCControlButton.h in Headers */,
 				460E47A418080904000CDD6D /* CCControlSlider.h in Headers */,
-				680A313918C5BB7D00D073CD /* Textured.es2.frag.h in Headers */,
-				680A314718C5BB7D00D073CD /* Textured.es2.vert.h in Headers */,
 				460E479E18080904000CDD6D /* CCControlHuePicker.h in Headers */,
 				460E468218080836000CDD6D /* cocos-ext.h in Headers */,
 				460E47C41808090D000CDD6D /* CCEditBoxImplMac.h in Headers */,
 				460E47BF1808090D000CDD6D /* CCEditBoxImpl.h in Headers */,
 				460E47AE18080904000CDD6D /* CCScale9Sprite.h in Headers */,
 				460E477C180808F7000CDD6D /* ExtensionMacros.h in Headers */,
-				680A312B18C5BB7D00D073CD /* Colored.es2.frag.h in Headers */,
 				460E47A218080904000CDD6D /* CCControlSaturationBrightnessPicker.h in Headers */,
 				460E479B18080904000CDD6D /* CCControlColourPicker.h in Headers */,
 				460E47C11808090D000CDD6D /* CCEditBoxImplAndroid.h in Headers */,
@@ -6728,7 +6615,6 @@
 				46A174371807D37B005B8026 /* cpSimpleMotor.h in Headers */,
 				46A174311807D37B005B8026 /* cpGearJoint.h in Headers */,
 				46A1743F1807D37B005B8026 /* cpSpace.h in Headers */,
-				680A314818C5BB7D00D073CD /* Textured.es2.vert.h in Headers */,
 				46A1743A1807D37B005B8026 /* cpArbiter.h in Headers */,
 				46A174351807D37B005B8026 /* cpRatchetJoint.h in Headers */,
 				46A174161807D374005B8026 /* chipmunk_ffi.h in Headers */,
@@ -6737,11 +6623,9 @@
 				46A174151807D374005B8026 /* chipmunk.h in Headers */,
 				46A174181807D374005B8026 /* chipmunk_types.h in Headers */,
 				46A174301807D37B005B8026 /* cpDampedSpring.h in Headers */,
-				680A312C18C5BB7D00D073CD /* Colored.es2.frag.h in Headers */,
 				46A174331807D37B005B8026 /* cpPinJoint.h in Headers */,
 				46A1743E1807D37B005B8026 /* cpShape.h in Headers */,
 				46A1743B1807D37B005B8026 /* cpBB.h in Headers */,
-				680A313A18C5BB7D00D073CD /* Textured.es2.frag.h in Headers */,
 				46A1742F1807D37B005B8026 /* cpDampedRotarySpring.h in Headers */,
 				46A174401807D37B005B8026 /* cpSpatialIndex.h in Headers */,
 				46A174341807D37B005B8026 /* cpPivotJoint.h in Headers */,
@@ -6761,7 +6645,6 @@
 				1AAF52A0180E2EE4000584C8 /* b2Collision.h in Headers */,
 				1AAF52A2180E2EE4000584C8 /* b2Distance.h in Headers */,
 				1AAF52A4180E2EE4000584C8 /* b2DynamicTree.h in Headers */,
-				680A314918C5BB7D00D073CD /* Textured.es2.vert.h in Headers */,
 				1AAF52A6180E2EE4000584C8 /* b2TimeOfImpact.h in Headers */,
 				1AAF52A8180E2EE8000584C8 /* b2ChainShape.h in Headers */,
 				1AAF52AA180E2EE8000584C8 /* b2CircleShape.h in Headers */,
@@ -6777,10 +6660,8 @@
 				1AAF52C3180E2EEE000584C8 /* b2StackAllocator.h in Headers */,
 				1AAF52C5180E2EEE000584C8 /* b2Timer.h in Headers */,
 				1AAF52E1180E2EF6000584C8 /* b2Body.h in Headers */,
-				680A313B18C5BB7D00D073CD /* Textured.es2.frag.h in Headers */,
 				1AAF52E3180E2EF6000584C8 /* b2ContactManager.h in Headers */,
 				1AAF52E5180E2EF6000584C8 /* b2Fixture.h in Headers */,
-				680A312D18C5BB7D00D073CD /* Colored.es2.frag.h in Headers */,
 				1AAF52E7180E2EF6000584C8 /* b2Island.h in Headers */,
 				1AAF52E8180E2EF6000584C8 /* b2TimeStep.h in Headers */,
 				1AAF52EA180E2EF6000584C8 /* b2World.h in Headers */,
@@ -6815,13 +6696,10 @@
 			files = (
 				46A160501807A5EB005B8026 /* Export.h in Headers */,
 				46A1605A1807A5EB005B8026 /* SimpleAudioEngine_objc.h in Headers */,
-				680A313C18C5BB7D00D073CD /* Textured.es2.frag.h in Headers */,
 				46A160551807A5EB005B8026 /* CDOpenALSupport.h in Headers */,
 				46A160541807A5EB005B8026 /* CDConfig.h in Headers */,
-				680A314A18C5BB7D00D073CD /* Textured.es2.vert.h in Headers */,
 				46A160521807A5EB005B8026 /* CDAudioManager.h in Headers */,
 				46A160571807A5EB005B8026 /* CocosDenshion.h in Headers */,
-				680A312E18C5BB7D00D073CD /* Colored.es2.frag.h in Headers */,
 				46A160511807A5EB005B8026 /* SimpleAudioEngine.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6834,7 +6712,6 @@
 				1A2C7910181A1257004E5527 /* js_bindings_chipmunk_auto_classes.h in Headers */,
 				1A2C7936181A1257004E5527 /* jsb_cocos2dx_extension_manual.h in Headers */,
 				1A2C7920181A1257004E5527 /* js_bindings_chipmunk_registration.h in Headers */,
-				680A312F18C5BB7D00D073CD /* Colored.es2.frag.h in Headers */,
 				1A2C7956181A1257004E5527 /* js_bindings_system_functions.h in Headers */,
 				1A2C7912181A1257004E5527 /* js_bindings_chipmunk_auto_classes_registration.h in Headers */,
 				1A2C7964181A1257004E5527 /* XMLHTTPRequest.h in Headers */,
@@ -6844,7 +6721,6 @@
 				1A2C7924181A1257004E5527 /* cocos2d_specifics.hpp in Headers */,
 				1A2C7932181A1257004E5527 /* jsb_cocos2dx_studio_manual.h in Headers */,
 				1A2C789C181A11EC004E5527 /* jsb_cocos2dx_studio_auto.hpp in Headers */,
-				680A313D18C5BB7D00D073CD /* Textured.es2.frag.h in Headers */,
 				1A2C794E181A1257004E5527 /* jsb_opengl_manual.h in Headers */,
 				1A2C7968181A1257004E5527 /* ScriptingCore.h in Headers */,
 				85D37C4118AC6306007CDAFA /* jsb_cocos2dx_spine_manual.h in Headers */,
@@ -6860,7 +6736,6 @@
 				1A2C7944181A1257004E5527 /* js_manual_conversions.h in Headers */,
 				1A2C792A181A1257004E5527 /* js_bindings_ccbreader.h in Headers */,
 				1A2C7952181A1257004E5527 /* jsb_opengl_registration.h in Headers */,
-				680A314B18C5BB7D00D073CD /* Textured.es2.vert.h in Headers */,
 				1A2C7878181A11EC004E5527 /* jsb_cocos2dx_auto.hpp in Headers */,
 				1A2C7884181A11EC004E5527 /* jsb_cocos2dx_builder_auto.hpp in Headers */,
 				1A2C791C181A1257004E5527 /* js_bindings_chipmunk_manual.h in Headers */,
@@ -7371,11 +7246,9 @@
 				1A9DCA2F180E6955007A3AD4 /* CCScheduler.cpp in Sources */,
 				1A9DCA37180E6955007A3AD4 /* cocos2d.cpp in Sources */,
 				503253F318B68D6600E8922E /* utility.c in Sources */,
-				5032539B18B68C1C00E8922E /* CCSprite3D.cpp in Sources */,
 				1A9DCA3D180E6955007A3AD4 /* TransformUtils.cpp in Sources */,
 				1A9DCA43180E6D90007A3AD4 /* CCDeprecated.cpp in Sources */,
 				1A9DCA49180E6DE3007A3AD4 /* ccTypes.cpp in Sources */,
-				5032539718B68C1C00E8922E /* CCMesh.cpp in Sources */,
 				1A8C58EC180E92CC00EF57C3 /* CocosGUI.cpp in Sources */,
 				1A8C58F0180E92CC00EF57C3 /* UILayout.cpp in Sources */,
 				1A8C58F4180E92CC00EF57C3 /* UILayoutParameter.cpp in Sources */,
@@ -7815,7 +7688,6 @@
 				1A5701C8180BCB5A0088DEC7 /* CCLabelTextFormatter.cpp in Sources */,
 				1A5701CC180BCB5A0088DEC7 /* CCLabelTTF.cpp in Sources */,
 				1A5701DF180BCB8C0088DEC7 /* CCLayer.cpp in Sources */,
-				5032539C18B68C1C00E8922E /* CCSprite3D.cpp in Sources */,
 				1A5701E3180BCB8C0088DEC7 /* CCScene.cpp in Sources */,
 				503253D218B68D6600E8922E /* matrix.c in Sources */,
 				1A5701E7180BCB8C0088DEC7 /* CCTransition.cpp in Sources */,
@@ -7853,7 +7725,6 @@
 				1A5702C9180BCE370088DEC7 /* CCTextFieldTTF.cpp in Sources */,
 				1A5702D4180BCE570088DEC7 /* CCTexture2D.cpp in Sources */,
 				1A5702D8180BCE570088DEC7 /* CCTextureAtlas.cpp in Sources */,
-				5032539818B68C1C00E8922E /* CCMesh.cpp in Sources */,
 				50AE5EA4188749250007CFE3 /* CCBatchCommand.cpp in Sources */,
 				1A5702DC180BCE570088DEC7 /* CCTextureCache.cpp in Sources */,
 				1A5702EB180BCE750088DEC7 /* CCTileMapAtlas.cpp in Sources */,

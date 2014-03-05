@@ -76,7 +76,7 @@ public:
     CC_DEPRECATED_ATTRIBUTE static Label* createWithTTF(const std::string& label, const std::string& fontFilePath, int fontSize, int lineSize = 0, TextHAlignment alignment = TextHAlignment::LEFT, GlyphCollection glyphs = GlyphCollection::NEHE, const char *customGlyphs = 0, bool useDistanceField = false);
     static Label* createWithTTF(const TTFConfig& ttfConfig, const std::string& text, TextHAlignment alignment = TextHAlignment::LEFT, int lineWidth = 0);
     
-    static Label* createWithBMFont(const std::string& bmfontFilePath, const std::string& text,const TextHAlignment& alignment = TextHAlignment::LEFT, int lineWidth = 0);
+    static Label* createWithBMFont(const std::string& bmfontFilePath, const std::string& text,const TextHAlignment& alignment = TextHAlignment::LEFT, int lineWidth = 0, const Point& imageOffset = Point::ZERO);
     
     static Label * createWithCharMap(const std::string& charMapFile, int itemWidth, int itemHeight, int startCharMap);
     static Label * createWithCharMap(Texture2D* texture, int itemWidth, int itemHeight, int startCharMap);
@@ -84,7 +84,7 @@ public:
 
     bool setTTFConfig(const TTFConfig& ttfConfig);
 
-    bool setBMFontFilePath(const std::string& bmfontFilePath);
+    bool setBMFontFilePath(const std::string& bmfontFilePath, const Point& imageOffset = Point::ZERO);
 
     bool setCharMap(const std::string& charMapFile, int itemWidth, int itemHeight, int startCharMap);
     bool setCharMap(Texture2D* texture, int itemWidth, int itemHeight, int startCharMap);
@@ -128,8 +128,8 @@ public:
     void addChild(Node * child, int zOrder=0, int tag=0) override;
 
     virtual std::string getDescription() const override;
-    virtual void visit() override;
-    virtual void draw(void) override;
+    virtual void visit(Renderer *renderer, const kmMat4 &parentTransform, bool parentTransformUpdated) override;
+    virtual void draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated) override;
     virtual void onDraw();
 
     virtual FontAtlas* getFontAtlas() const {return _fontAtlas;}

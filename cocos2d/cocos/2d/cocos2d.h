@@ -212,11 +212,6 @@ THE SOFTWARE.
 #include "CCSpriteFrame.h"
 #include "CCSpriteFrameCache.h"
 
-// 3d_nodes
-#include "CCMesh.h"
-#include "CCSprite3D.h"
-
-
 // support
 #include "ccUTF8.h"
 #include "CCNotificationCenter.h"

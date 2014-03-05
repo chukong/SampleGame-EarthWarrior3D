@@ -13,7 +13,7 @@ namespace cocosbuilder {
 #define PROPERTY_ANCHORPOINT "anchorPoint"
 #define PROPERTY_SCALE "scale"
 #define PROPERTY_ROTATION "rotation"
-#define PROPERTY_rotationZ_X "rotationX"
+#define PROPERTY_ROTATIONX "rotationX"
 #define PROPERTY_ROTATIONY "rotationY"
 #define PROPERTY_TAG "tag"
 #define PROPERTY_IGNOREANCHORPOINTFORPOSITION "ignoreAnchorPointForPosition"
