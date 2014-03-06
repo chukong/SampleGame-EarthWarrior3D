@@ -14,8 +14,11 @@
 #include "BulletController.h"
 #include "consts.h"
 #include "Bullet.h"
+#include "EnemyManager.h"
 USING_NS_CC;
+using namespace std;
 
+int t = 0;
 bool GameLayer::init()
 {
     // variable init
@@ -44,10 +47,7 @@ bool GameLayer::init()
     Vector<Node*> test;
     test.clear();
     
-    
-    
-
-    this->schedule(schedule_selector(GameLayer::createCraft) , 2.0, -1, 0.0);
+    this->schedule(schedule_selector(GameLayer::createCraft) , 1.0, -1, 0.0);
 
     BulletController::init(this);
     scheduleUpdate();
@@ -57,27 +57,45 @@ bool GameLayer::init()
 
 void GameLayer::createCraft(float dt)
 {
-    std::vector<int> startPointVec;
-    startPointVec.push_back(-500);
-    startPointVec.push_back(-300);
-    startPointVec.push_back(-100);
-    startPointVec.push_back(100);
-    startPointVec.push_back(300);
-    startPointVec.push_back(500);
-    
-    int vectSize = startPointVec.size();
-    
-    for (int i = 0; i<vectSize; i++)
+    EnemyManager * aEnemyManager = EnemyManager::sharedEnemyManager();
+    vector<Fodder *> fodderVect = aEnemyManager->fodderVect;
+    vector<int> avilabelVect = aEnemyManager->getAllAvilabelFodder();
+    if(0 == avilabelVect.size())
     {
-        int selectNum = rand()%startPointVec.size();
-        int startPointX = startPointVec[selectNum];
-        
-        auto enemy = Fodder::create();
-        addChild(enemy);
-        enemy->setPosition(startPointX, 800.0f);
-        //container->insert(enemy);
-        enemy->move(3.0,Point(enemy->getPosition3D().x,-visible_size_macro.height*1.5));
+        return;
     }
+    int randDigitNum = rand()%avilabelVect.size();
+    int avilabelFodderNum = avilabelVect[randDigitNum]-1;
+    aEnemyManager->fodderAvilabelStateVect[avilabelFodderNum] = -aEnemyManager->fodderAvilabelStateVect[avilabelFodderNum];
+
+    float positionX;
+    int randomPositionNum = rand()%3;
+    switch (randomPositionNum)
+    {
+        case 0:
+            positionX = -300;
+            break;
+        case 1:
+            positionX = -100;
+            break;
+        case 2:
+            positionX = 100;
+            break;
+        case 3:
+            positionX = 300;
+            break;
+        default:
+            break;
+    }
+    if (avilabelFodderNum ==4 )
+    {
+        return;
+    }
+    Fodder * enemy = fodderVect[avilabelFodderNum];
+    t++;
+    enemy->setPosition(positionX,800.0f);
+    this->addChild(enemy);
+    enemy->move(fodderSpeed,Point(enemy->getPosition3D().x,-visible_size_macro.height*1.5),avilabelFodderNum);
 }
 
 void GameLayer::update(float dt){
@@ -88,7 +106,7 @@ void GameLayer::update(float dt){
         if(i->getPosition().getDistance(_testDummy->getPosition()) <
            (i->getRadius() + _testDummy->getRadius()))
         {
-            log("hit");
+            //log("hit");
         }
     }
     

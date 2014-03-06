@@ -51,7 +51,6 @@ void BulletController::spawnBullet(int type, Point pos, Point vec)
 }
 void BulletController::update(float dt)
 {
-
     Point temp;
     for ( auto &i : BulletController::bullets )
     {
