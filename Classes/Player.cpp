@@ -35,6 +35,13 @@ bool Player::init()
         static_cast<Sprite3D*>(_Model)->setOutline(0.14, Color3B(0,0,0));
         schedule(schedule_selector(Player::shootMissile), 1.5, -1, 0);
         schedule(schedule_selector(Player::shoot), 0.1, -1, 0);
+        
+        // engine trail
+        auto part = ParticleSystemQuad::create("engine.plist");
+        addChild(part);
+        part->setPosition(0,-30);
+        part->setScale(0.5);
+        //part->setRotation(90);
         return true;
     }
     return false;
