@@ -6,6 +6,7 @@
 #include <sstream>
 
 #include "cocos2d.h"
+#include "2d/ccMacros.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -212,7 +213,8 @@ void ObjMeshParser::parse(std::istream &streamIn, ObjMeshData &meshData)
                 }
                 else
                 {
-                    logParseError(line_number,line);
+                    if(!stringstream.eof())
+                        logParseError(line_number,line);
                 }
 
             }
@@ -329,32 +331,39 @@ void ObjMeshData::trianglarAndGenerateNormals()
 void ObjMeshData::convertToRenderMesh(RenderMesh &renderMesh)
 {
     trianglarAndGenerateNormals();
-    int faceIndex(0);
+    renderMesh._indices.clear();
+    renderMesh._vertexs.clear();
+    int packedVertexNumber(0);
+    std::map<unsigned short,std::map<unsigned short,std::map<unsigned short, unsigned short>>> faceVertexMappings;
     for(const auto&face : _faceLists)
     {
-        renderMesh._indices.push_back(3 * faceIndex + 0);
-        renderMesh._indices.push_back(3 * faceIndex + 1);
-        renderMesh._indices.push_back(3 * faceIndex + 2);
-        
         for (int faceVertexIndex = 0; faceVertexIndex < 3; ++faceVertexIndex)
         {
-            RenderMesh::RenderVertex vertex;
-            vertex.vertex = _vertexLists[face[faceVertexIndex]._vIndex];
+            int vertexIndex(-1),normalIndex(-1),uvIndex(-1);
+            vertexIndex = face[faceVertexIndex]._vIndex;
+            normalIndex = face[faceVertexIndex]._normIndex;
+            if(-1 == normalIndex) normalIndex = vertexIndex;
+            uvIndex = face[faceVertexIndex]._uvIndex;
+            CCASSERT(-1 != vertexIndex && vertexIndex < (int) _vertexLists.size(),"Vertex index out of bound");
+            CCASSERT(-1 != normalIndex && normalIndex < (int) _normalVertexLists.size(),"Normal index out of bound");
+            CCASSERT(uvIndex < (int)_uvVertexLists.size(),"UV index out of bound");
+            //no vertex, push back one
+            if(faceVertexMappings[vertexIndex][normalIndex].find(uvIndex) == faceVertexMappings[vertexIndex][normalIndex].end())
+            {
+                faceVertexMappings[vertexIndex][normalIndex][uvIndex] = packedVertexNumber++;
+                RenderMesh::RenderVertex vertex;
+                vertex.vertex = _vertexLists[vertexIndex];
+                vertex.normal = _normalVertexLists[normalIndex];
+                if(face[faceVertexIndex]._uvIndex == -1)    //no uv
+                    vertex.uv = vec2(0,0);
+                else
+                    vertex.uv = _uvVertexLists[uvIndex];
+            
+                renderMesh._vertexs.push_back(vertex);
+            }
 
-            if(face[faceVertexIndex]._normIndex == -1)
-                vertex.normal = _normalVertexLists[face[faceVertexIndex]._vIndex];
-            else
-                vertex.normal = _normalVertexLists[face[faceVertexIndex]._normIndex];
-            
-            if(face[faceVertexIndex]._uvIndex == -1)
-                vertex.uv = vec2(0,0);
-            else
-                vertex.uv = _uvVertexLists[face[faceVertexIndex]._uvIndex];
-            
-            renderMesh._vertexs.push_back(vertex);
+            renderMesh._indices.push_back(faceVertexMappings[vertexIndex][normalIndex][uvIndex]);
         }
-        
-        ++faceIndex;
     }
 }
 
@@ -439,8 +448,8 @@ Mesh::~Mesh()
 
 bool Mesh::loadFromFile(const std::string &name)
 {
-    auto fileData = FileUtils::getInstance()->getDataFromFile(name);
-    std::istringstream objFile((const char*)fileData.getBytes());
+    auto fileData = FileUtils::getInstance()->getStringFromFile(name);
+    std::istringstream objFile(fileData.c_str());
     
     ObjMeshParser parser;
     
