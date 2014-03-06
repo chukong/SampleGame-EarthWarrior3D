@@ -35,6 +35,18 @@ Sprite3D::Sprite3D()
 
 Sprite3D::~Sprite3D()
 {
+    if(glIsBuffer(_drawable.VertexBuffer))
+    {
+        glDeleteBuffers(1, &_drawable.VertexBuffer);
+        _drawable.VertexBuffer = 0;
+    }
+    if(glIsBuffer(_drawable.IndexBuffer))
+    {
+        glDeleteBuffers(1, &_drawable.IndexBuffer);
+        _drawable.IndexBuffer = 0;
+    }
+    CC_SAFE_RELEASE(_outlineShader);
+    CC_SAFE_RELEASE(_texture);
 }
 
 bool Sprite3D::init(const std::string &modelPath, const std::string &texturePath)
@@ -78,6 +90,7 @@ void Sprite3D::setModel(Mesh *model)
 bool Sprite3D::buildProgram(bool textured)
 {
     auto shaderProgram = new GLProgram();
+    shaderProgram->autorelease();
 
     // Create the GLSL program.
     if (textured) {
@@ -264,6 +277,7 @@ void Sprite3D::removeTexture()
 {
 	if( _texture ) {
         _texture->release();
+        _texture = nullptr;
 
         this->updateBlendFunc();
         buildProgram(_texture->getName() != 0);
