@@ -84,10 +84,13 @@ void BulletController::update(float dt)
         else
         {
             // update bullets position
-            i->setPosition(temp+(i->getVector()*dt));
+            
             if(i->getType() == kPlayerMissiles)
             {
                 i->update(dt);
+            }
+            else{
+                i->setPosition(temp+(i->getVector()*dt));
             }
         }
     }
@@ -98,8 +101,8 @@ void BulletController::erase(Bullet* b)
     {
         BulletController::_missilePool.pushBack(static_cast<Missile*>(b));
         BulletController::bullets.eraseObject(b);
-        static_cast<Missile*>(b)->setTarget(nullptr);
         b->removeFromParentAndCleanup(true);
+        b->reset();
     }
     else
     {

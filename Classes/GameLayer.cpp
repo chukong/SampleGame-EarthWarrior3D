@@ -15,6 +15,7 @@
 #include "consts.h"
 #include "Bullet.h"
 #include "Effects.h"
+#include "GameEntity.h"
 USING_NS_CC;
 
 bool GameLayer::init()
@@ -90,10 +91,14 @@ void GameLayer::update(float dt){
            (i->getRadius() + _testDummy->getRadius()))
         {
             //collision happened
-            auto expl = ExplosionFX::create();
-            expl->setPosition(_testDummy->getPosition());
-            addChild(expl);
-            //TODO: need to remove the expl when finished particle, or reuse
+            if(i->getType() == kPlayerMissiles)
+            {
+                auto expl = ExplosionFX::create();
+                expl->setPosition(_testDummy->getPosition());
+                addChild(expl);
+                //TODO: need to remove the expl when finished particle, or reuse
+            }
+
             BulletController::erase(i);
         }
     }

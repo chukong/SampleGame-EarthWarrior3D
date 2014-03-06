@@ -7,7 +7,3 @@
 //
 
 #include "AirCraft.h"
-
-void AirCraft::shoot(){
-    
-}

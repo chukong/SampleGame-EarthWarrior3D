@@ -9,6 +9,8 @@
 #include "Bullet.h"
 #include "3d/Sprite3D.h"
 #include "consts.h"
+#include "GameLayer.h"
+#include "GameEntity.h"
 
 bool Bullet::init()
 {
@@ -30,6 +32,10 @@ void Bullet::setVector(Point vec)
 Point Bullet::getVector()
 {
     return _vector;
+}
+void Bullet::reset()
+{
+    
 }
 
 bool Missile::init()
@@ -56,9 +62,30 @@ void Missile::update(float dt)
 {
     if(!_target)
     {
-        //if missile has no target, try to lock onto an enemy
+        setTarget(static_cast<GameLayer*>(getParent())->_testDummy);//very hacky
+    }
+    if(_target){
+        //turn towards the target
+        float angle = -CC_RADIANS_TO_DEGREES((getPosition() - _target->getPosition()).getAngle());
+        float curRot = getRotation();
+        float angleDif = std::min(std::max(angle-90 - curRot, -_turnRate*dt), _turnRate*dt);
+        
+        float f = curRot + angleDif;
+        setRotation(f);
+        setPosition(getPosition()+Point(sinf(CC_DEGREES_TO_RADIANS(f))*_velocity,cosf(CC_DEGREES_TO_RADIANS(f))*_velocity) + _vector*dt);
+        _vector = _vector * (1-dt);
+        
     }
     // missiles need to rotate
     _yRotation += _yRotSpeed*dt;
     _Model->setRotation3D(Vertex3F(90,_yRotation, 0));
+    
+    _velocity += _accel*dt;
+}
+
+void Missile::reset()
+{
+    setTarget(nullptr);
+    _velocity = 0;
+    setRotation(0);
 }

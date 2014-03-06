@@ -73,6 +73,6 @@ void Player::shoot(float dt)
 }
 void Player::shootMissile(float dt)
 {
-    BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(-50,-20), Point(-100,-100)); // left
-    BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(50,-20), Point(100,-100)); // right
+    BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(-50,-20), Point(-175,-175)); // left
+    BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(50,-20), Point(175,-175)); // right
 }

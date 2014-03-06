@@ -13,12 +13,15 @@ USING_NS_CC;
 class Player;
 class QuadTree;
 class AirCraft;
+class GameEntity;
 class GameLayer : public Layer
 {
 public:
     virtual bool init();
     void update(float dt);
     CREATE_FUNC(GameLayer);
+    
+    GameEntity *_testDummy;
 protected:
     float xScroll = 0.0f;
     float speed = -60.0f;
@@ -27,7 +30,7 @@ protected:
 
     QuadTree *_collisionTree;
     
-    AirCraft *_testDummy;
+
 
     QuadTree *container;
     void createCraft(float dt);
