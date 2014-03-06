@@ -80,6 +80,10 @@
 		680A317C18C72BB400D073CD /* toonSmoke.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680A317818C72BB400D073CD /* toonSmoke.plist */; };
 		680A318018C784D700D073CD /* Effects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680A317E18C784D700D073CD /* Effects.cpp */; };
 		680A318118C784D700D073CD /* Effects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680A317E18C784D700D073CD /* Effects.cpp */; };
+		680A318318C8927100D073CD /* missileFlare.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680A318218C8927100D073CD /* missileFlare.plist */; };
+		680A318418C8927100D073CD /* missileFlare.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680A318218C8927100D073CD /* missileFlare.plist */; };
+		680A318618C8967400D073CD /* emission.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680A318518C8967400D073CD /* emission.plist */; };
+		680A318718C8967400D073CD /* emission.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680A318518C8967400D073CD /* emission.plist */; };
 		680DB35E18C0740000DBAEFD /* QuadTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680DB35C18C0740000DBAEFD /* QuadTree.cpp */; };
 		680DB35F18C0740000DBAEFD /* QuadTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680DB35C18C0740000DBAEFD /* QuadTree.cpp */; };
 		6815E1C418BDE5C9004F9944 /* car00.png in Resources */ = {isa = PBXBuildFile; fileRef = 6815E1C218BDE5C9004F9944 /* car00.png */; };
@@ -335,6 +339,8 @@
 		680A317818C72BB400D073CD /* toonSmoke.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = toonSmoke.plist; sourceTree = "<group>"; };
 		680A317E18C784D700D073CD /* Effects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Effects.cpp; path = ../Classes/Effects.cpp; sourceTree = "<group>"; };
 		680A317F18C784D700D073CD /* Effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Effects.h; path = ../Classes/Effects.h; sourceTree = "<group>"; };
+		680A318218C8927100D073CD /* missileFlare.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = missileFlare.plist; sourceTree = "<group>"; };
+		680A318518C8967400D073CD /* emission.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emission.plist; sourceTree = "<group>"; };
 		680DB35C18C0740000DBAEFD /* QuadTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = QuadTree.cpp; path = ../Classes/QuadTree.cpp; sourceTree = "<group>"; };
 		680DB35D18C0740000DBAEFD /* QuadTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuadTree.h; path = ../Classes/QuadTree.h; sourceTree = "<group>"; };
 		6815E1C218BDE5C9004F9944 /* car00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car00.png; sourceTree = "<group>"; };
@@ -573,6 +579,8 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				680A318518C8967400D073CD /* emission.plist */,
+				680A318218C8927100D073CD /* missileFlare.plist */,
 				68BB2B1518C4720000158010 /* DownNecker2.obj */,
 				6815E1C218BDE5C9004F9944 /* car00.png */,
 				6815E1C318BDE5C9004F9944 /* DownNecker.obj */,
@@ -823,6 +831,7 @@
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				680A316318C6471000D073CD /* diji1_v001.obj in Resources */,
 				1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */,
+				680A318618C8967400D073CD /* emission.plist in Resources */,
 				686EC66018BB44010065154C /* fog.png in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
@@ -838,6 +847,7 @@
 				680A316518C6471000D073CD /* diji02_v002_1024.png in Resources */,
 				686EC64118BB11250065154C /* fighter.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
+				680A318318C8927100D073CD /* missileFlare.plist in Resources */,
 				680A316118C6471000D073CD /* daodanv001.obj in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
 				6815E1D618BDEDA4004F9944 /* Done1.png in Resources */,
@@ -848,12 +858,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				680A318418C8927100D073CD /* missileFlare.plist in Resources */,
 				680A317C18C72BB400D073CD /* toonSmoke.plist in Resources */,
 				686EC63B18BAEFA70065154C /* groundLevel.jpg in Resources */,
 				686EC64E18BB28FD0065154C /* Scania4.obj in Resources */,
 				5087E75317EB910900C73F5D /* CloseNormal.png in Resources */,
 				6815E1C718BDE5C9004F9944 /* DownNecker.obj in Resources */,
 				686EC64C18BB28FD0065154C /* car00.png in Resources */,
+				680A318718C8967400D073CD /* emission.plist in Resources */,
 				680A317A18C72BB400D073CD /* flare.plist in Resources */,
 				680A316218C6471000D073CD /* daodanv001.obj in Resources */,
 				680A316618C6471000D073CD /* diji02_v002_1024.png in Resources */,

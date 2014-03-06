@@ -101,7 +101,7 @@ void BulletController::erase(Bullet* b)
     {
         BulletController::_missilePool.pushBack(static_cast<Missile*>(b));
         BulletController::bullets.eraseObject(b);
-        b->removeFromParentAndCleanup(true);
+        b->removeFromParentAndCleanup(false);
         b->reset();
     }
     else
