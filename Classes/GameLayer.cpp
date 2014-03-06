@@ -14,6 +14,7 @@
 #include "BulletController.h"
 #include "consts.h"
 #include "Bullet.h"
+#include "Effects.h"
 USING_NS_CC;
 
 bool GameLayer::init()
@@ -28,7 +29,7 @@ bool GameLayer::init()
     spr->getTexture()->setTexParameters(texRepeat);
     setRotation3D(Vertex3F(-30.0,0.0f,0.0f));
     spr->setScale(1.4);
-    spr->setFlippedY(true);
+    //spr->setFlippedY(true);
     spr->setPosition(0.0f,400.0f);
     
     _player = Player::create();
@@ -47,7 +48,7 @@ bool GameLayer::init()
     
     
 
-    this->schedule(schedule_selector(GameLayer::createCraft) , 2.0, -1, 0.0);
+    //this->schedule(schedule_selector(GameLayer::createCraft) , 2.0, -1, 0.0);
 
     BulletController::init(this);
     scheduleUpdate();
@@ -81,22 +82,18 @@ void GameLayer::createCraft(float dt)
 }
 
 void GameLayer::update(float dt){
-    xScroll -= speed*dt;
+    xScroll += speed*dt;
     spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
     for ( auto i : BulletController::bullets )
     {
         if(i->getPosition().getDistance(_testDummy->getPosition()) <
            (i->getRadius() + _testDummy->getRadius()))
         {
-            auto part1 = ParticleSystemQuad::create("toonSmoke.plist");
-            part1->setPosition(_testDummy->getPosition());
-            auto part2 = ParticleSystemQuad::create("flare.plist");
-            part2->setPosition(_testDummy->getPosition());
-            part1->setRotation3D(Vertex3F(30,0,0));
-            addChild(part1);
-            addChild(part2);
-            part1->setAutoRemoveOnFinish(true);
-            part2->setAutoRemoveOnFinish(true);
+            //collision happened
+            auto expl = ExplosionFX::create();
+            expl->setPosition(_testDummy->getPosition());
+            addChild(expl);
+            //TODO: need to remove the expl when finished particle, or reuse
             BulletController::erase(i);
         }
     }

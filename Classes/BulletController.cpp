@@ -13,6 +13,7 @@
 Node* BulletController::_bulletLayer = nullptr;
 bool BulletController::_inited = false;
 Vector<Bullet*> BulletController::bullets;
+Vector<Missile*> BulletController::_missilePool;
 
 
 
@@ -38,13 +39,32 @@ void BulletController::spawnBullet(int type, Point pos, Point vec)
     {
         case kPlayerBullet:
             bullet = Bullet::create();
-            bullet->setType(kPlayerBullet);
+            bullet->retain();
+            //bullet->setType(kPlayerBullet);
+            break;
+        case kPlayerMissiles:
+            if(!_missilePool.empty())
+            {
+                // if the pool is not empty, we don't need to create, just return that, and reset its data
+                bullet = _missilePool.back();
+                bullet->retain();
+                _missilePool.popBack();
+
+                //bullet->reset();
+            }
+            else
+            {
+                bullet = Missile::create();
+                bullet->retain();
+            }
+            //bullet->setType
             break;
     }
     if(bullet)
     {
         BulletController::bullets.pushBack(bullet);
         BulletController::_bulletLayer->addChild(bullet);
+        bullet->release();
         bullet->setPosition(pos);
         bullet->setVector(vec);
     }
@@ -65,11 +85,25 @@ void BulletController::update(float dt)
         {
             // update bullets position
             i->setPosition(temp+(i->getVector()*dt));
+            if(i->getType() == kPlayerMissiles)
+            {
+                i->update(dt);
+            }
         }
     }
 }
 void BulletController::erase(Bullet* b)
 {
-    b->removeFromParent();
-    BulletController::bullets.eraseObject(b);
+    if(b->getType() == kPlayerMissiles)
+    {
+        BulletController::_missilePool.pushBack(static_cast<Missile*>(b));
+        BulletController::bullets.eraseObject(b);
+        static_cast<Missile*>(b)->setTarget(nullptr);
+        b->removeFromParentAndCleanup(true);
+    }
+    else
+    {
+        b->removeFromParentAndCleanup(true);
+        BulletController::bullets.eraseObject(b);
+    }
 }

@@ -32,7 +32,8 @@ bool Player::init()
         
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
         scheduleUpdate();
-        static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B(0,255,0));
+        static_cast<Sprite3D*>(_Model)->setOutline(0.14, Color3B(0,0,0));
+        schedule(schedule_selector(Player::shootMissile), 1.5, -1, 0);
         schedule(schedule_selector(Player::shoot), 0.1, -1, 0);
         return true;
     }
@@ -67,5 +68,11 @@ void Player::onTouchEnded(Touch *touch, Event *event)
 
 void Player::shoot(float dt)
 {
-    BulletController::spawnBullet(kPlayerBullet, getPosition(), Point(0,160));
+    BulletController::spawnBullet(kPlayerBullet, getPosition(), Point(0,1600));
+
+}
+void Player::shootMissile(float dt)
+{
+    BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(-50,-20), Point(-100,-100)); // left
+    BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(50,-20), Point(100,-100)); // right
 }

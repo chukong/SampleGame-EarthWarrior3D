@@ -25,4 +25,20 @@ protected:
     Point _vector;
 };
 
+class Missile : public Bullet
+{
+public:
+    CREATE_FUNC(Missile);
+    bool init();
+    void update(float dt);
+    CC_SYNTHESIZE(GameEntity*, _target, Target)
+protected:
+    float _accel = 10;
+    float _turnRate = 100;
+    float _maxSpeed = 100;
+    float _yRotSpeed = 1400;
+    float _yRotation = 0;
+    bool _left = false;
+};
+
 #endif /* defined(__Moon3d__Bullet__) */

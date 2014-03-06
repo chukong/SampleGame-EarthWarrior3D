@@ -78,6 +78,8 @@
 		680A317A18C72BB400D073CD /* flare.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680A317718C72BB400D073CD /* flare.plist */; };
 		680A317B18C72BB400D073CD /* toonSmoke.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680A317818C72BB400D073CD /* toonSmoke.plist */; };
 		680A317C18C72BB400D073CD /* toonSmoke.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680A317818C72BB400D073CD /* toonSmoke.plist */; };
+		680A318018C784D700D073CD /* Effects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680A317E18C784D700D073CD /* Effects.cpp */; };
+		680A318118C784D700D073CD /* Effects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680A317E18C784D700D073CD /* Effects.cpp */; };
 		680DB35E18C0740000DBAEFD /* QuadTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680DB35C18C0740000DBAEFD /* QuadTree.cpp */; };
 		680DB35F18C0740000DBAEFD /* QuadTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 680DB35C18C0740000DBAEFD /* QuadTree.cpp */; };
 		6815E1C418BDE5C9004F9944 /* car00.png in Resources */ = {isa = PBXBuildFile; fileRef = 6815E1C218BDE5C9004F9944 /* car00.png */; };
@@ -331,6 +333,8 @@
 		680A316C18C7065400D073CD /* consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = consts.h; path = ../Classes/3d/consts.h; sourceTree = "<group>"; };
 		680A317718C72BB400D073CD /* flare.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = flare.plist; sourceTree = "<group>"; };
 		680A317818C72BB400D073CD /* toonSmoke.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = toonSmoke.plist; sourceTree = "<group>"; };
+		680A317E18C784D700D073CD /* Effects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Effects.cpp; path = ../Classes/Effects.cpp; sourceTree = "<group>"; };
+		680A317F18C784D700D073CD /* Effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Effects.h; path = ../Classes/Effects.h; sourceTree = "<group>"; };
 		680DB35C18C0740000DBAEFD /* QuadTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = QuadTree.cpp; path = ../Classes/QuadTree.cpp; sourceTree = "<group>"; };
 		680DB35D18C0740000DBAEFD /* QuadTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuadTree.h; path = ../Classes/QuadTree.h; sourceTree = "<group>"; };
 		6815E1C218BDE5C9004F9944 /* car00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car00.png; sourceTree = "<group>"; };
@@ -446,6 +450,8 @@
 				680DB35D18C0740000DBAEFD /* QuadTree.h */,
 				680A315118C5CDE500D073CD /* Bullet.cpp */,
 				680A315218C5CDE500D073CD /* Bullet.h */,
+				680A317E18C784D700D073CD /* Effects.cpp */,
+				680A317F18C784D700D073CD /* Effects.h */,
 				680A315518C5D52300D073CD /* BulletController.cpp */,
 				680A315618C5D52300D073CD /* BulletController.h */,
 				680A316C18C7065400D073CD /* consts.h */,
@@ -886,6 +892,7 @@
 				680A315318C5CDE500D073CD /* Bullet.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				A044DE7718C69F8000B6CCBD /* Mesh.cpp in Sources */,
+				680A318018C784D700D073CD /* Effects.cpp in Sources */,
 				68005B8E18BEE774007598C5 /* GameEntity.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
@@ -902,6 +909,7 @@
 				680DB35F18C0740000DBAEFD /* QuadTree.cpp in Sources */,
 				A044DE7A18C69F8000B6CCBD /* Sprite3D.cpp in Sources */,
 				68005BA018BEEC75007598C5 /* AirCraft.cpp in Sources */,
+				680A318118C784D700D073CD /* Effects.cpp in Sources */,
 				680A315818C5D52300D073CD /* BulletController.cpp in Sources */,
 				686EC63818BAE16A0065154C /* GameLayer.cpp in Sources */,
 				680A315418C5CDE500D073CD /* Bullet.cpp in Sources */,
