@@ -46,6 +46,7 @@ Sprite3D::~Sprite3D()
         _drawable.IndexBuffer = 0;
     }
     CC_SAFE_RELEASE(_outlineShader);
+    CC_SAFE_RELEASE(_texture);
 }
 
 bool Sprite3D::init(const std::string &modelPath, const std::string &texturePath)
@@ -276,6 +277,7 @@ void Sprite3D::removeTexture()
 {
 	if( _texture ) {
         _texture->release();
+        _texture = nullptr;
 
         this->updateBlendFunc();
         buildProgram(_texture->getName() != 0);
