@@ -38,7 +38,10 @@ bool GameLayer::init()
     spr->setPosition(0.0f,400.0f);
     
     _player = Player::create();
-    _player->setPosition3D(Vertex3F(0,0,0));
+    
+    _streak = MotionStreak::create(0.4, 1, 15, Color3B(82,255,253), "streak.png");
+    _player->setTrail(_streak);
+    addChild(_streak);
     
     addChild(_player,10);
     
@@ -130,6 +133,7 @@ void GameLayer::update(float dt){
     BulletController::update(dt);
     
     //_collisionTree->clear();
+    //_streak->setPosition(_player->getPosition()-Point(0,40));
 }
 
 

@@ -7,9 +7,9 @@
 	<key>angleVariance</key>
 	<real>0</real>
 	<key>blendFuncDestination</key>
-	<integer>772</integer>
+	<integer>1</integer>
 	<key>blendFuncSource</key>
-	<integer>771</integer>
+	<integer>1</integer>
 	<key>configName</key>
 	<string>flare</string>
 	<key>duration</key>

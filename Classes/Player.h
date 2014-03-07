@@ -34,9 +34,12 @@ public:
     
     void shoot(float dt);
     void shootMissile(float dt);
+    CC_SYNTHESIZE(MotionStreak*, _streak, Trail);
+    void setPosition(Point pos);
 protected:
     float targetAngle = 0;
     Point targetPos = Point(0,0);
+    Point _trailOffset = Point(0,-40);
 };
 
 

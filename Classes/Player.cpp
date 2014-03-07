@@ -40,7 +40,7 @@ bool Player::init()
         auto part = ParticleSystemQuad::create("engine.plist");
         addChild(part);
         part->setPosition(0,-30);
-        part->setScale(0.5);
+        part->setScale(0.6);
         //part->setRotation(90);
         return true;
     }
@@ -75,11 +75,27 @@ void Player::onTouchEnded(Touch *touch, Event *event)
 
 void Player::shoot(float dt)
 {
-    BulletController::spawnBullet(kPlayerBullet, getPosition(), Point(0,1600));
 
+    BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(-20,20), Point(0,1600));
+    BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(20,20), Point(0,1600));
+        BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(0,20), Point(0,1600));
+}
+void Player::setPosition(Point pos)
+{
+    if (_position.equals(pos))
+        return;
+    
+    _position = pos;
+    _transformUpdated = _transformDirty = _inverseDirty = true;
+    if(_streak)
+    {
+        _streak->setPosition(pos+_trailOffset);
+    }
 }
 void Player::shootMissile(float dt)
 {
-    BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(-50,-20), Point(-175,-175)); // left
-    BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(50,-20), Point(175,-175)); // right
+    auto left = BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(-50,-20), Point(-175,-175));
+    left->setRotation(-45);
+    auto right = BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(50,-20), Point(175,-175));
+    right->setRotation(45);
 }

@@ -11,6 +11,8 @@
 #include "consts.h"
 #include "GameLayer.h"
 #include "GameEntity.h"
+#include "EnemyManager.h"
+#include "Fodder.h"
 
 bool Bullet::init()
 {
@@ -24,6 +26,19 @@ bool Bullet::init()
     }
     return false;
 }
+bool PlayerBullet::init()
+{
+    _Model = Sprite::create("bullets.png", Rect(54, 57, 36, 67));
+    if(_Model)
+    {
+        addChild(_Model);
+        _radius=10;
+        _type = kPlayerBullet;
+        return true;
+    }
+    return false;
+}
+
 void Bullet::setVector(Point vec)
 {
     _vector = vec;
@@ -35,7 +50,7 @@ Point Bullet::getVector()
 }
 void Bullet::reset()
 {
-    
+    setRotation(0);
 }
 
 bool Missile::init()
@@ -77,6 +92,15 @@ void Missile::update(float dt)
 {
     if(!_target)
     {
+        //TODO: simplify this process
+//        EnemyManager * aEnemyManager = EnemyManager::sharedEnemyManager();
+//        std::vector<int> avilabelVect = aEnemyManager->getAllAvilabelFodder();
+//        //get from random
+//        int randid = CCRANDOM_0_1()*avilabelVect.size();
+//        int randid2 = avilabelVect.at(randid);
+//        auto t = static_cast<GameEntity*>(aEnemyManager->fodderVect.at(randid2));
+//        if(t)
+//        setTarget(static_cast<GameEntity*>(aEnemyManager->fodderVect.at(randid2)));
         setTarget(static_cast<GameLayer*>(getParent())->_testDummy);//very hacky
     }
     if(_target){
@@ -102,5 +126,5 @@ void Missile::reset()
 {
     setTarget(nullptr);
     _velocity = 0;
-    setRotation(0);
 }
+

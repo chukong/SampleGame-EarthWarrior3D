@@ -28,7 +28,7 @@ protected:
     float fodderSpeed = 4.0f;
     Sprite *spr;
     Player *_player;
-
+    MotionStreak *_streak;
     QuadTree *_collisionTree;
     
 

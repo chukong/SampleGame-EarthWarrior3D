@@ -32,13 +32,13 @@ bool BulletController::init(Node *bulletLayer){
     }
     return false;
 }
-void BulletController::spawnBullet(int type, Point pos, Point vec)
+Bullet* BulletController::spawnBullet(int type, Point pos, Point vec)
 {
     Bullet *bullet = nullptr;
     switch(type)
     {
         case kPlayerBullet:
-            bullet = Bullet::create();
+            bullet = PlayerBullet::create();
             bullet->retain();
             //bullet->setType(kPlayerBullet);
             break;
@@ -67,32 +67,34 @@ void BulletController::spawnBullet(int type, Point pos, Point vec)
         bullet->release();
         bullet->setPosition(pos);
         bullet->setVector(vec);
+        return bullet;
     }
+    return nullptr;
 }
 void BulletController::update(float dt)
 {
     Point temp;
-    for ( auto &i : BulletController::bullets )
+    Bullet* b;
+    for(int i = BulletController::bullets.size()-1; i >= 0; i-- )
     {
-        //remove bullets if its out of the screen
-        temp =i->getPosition();
+        b =BulletController::bullets.at(i);
+        temp =b->getPosition();
         if(!BOUND_RECT.containsPoint(temp))
         {
             BulletController::erase(i);
         }
-        else
-        {
-            // update bullets position
-            
-            if(i->getType() == kPlayerMissiles)
+        else{
+            if(b->getType() == kPlayerMissiles)
             {
-                i->update(dt);
+                b->update(dt);
             }
             else{
-                i->setPosition(temp+(i->getVector()*dt));
+                b->setPosition(temp+(b->getVector()*dt));
             }
         }
     }
+    
+    
 }
 void BulletController::erase(Bullet* b)
 {
@@ -107,5 +109,21 @@ void BulletController::erase(Bullet* b)
     {
         b->removeFromParentAndCleanup(true);
         BulletController::bullets.eraseObject(b);
+    }
+}
+void BulletController::erase(int i)
+{
+    auto b = BulletController::bullets.at(i);
+    if(b->getType() == kPlayerMissiles)
+    {
+        BulletController::_missilePool.pushBack(static_cast<Missile*>(b));
+        BulletController::bullets.erase(i);
+        b->removeFromParentAndCleanup(false);
+        b->reset();
+    }
+    else
+    {
+        b->removeFromParentAndCleanup(true);
+        BulletController::bullets.erase(i);
     }
 }
