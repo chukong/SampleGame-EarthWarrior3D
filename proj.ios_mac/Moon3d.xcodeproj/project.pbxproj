@@ -457,10 +457,10 @@
 			isa = PBXGroup;
 			children = (
 				A044DE6E18C69F8000B6CCBD /* 3d */,
-				26ADEAD718C84C28002D1339 /* EnemyManager.cpp */,
-				26ADEAD818C84C28002D1339 /* EnemyManager.h */,
 				2606BD0F18C72A9900142F1C /* PublicApi.cpp */,
 				2606BD1018C72A9900142F1C /* PublicApi.h */,
+				26ADEAD718C84C28002D1339 /* EnemyManager.cpp */,
+				26ADEAD818C84C28002D1339 /* EnemyManager.h */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */,

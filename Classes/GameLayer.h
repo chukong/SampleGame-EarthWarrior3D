@@ -25,7 +25,6 @@ public:
 protected:
     float xScroll = 0.0f;
     float speed = -60.0f;
-    float fodderSpeed = 4.0f;
     Sprite *spr;
     Player *_player;
     MotionStreak *_streak;
