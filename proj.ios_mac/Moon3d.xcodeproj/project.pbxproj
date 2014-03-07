@@ -116,6 +116,8 @@
 		686EC66118BB44010065154C /* fog.png in Resources */ = {isa = PBXBuildFile; fileRef = 686EC65F18BB44010065154C /* fog.png */; };
 		687D4C6518BF405A003C6438 /* Fodder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 687D4C6318BF405A003C6438 /* Fodder.cpp */; };
 		687D4C6618BF405A003C6438 /* Fodder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 687D4C6318BF405A003C6438 /* Fodder.cpp */; };
+		688B39BB18C8E2AC00A14D84 /* boom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 688B39BA18C8E2AC00A14D84 /* boom.mp3 */; };
+		688B39BC18C8E2AC00A14D84 /* boom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 688B39BA18C8E2AC00A14D84 /* boom.mp3 */; };
 		68B9375F18C0336A00CE1505 /* libcocos2dx iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC61F18BADFD30065154C /* libcocos2dx iOS.a */; };
 		68B9376018C0336A00CE1505 /* libcocos2dx-extensions iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC62118BADFD30065154C /* libcocos2dx-extensions iOS.a */; };
 		68B9376118C0336A00CE1505 /* libCocosDenshion iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC62718BADFD30065154C /* libCocosDenshion iOS.a */; };
@@ -366,6 +368,7 @@
 		686EC65F18BB44010065154C /* fog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fog.png; sourceTree = "<group>"; };
 		687D4C6318BF405A003C6438 /* Fodder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Fodder.cpp; path = ../Classes/Fodder.cpp; sourceTree = "<group>"; };
 		687D4C6418BF405A003C6438 /* Fodder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Fodder.h; path = ../Classes/Fodder.h; sourceTree = "<group>"; };
+		688B39BA18C8E2AC00A14D84 /* boom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = boom.mp3; sourceTree = "<group>"; };
 		68BB2B1518C4720000158010 /* DownNecker2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DownNecker2.obj; sourceTree = "<group>"; };
 		A044DE6F18C69F8000B6CCBD /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
 		A044DE7018C69F8000B6CCBD /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
@@ -593,6 +596,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				688B39BA18C8E2AC00A14D84 /* boom.mp3 */,
 				680A318518C8967400D073CD /* emission.plist */,
 				680A318818C8A29400D073CD /* engine.plist */,
 				680A318218C8927100D073CD /* missileFlare.plist */,
@@ -845,6 +849,7 @@
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				680A316318C6471000D073CD /* diji1_v001.obj in Resources */,
+				688B39BB18C8E2AC00A14D84 /* boom.mp3 in Resources */,
 				1AFAF8BD16D35E4900DB1158 /* CloseSelected.png in Resources */,
 				680A318618C8967400D073CD /* emission.plist in Resources */,
 				686EC66018BB44010065154C /* fog.png in Resources */,
@@ -893,6 +898,7 @@
 				680A318A18C8A29400D073CD /* engine.plist in Resources */,
 				680A316418C6471000D073CD /* diji1_v001.obj in Resources */,
 				6815E1D718BDEDA4004F9944 /* Done1.png in Resources */,
+				688B39BC18C8E2AC00A14D84 /* boom.mp3 in Resources */,
 				5087E75417EB910900C73F5D /* CloseSelected.png in Resources */,
 				6815E1C518BDE5C9004F9944 /* car00.png in Resources */,
 				686EC66118BB44010065154C /* fog.png in Resources */,
