@@ -36,9 +36,9 @@ void Fodder::move(const Point& position,AirCraft * enemy)
     fodder = enemy;
     endPosition = position;
     totalTime = abs(getPositionY()-endPosition.y)/fodderSpeed/60;
-    perPeriodTime = totalTime*percent;
-    sW = 2*Pi/perPeriodTime;
-    rollSpeed = maxRotationAngle*4/perPeriodTime;
+    movingPerPeriodTime = totalTime*amplitudeFriction;
+    sW = 2*Pi/movingPerPeriodTime;
+    
     isMoving = true;
     
     this->schedule(schedule_selector(Fodder::RemoveFodder) , totalTime, 1, 0.0);
@@ -50,33 +50,18 @@ void Fodder::update(float dt)
         return;
     }
     
-    if (smoothAngle+rollSpeed>maxRotationAngle)
-    {
-        isRevert = true;
-    }
-    
-    if (smoothAngle-rollSpeed<-maxRotationAngle)
-    {
-        isRevert = false;
-    }
-    
-    if (!isRevert)
-    {
-        smoothAngle+=rollSpeed;
-    }
-    else
-    {
-        smoothAngle-=rollSpeed;
-    }
     float fY = this->getPositionY()-fodderSpeed;
     float fX = sA*sin(fY*sW);
     this->setPosition(Point(fX,fY));
-    
+   
+    smoothAngle = -sin(fY*sW)*60;
+    log("smoothAngle = %f",smoothAngle);
     this->setRotation3D(Vertex3F(0,smoothAngle,0));
+    
+    //this->setRotation(smoothAngle);
 }
 void Fodder::RemoveFodder(float dt)
 {
-    this->retain();
     this->removeFromParentAndCleanup(false);
     EnemyManager * aEnemyManager = EnemyManager::sharedEnemyManager();
     

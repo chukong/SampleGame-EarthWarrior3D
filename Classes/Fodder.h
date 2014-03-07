@@ -22,20 +22,18 @@ protected:
     AirCraft* fodder;
     
     float rollSpeed;
-    float smoothAngle = 0.0f;
-    const float maxRotationAngle = 60.0f;
+    const float maxRotationAngle = 30.0f;
+    float smoothAngle = 0;//maxRotationAngle;
     bool isRevert = false;
-    
     bool isMoving = false;
     Point endPosition;
-    
-    const float percent = 300;
-    const float fodderSpeed = 4.0f;
-    float perPeriodTime;
+    const float amplitudeFriction = 100;
+    float movingPerPeriodTime;
+    float timeCount = 0;
+    const float fodderSpeed = 3.0f;
     float totalTime;
     const float sA = 200.0f;
     float sW;
-    
     void update(float dt);
     void RemoveFodder(float dt);
 };
