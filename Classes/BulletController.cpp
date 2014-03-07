@@ -7,8 +7,14 @@
 //
 
 #include "BulletController.h"
+#include "GameEntity.h"
 #include "Bullet.h"
 #include "consts.h"
+#include "AirCraft.h"
+#include "Effects.h"
+#include "SimpleAudioEngine.h"
+#include "Fodder.h"
+#include "EnemyManager.h"
 
 Node* BulletController::_bulletLayer = nullptr;
 bool BulletController::_inited = false;
@@ -39,7 +45,7 @@ Bullet* BulletController::spawnBullet(int type, Point pos, Point vec)
     {
         case kPlayerBullet:
             bullet = PlayerBullet::create();
-            bullet->retain();
+            //bullet->retain();
             //bullet->setType(kPlayerBullet);
             break;
         case kPlayerMissiles:
@@ -64,7 +70,7 @@ Bullet* BulletController::spawnBullet(int type, Point pos, Point vec)
     {
         BulletController::bullets.pushBack(bullet);
         BulletController::_bulletLayer->addChild(bullet);
-        bullet->release();
+        //bullet->release();
         bullet->setPosition(pos);
         bullet->setVector(vec);
         return bullet;
@@ -75,15 +81,43 @@ void BulletController::update(float dt)
 {
     Point temp;
     Bullet* b;
+    auto list =BulletController::bullets;
     for(int i = BulletController::bullets.size()-1; i >= 0; i-- )
     {
         b =BulletController::bullets.at(i);
         temp =b->getPosition();
-        if(!BOUND_RECT.containsPoint(temp))
+        if(BOUND_RECT.containsPoint(temp))
         {
-            BulletController::erase(i);
-        }
-        else{
+            for(int j = EnemyManager::sharedEnemyManager()->availabelEnemyVect.size()-1; j >= 0; j--)
+            {
+                auto e = EnemyManager::sharedEnemyManager()->availabelEnemyVect.at(j);
+                if(b->getPosition().
+                   getDistance(
+                               e->getPosition()
+                               ) <
+                   (b->getRadius() + e->getRadius()))
+                {
+                    
+                    //collision happened
+                    if(b->getType() == kPlayerMissiles)
+                    {
+                        //auto expl = ExplosionFX::create();
+                        //expl->setPosition(e->getPosition());
+                        //addChild(expl);
+                        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
+                        //TODO: need to remove the expl when finished particle, or reuse
+                    }
+                    else
+                    {
+                        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.mp3");
+                        e->hurt(b->getDamage());
+                        
+                    }
+                    
+                    BulletController::erase(i);
+                    break;
+                }
+            }
             if(b->getType() == kPlayerMissiles)
             {
                 b->update(dt);
@@ -92,8 +126,11 @@ void BulletController::update(float dt)
                 b->setPosition(temp+(b->getVector()*dt));
             }
         }
+        else
+        {
+            BulletController::erase(i);
+        }
     }
-    
     
 }
 void BulletController::erase(Bullet* b)
@@ -123,7 +160,8 @@ void BulletController::erase(int i)
     }
     else
     {
-        b->removeFromParentAndCleanup(true);
+
         BulletController::bullets.erase(i);
+        b->removeFromParentAndCleanup(false);
     }
 }

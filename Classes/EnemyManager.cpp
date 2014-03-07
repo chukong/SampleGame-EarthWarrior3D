@@ -1,5 +1,6 @@
 #include "EnemyManager.h"
 #include "Fodder.h"
+#include "AirCraft.h"
 
 using namespace cocos2d;
 using namespace std;

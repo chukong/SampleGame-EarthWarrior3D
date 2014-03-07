@@ -21,7 +21,7 @@ public:
     void die();
     void shoot();
 protected:
-    float _HP;// hit points
+    float _HP = 200;// hit points
     
 };
 

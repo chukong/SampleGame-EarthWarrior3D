@@ -16,10 +16,10 @@ class Fodder : public AirCraft
 {
 public:
     bool init();
-    void move(const Point& position,cocos2d::Node * enemy);
+    void move(const Point& position,AirCraft * enemy);
     CREATE_FUNC(Fodder);
 protected:
-    cocos2d::Node * fodder;
+    AirCraft* fodder;
     
     float rollSpeed;
     const float maxRotationAngle = 30.0f;

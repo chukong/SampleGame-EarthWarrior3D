@@ -31,7 +31,7 @@ bool Fodder::init()
     return false;
 }
 
-void Fodder::move(const Point& position,cocos2d::Node * enemy)
+void Fodder::move(const Point& position,AirCraft * enemy)
 {
     fodder = enemy;
     endPosition = position;
