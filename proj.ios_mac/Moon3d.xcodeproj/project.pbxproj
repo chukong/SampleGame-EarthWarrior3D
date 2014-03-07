@@ -14,6 +14,9 @@
 		1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AFAF8BB16D35E4900DB1158 /* HelloWorld.png */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		2606BD1218C72A9900142F1C /* PublicApi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2606BD0F18C72A9900142F1C /* PublicApi.cpp */; };
+		26ADEAD918C84C28002D1339 /* EnemyManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26ADEAD718C84C28002D1339 /* EnemyManager.cpp */; };
+		26ADEADA18C84DE5002D1339 /* EnemyManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 26ADEAD718C84C28002D1339 /* EnemyManager.cpp */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 503AE0F617EB97AB00D1A890 /* Icon.icns */; };
 		503AE10017EB989F00D1A890 /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 503AE0FB17EB989F00D1A890 /* AppController.mm */; };
@@ -287,6 +290,10 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Moon3d iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Moon3d iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2606BD0F18C72A9900142F1C /* PublicApi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PublicApi.cpp; path = ../Classes/PublicApi.cpp; sourceTree = "<group>"; };
+		2606BD1018C72A9900142F1C /* PublicApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PublicApi.h; path = ../Classes/PublicApi.h; sourceTree = "<group>"; };
+		26ADEAD718C84C28002D1339 /* EnemyManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EnemyManager.cpp; path = ../Classes/EnemyManager.cpp; sourceTree = "<group>"; };
+		26ADEAD818C84C28002D1339 /* EnemyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnemyManager.h; path = ../Classes/EnemyManager.h; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		503AE0F617EB97AB00D1A890 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		503AE0F717EB97AB00D1A890 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -441,6 +448,10 @@
 			isa = PBXGroup;
 			children = (
 				A044DE6E18C69F8000B6CCBD /* 3d */,
+				26ADEAD718C84C28002D1339 /* EnemyManager.cpp */,
+				26ADEAD818C84C28002D1339 /* EnemyManager.h */,
+				2606BD0F18C72A9900142F1C /* PublicApi.cpp */,
+				2606BD1018C72A9900142F1C /* PublicApi.h */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */,
@@ -900,6 +911,7 @@
 			files = (
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				68005B9F18BEEC75007598C5 /* AirCraft.cpp in Sources */,
+				26ADEAD918C84C28002D1339 /* EnemyManager.cpp in Sources */,
 				68005BA318BEEE66007598C5 /* Player.cpp in Sources */,
 				687D4C6518BF405A003C6438 /* Fodder.cpp in Sources */,
 				A044DE7918C69F8000B6CCBD /* Sprite3D.cpp in Sources */,
@@ -912,6 +924,7 @@
 				A044DE7718C69F8000B6CCBD /* Mesh.cpp in Sources */,
 				680A318018C784D700D073CD /* Effects.cpp in Sources */,
 				68005B8E18BEE774007598C5 /* GameEntity.cpp in Sources */,
+				2606BD1218C72A9900142F1C /* PublicApi.cpp in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
 			);
@@ -929,6 +942,7 @@
 				68005BA018BEEC75007598C5 /* AirCraft.cpp in Sources */,
 				680A318118C784D700D073CD /* Effects.cpp in Sources */,
 				680A315818C5D52300D073CD /* BulletController.cpp in Sources */,
+				26ADEADA18C84DE5002D1339 /* EnemyManager.cpp in Sources */,
 				686EC63818BAE16A0065154C /* GameLayer.cpp in Sources */,
 				680A315418C5CDE500D073CD /* Bullet.cpp in Sources */,
 				68005B8F18BEE774007598C5 /* GameEntity.cpp in Sources */,
