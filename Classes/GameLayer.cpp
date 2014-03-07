@@ -28,7 +28,7 @@ bool GameLayer::init()
     
     spr = Sprite::create("groundLevel.jpg");
     addChild(spr);
-    CCTexture2D::TexParams texRepeat = {GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_REPEAT};
+    Texture2D::TexParams texRepeat = {GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_REPEAT};
     spr->getTexture()->setTexParameters(texRepeat);
     setRotation3D(Vertex3F(-30.0,0.0f,0.0f));
     spr->setScale(1.4);
@@ -42,7 +42,7 @@ bool GameLayer::init()
     addChild(_streak);
     
     addChild(_player,10);
-    
+    EffectManager::setLayer(this);
     auto Audio = CocosDenshion::SimpleAudioEngine::getInstance();
     Audio->preloadEffect("boom.mp3");
     Audio->preloadEffect("hit.mp3");

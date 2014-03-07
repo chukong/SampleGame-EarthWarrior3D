@@ -57,7 +57,7 @@ void Bullet::reset()
 
 bool Missile::init()
 {
-    _Model = Sprite3D::create("daodanv001.obj", "daodan_512.png");
+    _Model = Sprite3D::create("daodanv001.obj", "daodan_32.png");
     if(_Model)
     {
         addChild(_Model);

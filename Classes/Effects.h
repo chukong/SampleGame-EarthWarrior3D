@@ -12,20 +12,13 @@
 #include "cocos2d.h"
 USING_NS_CC;
 
-class EffectPool
+class EffectManager
 {
 public:
-    static Vector<Node*> pool;
-};
-
-class ExplosionFX : public Node
-{
-public:
-    CREATE_FUNC(ExplosionFX);
-    bool init();
+    static void createExplosion(Point pos);
+    static void setLayer(Node* layer);
 protected:
-    ParticleSystemQuad* _part1;
-    ParticleSystemQuad* _part2;
+    static Node* _effectLayer;
 };
 
 

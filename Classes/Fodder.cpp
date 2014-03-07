@@ -16,7 +16,7 @@ using namespace std;
 
 bool Fodder::init()
 {
-    _Model = Sprite3D::create("diji1_v001.obj", "diji02_v002_1024.png");
+    _Model = Sprite3D::create("diji1_v001.obj", "diji02_v002_128.png");
     if(_Model)
     {
         _Model->setScale(6);

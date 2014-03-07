@@ -14,7 +14,7 @@
 
 bool Player::init()
 {
-    _Model = Sprite3D::create("playerv001.obj", "playerv002_1024.png");
+    _Model = Sprite3D::create("playerv001.obj", "playerv002_256.png");
     //_Model = Sprite3D::create("Scania4.obj", "car00.png");
     if(_Model)
     {

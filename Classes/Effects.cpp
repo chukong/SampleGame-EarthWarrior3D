@@ -8,15 +8,27 @@
 
 #include "Effects.h"
 
-Vector<Node*> EffectPool::pool;
+Node* EffectManager::_effectLayer = nullptr;
 
-bool ExplosionFX::init(){
-    _part1 = ParticleSystemQuad::create("toonSmoke.plist");
-    _part2 = ParticleSystemQuad::create("flare.plist");
-    addChild(_part1);
-    addChild(_part2);
-    _part1->setAutoRemoveOnFinish(true);
-    _part2->setAutoRemoveOnFinish(true);
-    setRotation3D(Vertex3F(30,0,0));
-    return (_part1 && _part2);
+void EffectManager::createExplosion(Point pos)
+{
+    if(!_effectLayer)
+    {
+        return;
+    }
+    auto part1 = ParticleSystemQuad::create("toonSmoke.plist");
+    auto part2 = ParticleSystemQuad::create("flare.plist");
+    _effectLayer->addChild(part1);
+    _effectLayer->addChild(part2);
+    part1->setAutoRemoveOnFinish(true);
+    part2->setAutoRemoveOnFinish(true);
+    part1->setRotation3D(Vertex3F(30,0,0));
+    part2->setRotation3D(Vertex3F(30,0,0));
+    part1->setPosition(pos);
+    part2->setPosition(pos);
+}
+
+void EffectManager::setLayer(Node *layer)
+{
+    _effectLayer = layer;
 }

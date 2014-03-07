@@ -101,9 +101,7 @@ void BulletController::update(float dt)
                     //collision happened
                     if(b->getType() == kPlayerMissiles)
                     {
-                        //auto expl = ExplosionFX::create();
-                        //expl->setPosition(e->getPosition());
-                        //addChild(expl);
+                        EffectManager::createExplosion(e->getPosition());
                         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
                         //TODO: need to remove the expl when finished particle, or reuse
                     }
