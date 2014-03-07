@@ -20,17 +20,14 @@ public:
     CREATE_FUNC(Fodder);
 protected:
     AirCraft* fodder;
-    
-    float rollSpeed;
-    const float maxRotationAngle = 30.0f;
-    float smoothAngle = 0;//maxRotationAngle;
-    bool isRevert = false;
+
+    float smoothAngle = 0;
     bool isMoving = false;
     Point endPosition;
-    const float amplitudeFriction = 100;
+    const float amplitudeFriction = 50;
     float movingPerPeriodTime;
     float timeCount = 0;
-    const float fodderSpeed = 3.0f;
+    const float fodderSpeed = 3.5f;
     float totalTime;
     const float sA = 200.0f;
     float sW;

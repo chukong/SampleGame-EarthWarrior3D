@@ -55,10 +55,7 @@ void Fodder::update(float dt)
     this->setPosition(Point(fX,fY));
    
     smoothAngle = -sin(fY*sW)*60;
-    log("smoothAngle = %f",smoothAngle);
-    this->setRotation3D(Vertex3F(0,smoothAngle,0));
-    
-    //this->setRotation(smoothAngle);
+    this->setRotation3D(Vertex3F(-fabsf(smoothAngle)*0.25,smoothAngle,-smoothAngle*0.25));
 }
 void Fodder::RemoveFodder(float dt)
 {
