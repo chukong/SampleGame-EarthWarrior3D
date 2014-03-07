@@ -34,6 +34,17 @@ bool HelloWorld::init()
     addChild(fog);
     fog->setPosition(visibleSize.width/2,visibleSize.height/2+285);
     fog->setScaleX(visibleSize.width/10);
+    
+    //TODO: replace with real ui
+    auto lefttopUI = Sprite::create("leftTop.png");
+    lefttopUI->setAnchorPoint(Point(0,1));
+    lefttopUI->setPosition(Point(0, visibleSize.height+origin.y));
+    addChild(lefttopUI);
+    
+    auto rightTopUI = Sprite::create("rightTop.png");
+    rightTopUI->setAnchorPoint(Point(1,1));
+    rightTopUI->setPosition(origin+Point(visibleSize));
+    addChild(rightTopUI);
     return true;
 }
 

@@ -27,7 +27,7 @@ protected:
     float speed = -60.0f;
     Sprite *spr;
     Player *_player;
-
+    MotionStreak *_streak;
     QuadTree *_collisionTree;
     
 

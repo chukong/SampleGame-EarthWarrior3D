@@ -37,7 +37,10 @@ bool GameLayer::init()
     spr->setPosition(0.0f,400.0f);
     
     _player = Player::create();
-    _player->setPosition3D(Vertex3F(0,0,0));
+    
+    _streak = MotionStreak::create(0.4, 1, 15, Color3B(82,255,253), "streak.png");
+    _player->setTrail(_streak);
+    addChild(_streak);
     
     addChild(_player,10);
     
@@ -50,7 +53,10 @@ bool GameLayer::init()
     test.clear();
     
     
-    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("boom.mp3");
+    auto Audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    Audio->preloadEffect("boom.mp3");
+    Audio->preloadEffect("hit.mp3");
+    Audio->preloadEffect("boom2.mp3");
 
     this->schedule(schedule_selector(GameLayer::createCraft) , 1.0, -1, 0.0);
 
@@ -104,6 +110,7 @@ void GameLayer::update(float dt)
 {
     xScroll += speed*dt;
     spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
+    //TODO: rewrite this in backwards loop
     for ( auto i : BulletController::bullets )
     {
         if(i->getPosition().getDistance(_testDummy->getPosition()) <
@@ -116,8 +123,12 @@ void GameLayer::update(float dt)
                 auto expl = ExplosionFX::create();
                 expl->setPosition(_testDummy->getPosition());
                 addChild(expl);
-                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3");
+                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
                 //TODO: need to remove the expl when finished particle, or reuse
+            }
+            else
+            {
+                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.mp3");
             }
 
             BulletController::erase(i);
@@ -125,6 +136,7 @@ void GameLayer::update(float dt)
     }
     BulletController::update(dt);
     //_collisionTree->clear();
+    //_streak->setPosition(_player->getPosition()-Point(0,40));
 }
 
 

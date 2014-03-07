@@ -11,6 +11,8 @@
 #include "consts.h"
 #include "GameLayer.h"
 #include "GameEntity.h"
+#include "EnemyManager.h"
+#include "Fodder.h"
 
 bool Bullet::init()
 {
@@ -24,6 +26,19 @@ bool Bullet::init()
     }
     return false;
 }
+bool PlayerBullet::init()
+{
+    _Model = Sprite::create("bullets.png", Rect(54, 57, 36, 67));
+    if(_Model)
+    {
+        addChild(_Model);
+        _radius=10;
+        _type = kPlayerBullet;
+        return true;
+    }
+    return false;
+}
+
 void Bullet::setVector(Point vec)
 {
     _vector = vec;
@@ -35,7 +50,7 @@ Point Bullet::getVector()
 }
 void Bullet::reset()
 {
-    
+    setRotation(0);
 }
 
 bool Missile::init()
@@ -77,13 +92,19 @@ void Missile::update(float dt)
 {
     if(!_target)
     {
-        setTarget(static_cast<GameLayer*>(getParent())->_testDummy);//very hacky
+        //setTarget(static_cast<GameLayer*>(getParent())->_testDummy);//very hacky
+        setTarget(static_cast<GameEntity*>(EnemyManager::sharedEnemyManager()->availabelEnemyVect.getRandomObject()));
     }
     if(_target){
         //turn towards the target
         float angle = -CC_RADIANS_TO_DEGREES((getPosition() - _target->getPosition()).getAngle());
+        if(fabsf(angle-90)>70)
+        {
+            //too much angle to track, get another target instead
+            _target = nullptr;
+        }
         float curRot = getRotation();
-        float angleDif = std::min(std::max(angle-90 - curRot, -_turnRate*dt), _turnRate*dt);
+        float angleDif = std::min(std::max((angle-90)*1.5f - curRot, -_turnRate*dt), _turnRate*dt);
         
         float f = curRot + angleDif;
         setRotation(f);
@@ -102,5 +123,5 @@ void Missile::reset()
 {
     setTarget(nullptr);
     _velocity = 0;
-    setRotation(0);
 }
+

@@ -26,6 +26,13 @@ protected:
     Point _vector;
 };
 
+class PlayerBullet : public Bullet
+{
+public:
+    CREATE_FUNC(PlayerBullet);
+    bool init();
+};
+
 class Missile : public Bullet
 {
 public:
@@ -36,7 +43,7 @@ public:
     virtual void reset();
 protected:
     float _accel = 20;
-    float _turnRate = 40;
+    float _turnRate = 120;
     //float _maxSpeed = 100;
     float _yRotSpeed = 1400;
     float _yRotation = 0;

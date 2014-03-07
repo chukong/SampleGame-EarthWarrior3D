@@ -18,7 +18,7 @@ bool Player::init()
     //_Model = Sprite3D::create("Scania4.obj", "car00.png");
     if(_Model)
     {
-        _Model->setScale(10.0);
+        _Model->setScale(8);
         addChild(_Model);
         _Model->setRotation3D(Vertex3F(90,0,0));
         _radius = 40;
@@ -40,7 +40,7 @@ bool Player::init()
         auto part = ParticleSystemQuad::create("engine.plist");
         addChild(part);
         part->setPosition(0,-30);
-        part->setScale(0.5);
+        part->setScale(0.6);
         //part->setRotation(90);
         return true;
     }
@@ -74,11 +74,27 @@ void Player::onTouchEnded(Touch *touch, Event *event)
 
 void Player::shoot(float dt)
 {
-    BulletController::spawnBullet(kPlayerBullet, getPosition(), Point(0,1600));
 
+    BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(-20,20), Point(0,1600));
+    BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(20,20), Point(0,1600));
+        BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(0,20), Point(0,1600));
+}
+void Player::setPosition(Point pos)
+{
+    if (_position.equals(pos))
+        return;
+    
+    _position = pos;
+    _transformUpdated = _transformDirty = _inverseDirty = true;
+    if(_streak)
+    {
+        _streak->setPosition(pos+_trailOffset);
+    }
 }
 void Player::shootMissile(float dt)
 {
-    BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(-50,-20), Point(-175,-175)); // left
-    BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(50,-20), Point(175,-175)); // right
+    auto left = BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(-50,-20), Point(-175,-175));
+    left->setRotation(-45);
+    auto right = BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(50,-20), Point(175,-175));
+    right->setRotation(45);
 }
