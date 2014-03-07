@@ -22,6 +22,7 @@ public:
     void setVector(Point vec);
     Point getVector();
     virtual void reset();
+    CC_SYNTHESIZE(float, _damage, Damage);
 protected:
     Point _vector;
 };

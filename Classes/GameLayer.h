@@ -20,8 +20,6 @@ public:
     virtual bool init();
     void update(float dt);
     CREATE_FUNC(GameLayer);
-    
-    GameEntity *_testDummy;
 protected:
     float xScroll = 0.0f;
     float speed = -60.0f;

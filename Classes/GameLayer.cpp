@@ -9,7 +9,6 @@
 #include "GameLayer.h"
 #include "Player.h"
 #include "Fodder.h"
-#include "QuadTree.h"
 #include "PublicApi.h"
 #include "BulletController.h"
 #include "consts.h"
@@ -43,15 +42,6 @@ bool GameLayer::init()
     addChild(_streak);
     
     addChild(_player,10);
-    
-
-    _testDummy = Fodder::create();
-    addChild(_testDummy);
-    _testDummy->setPosition(0, 500);
-
-    Vector<Node*> test;
-    test.clear();
-    
     
     auto Audio = CocosDenshion::SimpleAudioEngine::getInstance();
     Audio->preloadEffect("boom.mp3");
@@ -101,7 +91,7 @@ void GameLayer::createCraft(float dt)
     
     aEnemyManager->availabelEnemyVect.pushBack(aEnemyManager->standByEnemyVect.at(randStandByEnemy));
     //aEnemyManager->standByEnemyVect.at(randStandByEnemy)->retain();
-    aEnemyManager->standByEnemyVect.eraseObject(static_cast<Node *>(aEnemyManager->standByEnemyVect.at(randStandByEnemy)),false);
+    aEnemyManager->standByEnemyVect.eraseObject(static_cast<AirCraft *>(aEnemyManager->standByEnemyVect.at(randStandByEnemy)),false);
     
     int idx = aEnemyManager->availabelEnemyVect.size()-1;
     enemy->move(Point(enemy->getPosition3D().x,-visible_size_macro.height*0.5),aEnemyManager->availabelEnemyVect.at(idx));
@@ -111,30 +101,7 @@ void GameLayer::update(float dt)
 {
     xScroll += speed*dt;
     spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
-    //TODO: rewrite this in backwards loop
-    for ( auto i : BulletController::bullets )
-    {
-        if(i->getPosition().getDistance(_testDummy->getPosition()) <
-           (i->getRadius() + _testDummy->getRadius()))
-        {
 
-            //collision happened
-            if(i->getType() == kPlayerMissiles)
-            {
-                auto expl = ExplosionFX::create();
-                expl->setPosition(_testDummy->getPosition());
-                addChild(expl);
-                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
-                //TODO: need to remove the expl when finished particle, or reuse
-            }
-            else
-            {
-                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.mp3");
-            }
-
-            BulletController::erase(i);
-        }
-    }
     BulletController::update(dt);
     //_collisionTree->clear();
     //_streak->setPosition(_player->getPosition()-Point(0,40));

@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 class Fodder;
+class AirCraft;
 class EnemyManager
 {
 private:
@@ -25,8 +26,8 @@ private:
     
 public:
     //Get instance of singleton
-    cocos2d::Vector< cocos2d::Node*> standByEnemyVect;
-    cocos2d::Vector< cocos2d::Node*> availabelEnemyVect;
+    cocos2d::Vector<AirCraft*> standByEnemyVect;
+    cocos2d::Vector<AirCraft*> availabelEnemyVect;
     
     static EnemyManager* sharedEnemyManager();
 };

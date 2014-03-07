@@ -22,6 +22,7 @@ bool Bullet::init()
         addChild(_Model);
         _radius=10;
         _type = kPlayerBullet;
+        _damage = 10;
         return true;
     }
     return false;
@@ -34,6 +35,7 @@ bool PlayerBullet::init()
         addChild(_Model);
         _radius=10;
         _type = kPlayerBullet;
+        _damage = 5;
         return true;
     }
     return false;
