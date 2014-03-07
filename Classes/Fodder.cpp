@@ -55,7 +55,6 @@ void Fodder::update(float dt)
     this->setPosition(Point(fX,fY));
    
     smoothAngle = -sin(fY*sW)*60;
-    log("smoothAngle = %f",smoothAngle);
     this->setRotation3D(Vertex3F(0,smoothAngle,0));
     
     //this->setRotation(smoothAngle);
@@ -68,4 +67,10 @@ void Fodder::RemoveFodder(float dt)
     aEnemyManager->standByEnemyVect.pushBack(fodder);
     aEnemyManager->availabelEnemyVect.eraseObject(fodder,false);
     isMoving = false;
+    _HP = 200;
+}
+void Fodder::die()
+{
+    AirCraft::die();
+    RemoveFodder(0);
 }

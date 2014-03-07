@@ -75,8 +75,8 @@ void Player::onTouchEnded(Touch *touch, Event *event)
 void Player::shoot(float dt)
 {
 
-    BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(-20,20), Point(0,1600));
-    BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(20,20), Point(0,1600));
+    BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(-20,20), Point(-200,1600));
+    BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(20,20), Point(200,1600));
         BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(0,20), Point(0,1600));
 }
 void Player::setPosition(Point pos)

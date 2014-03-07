@@ -8,6 +8,7 @@
 
 #include "AirCraft.h"
 #include "SimpleAudioEngine.h"
+#include "Effects.h"
 
 void AirCraft::hurt(float damage)
 {
@@ -20,4 +21,6 @@ void AirCraft::hurt(float damage)
 void AirCraft::die()
 {
     CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3");
+    EffectManager::createBigExplosion(getPosition());
+    //removeFromParent();
 }

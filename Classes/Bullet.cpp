@@ -65,6 +65,7 @@ bool Missile::init()
         _type = kPlayerMissiles;
         _Model->setScale(3);
         _Model->setRotation3D(Vertex3F(90,0,0));
+        _damage = 75;
         static_cast<Sprite3D*>(_Model)->setOutline(0.3, Color3B(0,0,0));
         
         _left = (CCRANDOM_MINUS1_1()>0);

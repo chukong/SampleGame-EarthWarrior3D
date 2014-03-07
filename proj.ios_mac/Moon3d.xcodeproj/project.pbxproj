@@ -134,6 +134,10 @@
 		68AB900C18C9E029007DDB0D /* diji02_v002_128.png in Resources */ = {isa = PBXBuildFile; fileRef = 68AB900A18C9E029007DDB0D /* diji02_v002_128.png */; };
 		68AB900E18C9E0FD007DDB0D /* playerv002_256.png in Resources */ = {isa = PBXBuildFile; fileRef = 68AB900D18C9E0FD007DDB0D /* playerv002_256.png */; };
 		68AB900F18C9E0FD007DDB0D /* playerv002_256.png in Resources */ = {isa = PBXBuildFile; fileRef = 68AB900D18C9E0FD007DDB0D /* playerv002_256.png */; };
+		68AB901218C9F468007DDB0D /* debris.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68AB901018C9F468007DDB0D /* debris.plist */; };
+		68AB901318C9F468007DDB0D /* debris.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68AB901018C9F468007DDB0D /* debris.plist */; };
+		68AB901418C9F468007DDB0D /* glow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68AB901118C9F468007DDB0D /* glow.plist */; };
+		68AB901518C9F468007DDB0D /* glow.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68AB901118C9F468007DDB0D /* glow.plist */; };
 		68B9375F18C0336A00CE1505 /* libcocos2dx iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC61F18BADFD30065154C /* libcocos2dx iOS.a */; };
 		68B9376018C0336A00CE1505 /* libcocos2dx-extensions iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC62118BADFD30065154C /* libcocos2dx-extensions iOS.a */; };
 		68B9376118C0336A00CE1505 /* libCocosDenshion iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC62718BADFD30065154C /* libCocosDenshion iOS.a */; };
@@ -392,6 +396,8 @@
 		68AB900718C9DFAE007DDB0D /* daodan_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daodan_32.png; sourceTree = "<group>"; };
 		68AB900A18C9E029007DDB0D /* diji02_v002_128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diji02_v002_128.png; sourceTree = "<group>"; };
 		68AB900D18C9E0FD007DDB0D /* playerv002_256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playerv002_256.png; sourceTree = "<group>"; };
+		68AB901018C9F468007DDB0D /* debris.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = debris.plist; sourceTree = "<group>"; };
+		68AB901118C9F468007DDB0D /* glow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = glow.plist; sourceTree = "<group>"; };
 		68BB2B1518C4720000158010 /* DownNecker2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DownNecker2.obj; sourceTree = "<group>"; };
 		A044DE6F18C69F8000B6CCBD /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
 		A044DE7018C69F8000B6CCBD /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
@@ -618,6 +624,8 @@
 			isa = PBXGroup;
 			children = (
 				68AB900D18C9E0FD007DDB0D /* playerv002_256.png */,
+				68AB901018C9F468007DDB0D /* debris.plist */,
+				68AB901118C9F468007DDB0D /* glow.plist */,
 				68AB900A18C9E029007DDB0D /* diji02_v002_128.png */,
 				68AB900718C9DFAE007DDB0D /* daodan_32.png */,
 				688B39F218C9B84700A14D84 /* boom2.mp3 */,
@@ -868,6 +876,7 @@
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				680A316718C6471000D073CD /* playerv001.obj in Resources */,
+				68AB901218C9F468007DDB0D /* debris.plist in Resources */,
 				686EC63A18BAEFA70065154C /* groundLevel.jpg in Resources */,
 				688B39CA18C977FF00A14D84 /* bullets.png in Resources */,
 				680A316918C6471000D073CD /* playerv002_1024.png in Resources */,
@@ -877,6 +886,7 @@
 				6815E1C618BDE5C9004F9944 /* DownNecker.obj in Resources */,
 				686EC63F18BB11250065154C /* fighter.obj in Resources */,
 				688B39D918C99A9A00A14D84 /* streak.png in Resources */,
+				68AB901418C9F468007DDB0D /* glow.plist in Resources */,
 				680A317918C72BB400D073CD /* flare.plist in Resources */,
 				686EC64D18BB28FD0065154C /* Scania4.obj in Resources */,
 				686EC64B18BB28FD0065154C /* car00.png in Resources */,
@@ -922,6 +932,7 @@
 				680A318418C8927100D073CD /* missileFlare.plist in Resources */,
 				688B39F418C9B84700A14D84 /* boom2.mp3 in Resources */,
 				680A317C18C72BB400D073CD /* toonSmoke.plist in Resources */,
+				68AB901518C9F468007DDB0D /* glow.plist in Resources */,
 				688B39EB18C9A5BA00A14D84 /* rightTop.png in Resources */,
 				68AB900C18C9E029007DDB0D /* diji02_v002_128.png in Resources */,
 				686EC63B18BAEFA70065154C /* groundLevel.jpg in Resources */,
@@ -937,6 +948,7 @@
 				680A317A18C72BB400D073CD /* flare.plist in Resources */,
 				680A316218C6471000D073CD /* daodanv001.obj in Resources */,
 				680A316618C6471000D073CD /* diji02_v002_1024.png in Resources */,
+				68AB901318C9F468007DDB0D /* debris.plist in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				680A316018C6471000D073CD /* daodan_512.png in Resources */,
 				686EC64218BB11250065154C /* fighter.png in Resources */,

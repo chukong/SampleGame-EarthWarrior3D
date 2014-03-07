@@ -103,7 +103,7 @@ void BulletController::update(float dt)
                     {
                         EffectManager::createExplosion(e->getPosition());
                         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
-                        //TODO: need to remove the expl when finished particle, or reuse
+                        e->hurt(b->getDamage());
                     }
                     else
                     {

@@ -18,6 +18,7 @@ public:
     bool init();
     void move(const Point& position,AirCraft * enemy);
     CREATE_FUNC(Fodder);
+    virtual void die();
 protected:
     AirCraft* fodder;
     

@@ -18,7 +18,7 @@ class AirCraft : public GameEntity
 public:
     void hurt(float damage);
     float getHP();
-    void die();
+    virtual void die();
     void shoot();
 protected:
     float _HP = 200;// hit points

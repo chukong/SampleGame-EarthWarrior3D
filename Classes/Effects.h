@@ -16,6 +16,7 @@ class EffectManager
 {
 public:
     static void createExplosion(Point pos);
+    static void createBigExplosion(Point pos);
     static void setLayer(Node* layer);
 protected:
     static Node* _effectLayer;
