@@ -16,6 +16,7 @@
 #include "Bullet.h"
 #include "Effects.h"
 #include "GameEntity.h"
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
 
 bool GameLayer::init()
@@ -47,7 +48,7 @@ bool GameLayer::init()
     test.clear();
     
     
-    
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("boom.mp3");
 
     //this->schedule(schedule_selector(GameLayer::createCraft) , 2.0, -1, 0.0);
 
@@ -96,6 +97,7 @@ void GameLayer::update(float dt){
                 auto expl = ExplosionFX::create();
                 expl->setPosition(_testDummy->getPosition());
                 addChild(expl);
+                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3");
                 //TODO: need to remove the expl when finished particle, or reuse
             }
 
