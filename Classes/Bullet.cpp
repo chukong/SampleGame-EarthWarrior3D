@@ -92,16 +92,8 @@ void Missile::update(float dt)
 {
     if(!_target)
     {
-        //TODO: simplify this process
-//        EnemyManager * aEnemyManager = EnemyManager::sharedEnemyManager();
-//        std::vector<int> avilabelVect = aEnemyManager->getAllAvilabelFodder();
-//        //get from random
-//        int randid = CCRANDOM_0_1()*avilabelVect.size();
-//        int randid2 = avilabelVect.at(randid);
-//        auto t = static_cast<GameEntity*>(aEnemyManager->fodderVect.at(randid2));
-//        if(t)
-//        setTarget(static_cast<GameEntity*>(aEnemyManager->fodderVect.at(randid2)));
-        setTarget(static_cast<GameLayer*>(getParent())->_testDummy);//very hacky
+        //setTarget(static_cast<GameLayer*>(getParent())->_testDummy);//very hacky
+        setTarget(static_cast<GameEntity*>(EnemyManager::sharedEnemyManager()->availabelEnemyVect.getRandomObject()));
     }
     if(_target){
         //turn towards the target

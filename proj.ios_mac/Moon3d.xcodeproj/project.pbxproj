@@ -122,6 +122,10 @@
 		688B39CB18C977FF00A14D84 /* bullets.png in Resources */ = {isa = PBXBuildFile; fileRef = 688B39C918C977FF00A14D84 /* bullets.png */; };
 		688B39D918C99A9A00A14D84 /* streak.png in Resources */ = {isa = PBXBuildFile; fileRef = 688B39D818C99A9A00A14D84 /* streak.png */; };
 		688B39DA18C99A9A00A14D84 /* streak.png in Resources */ = {isa = PBXBuildFile; fileRef = 688B39D818C99A9A00A14D84 /* streak.png */; };
+		688B39DD18C9A4E100A14D84 /* leftTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 688B39DC18C9A4E100A14D84 /* leftTop.png */; };
+		688B39DE18C9A4E100A14D84 /* leftTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 688B39DC18C9A4E100A14D84 /* leftTop.png */; };
+		688B39EA18C9A5BA00A14D84 /* rightTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 688B39E918C9A5BA00A14D84 /* rightTop.png */; };
+		688B39EB18C9A5BA00A14D84 /* rightTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 688B39E918C9A5BA00A14D84 /* rightTop.png */; };
 		68B9375F18C0336A00CE1505 /* libcocos2dx iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC61F18BADFD30065154C /* libcocos2dx iOS.a */; };
 		68B9376018C0336A00CE1505 /* libcocos2dx-extensions iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC62118BADFD30065154C /* libcocos2dx-extensions iOS.a */; };
 		68B9376118C0336A00CE1505 /* libCocosDenshion iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC62718BADFD30065154C /* libCocosDenshion iOS.a */; };
@@ -375,6 +379,8 @@
 		688B39BA18C8E2AC00A14D84 /* boom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = boom.mp3; sourceTree = "<group>"; };
 		688B39C918C977FF00A14D84 /* bullets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullets.png; sourceTree = "<group>"; };
 		688B39D818C99A9A00A14D84 /* streak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = streak.png; sourceTree = "<group>"; };
+		688B39DC18C9A4E100A14D84 /* leftTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftTop.png; sourceTree = "<group>"; };
+		688B39E918C9A5BA00A14D84 /* rightTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightTop.png; sourceTree = "<group>"; };
 		68BB2B1518C4720000158010 /* DownNecker2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DownNecker2.obj; sourceTree = "<group>"; };
 		A044DE6F18C69F8000B6CCBD /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
 		A044DE7018C69F8000B6CCBD /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
@@ -602,6 +608,8 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				688B39E918C9A5BA00A14D84 /* rightTop.png */,
+				688B39DC18C9A4E100A14D84 /* leftTop.png */,
 				688B39D818C99A9A00A14D84 /* streak.png */,
 				688B39C918C977FF00A14D84 /* bullets.png */,
 				688B39BA18C8E2AC00A14D84 /* boom.mp3 */,
@@ -842,6 +850,7 @@
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
+				688B39EA18C9A5BA00A14D84 /* rightTop.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				680A316718C6471000D073CD /* playerv001.obj in Resources */,
@@ -849,6 +858,7 @@
 				688B39CA18C977FF00A14D84 /* bullets.png in Resources */,
 				680A316918C6471000D073CD /* playerv002_1024.png in Resources */,
 				68BB2B1618C4720000158010 /* DownNecker2.obj in Resources */,
+				688B39DD18C9A4E100A14D84 /* leftTop.png in Resources */,
 				6815E1C618BDE5C9004F9944 /* DownNecker.obj in Resources */,
 				686EC63F18BB11250065154C /* fighter.obj in Resources */,
 				688B39D918C99A9A00A14D84 /* streak.png in Resources */,
@@ -889,8 +899,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				688B39DE18C9A4E100A14D84 /* leftTop.png in Resources */,
 				680A318418C8927100D073CD /* missileFlare.plist in Resources */,
 				680A317C18C72BB400D073CD /* toonSmoke.plist in Resources */,
+				688B39EB18C9A5BA00A14D84 /* rightTop.png in Resources */,
 				686EC63B18BAEFA70065154C /* groundLevel.jpg in Resources */,
 				686EC64E18BB28FD0065154C /* Scania4.obj in Resources */,
 				688B39CB18C977FF00A14D84 /* bullets.png in Resources */,
