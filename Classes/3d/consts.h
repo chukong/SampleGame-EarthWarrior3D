@@ -17,7 +17,8 @@
 const static Rect BOUND_RECT = Rect(-380,PLAYER_LIMIT_BOT-60,760,PLAYER_LIMIT_TOP-PLAYER_LIMIT_BOT+180 );
 #endif
 
-enum{
+enum
+{
     kPlayerBullet,
     kPlayerMissiles,
     

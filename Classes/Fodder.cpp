@@ -31,84 +31,56 @@ bool Fodder::init()
     return false;
 }
 
-void Fodder::move(float duration, const Point& position,int FodderNum)
+void Fodder::move(const Point& position,cocos2d::Node * enemy)
 {
-    
-    fodderNum = FodderNum;
+    fodder = enemy;
     endPosition = position;
-    moveX = this->getPosition3D().x;
-    moveY = this->getPosition3D().y;
-    totalTime = duration;
+    totalTime = abs(getPositionY()-endPosition.y)/fodderSpeed/60;
+    perPeriodTime = totalTime*percent;
+    sW = 2*Pi/perPeriodTime;
+    rollSpeed = maxRotationAngle*4/perPeriodTime;
     isMoving = true;
     
-    this->schedule(schedule_selector(Fodder::RemoveFodder) , duration, 1, 0.0);
-
-    /*
-    ccBezierConfig bezier; // 创建贝塞尔曲线
-    bezier.controlPoint_1 = Point(this->getPosition3D().x,this->getPosition3D().y); // 起始点
-    bezier.controlPoint_2 = Point(position.x > 1, this->getPosition3D().y>1); //控制点
-    bezier.endPosition = position; // 结束位置
-    
-    BezierTo*  MoveDownOutScreen = BezierTo::create(duration,bezier);
-    CallFuncN * callBack = CallFuncN::create(CC_CALLBACK_1(Fodder::RemoveFodder, this, FodderNum));
-    
-    this->runAction(Sequence::create(MoveDownOutScreen,callBack,NULL));
-     */
+    this->schedule(schedule_selector(Fodder::RemoveFodder) , totalTime, 1, 0.0);
 }
-/*
-void Fodder::acrobacy(float dt)
-{
-   
-}
- */
 void Fodder::update(float dt)
 {
-    
     if (!isMoving)
     {
         return;
     }
     
+    if (smoothAngle+rollSpeed>maxRotationAngle)
+    {
+        isRevert = true;
+    }
+    
+    if (smoothAngle-rollSpeed<-maxRotationAngle)
+    {
+        isRevert = false;
+    }
+    
+    if (!isRevert)
+    {
+        smoothAngle+=rollSpeed;
+    }
+    else
+    {
+        smoothAngle-=rollSpeed;
+    }
+    float fY = this->getPositionY()-fodderSpeed;
+    float fX = sA*sin(fY*sW);
+    this->setPosition(Point(fX,fY));
+    
     this->setRotation3D(Vertex3F(0,smoothAngle,0));
-    smoothAngle+=rollSpeed;
-
-    
-    if(nowTime == amplitude)
-    {
-        nowTime = -1;
-    }
-    
-    if(nowTime == -amplitude)
-    {
-        nowTime = 1;
-    }
-    
-    if (nowTime<amplitude && nowTime>0)
-    {
-        nowTime ++;
-       this->setPosition3D(Vertex3F(this->getPosition3D().x+5,this->getPosition3D().y-5,this->getPosition3D().z));
-    }
-    else if (nowTime> -amplitude*2 && nowTime<0)
-    {
-        nowTime --;
-       this->setPosition3D(Vertex3F(this->getPosition3D().x-5,this->getPosition3D().y-5,this->getPosition3D().z));
-    }
-    
 }
 void Fodder::RemoveFodder(float dt)
 {
     this->retain();
     this->removeFromParentAndCleanup(false);
     EnemyManager * aEnemyManager = EnemyManager::sharedEnemyManager();
-    aEnemyManager->fodderAvilabelStateVect[fodderNum] = -aEnemyManager->fodderAvilabelStateVect[fodderNum];
+    
+    aEnemyManager->standByEnemyVect.pushBack(fodder);
+    aEnemyManager->availabelEnemyVect.eraseObject(fodder,false);
     isMoving = false;
 }
-/*
-void Fodder::RemoveFodder(Node* sender, int num)
-{
-    this->retain();
-    this->removeFromParentAndCleanup(false);
-    EnemyManager * aEnemyManager = EnemyManager::sharedEnemyManager();
-    aEnemyManager->fodderAvilabelStateVect[num] = -aEnemyManager->fodderAvilabelStateVect[num];
-}
-*/

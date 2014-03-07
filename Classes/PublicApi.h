@@ -14,7 +14,7 @@
 class PublicApi
 {
 public:
-   
+    
 protected:
     
 };

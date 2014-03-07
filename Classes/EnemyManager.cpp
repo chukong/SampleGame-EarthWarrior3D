@@ -31,23 +31,7 @@ void EnemyManager::addFodderToMemory()
     {
         Fodder * enemy = Fodder::create();
         enemy->retain();
-        fodderVect.push_back(enemy);
-        fodderAvilabelStateVect.push_back(i+1);
+        standByEnemyVect.pushBack(enemy);
     }
 }
 
-vector<int> EnemyManager::getAllAvilabelFodder()
-{
-    vector<int> avilabelVect;
-    
-    for (int i = 0; i<fodderAvilabelStateVect.size(); i++)
-    {
-        if (fodderAvilabelStateVect[i]>0)
-        {
-            //log("333===%d",fodderAvilabelStateVect[i]);
-            avilabelVect.push_back(fodderAvilabelStateVect[i]);
-        }
-    }
-    
-    return avilabelVect;
-}
