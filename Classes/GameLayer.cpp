@@ -90,11 +90,10 @@ void GameLayer::createCraft(float dt)
     }
    
     Fodder * enemy = static_cast<Fodder *>(aEnemyManager->standByEnemyVect.at(randStandByEnemy));
-    enemy->setPosition(positionX,800.0f);
+    enemy->setPosition(positionX,900.0f);
     this->addChild(enemy);
     
     aEnemyManager->availabelEnemyVect.pushBack(aEnemyManager->standByEnemyVect.at(randStandByEnemy));
-    //aEnemyManager->standByEnemyVect.at(randStandByEnemy)->retain();
     aEnemyManager->standByEnemyVect.eraseObject(static_cast<Node *>(aEnemyManager->standByEnemyVect.at(randStandByEnemy)),false);
     
     int idx = aEnemyManager->availabelEnemyVect.size()-1;
