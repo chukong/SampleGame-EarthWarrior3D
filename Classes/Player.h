@@ -32,7 +32,8 @@ public:
     void setTargetAngle(float angle){targetAngle = angle;};
     void setTargetPos(Point target){targetPos = target;};
     
-    virtual void shoot(float dt);
+    void shoot(float dt);
+    void shootMissile(float dt);
 protected:
     float targetAngle = 0;
     Point targetPos = Point(0,0);

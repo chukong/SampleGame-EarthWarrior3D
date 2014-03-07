@@ -32,9 +32,16 @@ bool Player::init()
         
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
         scheduleUpdate();
-        static_cast<Sprite3D*>(_Model)->setOutline(5.0, Color3B(0,0,0));
-        schedule(schedule_selector(Player::shoot), 2, -1, 0);
-        _type = kPlayer;
+        static_cast<Sprite3D*>(_Model)->setOutline(0.14, Color3B(0,0,0));
+        schedule(schedule_selector(Player::shootMissile), 1.5, -1, 0);
+        schedule(schedule_selector(Player::shoot), 0.1, -1, 0);
+        
+        // engine trail
+        auto part = ParticleSystemQuad::create("engine.plist");
+        addChild(part);
+        part->setPosition(0,-30);
+        part->setScale(0.5);
+        //part->setRotation(90);
         return true;
     }
     return false;
@@ -68,5 +75,11 @@ void Player::onTouchEnded(Touch *touch, Event *event)
 
 void Player::shoot(float dt)
 {
-    BulletController::spawnBullet(kPlayerBullet, getPosition(), Point(0,160));
+    BulletController::spawnBullet(kPlayerBullet, getPosition(), Point(0,1600));
+
+}
+void Player::shootMissile(float dt)
+{
+    BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(-50,-20), Point(-175,-175)); // left
+    BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(50,-20), Point(175,-175)); // right
 }

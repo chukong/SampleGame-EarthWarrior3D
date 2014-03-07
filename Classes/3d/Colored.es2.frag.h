@@ -20,8 +20,9 @@ void main(void)
 
 // pure black frag shader
 static const char* blackFrag = STRINGIFY(
+uniform vec3 OutLineColor;
 void main(void)
 {
-    gl_FragColor =  vec4(0.0,0.0,0.0,1.0);
+    gl_FragColor =  vec4(OutLineColor,1.0);
 }
 );

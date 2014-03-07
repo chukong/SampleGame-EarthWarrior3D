@@ -21,8 +21,27 @@ public:
     bool init();
     void setVector(Point vec);
     Point getVector();
+    virtual void reset();
 protected:
     Point _vector;
+};
+
+class Missile : public Bullet
+{
+public:
+    CREATE_FUNC(Missile);
+    bool init();
+    void update(float dt);
+    CC_SYNTHESIZE(GameEntity*, _target, Target)
+    virtual void reset();
+protected:
+    float _accel = 20;
+    float _turnRate = 40;
+    //float _maxSpeed = 100;
+    float _yRotSpeed = 1400;
+    float _yRotation = 0;
+    bool _left = false;
+    float _velocity = 0;
 };
 
 #endif /* defined(__Moon3d__Bullet__) */
