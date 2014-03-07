@@ -98,8 +98,13 @@ void Missile::update(float dt)
     if(_target){
         //turn towards the target
         float angle = -CC_RADIANS_TO_DEGREES((getPosition() - _target->getPosition()).getAngle());
+        if(fabsf(angle-90)>70)
+        {
+            //too much angle to track, get another target instead
+            _target = nullptr;
+        }
         float curRot = getRotation();
-        float angleDif = std::min(std::max(angle-90 - curRot, -_turnRate*dt), _turnRate*dt);
+        float angleDif = std::min(std::max((angle-90)*1.5f - curRot, -_turnRate*dt), _turnRate*dt);
         
         float f = curRot + angleDif;
         setRotation(f);
