@@ -25,11 +25,10 @@ private:
     
 public:
     //Get instance of singleton
-    std::vector< Fodder*> fodderVect;
-    std::vector< int> fodderAvilabelStateVect;
+    cocos2d::Vector< cocos2d::Node*> standByEnemyVect;
+    cocos2d::Vector< cocos2d::Node*> availabelEnemyVect;
     
     static EnemyManager* sharedEnemyManager();
-    std::vector<int> getAllAvilabelFodder();
 };
 
 #endif /* defined(__Moon3d__PublicApi__) */

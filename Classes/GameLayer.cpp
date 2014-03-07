@@ -21,7 +21,6 @@
 USING_NS_CC;
 using namespace std;
 
-int t = 0;
 bool GameLayer::init()
 {
     // variable init
@@ -64,15 +63,11 @@ bool GameLayer::init()
 void GameLayer::createCraft(float dt)
 {
     EnemyManager * aEnemyManager = EnemyManager::sharedEnemyManager();
-    vector<Fodder *> fodderVect = aEnemyManager->fodderVect;
-    vector<int> avilabelVect = aEnemyManager->getAllAvilabelFodder();
-    if(0 == avilabelVect.size())
+    if(0 == aEnemyManager->standByEnemyVect.size())
     {
         return;
     }
-    int randDigitNum = rand()%avilabelVect.size();
-    int avilabelFodderNum = avilabelVect[randDigitNum]-1;
-    aEnemyManager->fodderAvilabelStateVect[avilabelFodderNum] = -aEnemyManager->fodderAvilabelStateVect[avilabelFodderNum];
+    int randStandByEnemy= rand()%aEnemyManager->standByEnemyVect.size();
 
     float positionX;
     int randomPositionNum = rand()%3;
@@ -93,18 +88,21 @@ void GameLayer::createCraft(float dt)
         default:
             break;
     }
-    if (avilabelFodderNum ==4 )
-    {
-        return;
-    }
-    Fodder * enemy = fodderVect[avilabelFodderNum];
-    t++;
+   
+    Fodder * enemy = static_cast<Fodder *>(aEnemyManager->standByEnemyVect.at(randStandByEnemy));
     enemy->setPosition(positionX,800.0f);
     this->addChild(enemy);
-    enemy->move(fodderSpeed,Point(enemy->getPosition3D().x,-visible_size_macro.height*1.5),avilabelFodderNum);
+    
+    aEnemyManager->availabelEnemyVect.pushBack(aEnemyManager->standByEnemyVect.at(randStandByEnemy));
+    //aEnemyManager->standByEnemyVect.at(randStandByEnemy)->retain();
+    aEnemyManager->standByEnemyVect.eraseObject(static_cast<Node *>(aEnemyManager->standByEnemyVect.at(randStandByEnemy)),false);
+    
+    int idx = aEnemyManager->availabelEnemyVect.size()-1;
+    enemy->move(Point(enemy->getPosition3D().x,-visible_size_macro.height*0.5),aEnemyManager->availabelEnemyVect.at(idx));
 }
 
-void GameLayer::update(float dt){
+void GameLayer::update(float dt)
+{
     xScroll += speed*dt;
     spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
     for ( auto i : BulletController::bullets )
@@ -126,9 +124,7 @@ void GameLayer::update(float dt){
             BulletController::erase(i);
         }
     }
-    
     BulletController::update(dt);
-    
     //_collisionTree->clear();
 }
 

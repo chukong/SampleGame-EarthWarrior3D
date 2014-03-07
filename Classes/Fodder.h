@@ -16,28 +16,25 @@ class Fodder : public AirCraft
 {
 public:
     bool init();
-    void move(float duration, const Point& position,int FodderNum);
+    void move(const Point& position,cocos2d::Node * enemy);
     CREATE_FUNC(Fodder);
 protected:
+    cocos2d::Node * fodder;
     
-    const float rollSpeed = 3.5;// recommended 1.5
+    float rollSpeed;
     float smoothAngle = 0.0f;
-    
-    float moveX;
-    float moveY;
-    
-    const int cA = 10.0f;
-    const int cB = 10.0f;
-    const int cC = 0.0f;
-    int fodderNum = 0;
+    const float maxRotationAngle = 60.0f;
+    bool isRevert = false;
     
     bool isMoving = false;
-    float totalTime = 0;
-    int nowTime = 1;
-    const int amplitude = 80;
-    
-    
     Point endPosition;
+    
+    const float percent = 300;
+    const float fodderSpeed = 4.0f;
+    float perPeriodTime;
+    float totalTime;
+    const float sA = 200.0f;
+    float sW;
     
     void update(float dt);
     void RemoveFodder(float dt);
