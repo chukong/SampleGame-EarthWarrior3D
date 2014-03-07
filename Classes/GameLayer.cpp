@@ -53,7 +53,10 @@ bool GameLayer::init()
     test.clear();
     
     
-    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect("boom.mp3");
+    auto Audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    Audio->preloadEffect("boom.mp3");
+    Audio->preloadEffect("hit.mp3");
+    Audio->preloadEffect("boom2.mp3");
 
     this->schedule(schedule_selector(GameLayer::createCraft) , 1.0, -1, 0.0);
 
@@ -108,6 +111,7 @@ void GameLayer::update(float dt)
 {
     xScroll += speed*dt;
     spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
+    //TODO: rewrite this in backwards loop
     for ( auto i : BulletController::bullets )
     {
         if(i->getPosition().getDistance(_testDummy->getPosition()) <
@@ -120,8 +124,12 @@ void GameLayer::update(float dt)
                 auto expl = ExplosionFX::create();
                 expl->setPosition(_testDummy->getPosition());
                 addChild(expl);
-                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3");
+                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
                 //TODO: need to remove the expl when finished particle, or reuse
+            }
+            else
+            {
+                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.mp3");
             }
 
             BulletController::erase(i);
