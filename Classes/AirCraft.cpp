@@ -22,5 +22,20 @@ void AirCraft::die()
 {
     CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3");
     EffectManager::createBigExplosion(getPosition());
+    _alive = false;
     //removeFromParent();
+}
+
+void AirCraft::move(Point pos)
+{
+    setPosition(getPosition()+pos);
+}
+
+void AirCraft::reset()
+{
+    _alive = true;
+}
+bool AirCraft::alive()
+{
+    return _alive;
 }

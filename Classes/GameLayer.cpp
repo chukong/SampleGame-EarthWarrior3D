@@ -8,12 +8,12 @@
 
 #include "GameLayer.h"
 #include "Player.h"
-#include "Fodder.h"
+#include "Enemies.h"
 #include "PublicApi.h"
-#include "BulletController.h"
+#include "GameControllers.h"
 #include "consts.h"
-#include "Bullet.h"
-#include "EnemyManager.h"
+#include "Bullets.h"
+//#include "EnemyManager.h"
 #include "Effects.h"
 #include "GameEntity.h"
 #include "SimpleAudioEngine.h"
@@ -48,54 +48,28 @@ bool GameLayer::init()
     Audio->preloadEffect("hit.mp3");
     Audio->preloadEffect("boom2.mp3");
 
-    this->schedule(schedule_selector(GameLayer::createCraft) , 1.0, -1, 0.0);
+    this->schedule(schedule_selector(GameLayer::gameMaster) , 1.5, -1, 0.0);
 
     BulletController::init(this);
+    EnemyController::init(this);
     scheduleUpdate();
     
     return true;
 }
 
-void GameLayer::createCraft(float dt)
+void GameLayer::gameMaster(float dt)
 {
-    EnemyManager * aEnemyManager = EnemyManager::sharedEnemyManager();
-    if(0 == aEnemyManager->standByEnemyVect.size())
+    _elapsed+=dt;
+    //if(_elapsed < 10 && EnemyController::enemies.size() < 5)
     {
-        return;
+        Point random = Point(100*CCRANDOM_MINUS1_1(), BOUND_RECT.size.height/2+200);
+        for(int i=0; i < 4; i++)
+        {
+            EnemyController::spawnEnemy(kEnemyFodder)->setPosition(random + Point(60,60)*(i+1));
+            EnemyController::spawnEnemy(kEnemyFodder)->setPosition(random + Point(-60,60)*(i+1));
+        }
+        EnemyController::spawnEnemy(kEnemyFodderL)->setPosition(random);
     }
-    int randStandByEnemy= rand()%aEnemyManager->standByEnemyVect.size();
-
-    float positionX;
-    int randomPositionNum = rand()%3;
-    switch (randomPositionNum)
-    {
-        case 0:
-            positionX = -300;
-            break;
-        case 1:
-            positionX = -100;
-            break;
-        case 2:
-            positionX = 100;
-            break;
-        case 3:
-            positionX = 300;
-            break;
-        default:
-            break;
-    }
-   
-    Fodder * enemy = static_cast<Fodder *>(aEnemyManager->standByEnemyVect.at(randStandByEnemy));
-    enemy->setPosition(positionX,900.0f);
-    this->addChild(enemy);
-    
-    aEnemyManager->availabelEnemyVect.pushBack(aEnemyManager->standByEnemyVect.at(randStandByEnemy));
-
-    aEnemyManager->standByEnemyVect.eraseObject(static_cast<AirCraft *>(aEnemyManager->standByEnemyVect.at(randStandByEnemy)),false);
-
-    
-    int idx = aEnemyManager->availabelEnemyVect.size()-1;
-    enemy->move(Point(enemy->getPosition3D().x,-visible_size_macro.height*0.5),aEnemyManager->availabelEnemyVect.at(idx));
 }
 
 void GameLayer::update(float dt)
@@ -103,7 +77,7 @@ void GameLayer::update(float dt)
     xScroll += speed*dt;
     spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
 
-    BulletController::update(dt);
+    GameController::update(dt);
     //_collisionTree->clear();
     //_streak->setPosition(_player->getPosition()-Point(0,40));
 }

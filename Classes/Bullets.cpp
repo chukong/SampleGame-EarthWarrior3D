@@ -6,13 +6,13 @@
 //
 //
 
-#include "Bullet.h"
+#include "Bullets.h"
 #include "3d/Sprite3D.h"
 #include "consts.h"
 #include "GameLayer.h"
 #include "GameEntity.h"
-#include "EnemyManager.h"
-#include "Fodder.h"
+#include "GameControllers.h"
+#include "Enemies.h"
 
 bool Bullet::init()
 {
@@ -35,7 +35,7 @@ bool PlayerBullet::init()
         addChild(_Model);
         _radius=10;
         _type = kPlayerBullet;
-        _damage = 5;
+        _damage = 4;
         return true;
     }
     return false;
@@ -96,12 +96,12 @@ void Missile::update(float dt)
     if(!_target)
     {
         //setTarget(static_cast<GameLayer*>(getParent())->_testDummy);//very hacky
-        setTarget(static_cast<GameEntity*>(EnemyManager::sharedEnemyManager()->availabelEnemyVect.getRandomObject()));
+        setTarget(static_cast<GameEntity*>(EnemyController::enemies.getRandomObject()));
     }
     if(_target){
         //turn towards the target
         float angle = -CC_RADIANS_TO_DEGREES((getPosition() - _target->getPosition()).getAngle());
-        if(fabsf(angle-90)>70)
+        if(fabsf(angle-90)>50)
         {
             //too much angle to track, get another target instead
             _target = nullptr;
@@ -114,6 +114,12 @@ void Missile::update(float dt)
         setPosition(getPosition()+Point(sinf(CC_DEGREES_TO_RADIANS(f))*_velocity,cosf(CC_DEGREES_TO_RADIANS(f))*_velocity) + _vector*dt);
         _vector = _vector * (1-dt);
         
+    }
+    else{
+        float f = getRotation();
+        setRotation(f);
+        setPosition(getPosition()+Point(sinf(CC_DEGREES_TO_RADIANS(f))*_velocity,cosf(CC_DEGREES_TO_RADIANS(f))*_velocity) + _vector*dt);
+        _vector = _vector * (1-dt);
     }
     // missiles need to rotate
     _yRotation += _yRotSpeed*dt;

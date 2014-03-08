@@ -25,7 +25,7 @@ public:
     float getRadius(){return _radius;};
 protected:
     Node *_Model;
-    float _radius = 10;
+    float _radius;
     Vertex3F _orientation;
     int _type;
     

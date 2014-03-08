@@ -17,12 +17,15 @@ class AirCraft : public GameEntity
 {
 public:
     void hurt(float damage);
-    float getHP();
-    virtual void die();
+    void die();
     void shoot();
+    //CC_SYNTHESIZE(float, _HP, HP);
+    bool alive();
+    void move(Point pos);
+    virtual void reset();
 protected:
-    float _HP = 200;// hit points
-    
+    bool _alive = true;
+    float _HP;
 };
 
 #endif /* defined(__Moon3d__AirCraft__) */

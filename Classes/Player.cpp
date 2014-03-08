@@ -7,9 +7,9 @@
 //
 
 #include "Player.h"
-#include "Bullet.h"
+#include "Bullets.h"
 #include "3d/Sprite3D.h"
-#include "BulletController.h"
+#include "GameControllers.h"
 #include "consts.h"
 
 bool Player::init()
@@ -32,7 +32,7 @@ bool Player::init()
         
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
         scheduleUpdate();
-        static_cast<Sprite3D*>(_Model)->setOutline(0.14, Color3B(0,0,0));
+        static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B(0,0,0));
         schedule(schedule_selector(Player::shootMissile), 1.5, -1, 0);
         schedule(schedule_selector(Player::shoot), 0.1, -1, 0);
         

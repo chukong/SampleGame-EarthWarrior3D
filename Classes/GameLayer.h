@@ -11,7 +11,7 @@
 #include "cocos2d.h"
 USING_NS_CC;
 class Player;
-class QuadTree;
+//class QuadTree;
 class AirCraft;
 class GameEntity;
 class GameLayer : public Layer
@@ -26,11 +26,12 @@ protected:
     Sprite *spr;
     Player *_player;
     MotionStreak *_streak;
-    QuadTree *_collisionTree;
+    //QuadTree *_collisionTree;
     
 
 
-    QuadTree *container;
-    void createCraft(float dt);
+    //QuadTree *container;
+    void gameMaster(float dt);
+    float _elapsed = 0;
 };
 #endif /* defined(__Moon3d__GameLayer__) */
