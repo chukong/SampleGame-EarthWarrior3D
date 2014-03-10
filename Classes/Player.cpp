@@ -90,6 +90,10 @@ void Player::setPosition(Point pos)
     {
         _streak->setPosition(pos+_trailOffset);
     }
+    if(_emissionPart)
+    {
+        _emissionPart->setPosition(pos+_trailOffset);
+    }
 }
 void Player::shootMissile(float dt)
 {

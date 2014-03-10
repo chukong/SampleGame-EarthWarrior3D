@@ -11,16 +11,22 @@
 
 #include "cocos2d.h"
 #include "AirCraft.h"
-
+enum moveMode{
+    kDefault,
+    kTurn
+};
 class Fodder : public AirCraft
 {
 public:
     CREATE_FUNC(Fodder);
     bool init();
     virtual void reset();
+    virtual void move(float y, float dt);
+    CC_SYNTHESIZE(int, _moveMode, MoveMode);
+    CC_PROPERTY(float, _turn, TurnRate);
 };
 
-class FodderLeader : public AirCraft
+class FodderLeader : public Fodder
 {
 public:
     CREATE_FUNC(FodderLeader);

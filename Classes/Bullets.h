@@ -44,7 +44,7 @@ public:
     virtual void reset();
 protected:
     float _accel = 20;
-    float _turnRate = 120;
+    float _turnRate = 180;
     //float _maxSpeed = 100;
     float _yRotSpeed = 1400;
     float _yRotation = 0;

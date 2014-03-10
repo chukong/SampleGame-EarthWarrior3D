@@ -145,6 +145,18 @@
 		68B9376118C0336A00CE1505 /* libCocosDenshion iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC62718BADFD30065154C /* libCocosDenshion iOS.a */; };
 		68BB2B1618C4720000158010 /* DownNecker2.obj in Resources */ = {isa = PBXBuildFile; fileRef = 68BB2B1518C4720000158010 /* DownNecker2.obj */; };
 		68BB2B1718C4720000158010 /* DownNecker2.obj in Resources */ = {isa = PBXBuildFile; fileRef = 68BB2B1518C4720000158010 /* DownNecker2.obj */; };
+		68F22BBA18CB3CB600B6521B /* explodeEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 68F22BB918CB3CB600B6521B /* explodeEffect.mp3 */; };
+		68F22BBB18CB3CB600B6521B /* explodeEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 68F22BB918CB3CB600B6521B /* explodeEffect.mp3 */; };
+		68F22BC718CB560100B6521B /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 68F22BC618CB560100B6521B /* cloud.png */; };
+		68F22BC818CB560100B6521B /* cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 68F22BC618CB560100B6521B /* cloud.png */; };
+		68F22BCA18CC2AF100B6521B /* Flux.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 68F22BC918CC2AF100B6521B /* Flux.mp3 */; };
+		68F22BCB18CC2AF100B6521B /* Flux.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 68F22BC918CC2AF100B6521B /* Flux.mp3 */; };
+		68F22BCE18CCAD4F00B6521B /* coco.png in Resources */ = {isa = PBXBuildFile; fileRef = 68F22BCC18CCAD4F00B6521B /* coco.png */; };
+		68F22BCF18CCAD4F00B6521B /* coco.png in Resources */ = {isa = PBXBuildFile; fileRef = 68F22BCC18CCAD4F00B6521B /* coco.png */; };
+		68F22BD018CCAD4F00B6521B /* coconut.obj in Resources */ = {isa = PBXBuildFile; fileRef = 68F22BCD18CCAD4F00B6521B /* coconut.obj */; };
+		68F22BD118CCAD4F00B6521B /* coconut.obj in Resources */ = {isa = PBXBuildFile; fileRef = 68F22BCD18CCAD4F00B6521B /* coconut.obj */; };
+		68F22BD318CCD0B000B6521B /* emissionPart.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68F22BD218CCD0B000B6521B /* emissionPart.plist */; };
+		68F22BD418CCD0B000B6521B /* emissionPart.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68F22BD218CCD0B000B6521B /* emissionPart.plist */; };
 		A044DE7718C69F8000B6CCBD /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A044DE6F18C69F8000B6CCBD /* Mesh.cpp */; };
 		A044DE7818C69F8000B6CCBD /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A044DE6F18C69F8000B6CCBD /* Mesh.cpp */; };
 		A044DE7918C69F8000B6CCBD /* Sprite3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A044DE7118C69F8000B6CCBD /* Sprite3D.cpp */; };
@@ -401,6 +413,12 @@
 		68AB901618CB0CC8007DDB0D /* dijiyuanv001.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dijiyuanv001.obj; sourceTree = "<group>"; };
 		68AB901718CB0CC8007DDB0D /* dijiyuanv001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dijiyuanv001.png; sourceTree = "<group>"; };
 		68BB2B1518C4720000158010 /* DownNecker2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DownNecker2.obj; sourceTree = "<group>"; };
+		68F22BB918CB3CB600B6521B /* explodeEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explodeEffect.mp3; sourceTree = "<group>"; };
+		68F22BC618CB560100B6521B /* cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud.png; sourceTree = "<group>"; };
+		68F22BC918CC2AF100B6521B /* Flux.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Flux.mp3; sourceTree = "<group>"; };
+		68F22BCC18CCAD4F00B6521B /* coco.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coco.png; sourceTree = "<group>"; };
+		68F22BCD18CCAD4F00B6521B /* coconut.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = coconut.obj; sourceTree = "<group>"; };
+		68F22BD218CCD0B000B6521B /* emissionPart.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emissionPart.plist; sourceTree = "<group>"; };
 		A044DE6F18C69F8000B6CCBD /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
 		A044DE7018C69F8000B6CCBD /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
 		A044DE7118C69F8000B6CCBD /* Sprite3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite3D.cpp; sourceTree = "<group>"; };
@@ -623,6 +641,12 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				68F22BD218CCD0B000B6521B /* emissionPart.plist */,
+				68F22BCC18CCAD4F00B6521B /* coco.png */,
+				68F22BCD18CCAD4F00B6521B /* coconut.obj */,
+				68F22BC918CC2AF100B6521B /* Flux.mp3 */,
+				68F22BC618CB560100B6521B /* cloud.png */,
+				68F22BB918CB3CB600B6521B /* explodeEffect.mp3 */,
 				68AB901618CB0CC8007DDB0D /* dijiyuanv001.obj */,
 				68AB901718CB0CC8007DDB0D /* dijiyuanv001.png */,
 				68AB900D18C9E0FD007DDB0D /* playerv002_256.png */,
@@ -874,18 +898,21 @@
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
+				68F22BD018CCAD4F00B6521B /* coconut.obj in Resources */,
 				688B39EA18C9A5BA00A14D84 /* rightTop.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				680A316718C6471000D073CD /* playerv001.obj in Resources */,
 				68AB901218C9F468007DDB0D /* debris.plist in Resources */,
 				686EC63A18BAEFA70065154C /* groundLevel.jpg in Resources */,
+				68F22BCE18CCAD4F00B6521B /* coco.png in Resources */,
 				688B39CA18C977FF00A14D84 /* bullets.png in Resources */,
 				680A316918C6471000D073CD /* playerv002_1024.png in Resources */,
 				688B39ED18C9B48700A14D84 /* hit.mp3 in Resources */,
 				68BB2B1618C4720000158010 /* DownNecker2.obj in Resources */,
 				688B39DD18C9A4E100A14D84 /* leftTop.png in Resources */,
 				6815E1C618BDE5C9004F9944 /* DownNecker.obj in Resources */,
+				68F22BCA18CC2AF100B6521B /* Flux.mp3 in Resources */,
 				686EC63F18BB11250065154C /* fighter.obj in Resources */,
 				688B39D918C99A9A00A14D84 /* streak.png in Resources */,
 				68AB901418C9F468007DDB0D /* glow.plist in Resources */,
@@ -907,6 +934,7 @@
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
+				68F22BBA18CB3CB600B6521B /* explodeEffect.mp3 in Resources */,
 				680A315F18C6471000D073CD /* daodan_512.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
 				6815E1C418BDE5C9004F9944 /* car00.png in Resources */,
@@ -921,6 +949,8 @@
 				680A318318C8927100D073CD /* missileFlare.plist in Resources */,
 				68AB900818C9DFAE007DDB0D /* daodan_32.png in Resources */,
 				68AB900B18C9E029007DDB0D /* diji02_v002_128.png in Resources */,
+				68F22BD318CCD0B000B6521B /* emissionPart.plist in Resources */,
+				68F22BC718CB560100B6521B /* cloud.png in Resources */,
 				680A318918C8A29400D073CD /* engine.plist in Resources */,
 				680A316118C6471000D073CD /* daodanv001.obj in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
@@ -941,10 +971,15 @@
 				688B39EB18C9A5BA00A14D84 /* rightTop.png in Resources */,
 				68AB900C18C9E029007DDB0D /* diji02_v002_128.png in Resources */,
 				686EC63B18BAEFA70065154C /* groundLevel.jpg in Resources */,
+				68F22BD418CCD0B000B6521B /* emissionPart.plist in Resources */,
+				68F22BCB18CC2AF100B6521B /* Flux.mp3 in Resources */,
+				68F22BCF18CCAD4F00B6521B /* coco.png in Resources */,
 				686EC64E18BB28FD0065154C /* Scania4.obj in Resources */,
 				68AB900918C9DFAE007DDB0D /* daodan_32.png in Resources */,
 				688B39CB18C977FF00A14D84 /* bullets.png in Resources */,
 				5087E75317EB910900C73F5D /* CloseNormal.png in Resources */,
+				68F22BD118CCAD4F00B6521B /* coconut.obj in Resources */,
+				68F22BC818CB560100B6521B /* cloud.png in Resources */,
 				6815E1C718BDE5C9004F9944 /* DownNecker.obj in Resources */,
 				68AB900F18C9E0FD007DDB0D /* playerv002_256.png in Resources */,
 				686EC64C18BB28FD0065154C /* car00.png in Resources */,
@@ -953,6 +988,7 @@
 				680A317A18C72BB400D073CD /* flare.plist in Resources */,
 				680A316218C6471000D073CD /* daodanv001.obj in Resources */,
 				680A316618C6471000D073CD /* diji02_v002_1024.png in Resources */,
+				68F22BBB18CB3CB600B6521B /* explodeEffect.mp3 in Resources */,
 				68AB901318C9F468007DDB0D /* debris.plist in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				680A316018C6471000D073CD /* daodan_512.png in Resources */,

@@ -23,9 +23,11 @@ public:
 protected:
     float xScroll = 0.0f;
     float speed = -60.0f;
-    Sprite *spr;
+    Sprite *_spr;
+    Sprite *_cloud;
     Player *_player;
     MotionStreak *_streak;
+    ParticleSystemQuad *_emissionPart;
     //QuadTree *_collisionTree;
     
 

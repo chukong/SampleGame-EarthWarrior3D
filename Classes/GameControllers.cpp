@@ -23,16 +23,16 @@ Vector<Missile*> BulletController::_missilePool;
 
 
 void BulletController::reset(){
-    BulletController::_inited = false;
-    BulletController::_bulletLayer = nullptr;
-    BulletController::bullets.clear();
+    _inited = false;
+    _bulletLayer = nullptr;
+    bullets.clear();
 }
 bool BulletController::init(Node *bulletLayer){
     if(bulletLayer)
     {
-        BulletController::reset();
-        BulletController::_bulletLayer = bulletLayer;
-        BulletController::_inited = false;
+        reset();
+        _bulletLayer = bulletLayer;
+        _inited = false;
         return true;
     }
     return false;
@@ -67,8 +67,8 @@ Bullet* BulletController::spawnBullet(int type, Point pos, Point vec)
     }
     if(bullet)
     {
-        BulletController::bullets.pushBack(bullet);
-        BulletController::_bulletLayer->addChild(bullet);
+        bullets.pushBack(bullet);
+        _bulletLayer->addChild(bullet);
         //bullet->release();
         bullet->setPosition(pos);
         bullet->setVector(vec);
@@ -80,31 +80,31 @@ void BulletController::erase(Bullet* b)
 {
     if(b->getType() == kPlayerMissiles)
     {
-        BulletController::_missilePool.pushBack(static_cast<Missile*>(b));
-        BulletController::bullets.eraseObject(b);
+        _missilePool.pushBack(static_cast<Missile*>(b));
+        bullets.eraseObject(b);
         b->removeFromParentAndCleanup(false);
         b->reset();
     }
     else
     {
         b->removeFromParentAndCleanup(true);
-        BulletController::bullets.eraseObject(b);
+        bullets.eraseObject(b);
     }
 }
 void BulletController::erase(int i)
 {
-    auto b = BulletController::bullets.at(i);
+    auto b = bullets.at(i);
     if(b->getType() == kPlayerMissiles)
     {
-        BulletController::_missilePool.pushBack(static_cast<Missile*>(b));
-        BulletController::bullets.erase(i);
+        _missilePool.pushBack(static_cast<Missile*>(b));
+        bullets.erase(i);
         b->removeFromParentAndCleanup(false);
         b->reset();
     }
     else
     {
 
-        BulletController::bullets.erase(i);
+        bullets.erase(i);
         b->removeFromParentAndCleanup(false);
     }
 }
@@ -113,29 +113,28 @@ void BulletController::erase(int i)
 Node* EnemyController::_enemyLayer = nullptr;
 bool EnemyController::_inited = false;
 Vector<AirCraft*> EnemyController::enemies;
+Vector<AirCraft*> EnemyController::showCaseEnemies;
 Vector<Fodder*> EnemyController::_fodderPool;
 Vector<FodderLeader*> EnemyController::_fodderLPool;
 Vector<BigDude*> EnemyController::_bigDudePool;
 
-const Point EnemyController::EnemyMoveDist = Point(0,-400);
+const float EnemyController::EnemyMoveDist = -400;
 
 bool EnemyController::init(Node* enemyLayer)
 {
-    EnemyController::_enemyLayer = enemyLayer;
-    EnemyController::_inited = true;
+    _enemyLayer = enemyLayer;
+    _inited = true;
     return true;
 }
 
 void EnemyController::reset()
 {
-    EnemyController::_inited = false;
-    EnemyController::_enemyLayer = nullptr;
-    EnemyController::enemies.clear();
+    _inited = false;
+    _enemyLayer = nullptr;
+    enemies.clear();
 }
-
-AirCraft* EnemyController::spawnEnemy(int type)
+AirCraft* EnemyController::createOrGet(int type)
 {
-    CC_ASSERT(EnemyController::_enemyLayer);
     AirCraft *enemy = nullptr;
     switch(type)
     {
@@ -143,7 +142,6 @@ AirCraft* EnemyController::spawnEnemy(int type)
             if(!_fodderPool.empty())
             {
                 enemy = _fodderPool.back();
-                enemy->retain();
                 _fodderPool.popBack();
             }
             else
@@ -156,7 +154,6 @@ AirCraft* EnemyController::spawnEnemy(int type)
             if(!_fodderLPool.empty())
             {
                 enemy = _fodderLPool.back();
-                enemy->retain();
                 _fodderLPool.popBack();
             }
             else
@@ -169,7 +166,6 @@ AirCraft* EnemyController::spawnEnemy(int type)
             if(!_bigDudePool.empty())
             {
                 enemy = _bigDudePool.back();
-                enemy->retain();
                 _bigDudePool.popBack();
             }
             else
@@ -179,32 +175,50 @@ AirCraft* EnemyController::spawnEnemy(int type)
             }
             break;
     }
+    return enemy;
+}
+
+AirCraft* EnemyController::spawnEnemy(int type)
+{
+    CC_ASSERT(_enemyLayer);
+    AirCraft *enemy = createOrGet(type);
     if(enemy)
     {
-        EnemyController::enemies.pushBack(enemy);
-        enemy->release();
-        EnemyController::_enemyLayer->addChild(enemy);
+        enemies.pushBack(enemy);
+        _enemyLayer->addChild(enemy);
+        return enemy;
+    }
+    return nullptr;
+}
+AirCraft* EnemyController::showCaseEnemy(int type)
+{
+    CC_ASSERT(_enemyLayer);
+    AirCraft *enemy = createOrGet(type);
+    if(enemy)
+    {
+        showCaseEnemies.pushBack(enemy);
+        _enemyLayer->addChild(enemy);
         return enemy;
     }
     return nullptr;
 }
 void EnemyController::erase(int i)
 {
-    auto e = EnemyController::enemies.at(i);
+    auto e = enemies.at(i);
     int type = e->getType();
     switch(type)
     {
         case kEnemyFodder:
-            EnemyController::_fodderPool.pushBack(static_cast<Fodder*>(e));
+            _fodderPool.pushBack(static_cast<Fodder*>(e));
             break;
         case kEnemyFodderL:
-            EnemyController::_fodderLPool.pushBack(static_cast<FodderLeader*>(e));
+            _fodderLPool.pushBack(static_cast<FodderLeader*>(e));
             break;
         case kEnemyBigDude:
-            EnemyController::_bigDudePool.pushBack(static_cast<BigDude*>(e));
+            _bigDudePool.pushBack(static_cast<BigDude*>(e));
             break;
     }
-    EnemyController::enemies.erase(i);
+    enemies.erase(i);
     e->removeFromParentAndCleanup(false);
     e->reset();
 }
@@ -215,7 +229,7 @@ void GameController::update(float dt)
     Point temp;
     Bullet* b;
     auto list =BulletController::bullets;
-    Point enemyMoveDist =EnemyController::EnemyMoveDist*dt;
+    float enemyMoveDist =EnemyController::EnemyMoveDist*dt;
     for(int i = BulletController::bullets.size()-1; i >= 0; i-- )
     {
         b =BulletController::bullets.at(i);
@@ -229,17 +243,20 @@ void GameController::update(float dt)
                 if(b->getPosition().getDistance(e->getPosition()) <(b->getRadius() + e->getRadius()))
                 {
                     //collision happened
-                    switch(b->getType())
+                    bool dead =  e->hurt(b->getDamage());
+                    if(!dead)
                     {
-                        case kPlayerMissiles:
-                            EffectManager::createExplosion(e->getPosition());
-                            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
-                            break;
-                        default:
-                            CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.mp3");
-                            break;
+                        switch(b->getType())
+                        {
+                            case kPlayerMissiles:
+                                EffectManager::createExplosion(e->getPosition());
+                                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
+                                break;
+                            default:
+                                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.mp3");
+                                break;
+                        }
                     }
-                    e->hurt(b->getDamage());
                     BulletController::erase(i);
                     break;
                 }
@@ -259,6 +276,7 @@ void GameController::update(float dt)
             BulletController::erase(i);
         }
     }
+    // Enemies update
     for(int k = EnemyController::enemies.size()-1; k>=0; k--)
     {
         auto enemy =EnemyController::enemies.at(k);
@@ -266,7 +284,7 @@ void GameController::update(float dt)
         {
             EnemyController::erase(k);
             //enemy->reset();
-            break;
+            //break;
         }
         switch(enemy->getType())
         {
@@ -274,7 +292,7 @@ void GameController::update(float dt)
                 enemy->update(dt);
                 break;
             default:
-                enemy->move(enemyMoveDist);
+                enemy->move(enemyMoveDist, dt);
                 break;
         }
         if(!ENEMY_BOUND_RECT.containsPoint(enemy->getPosition()))
@@ -284,5 +302,12 @@ void GameController::update(float dt)
         }
         //TODO: if enemy collide with player
         //if(enemy->getPosition().getDistance(<#const cocos2d::Point &other#>))
+    }
+    
+    // enemies that are showing off before they are ready to be shot down
+    for(int u = EnemyController::showCaseEnemies.size()-1; u>=0; u--)
+    {
+        auto enemy =EnemyController::showCaseEnemies.at(u);
+        enemy->move(enemyMoveDist,dt);
     }
 }

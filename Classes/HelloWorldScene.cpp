@@ -1,5 +1,6 @@
 #include "HelloWorldScene.h"
 #include "GameLayer.h"
+#include "3d/Sprite3D.h"
 
 USING_NS_CC;
 
@@ -45,6 +46,14 @@ bool HelloWorld::init()
     rightTopUI->setAnchorPoint(Point(1,1));
     rightTopUI->setPosition(origin+Point(visibleSize));
     addChild(rightTopUI);
+    
+    // Easter Egg
+//    auto coco = Sprite3D::create("coconut.obj", "coco.png");
+//    addChild(coco);
+//    coco->setScale(1);
+//    coco->setOutline(10, Color3B(0,0,0));
+//    coco->setPosition(320,480);
+//    coco->runAction(RepeatForever::create(RotateBy::create(0.3, Vertex3F(10,12,13))));
     return true;
 }
 

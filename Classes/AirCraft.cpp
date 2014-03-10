@@ -10,25 +10,28 @@
 #include "SimpleAudioEngine.h"
 #include "Effects.h"
 
-void AirCraft::hurt(float damage)
+bool AirCraft::hurt(float damage)
 {
     _HP -= damage;
     if(_HP <= 0)
     {
         die();
+        return true;
     }
+    return false;
 }
 void AirCraft::die()
 {
-    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3");
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("explodeEffect.mp3");
     EffectManager::createBigExplosion(getPosition());
     _alive = false;
     //removeFromParent();
 }
 
-void AirCraft::move(Point pos)
+void AirCraft::move(float y, float dt)
 {
-    setPosition(getPosition()+pos);
+    //setPosition(getPosition().x+getPosition().y+y);
+    forward(y);
 }
 
 void AirCraft::reset()

@@ -32,6 +32,30 @@ void Fodder::reset()
     AirCraft::reset();
     _HP = 10;
 }
+void Fodder::setTurnRate(float turn)
+{
+    setMoveMode(moveMode::kTurn);
+    setRotation3D(Vertex3F(fabsf(turn)*0.15, turn, 0));
+    _turn = turn;
+}
+float Fodder::getTurnRate()
+{
+    return _turn;
+}
+void Fodder::move(float y, float dt)
+{
+switch(_moveMode)
+    {
+        case moveMode::kTurn:
+            forward(y, getTurnRate()*dt);
+            break;
+        default:
+            //setPosition(getPosition()+pos);
+            forward(y);
+    }
+
+}
+
 bool FodderLeader::init()
 {
     _Model = Sprite3D::create("dijiyuanv001.obj", "dijiyuanv001.png");

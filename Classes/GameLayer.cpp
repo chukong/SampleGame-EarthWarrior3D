@@ -26,27 +26,36 @@ bool GameLayer::init()
     //_collisionTree = new QuadTree(0, BOUND_RECT);
     
     
-    spr = Sprite::create("groundLevel.jpg");
-    addChild(spr);
+    _spr = Sprite::create("groundLevel.jpg");
+    _cloud = Sprite::create("cloud.png");
+    addChild(_spr);
+    //addChild(_cloud);
     Texture2D::TexParams texRepeat = {GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_REPEAT};
-    spr->getTexture()->setTexParameters(texRepeat);
+    _spr->getTexture()->setTexParameters(texRepeat);
+    _cloud->getTexture()->setTexParameters(texRepeat);
+    _cloud->setScale(2.8);
     setRotation3D(Vertex3F(-30.0,0.0f,0.0f));
-    spr->setScale(1.4);
-    //spr->setFlippedY(true);
-    spr->setPosition(0.0f,400.0f);
+    _spr->setScale(1.4);
+    _spr->setPosition(0.0f,400.0f);
     
     _player = Player::create();
     
     _streak = MotionStreak::create(0.4, 1, 15, Color3B(82,255,253), "streak.png");
     _player->setTrail(_streak);
     addChild(_streak);
-    
+    _emissionPart = ParticleSystemQuad::create("emissionPart.plist");
+    _player->setEmissionPart(_emissionPart);
+    addChild(_emissionPart);
+    _emissionPart->setPositionType(tPositionType::FREE);
     addChild(_player,10);
     EffectManager::setLayer(this);
     auto Audio = CocosDenshion::SimpleAudioEngine::getInstance();
-    Audio->preloadEffect("boom.mp3");
+    Audio->preloadEffect("explodeEffect.mp3");
     Audio->preloadEffect("hit.mp3");
     Audio->preloadEffect("boom2.mp3");
+    // Music By Matthew Pable (http://www.matthewpablo.com/)
+    // Licensed under CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
+    Audio->playBackgroundMusic("Flux.mp3");
 
     this->schedule(schedule_selector(GameLayer::gameMaster) , 1.5, -1, 0.0);
 
@@ -60,26 +69,52 @@ bool GameLayer::init()
 void GameLayer::gameMaster(float dt)
 {
     _elapsed+=dt;
-    //if(_elapsed < 10 && EnemyController::enemies.size() < 5)
+    int enemyCount =EnemyController::enemies.size();
+    //if(_elapsed < 10 && enemyCount < 5)
+    if(enemyCount < 5)
     {
         Point random = Point(100*CCRANDOM_MINUS1_1(), BOUND_RECT.size.height/2+200);
-        for(int i=0; i < 4; i++)
+        for(int i=0; i < 5; i++)
         {
-            EnemyController::spawnEnemy(kEnemyFodder)->setPosition(random + Point(60,60)*(i+1));
-            EnemyController::spawnEnemy(kEnemyFodder)->setPosition(random + Point(-60,60)*(i+1));
+            auto enemy1 = EnemyController::spawnEnemy(kEnemyFodder);
+            enemy1->setPosition(random + Point(60,60)*(i+1));
+            static_cast<Fodder*>(enemy1)->setMoveMode(moveMode::kDefault);
+            auto enemy2 = EnemyController::spawnEnemy(kEnemyFodder);
+            enemy2->setPosition(random + Point(-60,60)*(i+1));
+            static_cast<Fodder*>(enemy2)->setMoveMode(moveMode::kDefault);
         }
         EnemyController::spawnEnemy(kEnemyFodderL)->setPosition(random);
+    }
+    //else if(_elapsed < 20 && enemyCount <5)
+    if(_elapsed > 4 && enemyCount <3)
+    {
+        Point random = Point(-240-200, BOUND_RECT.size.height/2*CCRANDOM_MINUS1_1());
+        for(int i=0; i < 3; i++)
+        {
+            float randomAngle = CCRANDOM_MINUS1_1()*90;
+            auto enemy = EnemyController::spawnEnemy(kEnemyFodder);
+            enemy->setPosition(random + Point(60,60)*(i+1));
+            static_cast<Fodder*>(enemy)->setTurnRate(randomAngle);
+            enemy->setRotation(-randomAngle);
+            auto enemy2 = EnemyController::spawnEnemy(kEnemyFodder);
+            enemy2->setPosition(random + Point(-60,60)*(i+1));
+            static_cast<Fodder*>(enemy2)->setTurnRate(randomAngle);
+            enemy2->setRotation(-randomAngle);
+        }
+        auto leader = EnemyController::spawnEnemy(kEnemyFodderL);
+        leader->setPosition(random);
+        static_cast<FodderLeader*>(leader)->setTurnRate(45);
+        leader->setRotation(-45);
+        //enemy->runAction(EaseBackOut::create(MoveTo::create(2, _player->getPosition())));
     }
 }
 
 void GameLayer::update(float dt)
 {
     xScroll += speed*dt;
-    spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
-
+    _spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
+    //_cloud->setTextureRect(Rect(0,((int)xScroll)%1024, 256, 1024));
     GameController::update(dt);
-    //_collisionTree->clear();
-    //_streak->setPosition(_player->getPosition()-Point(0,40));
 }
 
 

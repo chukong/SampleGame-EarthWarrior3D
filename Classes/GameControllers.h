@@ -41,11 +41,14 @@ public:
     static void reset();
     static bool init(Node *enemyLayer);
     static AirCraft* spawnEnemy(int type);
+    static AirCraft* createOrGet(int type);
+    static AirCraft* showCaseEnemy(int type);
     static void update(float dt);
     static Vector<AirCraft*> enemies;
     static void erase(int i);
+    static Vector<AirCraft*> showCaseEnemies;
 
-    static const Point EnemyMoveDist;
+    static const float EnemyMoveDist;
 protected:
     static bool _inited;
     static Node *_enemyLayer;
@@ -53,6 +56,7 @@ protected:
     static Vector<Fodder*> _fodderPool;
     static Vector<FodderLeader*> _fodderLPool;
     static Vector<BigDude*> _bigDudePool;
+    
 };
 
 class GameController

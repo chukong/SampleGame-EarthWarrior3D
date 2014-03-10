@@ -16,12 +16,12 @@ USING_NS_CC;
 class AirCraft : public GameEntity
 {
 public:
-    void hurt(float damage);
+    bool hurt(float damage);
     void die();
     void shoot();
     //CC_SYNTHESIZE(float, _HP, HP);
     bool alive();
-    void move(Point pos);
+    virtual void move(float y, float dt);
     virtual void reset();
 protected:
     bool _alive = true;
