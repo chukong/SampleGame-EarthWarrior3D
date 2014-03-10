@@ -17,6 +17,7 @@
 #include "Effects.h"
 #include "GameEntity.h"
 #include "SimpleAudioEngine.h"
+#include "Effects.h"
 USING_NS_CC;
 using namespace std;
 
@@ -24,6 +25,15 @@ bool GameLayer::init()
 {
     // variable init
     //_collisionTree = new QuadTree(0, BOUND_RECT);
+    
+    for (int i=0; i<10; i++) {
+        SmallExplosion* smallExpl = SmallExplosion::create();
+        smallExpl->retain();
+        BigExplosion* bigExpl = BigExplosion::create();
+        bigExpl->retain();
+        EffectManager::_smallExplPool.pushBack(smallExpl);
+        EffectManager::_bigExplPool.pushBack(bigExpl);
+    }
     
     
     _spr = Sprite::create("groundLevel.jpg");

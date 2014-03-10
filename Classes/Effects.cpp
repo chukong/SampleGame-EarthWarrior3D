@@ -9,6 +9,8 @@
 #include "Effects.h"
 
 Node* EffectManager::_effectLayer = nullptr;
+Vector<SmallExplosion*> EffectManager::_smallExplPool;
+Vector<BigExplosion*> EffectManager::_bigExplPool;
 
 void EffectManager::createExplosion(Point pos)
 {
@@ -16,21 +18,22 @@ void EffectManager::createExplosion(Point pos)
     {
         return;
     }
-    auto part1 = ParticleSystemQuad::create("toonSmoke.plist");
-    part1->setTotalParticles(8);
-    part1->setEmissionRate(9999999999);
-    part1->setScale(0.7);
-    auto part2 = ParticleSystemQuad::create("flare.plist");
-    part2->setTotalParticles(5);
-    part2->setEmissionRate(9999999999);
-    _effectLayer->addChild(part1);
-    _effectLayer->addChild(part2);
-    part1->setAutoRemoveOnFinish(true);
-    part2->setAutoRemoveOnFinish(true);
-    part1->setRotation3D(Vertex3F(30,0,0));
-    part2->setRotation3D(Vertex3F(30,0,0));
-    part1->setPosition(pos);
-    part2->setPosition(pos);
+    
+    SmallExplosion* explosion = nullptr;
+    
+    if (!_smallExplPool.empty())
+    {
+        explosion = _smallExplPool.back();
+        _smallExplPool.popBack();
+    }
+    else
+    {
+        explosion = SmallExplosion::create();
+        explosion->retain();
+    }
+    
+    explosion->createExplosion(_effectLayer, pos);
+
 }
 
 void EffectManager::createBigExplosion(Point pos)
@@ -39,28 +42,25 @@ void EffectManager::createBigExplosion(Point pos)
     {
         return;
     }
-    auto part1 = ParticleSystemQuad::create("toonSmoke.plist");
-    part1->setTotalParticles(10);
-    part1->setEmissionRate(9999999999);
-    auto part2 = ParticleSystemQuad::create("glow.plist");
-    part2->setTotalParticles(3);
-    part2->setEmissionRate(9999999999);
-    auto part3 = ParticleSystemQuad::create("debris.plist");
-    part3->setTotalParticles(20);
-    part3->setEmissionRate(9999999999);
-    part3->setScale(1.5);
-    _effectLayer->addChild(part1);
-    _effectLayer->addChild(part2);
-    _effectLayer->addChild(part3);
-    part1->setAutoRemoveOnFinish(true);
-    part2->setAutoRemoveOnFinish(true);
-    part3->setAutoRemoveOnFinish(true);
-    part1->setRotation3D(Vertex3F(30,0,0));
-    part2->setRotation3D(Vertex3F(30,0,0));
-    part3->setRotation3D(Vertex3F(30,0,0));
-    part1->setPosition(pos);
-    part2->setPosition(pos);
-    part3->setPosition(pos);
+    
+    BigExplosion* explosion = nullptr;
+    
+    if (!_bigExplPool.empty())
+    {
+        explosion = _bigExplPool.back();
+        _bigExplPool.popBack();
+//        explosion->part1->resetSystem();
+//        explosion->part2->resetSystem();
+//        explosion->part3->resetSystem();
+    }
+    else
+    {
+        explosion = BigExplosion::create();
+        explosion->retain();
+    }
+    
+    explosion->createExplosion(_effectLayer, pos);
+    
 }
 
 void EffectManager::setLayer(Node *layer)
