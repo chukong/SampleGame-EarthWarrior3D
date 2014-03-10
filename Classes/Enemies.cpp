@@ -81,7 +81,7 @@ void FodderLeader::reset()
 
 bool BigDude::init()
 {
-    _Model = Sprite3D::create("diji1_v001.obj", "diji02_v002_128.png");
+    _Model = Sprite3D::create("diji1_v002.obj", "diji02_v002_128.png");
     if(_Model)
     {
         _Model->setScale(8);
