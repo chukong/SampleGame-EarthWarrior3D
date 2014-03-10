@@ -172,6 +172,8 @@
 		D44C620E132DFF430009C878 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620D132DFF430009C878 /* AVFoundation.framework */; };
 		D44C6210132DFF4E0009C878 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44C620F132DFF4E0009C878 /* AudioToolbox.framework */; };
 		D6B0611B1803AB670077942B /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B0611A1803AB670077942B /* CoreMotion.framework */; };
+		FA4F795E18CDBAF300D08B18 /* MeshCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4F795C18CDBAF300D08B18 /* MeshCache.cpp */; };
+		FA4F795F18CDBAF300D08B18 /* MeshCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FA4F795C18CDBAF300D08B18 /* MeshCache.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -425,7 +427,7 @@
 		68F22BD518CD6E5D00B6521B /* consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = consts.h; path = ../Classes/consts.h; sourceTree = "<group>"; };
 		68F22BD618CDA24600B6521B /* diji1_v002.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = diji1_v002.obj; sourceTree = "<group>"; };
 		68F22BD718CDA24600B6521B /* playerv002.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = playerv002.obj; sourceTree = "<group>"; };
-		A044DE6F18C69F8000B6CCBD /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
+		A044DE6F18C69F8000B6CCBD /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; wrapsLines = 0; };
 		A044DE7018C69F8000B6CCBD /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
 		A044DE7118C69F8000B6CCBD /* Sprite3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite3D.cpp; sourceTree = "<group>"; };
 		A044DE7218C69F8000B6CCBD /* Sprite3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite3D.h; sourceTree = "<group>"; };
@@ -440,6 +442,8 @@
 		D44C620D132DFF430009C878 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44C620F132DFF4E0009C878 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D6B0611A1803AB670077942B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
+		FA4F795C18CDBAF300D08B18 /* MeshCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshCache.cpp; sourceTree = "<group>"; };
+		FA4F795D18CDBAF300D08B18 /* MeshCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeshCache.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -702,6 +706,8 @@
 		A044DE6E18C69F8000B6CCBD /* 3d */ = {
 			isa = PBXGroup;
 			children = (
+				FA4F795C18CDBAF300D08B18 /* MeshCache.cpp */,
+				FA4F795D18CDBAF300D08B18 /* MeshCache.h */,
 				A044DE6F18C69F8000B6CCBD /* Mesh.cpp */,
 				A044DE7018C69F8000B6CCBD /* Mesh.h */,
 				A044DE7118C69F8000B6CCBD /* Sprite3D.cpp */,
@@ -1037,6 +1043,7 @@
 				680A315718C5D52300D073CD /* GameControllers.cpp in Sources */,
 				686EC63718BAE16A0065154C /* GameLayer.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
+				FA4F795E18CDBAF300D08B18 /* MeshCache.cpp in Sources */,
 				680A315318C5CDE500D073CD /* Bullets.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				A044DE7718C69F8000B6CCBD /* Mesh.cpp in Sources */,
@@ -1055,6 +1062,7 @@
 				5087E75717EB910900C73F5D /* AppDelegate.cpp in Sources */,
 				68005BA418BEEE66007598C5 /* Player.cpp in Sources */,
 				A044DE7818C69F8000B6CCBD /* Mesh.cpp in Sources */,
+				FA4F795F18CDBAF300D08B18 /* MeshCache.cpp in Sources */,
 				A044DE7A18C69F8000B6CCBD /* Sprite3D.cpp in Sources */,
 				68005BA018BEEC75007598C5 /* AirCraft.cpp in Sources */,
 				680A318118C784D700D073CD /* Effects.cpp in Sources */,

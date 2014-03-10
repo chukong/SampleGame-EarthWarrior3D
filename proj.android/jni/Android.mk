@@ -19,9 +19,10 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Effects.cpp \
                    ../../Classes/GameControllers.cpp \
                	   ../../Classes/3d/Mesh.cpp \
+                   ../../Classes/3d/MeshCache.cpp \
                	   ../../Classes/3d/Sprite3D.cpp                     
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes 
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static

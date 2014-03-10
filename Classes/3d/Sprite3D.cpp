@@ -7,10 +7,9 @@
 //
 
 #include "Sprite3D.h"
+#include "MeshCache.h"
 
 using namespace cocos2d;
-
-#define USE_VBO
 
 #define STRINGIFY(A)  #A
 //#include "../Shaders/TexturedLighting.es2.vert.h"
@@ -30,61 +29,35 @@ Sprite3D* Sprite3D::create(const std::string &modelPath, const std::string &text
 
 Sprite3D::Sprite3D()
 : _texture(nullptr)
+, _model(nullptr)
 {
 }
 
 Sprite3D::~Sprite3D()
 {
-    if(glIsBuffer(_drawable.VertexBuffer))
-    {
-        glDeleteBuffers(1, &_drawable.VertexBuffer);
-        _drawable.VertexBuffer = 0;
-    }
-    if(glIsBuffer(_drawable.IndexBuffer))
-    {
-        glDeleteBuffers(1, &_drawable.IndexBuffer);
-        _drawable.IndexBuffer = 0;
-    }
     CC_SAFE_RELEASE(_outlineShader);
     CC_SAFE_RELEASE(_texture);
 }
 
 bool Sprite3D::init(const std::string &modelPath, const std::string &texturePath)
 {
-    auto model = new Mesh(modelPath);
+    auto model = MeshCache::getInstance()->addMesh(modelPath);// new Mesh(modelPath);
     if( texturePath.size()) {
         setTextureName(texturePath);
     }
     setModel(model);
     
+    this->updateBlendFunc();
+    buildProgram( _texture->getName() != 0);
     return true;
-}
-
-void Sprite3D::initializeModel()
-{
-    if (_model) {
-
-        _model->generateVertices(_vertices, 0);
-        
-        //int indexCount = _model->getTriangleIndexCount();
-        //_indices.resize(indexCount);
-        _model->generateTriangleIndices(_indices);
-        _drawable.IndexCount = _indices.size();
-
-        delete _model;
-        _model = NULL;
-#ifdef USE_VBO
-        this->buildBuffers();
-#endif
-        this->updateBlendFunc();
-        buildProgram( _texture->getName() != 0);
-    }
 }
 
 void Sprite3D::setModel(Mesh *model)
 {
-    _model = model;
-    this->initializeModel();
+    if (model != nullptr && _model != model)
+    {
+        _model = model;
+    }
 }
 
 bool Sprite3D::buildProgram(bool textured)
@@ -126,36 +99,6 @@ bool Sprite3D::buildProgram(bool textured)
     return true;
 }
 
-#ifdef USE_VBO
-void Sprite3D::buildBuffers()
-{
-    GLuint vertexBuffer;
-    glGenBuffers(1, &vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER,
-                 _vertices.size() * sizeof(_vertices[0]),
-                 &_vertices[0],
-                 GL_STATIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    
-    // Create a new VBO for the indices
-    ssize_t indexCount = _indices.size();// model->GetTriangleIndexCount();
-    GLuint indexBuffer;
-
-    glGenBuffers(1, &indexBuffer);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-                 indexCount * sizeof(GLushort),
-                 &_indices[0],
-                 GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    
-    _drawable.VertexBuffer = vertexBuffer;
-    _drawable.IndexBuffer = indexBuffer;
-    _drawable.IndexCount = indexCount;
-}
-
-#endif
 void Sprite3D::draw(Renderer* renderer, const kmMat4 &transform, bool transformUpdated)
 {
     _customCommand.init(_globalZOrder);
@@ -199,6 +142,10 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
     kmMat3AssignMat4(&normals, &_modelViewTransform);
     glUniformMatrix3fv(_uniforms.NormalMatrix, 1, 0, &normals.mat[0]);
 
+    GLuint verBuf = _model->getVertexBuffer();
+    GLuint indexBuf = _model->getIndexBuffer();
+    ssize_t indexCount = _model->getIndexCount();
+
     // Draw the surface using VBOs
     int stride = sizeof(vec3) + sizeof(vec3) + sizeof(vec2);
     const GLvoid* normalOffset = (const GLvoid*) sizeof(vec3);
@@ -207,13 +154,13 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
     GLint normal = _attributes.Normal;
     GLint texCoord = _attributes.TextureCoord;
 
-    glBindBuffer(GL_ARRAY_BUFFER, _drawable.VertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, verBuf);
     glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, stride, 0);
     //glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, stride, normalOffset);
     if (_texture->getName())
         glVertexAttribPointer(texCoord, 2, GL_FLOAT, GL_FALSE, stride, texCoordOffset);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _drawable.IndexBuffer);
-    glDrawElements(GL_TRIANGLES, _drawable.IndexCount, GL_UNSIGNED_SHORT, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuf);
+    glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT, 0);
     
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -246,21 +193,21 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
         position = _attributesOutline.Position;
         normal = _attributesOutline.Normal;
         
-        glBindBuffer(GL_ARRAY_BUFFER, _drawable.VertexBuffer);
+        glBindBuffer(GL_ARRAY_BUFFER, verBuf);
         glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, stride, 0);
         glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, stride, normalOffset);
         
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _drawable.IndexBuffer);
-        glDrawElements(GL_TRIANGLES, _drawable.IndexCount, GL_UNSIGNED_SHORT, 0);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuf);
+        glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT, 0);
         
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
         
-        CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, _drawable.IndexCount);
+        CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, indexCount);
         glCullFace(GL_BACK);
     }
     glDisable(GL_DEPTH_TEST);
-    CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, _drawable.IndexCount);
+    CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, indexCount);
     
 }
 

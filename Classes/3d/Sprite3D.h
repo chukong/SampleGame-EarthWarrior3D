@@ -30,12 +30,6 @@
 
 #include "Mesh.h"
 
-struct Drawable {
-    GLuint VertexBuffer;
-    GLuint IndexBuffer;
-    ssize_t IndexCount;
-};
-
 struct UniformHandles
 {
     GLuint NormalMatrix;
@@ -63,10 +57,8 @@ protected:
     virtual ~Sprite3D();
     bool init(const std::string &modelPath, const std::string &texturePath);
 
-    void initializeModel();
     void setModel(Mesh *model);
     bool buildProgram(bool textured);
-    void buildBuffers();
     void draw(cocos2d::Renderer* renderer, const kmMat4 &transform, bool transformUpdated);
     void onDraw(const kmMat4 &transform, bool transformUpdated);
     void setTexture(cocos2d::Texture2D* texture);
@@ -77,11 +69,6 @@ protected:
     // the current rotation offset
     //float xRot, yRot, zRot;
     Mesh *_model;
-    
-    Drawable _drawable;
-    
-    std::vector<GLfloat> _vertices;
-    std::vector<GLushort> _indices;
 
     cocos2d::BlendFunc _blendFunc;
     cocos2d::Texture2D *_texture;
