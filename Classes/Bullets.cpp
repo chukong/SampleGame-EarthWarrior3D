@@ -119,7 +119,7 @@ void Missile::update(float dt)
         float f = getRotation();
         setRotation(f);
         setPosition(getPosition()+Point(sinf(CC_DEGREES_TO_RADIANS(f))*_velocity,cosf(CC_DEGREES_TO_RADIANS(f))*_velocity) + _vector*dt);
-        _vector = _vector * (1-dt);
+        _vector = _vector * (1-dt*0.5);
     }
     // missiles need to rotate
     _yRotation += _yRotSpeed*dt;

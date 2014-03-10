@@ -63,9 +63,22 @@ bool GameLayer::init()
     EnemyController::init(this);
     scheduleUpdate();
     
+    
+    _player->setPosition(Point(0,-1000));
+    _player->runAction(Sequence::create(
+                       Spawn::create(
+                                     EaseBackOut::create(MoveTo::create(1.7,Point(0,-200))),
+                                     EaseSineOut::create(RotateBy::create(1.7,Vertex3F(0,720,0))),
+                                     nullptr
+                                     ),
+                       CallFunc::create(this,callfunc_selector(GameLayer::schedulePlayer)),nullptr));
     return true;
 }
 
+void GameLayer::schedulePlayer()
+{
+    _player->scheduleUpdate();
+}
 void GameLayer::gameMaster(float dt)
 {
     _elapsed+=dt;
