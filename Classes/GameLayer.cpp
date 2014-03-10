@@ -82,8 +82,13 @@ void GameLayer::gameMaster(float dt)
             auto enemy2 = EnemyController::spawnEnemy(kEnemyFodder);
             enemy2->setPosition(random + Point(-60,60)*(i+1));
             static_cast<Fodder*>(enemy2)->setMoveMode(moveMode::kDefault);
+            enemy1->setRotation3D(Vertex3F(0,0,0));
+            enemy2->setRotation3D(Vertex3F(0,0,0));
         }
-        EnemyController::spawnEnemy(kEnemyFodderL)->setPosition(random);
+        auto leader = EnemyController::spawnEnemy(kEnemyFodderL);
+        leader->setPosition(random);
+        leader->setRotation3D(Vertex3F(0,0,0));
+        static_cast<FodderLeader*>(leader)->setMoveMode(moveMode::kDefault);
     }
     //else if(_elapsed < 20 && enemyCount <5)
     if(_elapsed > 4 && enemyCount <3)
