@@ -28,7 +28,7 @@ bool GameLayer::init()
     
     _spr = Sprite::create("groundLevel.jpg");
     _cloud = Sprite::create("cloud.png");
-    addChild(_spr);
+    addChild(_spr, -2);
     //addChild(_cloud);
     Texture2D::TexParams texRepeat = {GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_REPEAT};
     _spr->getTexture()->setTexParameters(texRepeat);
@@ -42,12 +42,12 @@ bool GameLayer::init()
     
     _streak = MotionStreak::create(0.4, 1, 15, Color3B(82,255,253), "streak.png");
     _player->setTrail(_streak);
-    addChild(_streak);
+    addChild(_streak,1);
     _emissionPart = ParticleSystemQuad::create("emissionPart.plist");
     _player->setEmissionPart(_emissionPart);
-    addChild(_emissionPart);
+    addChild(_emissionPart,2);
     _emissionPart->setPositionType(tPositionType::FREE);
-    addChild(_player,10);
+    addChild(_player,3);
     EffectManager::setLayer(this);
     auto Audio = CocosDenshion::SimpleAudioEngine::getInstance();
     Audio->preloadEffect("explodeEffect.mp3");

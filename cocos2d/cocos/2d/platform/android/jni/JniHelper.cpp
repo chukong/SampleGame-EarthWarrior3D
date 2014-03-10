@@ -166,6 +166,8 @@ namespace cocos2d {
             return false;
         }
 
+        LOGD("getStaticMethodInfo %s,%s,%s",className,methodName,paramCode);
+
         JNIEnv *pEnv = JniHelper::getEnv();
         if (!pEnv) {
             LOGD("Failed to get JNIEnv");
