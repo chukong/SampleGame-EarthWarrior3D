@@ -10,10 +10,16 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
                    ../../Classes/HelloWorldScene.cpp \
                    ../../Classes/AirCraft.cpp \
-                   ../../Classes/Fodder.cpp \
                    ../../Classes/GameEntity.cpp \
                    ../../Classes/GameLayer.cpp \
-                   ../../Classes/Player.cpp 
+                   ../../Classes/Player.cpp \
+                   ../../Classes/PublicApi.cpp \
+                   ../../Classes/Enemies.cpp \
+                   ../../Classes/Bullets.cpp \
+                   ../../Classes/Effects.cpp \
+                   ../../Classes/GameControllers.cpp \
+               	   ../../Classes/3d/Mesh.cpp \
+               	   ../../Classes/3d/Sprite3D.cpp                     
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 

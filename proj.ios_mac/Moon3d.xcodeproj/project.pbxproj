@@ -377,7 +377,6 @@
 		680A315C18C6471000D073CD /* diji02_v002_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diji02_v002_1024.png; sourceTree = "<group>"; };
 		680A315D18C6471000D073CD /* playerv001.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = playerv001.obj; sourceTree = "<group>"; };
 		680A315E18C6471000D073CD /* playerv002_1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playerv002_1024.png; sourceTree = "<group>"; };
-		680A316C18C7065400D073CD /* consts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = consts.h; path = ../Classes/3d/consts.h; sourceTree = "<group>"; };
 		680A317718C72BB400D073CD /* flare.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = flare.plist; sourceTree = "<group>"; };
 		680A317818C72BB400D073CD /* toonSmoke.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = toonSmoke.plist; sourceTree = "<group>"; };
 		680A317E18C784D700D073CD /* Effects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Effects.cpp; path = ../Classes/Effects.cpp; sourceTree = "<group>"; };
@@ -427,6 +426,7 @@
 		A044DE7418C69F8000B6CCBD /* Textured.es2.frag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Textured.es2.frag.h; sourceTree = "<group>"; };
 		A044DE7518C69F8000B6CCBD /* Textured.es2.vert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Textured.es2.vert.h; sourceTree = "<group>"; };
 		A044DE7618C69F8000B6CCBD /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
+		BBDA878218CD6E9300A2F47E /* consts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = consts.h; path = ../Classes/consts.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -499,6 +499,7 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BBDA878218CD6E9300A2F47E /* consts.h */,
 				A044DE6E18C69F8000B6CCBD /* 3d */,
 				2606BD0F18C72A9900142F1C /* PublicApi.cpp */,
 				2606BD1018C72A9900142F1C /* PublicApi.h */,
@@ -522,7 +523,6 @@
 				680A317F18C784D700D073CD /* Effects.h */,
 				680A315518C5D52300D073CD /* GameControllers.cpp */,
 				680A315618C5D52300D073CD /* GameControllers.h */,
-				680A316C18C7065400D073CD /* consts.h */,
 			);
 			name = Classes;
 			path = ../classes;
