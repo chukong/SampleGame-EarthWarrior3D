@@ -17,6 +17,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Enemies.cpp \
                    ../../Classes/Bullets.cpp \
                    ../../Classes/Effects.cpp \
+                   ../../Classes/Explosion.cpp \
                    ../../Classes/GameControllers.cpp \
                	   ../../Classes/3d/Mesh.cpp \
                    ../../Classes/3d/MeshCache.cpp \

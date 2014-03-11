@@ -10,7 +10,11 @@ typedef std::map<std::string, Mesh*>::iterator MeshMapIter;
 
 MeshCache::MeshCache()
 {
-    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    // listen the event when app go to foreground
+    _backToForegroundlistener = EventListenerCustom::create(EVENT_COME_TO_FOREGROUND, CC_CALLBACK_1(MeshCache::listenBackToForeground, this));
+    Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(_backToForegroundlistener, -1);
+#endif
 }
 
 MeshCache::~MeshCache()
@@ -19,6 +23,9 @@ MeshCache::~MeshCache()
         CC_SAFE_DELETE(iter->second);
     }
     _cachedMeshes.clear();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    Director::getInstance()->getEventDispatcher()->removeEventListener(_backToForegroundlistener);
+#endif
 }
 
 MeshCache* MeshCache::getInstance()
@@ -64,10 +71,12 @@ void MeshCache::removeMesh(const std::string& fileName)
     }
 }
 
-void MeshCache::reloadAllMeshes()
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+void MeshCache::listenBackToForeground(EventCustom* event)
 {
     for (auto iter = _cachedMeshes.begin(); iter != _cachedMeshes.end(); ++iter) {
         Mesh* mesh = iter->second;
         mesh->loadFromFile(iter->first);
     }
 }
+#endif
