@@ -24,6 +24,8 @@ public:
     virtual void move(float y, float dt);
     CC_SYNTHESIZE(int, _moveMode, MoveMode);
     CC_PROPERTY(float, _turn, TurnRate);
+    virtual void shoot(float dt);
+    CC_SYNTHESIZE(AirCraft*, _target, Target);
 };
 
 class FodderLeader : public Fodder

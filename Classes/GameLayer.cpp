@@ -17,6 +17,7 @@
 #include "Effects.h"
 #include "GameEntity.h"
 #include "SimpleAudioEngine.h"
+#include "Effects.h"
 USING_NS_CC;
 using namespace std;
 
@@ -24,6 +25,15 @@ bool GameLayer::init()
 {
     // variable init
     //_collisionTree = new QuadTree(0, BOUND_RECT);
+    
+    for (int i=0; i<10; i++) {
+        SmallExplosion* smallExpl = SmallExplosion::create();
+        smallExpl->retain();
+        BigExplosion* bigExpl = BigExplosion::create();
+        bigExpl->retain();
+        EffectManager::_smallExplPool.pushBack(smallExpl);
+        EffectManager::_bigExplPool.pushBack(bigExpl);
+    }
     
     
     _spr = Sprite::create("groundLevel.jpg");
@@ -124,6 +134,9 @@ void GameLayer::gameMaster(float dt)
         static_cast<FodderLeader*>(leader)->setTurnRate(45);
         leader->setRotation(-45);
         //enemy->runAction(EaseBackOut::create(MoveTo::create(2, _player->getPosition())));
+        static_cast<FodderLeader*>(leader)->setTarget(_player);
+        leader->schedule(schedule_selector(FodderLeader::shoot),CCRANDOM_0_1()*1+1,90,0);
+        
     }
 }
 
@@ -132,7 +145,7 @@ void GameLayer::update(float dt)
     xScroll += speed*dt;
     _spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
     //_cloud->setTextureRect(Rect(0,((int)xScroll)%1024, 256, 1024));
-    GameController::update(dt);
+    GameController::update(dt, _player);
 }
 
 

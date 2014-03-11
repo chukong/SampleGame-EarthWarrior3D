@@ -166,6 +166,8 @@
 		A044DE7818C69F8000B6CCBD /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A044DE6F18C69F8000B6CCBD /* Mesh.cpp */; };
 		A044DE7918C69F8000B6CCBD /* Sprite3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A044DE7118C69F8000B6CCBD /* Sprite3D.cpp */; };
 		A044DE7A18C69F8000B6CCBD /* Sprite3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A044DE7118C69F8000B6CCBD /* Sprite3D.cpp */; };
+		BBDA878518CDA2BF00A2F47E /* Explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBDA878318CDA2BF00A2F47E /* Explosion.cpp */; };
+		BBDA878618CDA2BF00A2F47E /* Explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBDA878318CDA2BF00A2F47E /* Explosion.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -436,6 +438,9 @@
 		A044DE7418C69F8000B6CCBD /* Textured.es2.frag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Textured.es2.frag.h; sourceTree = "<group>"; };
 		A044DE7518C69F8000B6CCBD /* Textured.es2.vert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Textured.es2.vert.h; sourceTree = "<group>"; };
 		A044DE7618C69F8000B6CCBD /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
+		BBDA878218CD6E9300A2F47E /* consts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = consts.h; path = ../Classes/consts.h; sourceTree = "<group>"; };
+		BBDA878318CDA2BF00A2F47E /* Explosion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Explosion.cpp; path = ../Classes/Explosion.cpp; sourceTree = "<group>"; };
+		BBDA878418CDA2BF00A2F47E /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Explosion.h; path = ../Classes/Explosion.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -521,19 +526,21 @@
 				686EC63518BAE16A0065154C /* GameLayer.cpp */,
 				686EC63618BAE16A0065154C /* GameLayer.h */,
 				68005B8C18BEE774007598C5 /* GameEntity.cpp */,
-				68005B8D18BEE774007598C5 /* GameEntity.h */,
 				68005B9D18BEEC75007598C5 /* AirCraft.cpp */,
 				68005B9E18BEEC75007598C5 /* AirCraft.h */,
 				68005BA118BEEE66007598C5 /* Player.cpp */,
 				68005BA218BEEE66007598C5 /* Player.h */,
 				687D4C6318BF405A003C6438 /* Enemies.cpp */,
 				687D4C6418BF405A003C6438 /* Enemies.h */,
+				68005B8D18BEE774007598C5 /* GameEntity.h */,
 				680A315118C5CDE500D073CD /* Bullets.cpp */,
 				680A315218C5CDE500D073CD /* Bullets.h */,
 				680A317E18C784D700D073CD /* Effects.cpp */,
 				680A317F18C784D700D073CD /* Effects.h */,
 				680A315518C5D52300D073CD /* GameControllers.cpp */,
 				680A315618C5D52300D073CD /* GameControllers.h */,
+				BBDA878318CDA2BF00A2F47E /* Explosion.cpp */,
+				BBDA878418CDA2BF00A2F47E /* Explosion.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1036,6 +1043,7 @@
 			files = (
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				68005B9F18BEEC75007598C5 /* AirCraft.cpp in Sources */,
+				BBDA878518CDA2BF00A2F47E /* Explosion.cpp in Sources */,
 				68005BA318BEEE66007598C5 /* Player.cpp in Sources */,
 				687D4C6518BF405A003C6438 /* Enemies.cpp in Sources */,
 				A044DE7918C69F8000B6CCBD /* Sprite3D.cpp in Sources */,
@@ -1063,6 +1071,7 @@
 				A044DE7818C69F8000B6CCBD /* Mesh.cpp in Sources */,
 				A044DE7A18C69F8000B6CCBD /* Sprite3D.cpp in Sources */,
 				68005BA018BEEC75007598C5 /* AirCraft.cpp in Sources */,
+				BBDA878618CDA2BF00A2F47E /* Explosion.cpp in Sources */,
 				680A318118C784D700D073CD /* Effects.cpp in Sources */,
 				680A315818C5D52300D073CD /* GameControllers.cpp in Sources */,
 				686EC63818BAE16A0065154C /* GameLayer.cpp in Sources */,
