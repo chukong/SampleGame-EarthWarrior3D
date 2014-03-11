@@ -131,7 +131,7 @@ void GameLayer::gameMaster(float dt)
         leader->schedule(schedule_selector(FodderLeader::shoot),CCRANDOM_0_1()*1+1,90,0);
         
     }
-    if(_elapsed > 0 && enemyCount < 4)
+    if(_elapsed > 15 && enemyCount < 4)
     {
         for(int q = 0; q< 2; q++)
         {
