@@ -17,6 +17,7 @@
 bool Bullet::init()
 {
     _Model = Sprite::create("bullets.png", Rect(5,8,24,32));
+    //_Model = ParticleSystemQuad::create("missileFlare.plist");
     if(_Model)
     {
         addChild(_Model);
@@ -24,6 +25,15 @@ bool Bullet::init()
         _type = kEnemyBullet;
         _owner = kEnemy;
         _damage = 10;
+        ParticleSystemQuad *p = ParticleSystemQuad::create("missileFlare.plist");
+        //p->setEndColor(Color4F(1,0,0,1));
+        //p->setStartColor(Color4F(1,0,0,1));
+        p->setPositionType(tPositionType::GROUPED);
+        p->setScale(2.5);
+        p->setTotalParticles(2);
+        _Model->addChild(p,-1);
+        p->setPosition(Point(_Model->getContentSize()/2));
+        setScale(1.5);
         //static_cast<Sprite*>(_Model)->setFlippedY(true);
         return true;
     }
@@ -38,7 +48,7 @@ bool PlayerBullet::init()
         _radius=10;
         _type = kPlayerBullet;
         _owner = kPlayer;
-        _damage = 1;
+        _damage = 1.5;
         return true;
     }
     return false;

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-               BuildableName = "Moon3d iOS.app"
-               BlueprintName = "Moon3d iOS"
+               BlueprintIdentifier = "5087E73D17EB910900C73F5D"
+               BuildableName = "Moon3d Mac.app"
+               BlueprintName = "Moon3d Mac"
                ReferencedContainer = "container:Moon3d.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,15 +26,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Release">
+      buildConfiguration = "Debug">
       <Testables>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "Moon3d iOS.app"
-            BlueprintName = "Moon3d iOS"
+            BlueprintIdentifier = "5087E73D17EB910900C73F5D"
+            BuildableName = "Moon3d Mac.app"
+            BlueprintName = "Moon3d Mac"
             ReferencedContainer = "container:Moon3d.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -44,16 +44,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "Moon3d iOS.app"
-            BlueprintName = "Moon3d iOS"
+            BlueprintIdentifier = "5087E73D17EB910900C73F5D"
+            BuildableName = "Moon3d Mac.app"
+            BlueprintName = "Moon3d Mac"
             ReferencedContainer = "container:Moon3d.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -69,9 +69,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "Moon3d iOS.app"
-            BlueprintName = "Moon3d iOS"
+            BlueprintIdentifier = "5087E73D17EB910900C73F5D"
+            BuildableName = "Moon3d Mac.app"
+            BlueprintName = "Moon3d Mac"
             ReferencedContainer = "container:Moon3d.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

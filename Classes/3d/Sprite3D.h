@@ -30,12 +30,6 @@
 
 #include "Mesh.h"
 
-struct Drawable {
-    GLuint VertexBuffer;
-    GLuint IndexBuffer;
-    ssize_t IndexCount;
-};
-
 struct UniformHandles
 {
     GLuint NormalMatrix;
@@ -58,15 +52,17 @@ public:
     static Sprite3D* create(const std::string &modelPath, const std::string &texturePath="");
     void setOutline(float width, cocos2d::Color3B color);
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    void listenBackToForeground(cocos2d::EventCustom* event);
+#endif
+
 protected:
     Sprite3D();
     virtual ~Sprite3D();
     bool init(const std::string &modelPath, const std::string &texturePath);
 
-    void initializeModel();
     void setModel(Mesh *model);
     bool buildProgram(bool textured);
-    void buildBuffers();
     void draw(cocos2d::Renderer* renderer, const kmMat4 &transform, bool transformUpdated);
     void onDraw(const kmMat4 &transform, bool transformUpdated);
     void setTexture(cocos2d::Texture2D* texture);
@@ -77,11 +73,6 @@ protected:
     // the current rotation offset
     //float xRot, yRot, zRot;
     Mesh *_model;
-    
-    Drawable _drawable;
-    
-    std::vector<GLfloat> _vertices;
-    std::vector<GLushort> _indices;
 
     cocos2d::BlendFunc _blendFunc;
     cocos2d::Texture2D *_texture;
@@ -91,11 +82,16 @@ protected:
     float _outLineWidth;
     cocos2d::Color3B _outlineColor;
     cocos2d::GLProgram *_outlineShader;
+    cocos2d::GLProgram *_mainShader;
 
     UniformHandles _uniforms;
     UniformHandles _uniformsOutline;
     AttributeHandles _attributes;
     AttributeHandles _attributesOutline;
+    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    cocos2d::EventListenerCustom* _backToForegroundlistener;
+#endif
 };
 
 #endif // __SPRITE3D_H_

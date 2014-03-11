@@ -39,7 +39,7 @@ bool Player::init()
         //scheduleUpdate();
         static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B(0,0,0));
         schedule(schedule_selector(Player::shootMissile), 1.5, -1, 0);
-        schedule(schedule_selector(Player::shoot), 0.1, -1, 0);
+        schedule(schedule_selector(Player::shoot), 0.075, -1, 0);
         
         // engine trail
         auto part = ParticleSystemQuad::create("engine.plist");
@@ -97,7 +97,7 @@ void Player::setPosition(Point pos)
     }
     if(_emissionPart)
     {
-        _emissionPart->setPosition(pos+_trailOffset);
+        _emissionPart->setPosition(pos);
     }
 }
 void Player::shootMissile(float dt)
