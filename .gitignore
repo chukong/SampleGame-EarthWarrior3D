@@ -25,3 +25,17 @@ gen/
 libs/
 lint.xml
 obj/
+
+# Ignore files build by xcode
+######################
+*.mode*v*
+*.pbxuser
+*.xcbkptlist
+*.xcworkspacedata
+*.xcuserstate
+*.xccheckout
+xcschememanagement.plist
+.DS_Store
+._.*
+xcuserdata/
+DerivedData/

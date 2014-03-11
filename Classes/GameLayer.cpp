@@ -109,18 +109,18 @@ void GameLayer::gameMaster(float dt)
     //else if(_elapsed < 20 && enemyCount <5)
     if(_elapsed > 4 && enemyCount <3)
     {
-        Point random = Point(-240-200, BOUND_RECT.size.height/2*CCRANDOM_MINUS1_1());
+        Point random = Point(-400, BOUND_RECT.size.height/4*CCRANDOM_MINUS1_1()+350);
         for(int i=0; i < 3; i++)
         {
-            float randomAngle = CCRANDOM_MINUS1_1()*90;
+            float randomAngle = CCRANDOM_MINUS1_1()*70;
             auto enemy = EnemyController::spawnEnemy(kEnemyFodder);
             enemy->setPosition(random + Point(60,60)*(i+1));
-            static_cast<Fodder*>(enemy)->setTurnRate(randomAngle);
-            enemy->setRotation(-randomAngle);
+            static_cast<Fodder*>(enemy)->setTurnRate(randomAngle*0.5);
+            enemy->setRotation(-randomAngle-90);
             auto enemy2 = EnemyController::spawnEnemy(kEnemyFodder);
             enemy2->setPosition(random + Point(-60,60)*(i+1));
-            static_cast<Fodder*>(enemy2)->setTurnRate(randomAngle);
-            enemy2->setRotation(-randomAngle);
+            static_cast<Fodder*>(enemy2)->setTurnRate(randomAngle*0.5);
+            enemy2->setRotation(-randomAngle-90);
         }
         auto leader = EnemyController::spawnEnemy(kEnemyFodderL);
         leader->setPosition(random);

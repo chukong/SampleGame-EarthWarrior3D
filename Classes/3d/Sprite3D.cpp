@@ -7,10 +7,9 @@
 //
 
 #include "Sprite3D.h"
+#include "MeshCache.h"
 
 using namespace cocos2d;
-
-#define USE_VBO
 
 #define STRINGIFY(A)  #A
 //#include "../Shaders/TexturedLighting.es2.vert.h"
@@ -30,132 +29,120 @@ Sprite3D* Sprite3D::create(const std::string &modelPath, const std::string &text
 
 Sprite3D::Sprite3D()
 : _texture(nullptr)
+, _model(nullptr)
+, _mainShader(nullptr)
+, _outlineShader(nullptr)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+,_backToForegroundlistener(nullptr)
+#endif
 {
 }
 
 Sprite3D::~Sprite3D()
 {
-    if(glIsBuffer(_drawable.VertexBuffer))
-    {
-        glDeleteBuffers(1, &_drawable.VertexBuffer);
-        _drawable.VertexBuffer = 0;
-    }
-    if(glIsBuffer(_drawable.IndexBuffer))
-    {
-        glDeleteBuffers(1, &_drawable.IndexBuffer);
-        _drawable.IndexBuffer = 0;
-    }
+    CC_SAFE_RELEASE(_mainShader);
     CC_SAFE_RELEASE(_outlineShader);
     CC_SAFE_RELEASE(_texture);
+    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    Director::getInstance()->getEventDispatcher()->removeEventListener(_backToForegroundlistener);
+#endif
 }
 
 bool Sprite3D::init(const std::string &modelPath, const std::string &texturePath)
 {
-    auto model = new Mesh(modelPath);
+    auto model = MeshCache::getInstance()->addMesh(modelPath);// new Mesh(modelPath);
     if( texturePath.size()) {
         setTextureName(texturePath);
     }
+    else
+    {
+        buildProgram( _texture->getName() != 0);
+    }
     setModel(model);
+    
+    this->updateBlendFunc();
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    // listen the event when app go to foreground
+    _backToForegroundlistener = EventListenerCustom::create(EVENT_COME_TO_FOREGROUND, CC_CALLBACK_1(Sprite3D::listenBackToForeground, this));
+    Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(_backToForegroundlistener, -1);
+#endif
     
     return true;
 }
 
-void Sprite3D::initializeModel()
+void Sprite3D::setModel(Mesh *model)
 {
-    if (_model) {
-
-        _model->generateVertices(_vertices, 0);
-        
-        //int indexCount = _model->getTriangleIndexCount();
-        //_indices.resize(indexCount);
-        _model->generateTriangleIndices(_indices);
-        _drawable.IndexCount = _indices.size();
-
-        delete _model;
-        _model = NULL;
-#ifdef USE_VBO
-        this->buildBuffers();
-#endif
-        this->updateBlendFunc();
-        buildProgram( _texture->getName() != 0);
+    if (model != nullptr && _model != model)
+    {
+        _model = model;
     }
 }
 
-void Sprite3D::setModel(Mesh *model)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+void Sprite3D::listenBackToForeground(EventCustom* event)
 {
-    _model = model;
-    this->initializeModel();
+    buildProgram(_texture->getName() != 0);
+    if (_outLine && _outLineWidth > 0 && _outlineShader) {
+        _outlineShader->reset();
+        _outlineShader->initWithByteArrays(outLineShader, blackFrag);
+        _outlineShader->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_POSITION, GLProgram::VERTEX_ATTRIB_POSITION);
+        _outlineShader->link();
+        _outlineShader->updateUniforms();
+        _attributesOutline.Position = _outlineShader->getAttribLocation("Position");
+        _attributesOutline.Normal = _outlineShader->getAttribLocation("Normal");
+        _uniformsOutline.NormalMatrix = _outlineShader->getUniformLocation("NormalMatrix");
+        _uniformsOutline.OutlineWidth = _outlineShader->getUniformLocation("OutlineWidth");
+        _uniformsOutline.OutlineColor = _outlineShader->getUniformLocation("OutLineColor");
+    }
 }
+#endif
 
 bool Sprite3D::buildProgram(bool textured)
 {
-    auto shaderProgram = new GLProgram();
-    shaderProgram->autorelease();
+    if (!_mainShader) {
+        _mainShader = new GLProgram();
+    }
+    else
+    {
+        _mainShader->reset();
+    }
 
     // Create the GLSL program.
     if (textured) {
-        shaderProgram->initWithByteArrays(baseVertexShader, baseTexturedFrag);
+        _mainShader->initWithByteArrays(baseVertexShader, baseTexturedFrag);
     }
     else
-        shaderProgram->initWithByteArrays(baseVertexShader, baseColoredFrag);
+        _mainShader->initWithByteArrays(baseVertexShader, baseColoredFrag);
 
     //glUseProgram(_program);
 
-    shaderProgram->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_POSITION, GLProgram::VERTEX_ATTRIB_POSITION);
-    shaderProgram->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_COLOR, GLProgram::VERTEX_ATTRIB_COLOR);
-    shaderProgram->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_TEX_COORD, GLProgram::VERTEX_ATTRIB_TEX_COORDS);
+    _mainShader->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_POSITION, GLProgram::VERTEX_ATTRIB_POSITION);
+    _mainShader->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_COLOR, GLProgram::VERTEX_ATTRIB_COLOR);
+    _mainShader->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_TEX_COORD, GLProgram::VERTEX_ATTRIB_TEX_COORDS);
 
-    shaderProgram->link();
-    shaderProgram->updateUniforms();
+    _mainShader->link();
+    _mainShader->updateUniforms();
 
     // Extract the handles to attributes and uniforms.
-    _attributes.Position = shaderProgram->getAttribLocation("Position");
-    _attributes.Normal = shaderProgram->getAttribLocation("Normal");
-    
-    _uniforms.DiffuseMaterial = shaderProgram->getUniformLocation("DiffuseMaterial");
+    _attributes.Position = _mainShader->getAttribLocation("Position");
+    _attributes.Normal = _mainShader->getAttribLocation("Normal");
+
+    _uniforms.DiffuseMaterial = _mainShader->getUniformLocation("DiffuseMaterial");
     if (textured) {
-        _attributes.TextureCoord = shaderProgram->getAttribLocation("TextureCoord");
-        _uniforms.Sampler = shaderProgram->getUniformLocation("Sampler");
+        _attributes.TextureCoord = _mainShader->getAttribLocation("TextureCoord");
+        _uniforms.Sampler = _mainShader->getUniformLocation("Sampler");
     }
     else {
         _attributes.TextureCoord = 0;
         _uniforms.Sampler = 0;
     }
-    _uniforms.NormalMatrix = shaderProgram->getUniformLocation("NormalMatrix");
-    setShaderProgram(shaderProgram);
+
+    _uniforms.NormalMatrix = _mainShader->getUniformLocation("NormalMatrix");
     return true;
 }
 
-#ifdef USE_VBO
-void Sprite3D::buildBuffers()
-{
-    GLuint vertexBuffer;
-    glGenBuffers(1, &vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER,
-                 _vertices.size() * sizeof(_vertices[0]),
-                 &_vertices[0],
-                 GL_STATIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    
-    // Create a new VBO for the indices
-    ssize_t indexCount = _indices.size();// model->GetTriangleIndexCount();
-    GLuint indexBuffer;
-
-    glGenBuffers(1, &indexBuffer);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER,
-                 indexCount * sizeof(GLushort),
-                 &_indices[0],
-                 GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    
-    _drawable.VertexBuffer = vertexBuffer;
-    _drawable.IndexBuffer = indexBuffer;
-    _drawable.IndexCount = indexCount;
-}
-
-#endif
 void Sprite3D::draw(Renderer* renderer, const kmMat4 &transform, bool transformUpdated)
 {
     _customCommand.init(_globalZOrder);
@@ -169,8 +156,8 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
     glEnable(GL_CULL_FACE);
     // ********** Base Draw *************
     
-    getShaderProgram()->use();
-    getShaderProgram()->setUniformsForBuiltins(transform);
+    _mainShader->use();
+    _mainShader->setUniformsForBuiltins(transform);
 
     GL::blendFunc( _blendFunc.src, _blendFunc.dst );
     kmGLLoadIdentity();
@@ -199,6 +186,10 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
     kmMat3AssignMat4(&normals, &_modelViewTransform);
     glUniformMatrix3fv(_uniforms.NormalMatrix, 1, 0, &normals.mat[0]);
 
+    GLuint verBuf = _model->getVertexBuffer();
+    GLuint indexBuf = _model->getIndexBuffer();
+    ssize_t indexCount = _model->getIndexCount();
+
     // Draw the surface using VBOs
     int stride = sizeof(vec3) + sizeof(vec3) + sizeof(vec2);
     const GLvoid* normalOffset = (const GLvoid*) sizeof(vec3);
@@ -207,13 +198,13 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
     GLint normal = _attributes.Normal;
     GLint texCoord = _attributes.TextureCoord;
 
-    glBindBuffer(GL_ARRAY_BUFFER, _drawable.VertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, verBuf);
     glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, stride, 0);
     //glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, stride, normalOffset);
     if (_texture->getName())
         glVertexAttribPointer(texCoord, 2, GL_FLOAT, GL_FALSE, stride, texCoordOffset);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _drawable.IndexBuffer);
-    glDrawElements(GL_TRIANGLES, _drawable.IndexCount, GL_UNSIGNED_SHORT, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuf);
+    glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT, 0);
     
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -246,21 +237,21 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
         position = _attributesOutline.Position;
         normal = _attributesOutline.Normal;
         
-        glBindBuffer(GL_ARRAY_BUFFER, _drawable.VertexBuffer);
+        glBindBuffer(GL_ARRAY_BUFFER, verBuf);
         glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, stride, 0);
         glVertexAttribPointer(normal, 3, GL_FLOAT, GL_FALSE, stride, normalOffset);
         
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _drawable.IndexBuffer);
-        glDrawElements(GL_TRIANGLES, _drawable.IndexCount, GL_UNSIGNED_SHORT, 0);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuf);
+        glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT, 0);
         
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
         
-        CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, _drawable.IndexCount);
+        CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, indexCount);
         glCullFace(GL_BACK);
     }
     glDisable(GL_DEPTH_TEST);
-    CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, _drawable.IndexCount);
+    CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, indexCount);
     
 }
 
@@ -316,12 +307,14 @@ void Sprite3D::setTexture(Texture2D* texture)
 
 void Sprite3D::setOutline(float width, Color3B color)
 {
-    if(width >0)
+    if(width > 0)
     {
         _outLine = true;
         _outLineWidth = width;
         _outlineColor = color;
-        _outlineShader = new GLProgram();
+        if (!_outlineShader) {
+            _outlineShader = new GLProgram();
+        }
         _outlineShader->initWithByteArrays(outLineShader, blackFrag);
         _outlineShader->bindAttribLocation(GLProgram::ATTRIBUTE_NAME_POSITION, GLProgram::VERTEX_ATTRIB_POSITION);
         
