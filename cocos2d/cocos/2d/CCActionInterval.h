@@ -640,12 +640,16 @@ protected:
 
     float _scaleX;
     float _scaleY;
+    float _scaleZ;
     float _startScaleX;
     float _startScaleY;
+    float _startScaleZ;
     float _endScaleX;
     float _endScaleY;
+    float _endScaleZ;
     float _deltaX;
     float _deltaY;
+    float _deltaZ;
 
 private:
     CC_DISALLOW_COPY_AND_ASSIGN(ScaleTo);

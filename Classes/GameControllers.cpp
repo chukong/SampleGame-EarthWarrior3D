@@ -308,7 +308,7 @@ void GameController::update(float dt, Player* player)
         switch(enemy->getType())
         {
             case kEnemyBigDude:
-                enemy->update(dt);
+                static_cast<BigDude*>(enemy)->update(dt, player);
                 break;
             default:
                 enemy->move(enemyMoveDist, dt);
