@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "Vector.h"
+#include "ccTypes.h"
 
 struct Face
 {
@@ -62,17 +63,26 @@ public:
     ~Mesh();
     
     bool loadFromFile(const std::string& name);
-    void generateVertices(std::vector<float>& vertices, unsigned char flags) const;
-    void generateTriangleIndices(std::vector<unsigned short>& indices) const;
+
+    inline GLuint getVertexBuffer() const { return _vertexBuffer; }
+    inline GLuint getIndexBuffer() const { return _indexBuffer; }
+    inline ssize_t getIndexCount() const { return _indexCount; }
+
     //void readTexels(std::vector<vec2>& ) const;
 
 protected:
+    void generateVertices();
+    void generateTriangleIndices();
+    void buildBuffer();
+
     void generateLineIndices(std::vector<unsigned short>& indices) const {}
     int getVertexCount(/*int &texInCount*/) const;
     int getTexelCount() const;
     
     int getLineIndexCount() const { return 0; }
     int getTriangleIndexCount() const;
+
+    void freeBuffers();
 
 protected:
     void countVertexData() const;
@@ -84,6 +94,14 @@ protected:
     mutable int _vertexCount;
     mutable int _texelCount;
     static const int MAX_LINE_SIZE = 128;
+
+    GLuint _vertexBuffer;
+    GLuint _indexBuffer;
+    ssize_t _indexCount;
+
+    std::vector<GLfloat> _vertices;
+    std::vector<GLushort> _indices;
+
 private:
     RenderMesh _renderableMesh;
     
