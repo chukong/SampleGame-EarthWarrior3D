@@ -52,6 +52,10 @@ public:
     static Sprite3D* create(const std::string &modelPath, const std::string &texturePath="");
     void setOutline(float width, cocos2d::Color3B color);
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    void listenBackToForeground(cocos2d::EventCustom* event);
+#endif
+
 protected:
     Sprite3D();
     virtual ~Sprite3D();
@@ -78,11 +82,16 @@ protected:
     float _outLineWidth;
     cocos2d::Color3B _outlineColor;
     cocos2d::GLProgram *_outlineShader;
+    cocos2d::GLProgram *_mainShader;
 
     UniformHandles _uniforms;
     UniformHandles _uniformsOutline;
     AttributeHandles _attributes;
     AttributeHandles _attributesOutline;
+    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    cocos2d::EventListenerCustom* _backToForegroundlistener;
+#endif
 };
 
 #endif // __SPRITE3D_H_
