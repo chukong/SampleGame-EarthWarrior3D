@@ -71,7 +71,7 @@ bool GameLayer::init()
                                      EaseSineOut::create(RotateBy::create(1.7,Vertex3F(0,720,0))),
                                      nullptr
                                      ),
-                       CallFunc::create(this,callfunc_selector(GameLayer::schedulePlayer)),nullptr));
+                       CallFunc::create(CC_CALLBACK_0(GameLayer::schedulePlayer,this)),nullptr));
     return true;
 }
 
