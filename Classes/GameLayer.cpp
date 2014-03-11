@@ -138,6 +138,39 @@ void GameLayer::gameMaster(float dt)
         leader->schedule(schedule_selector(FodderLeader::shoot),CCRANDOM_0_1()*1+1,90,0);
         
     }
+    if(_elapsed > 15 && enemyCount < 4)
+    {
+        for(int q = 0; q< 2; q++)
+        {
+            //random if its from the top, left, or bottom
+            int direction = CCRANDOM_0_1()*4;
+            float rX, rY;
+            switch(direction)
+            {
+                case 0://top
+                    rY = BOUND_RECT.size.height/2+200;
+                    rX = ENEMY_BOUND_RECT.size.width*CCRANDOM_0_1();
+                    break;
+                case 1://bottom
+                    rY = -200;
+                    rX = ENEMY_BOUND_RECT.size.width*CCRANDOM_0_1();
+                    break;
+                case 2://left
+                    rY = ENEMY_BOUND_RECT.size.height*CCRANDOM_0_1();
+                    rX = ENEMY_BOUND_RECT.origin.x;
+                    break;
+                case 3://right
+                    rY = ENEMY_BOUND_RECT.size.height*CCRANDOM_0_1();
+                    rX = ENEMY_BOUND_RECT.size.width;
+                    break;
+            }
+            auto enemy = EnemyController::showCaseEnemy(kEnemyBigDude);
+            //enemy->setPosition(Point(100*CCRANDOM_MINUS1_1(), BOUND_RECT.size.height/2+200));
+            enemy->setPosition(rX,rY);
+            enemy->runAction(MoveTo::create(1, Point(BOUND_RECT.size.width/3*CCRANDOM_MINUS1_1(),BOUND_RECT.size.height/3*CCRANDOM_0_1())));
+            
+        }
+    }
 }
 
 void GameLayer::update(float dt)
