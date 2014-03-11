@@ -15,7 +15,7 @@
 #include "SimpleAudioEngine.h"
 #include "Enemies.h"
 #include "Player.h"
-
+#include "HelloWorldScene.h"
 Node* BulletController::_bulletLayer = nullptr;
 bool BulletController::_inited = false;
 Vector<Bullet*> BulletController::bullets;
@@ -256,8 +256,11 @@ void GameController::update(float dt, Player* player)
                             switch(b->getType())
                             {
                             case kPlayerMissiles:
+                            {
                                 EffectManager::createExplosion(e->getPosition());
+
                                 CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
+                            }
                                 break;
                             default:
                                 CocosDenshion::SimpleAudioEngine::getInstance()->   playEffect("hit.mp3");

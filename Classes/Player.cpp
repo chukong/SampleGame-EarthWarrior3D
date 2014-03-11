@@ -11,6 +11,10 @@
 #include "3d/Sprite3D.h"
 #include "GameControllers.h"
 #include "consts.h"
+#include "HelloWorldScene.h"
+
+#define visible_size_macro Director::getInstance()->getVisibleSize()
+#define origin_point Director::getInstance()->getVisibleOrigin();
 
 bool Player::init()
 {
@@ -102,6 +106,29 @@ void Player::shootMissile(float dt)
     left->setRotation(-45);
     auto right = BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(50,-20), Point(200,-200));
     right->setRotation(45);
+}
+
+bool Player::hurt(float damage){
+    float fromHP = _HP;
+    float toHP = _HP-=damage;
+    
+    auto fade = FadeTo::create(0.2, 40);
+    auto fadeBack = FadeTo::create(0.2, 0);
+    auto warningLayer = Director::getInstance()->getRunningScene()->getChildByTag(456);
+    warningLayer->runAction(Sequence::create(fade,fadeBack,NULL));
+    
+    auto hpView = ((HelloWorld*)Director::getInstance()->getRunningScene()->getChildByTag(100))->getHPView();
+    //Rye
+    auto to = ProgressFromTo::create(0.5, fromHP, toHP);
+    hpView->runAction(to);
+    
+    if(_HP <= 0)
+    {
+        die();
+        return true;
+    }
+
+    return false;
 }
 
 void Player::die()

@@ -37,7 +37,7 @@ public:
     CC_SYNTHESIZE(MotionStreak*, _streak, Trail);
     CC_SYNTHESIZE(ParticleSystemQuad*, _emissionPart, EmissionPart);
     void setPosition(Point pos);
-    
+    virtual bool hurt(float damage);
     virtual void die();
 protected:
     float targetAngle = 0;

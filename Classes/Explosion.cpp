@@ -72,7 +72,7 @@ void BigExplosion::createExplosion(Node *_effectLayer, Point pos){
     part3->resetSystem();
     setPosition(pos);
 
-    this->scheduleOnce(schedule_selector(BigExplosion::recycle), 1.5);
+    this->scheduleOnce(schedule_selector(BigExplosion::recycle), 1.2);
 }
 
 void BigExplosion::recycle(float dt){

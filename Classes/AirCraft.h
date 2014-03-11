@@ -26,6 +26,7 @@ public:
 protected:
     bool _alive = true;
     float _HP;
+    int _score;
 };
 
 #endif /* defined(__Moon3d__AirCraft__) */
