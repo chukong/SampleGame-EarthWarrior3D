@@ -37,6 +37,8 @@ public:
     CC_SYNTHESIZE(MotionStreak*, _streak, Trail);
     CC_SYNTHESIZE(ParticleSystemQuad*, _emissionPart, EmissionPart);
     void setPosition(Point pos);
+    
+    virtual void die();
 protected:
     float targetAngle = 0;
     Point targetPos = Point(0,0);

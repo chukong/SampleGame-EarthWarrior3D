@@ -23,6 +23,7 @@ public:
     Point getVector();
     virtual void reset();
     CC_SYNTHESIZE(float, _damage, Damage);
+    CC_SYNTHESIZE(int, _owner, Owner)
 protected:
     Point _vector;
 };

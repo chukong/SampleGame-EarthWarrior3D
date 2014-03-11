@@ -22,6 +22,7 @@ bool Player::init()
         addChild(_Model);
         _Model->setRotation3D(Vertex3F(90,0,0));
         _radius = 40;
+        _HP = 100;
         
         auto listener = EventListenerTouchOneByOne::create();
         listener->setSwallowTouches(true);
@@ -101,4 +102,10 @@ void Player::shootMissile(float dt)
     left->setRotation(-45);
     auto right = BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(50,-20), Point(200,-200));
     right->setRotation(45);
+}
+
+void Player::die()
+{
+    _alive = false;
+    //TODO: Game ended, the player is dead!
 }

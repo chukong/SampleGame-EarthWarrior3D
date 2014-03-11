@@ -14,6 +14,7 @@
 #include "Effects.h"
 #include "SimpleAudioEngine.h"
 #include "Enemies.h"
+#include "Player.h"
 
 Node* BulletController::_bulletLayer = nullptr;
 bool BulletController::_inited = false;
@@ -63,6 +64,10 @@ Bullet* BulletController::spawnBullet(int type, Point pos, Point vec)
                 bullet->retain();
             }
             //bullet->setType
+            break;
+        case kEnemyBullet:
+            bullet = Bullet::create();
+            bullet->setType(kEnemyBullet);
             break;
     }
     if(bullet)
@@ -224,7 +229,7 @@ void EnemyController::erase(int i)
 }
 
 
-void GameController::update(float dt)
+void GameController::update(float dt, Player* player)
 {
     Point temp;
     Bullet* b;
@@ -236,38 +241,46 @@ void GameController::update(float dt)
         temp =b->getPosition();
         if(BOUND_RECT.containsPoint(temp))
         {
-            //********* Enemy Loop **********
-            for(int j = EnemyController::enemies.size()-1; j >= 0; j--)
+            if(b->getOwner() == kPlayer)
             {
-                auto e = EnemyController::enemies.at(j);
-                if(b->getPosition().getDistance(e->getPosition()) <(b->getRadius() + e->getRadius()))
+                //********* Enemy Loop **********
+                for(int j = EnemyController::enemies.size()-1; j >= 0; j--)
                 {
-                    //collision happened
-                    bool dead =  e->hurt(b->getDamage());
-                    if(!dead)
+                    auto e = EnemyController::enemies.at(j);
+                    if(b->getPosition().getDistance(e->getPosition()) <(b->getRadius() + e->getRadius()))
                     {
-                        switch(b->getType())
+                        //collision happened
+                        bool dead =  e->hurt(b->getDamage());
+                        if(!dead)
                         {
+                            switch(b->getType())
+                            {
                             case kPlayerMissiles:
                                 EffectManager::createExplosion(e->getPosition());
                                 CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
                                 break;
                             default:
-                                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.mp3");
+                                CocosDenshion::SimpleAudioEngine::getInstance()->   playEffect("hit.mp3");
                                 break;
+                            }
                         }
+                        BulletController::erase(i);
+                        break;
                     }
-                    BulletController::erase(i);
-                    break;
-                }
 
+                }
+                //*********** Enemy Loop ***************
+                if(b->getType() == kPlayerMissiles)
+                {
+                    b->update(dt);
+                }
+                else{
+                    b->setPosition(temp+(b->getVector()*dt));
+                }
             }
-            //*********** Enemy Loop ***************
-            if(b->getType() == kPlayerMissiles)
+            else
             {
-                b->update(dt);
-            }
-            else{
+                //enemy bullets
                 b->setPosition(temp+(b->getVector()*dt));
             }
         }
@@ -298,6 +311,13 @@ void GameController::update(float dt)
         if(!ENEMY_BOUND_RECT.containsPoint(enemy->getPosition()))
         {
             //enemy went out side, kill it
+            EnemyController::erase(k);
+        }
+        //if colliding with player
+        else if(enemy->getPosition().getDistance(player->getPosition()) <(enemy->getRadius() + player->getRadius()))
+        {
+            player->hurt(50);
+            enemy->hurt(50);
             EnemyController::erase(k);
         }
         //TODO: if enemy collide with player
