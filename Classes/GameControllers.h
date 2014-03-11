@@ -17,6 +17,7 @@ class Missile;
 class Fodder;
 class FodderLeader;
 class BigDude;
+class Player;
 class BulletController
 {
 public:
@@ -62,7 +63,7 @@ protected:
 class GameController
 {
 public:
-    static void update(float dt);
+    static void update(float dt, Player* player);
 };
 
 #endif /* defined(__Moon3d__BulletController__) */

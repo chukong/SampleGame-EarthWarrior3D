@@ -9,6 +9,7 @@
 #include "Enemies.h"
 #include "3d/Sprite3D.h"
 #include "GameControllers.h"
+#include "Bullets.h"
 #include "consts.h"
 
 bool Fodder::init()
@@ -55,6 +56,22 @@ switch(_moveMode)
     }
 
 }
+void Fodder::shoot(float dt)
+{
+    if(_target->alive())
+    {
+        //get angle to player;
+        float angle = (getPosition()-_target->getPosition()).getAngle();
+        auto bullet =BulletController::spawnBullet(kEnemyBullet, getPosition(), Point(cosf(angle)*-500, sinf(angle)*-500));
+        //auto bullet =BulletController::spawnBullet(kEnemyBullet, getPosition(), Point(0,-500));
+        bullet->setRotation(-CC_RADIANS_TO_DEGREES(angle)-90);
+        log("aaaaaaa");
+    }
+    else{
+        log("player is dead,hahahaha");
+    }
+}
+
 
 bool FodderLeader::init()
 {

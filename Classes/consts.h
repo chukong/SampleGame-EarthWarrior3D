@@ -22,6 +22,7 @@ enum entityTypes
 {
     kPlayerBullet,
     kPlayerMissiles,
+    kEnemyBullet,
     
     kPlayer,
     kEnemy,

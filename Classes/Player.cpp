@@ -22,6 +22,7 @@ bool Player::init()
         addChild(_Model);
         _Model->setRotation3D(Vertex3F(90,0,0));
         _radius = 40;
+        _HP = 100;
         
         auto listener = EventListenerTouchOneByOne::create();
         listener->setSwallowTouches(true);
@@ -31,7 +32,7 @@ bool Player::init()
         listener->onTouchEnded = CC_CALLBACK_2(Player::onTouchEnded, this);
         
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-        scheduleUpdate();
+        //scheduleUpdate();
         static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B(0,0,0));
         schedule(schedule_selector(Player::shootMissile), 1.5, -1, 0);
         schedule(schedule_selector(Player::shoot), 0.1, -1, 0);
@@ -97,8 +98,14 @@ void Player::setPosition(Point pos)
 }
 void Player::shootMissile(float dt)
 {
-    auto left = BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(-50,-20), Point(-175,-175));
+    auto left = BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(-50,-20), Point(-200,-200));
     left->setRotation(-45);
-    auto right = BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(50,-20), Point(175,-175));
+    auto right = BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(50,-20), Point(200,-200));
     right->setRotation(45);
+}
+
+void Player::die()
+{
+    _alive = false;
+    //TODO: Game ended, the player is dead!
 }

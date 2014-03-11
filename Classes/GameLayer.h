@@ -20,6 +20,7 @@ public:
     virtual bool init();
     void update(float dt);
     CREATE_FUNC(GameLayer);
+    //virtual void onEnter();
 protected:
     float xScroll = 0.0f;
     float speed = -60.0f;
@@ -28,6 +29,7 @@ protected:
     Player *_player;
     MotionStreak *_streak;
     ParticleSystemQuad *_emissionPart;
+    void schedulePlayer();
     //QuadTree *_collisionTree;
     
 

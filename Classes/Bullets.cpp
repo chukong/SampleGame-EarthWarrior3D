@@ -16,13 +16,15 @@
 
 bool Bullet::init()
 {
-    _Model = Sprite::create("CloseSelected.png");
+    _Model = Sprite::create("bullets.png", Rect(5,8,24,32));
     if(_Model)
     {
         addChild(_Model);
         _radius=10;
-        _type = kPlayerBullet;
+        _type = kEnemyBullet;
+        _owner = kEnemy;
         _damage = 10;
+        //static_cast<Sprite*>(_Model)->setFlippedY(true);
         return true;
     }
     return false;
@@ -35,6 +37,7 @@ bool PlayerBullet::init()
         addChild(_Model);
         _radius=10;
         _type = kPlayerBullet;
+        _owner = kPlayer;
         _damage = 1;
         return true;
     }
@@ -63,6 +66,7 @@ bool Missile::init()
         addChild(_Model);
         _radius=10;
         _type = kPlayerMissiles;
+        _owner = kPlayer;
         _Model->setScale(3);
         _Model->setRotation3D(Vertex3F(90,0,0));
         _damage = 75;
@@ -119,11 +123,14 @@ void Missile::update(float dt)
         float f = getRotation();
         setRotation(f);
         setPosition(getPosition()+Point(sinf(CC_DEGREES_TO_RADIANS(f))*_velocity,cosf(CC_DEGREES_TO_RADIANS(f))*_velocity) + _vector*dt);
-        _vector = _vector * (1-dt);
+        _vector = _vector * (1-dt*0.5);
     }
     // missiles need to rotate
     _yRotation += _yRotSpeed*dt;
     _Model->setRotation3D(Vertex3F(90,_yRotation, 0));
+    
+    
+    
     
     _velocity += _accel*dt;
 }
