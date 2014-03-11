@@ -59,13 +59,6 @@ bool GameLayer::init()
     _emissionPart->setPositionType(tPositionType::FREE);
     addChild(_player,3);
     EffectManager::setLayer(this);
-    auto Audio = CocosDenshion::SimpleAudioEngine::getInstance();
-    Audio->preloadEffect("explodeEffect.mp3");
-    Audio->preloadEffect("hit.mp3");
-    Audio->preloadEffect("boom2.mp3");
-    // Music By Matthew Pable (http://www.matthewpablo.com/)
-    // Licensed under CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
-    Audio->playBackgroundMusic("Flux.mp3");
 
     this->schedule(schedule_selector(GameLayer::gameMaster) , 1.5, -1, 0.0);
 

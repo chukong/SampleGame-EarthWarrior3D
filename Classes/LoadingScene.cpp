@@ -8,6 +8,12 @@
 
 #include "LoadingScene.h"
 #include "HelloWorldScene.h"
+#include "3d/Sprite3D.h"
+
+LoadingScene::~LoadingScene()
+{
+    NotificationCenter::getInstance()->destroyInstance();
+}
 
 Scene* LoadingScene::createScene()
 {
@@ -32,29 +38,52 @@ bool LoadingScene::init()
         return false;
     }
 
-	Size visibleSize = Director::getInstance()->getVisibleSize(); 
-
-//	//LabelPercent
-//	m_pLabelPercent = LabelTTF::create("0%","Arial",20);
-//	m_pLabelPercent->setPosition(Point(visibleSize.width/2+35,visibleSize.height/2+30));  
-//	this->addChild(m_pLabelPercent,2);  
-//
-//	//ProgressPercent
-//	auto loadBg = Sprite::create("sliderTrack.png"); 
-//	loadBg->setPosition(Point(visibleSize.width/2,visibleSize.height/2));  
-//	this->addChild(loadBg,1);  
-//
-//	m_pLoadProgress = ProgressTimer::create(Sprite::create("sliderProgress.png"));
-//	m_pLoadProgress->setBarChangeRate(Point(1,0));
-//	m_pLoadProgress->setType(ProgressTimer::Type::BAR);
-//	m_pLoadProgress->setMidpoint(Point(0,1));  
-//	m_pLoadProgress->setPosition(Point(visibleSize.width/2,visibleSize.height/2));  
-//	m_pLoadProgress->setPercentage(0.0f);
-//	this->addChild(m_pLoadProgress,2);
-
+	InitBk();
+    InitCoco();
     LoadingResource();
     
+    NotificationCenter::getInstance()->addObserver(this,callfuncO_selector(LoadingScene::GotoNextScene),"GotoNextScene",NULL);
+    scheduleUpdate();
+    
     return true;
+}
+
+void LoadingScene::InitBk()
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    
+    //bk
+    auto loading_bk=Sprite::create("loading_bk.png");
+    loading_bk->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
+    addChild(loading_bk,0);
+    
+    
+    //LabelPercent
+    m_pPercent=LabelBMFont::create("0%", "num.fnt");
+    m_pPercent->setPosition(Point(visibleSize.width/2,visibleSize.height/2+170));
+    this->addChild(m_pPercent,1);
+    
+    //ControlSlider
+	m_pSlider = ControlSlider::create("loading_progress_bk.png","loading_progress_progress.png" ,"loading_progress_thumb.png");
+	m_pSlider->setAnchorPoint(Point(0.5f, 1.0f));
+	m_pSlider->setMinimumValue( 0 );
+	m_pSlider->setMaximumValue(100);
+	m_pSlider->setPosition(Point(visibleSize.width/2, visibleSize.height/2+300));
+	m_pSlider->setValue(0);
+	addChild(m_pSlider,1);
+}
+
+void LoadingScene::InitCoco()
+{
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    auto coco = Sprite3D::create("coconut.obj", "coco.png");
+    if(coco)
+    {
+        coco->setPosition(Point(visibleSize.width/2, visibleSize.height/2-150));
+        coco->setOutline(10,Color3B(0,0,0));
+        addChild(coco,1);
+        coco->runAction(RepeatForever::create(RotateBy::create(0.8f,Vertex3F(0,360,0))));
+    }
 }
 
 void LoadingScene::LoadingResource()
@@ -86,7 +115,6 @@ void LoadingScene::LoadingPic()
 	TexureCache->addImageAsync("CloseNormal.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("CloseSelected.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("cloud.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("coco.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("daodan_32.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("daodan_512.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("diji02_v002_128.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
@@ -108,19 +136,28 @@ void LoadingScene::LoadingCallback(Ref* pObj)
     ++currentNum;
     char tmp[10];
 	int percent=(int)(((float)currentNum / totalNum) * 100);
-    sprintf(tmp, "loading...%d%%", percent);
-    CCLog(tmp);
+    sprintf(tmp, "%d%%", percent);
+    m_pPercent->setString(tmp);
+    m_pSlider->setValue(percent);
     
-//    m_pLabelPercent->setString(tmp);
-//	m_pLoadProgress->setPercentage(percent);
 
     if (currentNum == totalNum)
     {
-		this->removeAllChildren();
-        
-		//goto next scene.
-        auto helloworldScene=HelloWorld::createScene();
-        Director::getInstance()->replaceScene(helloworldScene);
+        NotificationCenter::getInstance()->postNotification("GotoNextScene",NULL);
     }
 }
 
+void LoadingScene::GotoNextScene(Ref* pObj)
+{
+    
+    this->removeAllChildren();
+    
+    //goto next scene.
+    auto helloworldScene=HelloWorld::createScene();
+    Director::getInstance()->replaceScene(helloworldScene);
+}
+
+void LoadingScene::update(float dt)
+{
+    
+}

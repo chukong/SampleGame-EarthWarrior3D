@@ -15,6 +15,12 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		1FEB8CAE18CE9EBE00B4D262 /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FEB8CAC18CE9EBE00B4D262 /* LoadingScene.cpp */; };
+		1FEB8CB518CEDA9600B4D262 /* loading_bk.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FEB8CB218CEDA9600B4D262 /* loading_bk.png */; };
+		1FEB8CB618CEDA9600B4D262 /* loading_progress_bk.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FEB8CB318CEDA9600B4D262 /* loading_progress_bk.png */; };
+		1FEB8CB718CEDA9600B4D262 /* loading_progress_progress.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FEB8CB418CEDA9600B4D262 /* loading_progress_progress.png */; };
+		1FEB8CC318CEDAA500B4D262 /* loading_progress_thumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FEB8CC218CEDAA500B4D262 /* loading_progress_thumb.png */; };
+		1FEB8CCE18CEEB1100B4D262 /* num.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 1FEB8CCC18CEEB1100B4D262 /* num.fnt */; };
+		1FEB8CD118CEEC4B00B4D262 /* num_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FEB8CD018CEEC4B00B4D262 /* num_0.png */; };
 		2606BD1218C72A9900142F1C /* PublicApi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2606BD0F18C72A9900142F1C /* PublicApi.cpp */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 503AE0F617EB97AB00D1A890 /* Icon.icns */; };
@@ -335,6 +341,12 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1FEB8CAC18CE9EBE00B4D262 /* LoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoadingScene.cpp; path = ../Classes/LoadingScene.cpp; sourceTree = "<group>"; };
 		1FEB8CAD18CE9EBE00B4D262 /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingScene.h; path = ../Classes/LoadingScene.h; sourceTree = "<group>"; };
+		1FEB8CB218CEDA9600B4D262 /* loading_bk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_bk.png; sourceTree = "<group>"; };
+		1FEB8CB318CEDA9600B4D262 /* loading_progress_bk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_progress_bk.png; sourceTree = "<group>"; };
+		1FEB8CB418CEDA9600B4D262 /* loading_progress_progress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_progress_progress.png; sourceTree = "<group>"; };
+		1FEB8CC218CEDAA500B4D262 /* loading_progress_thumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading_progress_thumb.png; sourceTree = "<group>"; };
+		1FEB8CCC18CEEB1100B4D262 /* num.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = num.fnt; sourceTree = "<group>"; };
+		1FEB8CD018CEEC4B00B4D262 /* num_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = num_0.png; path = ../Resources/num_0.png; sourceTree = "<group>"; };
 		2606BD0F18C72A9900142F1C /* PublicApi.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PublicApi.cpp; path = ../Classes/PublicApi.cpp; sourceTree = "<group>"; };
 		2606BD1018C72A9900142F1C /* PublicApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PublicApi.h; path = ../Classes/PublicApi.h; sourceTree = "<group>"; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -438,7 +450,6 @@
 		A044DE7418C69F8000B6CCBD /* Textured.es2.frag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Textured.es2.frag.h; sourceTree = "<group>"; };
 		A044DE7518C69F8000B6CCBD /* Textured.es2.vert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Textured.es2.vert.h; sourceTree = "<group>"; };
 		A044DE7618C69F8000B6CCBD /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
-		BBDA878218CD6E9300A2F47E /* consts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = consts.h; path = ../Classes/consts.h; sourceTree = "<group>"; };
 		BBDA878318CDA2BF00A2F47E /* Explosion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Explosion.cpp; path = ../Classes/Explosion.cpp; sourceTree = "<group>"; };
 		BBDA878418CDA2BF00A2F47E /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Explosion.h; path = ../Classes/Explosion.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -558,6 +569,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				1FEB8CD018CEEC4B00B4D262 /* num_0.png */,
 				1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */,
 				15AA9C4015B7EC450033D6C2 /* Classes */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -659,6 +671,11 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1FEB8CCC18CEEB1100B4D262 /* num.fnt */,
+				1FEB8CC218CEDAA500B4D262 /* loading_progress_thumb.png */,
+				1FEB8CB218CEDA9600B4D262 /* loading_bk.png */,
+				1FEB8CB318CEDA9600B4D262 /* loading_progress_bk.png */,
+				1FEB8CB418CEDA9600B4D262 /* loading_progress_progress.png */,
 				68F22BD218CCD0B000B6521B /* emissionPart.plist */,
 				68F22BCC18CCAD4F00B6521B /* coco.png */,
 				68F22BCD18CCAD4F00B6521B /* coconut.obj */,
@@ -923,17 +940,22 @@
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
 				680A316718C6471000D073CD /* playerv001.obj in Resources */,
+				1FEB8CC318CEDAA500B4D262 /* loading_progress_thumb.png in Resources */,
 				68AB901218C9F468007DDB0D /* debris.plist in Resources */,
+				1FEB8CB718CEDA9600B4D262 /* loading_progress_progress.png in Resources */,
 				686EC63A18BAEFA70065154C /* groundLevel.jpg in Resources */,
 				68F22BDA18CDA24600B6521B /* playerv002.obj in Resources */,
 				68F22BCE18CCAD4F00B6521B /* coco.png in Resources */,
 				688B39CA18C977FF00A14D84 /* bullets.png in Resources */,
+				1FEB8CB518CEDA9600B4D262 /* loading_bk.png in Resources */,
+				1FEB8CCE18CEEB1100B4D262 /* num.fnt in Resources */,
 				680A316918C6471000D073CD /* playerv002_1024.png in Resources */,
 				688B39ED18C9B48700A14D84 /* hit.mp3 in Resources */,
 				68BB2B1618C4720000158010 /* DownNecker2.obj in Resources */,
 				688B39DD18C9A4E100A14D84 /* leftTop.png in Resources */,
 				6815E1C618BDE5C9004F9944 /* DownNecker.obj in Resources */,
 				68F22BCA18CC2AF100B6521B /* Flux.mp3 in Resources */,
+				1FEB8CD118CEEC4B00B4D262 /* num_0.png in Resources */,
 				686EC63F18BB11250065154C /* fighter.obj in Resources */,
 				688B39D918C99A9A00A14D84 /* streak.png in Resources */,
 				68AB901418C9F468007DDB0D /* glow.plist in Resources */,
@@ -954,6 +976,7 @@
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
 				1AFAF8BE16D35E4900DB1158 /* HelloWorld.png in Resources */,
 				68F22BD818CDA24600B6521B /* diji1_v002.obj in Resources */,
+				1FEB8CB618CEDA9600B4D262 /* loading_progress_bk.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				68F22BBA18CB3CB600B6521B /* explodeEffect.mp3 in Resources */,
