@@ -110,7 +110,7 @@ void BulletController::erase(int i)
     {
 
         bullets.erase(i);
-        b->removeFromParentAndCleanup(false);
+        b->removeFromParentAndCleanup(true);
     }
 }
 
@@ -278,9 +278,16 @@ void GameController::update(float dt, Player* player)
                     b->setPosition(temp+(b->getVector()*dt));
                 }
             }
-            else
+            // loop all enemy bullets against player
+            else if(b->getPosition().getDistance(player->getPosition()) < b->getRadius()+player->getRadius())
             {
-                //enemy bullets
+                BulletController::erase(i);
+                EffectManager::createExplosion(player->getPosition());
+                break;
+            }
+            else // nothing happens to the bullet, move along..
+            {
+                
                 b->setPosition(temp+(b->getVector()*dt));
             }
         }
