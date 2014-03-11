@@ -48,7 +48,8 @@ bool HelloWorld::init()
     addChild(rightTopUI);
     
     // Easter Egg
-//    auto coco = Sprite3D::create("coconut.obj", "coco.png");
+//    auto cocos = Sprite3D::create("coconut.obj", "coco.png");
+//    auto coco = cocos;
 //    addChild(coco);
 //    coco->setScale(1);
 //    coco->setOutline(10, Color3B(0,0,0));

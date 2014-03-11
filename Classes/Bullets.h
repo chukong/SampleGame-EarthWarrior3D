@@ -43,7 +43,7 @@ public:
     CC_SYNTHESIZE(GameEntity*, _target, Target)
     virtual void reset();
 protected:
-    float _accel = 20;
+    float _accel = 15;
     float _turnRate = 180;
     //float _maxSpeed = 100;
     float _yRotSpeed = 1400;

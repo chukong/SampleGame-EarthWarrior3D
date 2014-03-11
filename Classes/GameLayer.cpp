@@ -73,9 +73,22 @@ bool GameLayer::init()
     EnemyController::init(this);
     scheduleUpdate();
     
+    
+    _player->setPosition(Point(0,-1000));
+    _player->runAction(Sequence::create(
+                       Spawn::create(
+                                     EaseBackOut::create(MoveTo::create(1.7,Point(0,-200))),
+                                     EaseSineOut::create(RotateBy::create(1.7,Vertex3F(0,720,0))),
+                                     nullptr
+                                     ),
+                       CallFunc::create(this,callfunc_selector(GameLayer::schedulePlayer)),nullptr));
     return true;
 }
 
+void GameLayer::schedulePlayer()
+{
+    _player->scheduleUpdate();
+}
 void GameLayer::gameMaster(float dt)
 {
     _elapsed+=dt;
@@ -92,8 +105,13 @@ void GameLayer::gameMaster(float dt)
             auto enemy2 = EnemyController::spawnEnemy(kEnemyFodder);
             enemy2->setPosition(random + Point(-60,60)*(i+1));
             static_cast<Fodder*>(enemy2)->setMoveMode(moveMode::kDefault);
+            enemy1->setRotation3D(Vertex3F(0,0,0));
+            enemy2->setRotation3D(Vertex3F(0,0,0));
         }
-        EnemyController::spawnEnemy(kEnemyFodderL)->setPosition(random);
+        auto leader = EnemyController::spawnEnemy(kEnemyFodderL);
+        leader->setPosition(random);
+        leader->setRotation3D(Vertex3F(0,0,0));
+        static_cast<FodderLeader*>(leader)->setMoveMode(moveMode::kDefault);
     }
     //else if(_elapsed < 20 && enemyCount <5)
     if(_elapsed > 4 && enemyCount <3)
