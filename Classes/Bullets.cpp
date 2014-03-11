@@ -26,13 +26,14 @@ bool Bullet::init()
         _owner = kEnemy;
         _damage = 10;
         ParticleSystemQuad *p = ParticleSystemQuad::create("missileFlare.plist");
-        p->setEndColor(Color4F(1,0,0,1));
+        //p->setEndColor(Color4F(1,0,0,1));
         //p->setStartColor(Color4F(1,0,0,1));
         p->setPositionType(tPositionType::GROUPED);
         p->setScale(2.5);
-        _Model->addChild(p);
+        p->setTotalParticles(2);
+        _Model->addChild(p,-1);
         p->setPosition(Point(_Model->getContentSize()/2));
-        
+        setScale(1.5);
         //static_cast<Sprite*>(_Model)->setFlippedY(true);
         return true;
     }

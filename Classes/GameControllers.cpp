@@ -108,7 +108,6 @@ void BulletController::erase(int i)
     }
     else
     {
-
         bullets.erase(i);
         b->removeFromParentAndCleanup(true);
     }
