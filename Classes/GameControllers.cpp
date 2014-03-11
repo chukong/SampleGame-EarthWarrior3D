@@ -259,7 +259,7 @@ void GameController::update(float dt, Player* player)
                                 CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
                                 break;
                             default:
-                                CocosDenshion::SimpleAudioEngine::getInstance()->   playEffect("hit.mp3");
+                                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.mp3");
                                 break;
                             }
                         }
