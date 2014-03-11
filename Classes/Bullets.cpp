@@ -48,7 +48,7 @@ bool PlayerBullet::init()
         _radius=10;
         _type = kPlayerBullet;
         _owner = kPlayer;
-        _damage = 1;
+        _damage = 1.5;
         return true;
     }
     return false;
