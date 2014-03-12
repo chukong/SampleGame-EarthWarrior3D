@@ -10,7 +10,7 @@
 #define __Moon3d__LoadingScene__
 
 #include "cocos2d.h"
-#include "cocos-ext.h"
+#include "extensions/cocos-ext.h"
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;

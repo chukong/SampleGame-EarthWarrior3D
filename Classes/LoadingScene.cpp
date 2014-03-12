@@ -118,16 +118,18 @@ void LoadingScene::LoadingPic()
 	TexureCache->addImageAsync("daodan_32.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("daodan_512.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("diji02_v002_128.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("diji02_v002_1024.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+	//TexureCache->addImageAsync("diji02_v002_1024.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("dijiyuanv001.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("Done1.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("fighter.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("fog.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("HelloWorld.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("leftTop.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+	TexureCache->addImageAsync("hp_empty.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+    TexureCache->addImageAsync("hp.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("playerv002_256.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("playerv002_1024.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("rightTop.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+	//TexureCache->addImageAsync("playerv002_1024.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+	TexureCache->addImageAsync("right_top_ui.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+    TexureCache->addImageAsync("score_right_top.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("streak.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 }
 
