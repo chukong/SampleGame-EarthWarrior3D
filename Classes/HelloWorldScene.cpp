@@ -85,7 +85,7 @@ bool HelloWorld::init()
 //    coco->setPosition(320,480);
 //    coco->runAction(RepeatForever::create(RotateBy::create(0.3, Vertex3F(10,12,13))));
     //glEnable(GL_DEPTH_TEST);
-    glEnable(GL_CULL_FACE);
+
     return true;
 }
 
