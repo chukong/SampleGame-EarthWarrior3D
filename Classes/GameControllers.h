@@ -29,12 +29,13 @@ public:
     static Vector<Bullet*> bullets;
     static void erase(Bullet* b); //returns the bullet to the pool
     static void erase(int i);
+    
+    static Vector<Missile*> _missilePool;
 
 protected:
         //static BulletController *s_instance;
     static bool _inited;
     static Node *_bulletLayer;
-    static Vector<Missile*> _missilePool;
 };
 
 class EnemyController
@@ -62,11 +63,6 @@ public:
 protected:
     static bool _inited;
     static Node *_enemyLayer;
-    
-public:
-    static int fooderCount;
-    static int fooderLCount;
-    static int BigDudeCount;
     
 };
 

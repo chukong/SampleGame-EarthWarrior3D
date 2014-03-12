@@ -15,7 +15,7 @@
 class PublicApi
 {
 public:
-    
+    static float hp2percent(float hp);
 protected:
     
 };

@@ -1,6 +1,9 @@
 #include "HelloWorldScene.h"
 #include "GameLayer.h"
 #include "3d/Sprite3D.h"
+#include "HelloWorldScene.h"
+#include "GameOverLayer.h"
+#include "GameControllers.h"
 
 USING_NS_CC;
 
@@ -13,7 +16,7 @@ Scene* HelloWorld::createScene()
     auto layer = HelloWorld::create();
     layer->setTag(100);
     // add layer as a child to scene
-    scene->addChild(layer);
+    scene->addChild(layer,2);
 
     // add warning layer
     auto warningLayer = LayerColor::create(Color4B(255, 0, 0, 60));
@@ -56,9 +59,13 @@ bool HelloWorld::init()
     hpView->setBarChangeRate(Point(0, 1));
     hpView->setPercentage(100);
     hpView->setAnchorPoint(Point(0,1));
-    hpView->setPosition(Point(16, visibleSize.height+origin.y-31));
+    hpView->setPosition(Point(18, visibleSize.height+origin.y-32));
     addChild(hpView);
     
+    auto hpAbove = Sprite::create("hp_above.png");
+    hpAbove->setAnchorPoint(Point(0,1));
+    hpAbove->setPosition(Point(18, visibleSize.height+origin.y-32));
+    addChild(hpAbove);
     
     //Score
     auto rightTopUI = Sprite::create("right_top_ui.png");
@@ -75,6 +82,9 @@ bool HelloWorld::init()
     this->schedule(schedule_selector(HelloWorld::increaseScore), (float)1/10);
     //this->addChild(scoreLabel);
 
+    
+    
+    NotificationCenter::getInstance()->addObserver(this,callfuncO_selector(HelloWorld::ShowGameOver),"ShowGameOver",NULL);
     
     // Easter Egg
 //    auto cocos = Sprite3D::create("coconut.obj", "coco.png");
@@ -97,6 +107,15 @@ void HelloWorld::increaseScore(float dt){
     ss>>str;
     const char *p = str.c_str();
     scoreLabel->setString(p);
+}
+
+void HelloWorld::ShowGameOver(Ref* pObj)
+{
+    unschedule(schedule_selector(HelloWorld::increaseScore));
+//    BulletController::reset();
+//    EnemyController::reset();
+    auto gameoverlayer=GameOverLayer::create(score);
+    addChild(gameoverlayer,10);
 }
 
 void HelloWorld::menuCloseCallback(Ref* pSender)
