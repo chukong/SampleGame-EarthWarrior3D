@@ -111,18 +111,23 @@ void LoadingScene::LoadingPic()
 	auto TexureCache=Director::getInstance()->getTextureCache();
     TexureCache->addImageAsync("groundLevel.jpg", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("bullets.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("car00.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("CloseNormal.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("CloseSelected.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("cloud.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+	//TexureCache->addImageAsync("car00.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+	//TexureCache->addImageAsync("CloseNormal.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+	//TexureCache->addImageAsync("CloseSelected.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+	//TexureCache->addImageAsync("cloud.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("daodan_32.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("daodan_512.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+	//TexureCache->addImageAsync("daodan_512.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("diji02_v002_128.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+<<<<<<< HEAD
 	//TexureCache->addImageAsync("diji02_v002_1024.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+=======
+	TexureCache->addImageAsync("hp_empty.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+>>>>>>> ac39eb5e3e27e010a3a289d151ebe4721654a3f0
 	TexureCache->addImageAsync("dijiyuanv001.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("Done1.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("fighter.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+	//TexureCache->addImageAsync("Done1.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+	//TexureCache->addImageAsync("fighter.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("fog.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+<<<<<<< HEAD
 	TexureCache->addImageAsync("HelloWorld.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("hp_empty.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
     TexureCache->addImageAsync("hp.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
@@ -130,6 +135,13 @@ void LoadingScene::LoadingPic()
 	//TexureCache->addImageAsync("playerv002_1024.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("right_top_ui.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
     TexureCache->addImageAsync("score_right_top.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+=======
+	//TexureCache->addImageAsync("HelloWorld.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+	//TexureCache->addImageAsync("leftTop.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+	TexureCache->addImageAsync("playerv002_256.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+	TexureCache->addImageAsync("score_right_top.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+	TexureCache->addImageAsync("right_top_ui.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+>>>>>>> ac39eb5e3e27e010a3a289d151ebe4721654a3f0
 	TexureCache->addImageAsync("streak.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 }
 

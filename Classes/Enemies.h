@@ -42,9 +42,12 @@ public:
     CREATE_FUNC(BigDude);
     bool init();
     virtual void reset();
-    void update(float dt);
+    void update(float dt, Node* player);
+    void showFinished();
+    virtual void shoot(float dt);
 protected:
     Point _targetPos;
+    float _turnRate = 50;
 };
 
 

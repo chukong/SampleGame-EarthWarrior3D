@@ -311,7 +311,7 @@ void GameController::update(float dt, Player* player)
         switch(enemy->getType())
         {
             case kEnemyBigDude:
-                enemy->update(dt);
+                static_cast<BigDude*>(enemy)->update(dt, player);
                 break;
             default:
                 enemy->move(enemyMoveDist, dt);
@@ -331,12 +331,5 @@ void GameController::update(float dt, Player* player)
         }
         //TODO: if enemy collide with player
         //if(enemy->getPosition().getDistance(<#const cocos2d::Point &other#>))
-    }
-    
-    // enemies that are showing off before they are ready to be shot down
-    for(int u = EnemyController::showCaseEnemies.size()-1; u>=0; u--)
-    {
-        auto enemy =EnemyController::showCaseEnemies.at(u);
-        enemy->move(enemyMoveDist,dt);
     }
 }

@@ -1497,6 +1497,7 @@ bool ScaleTo::initWithDuration(float duration, float s)
     {
         _endScaleX = s;
         _endScaleY = s;
+        _endScaleZ = s;
 
         return true;
     }
@@ -1538,8 +1539,10 @@ void ScaleTo::startWithTarget(Node *target)
     ActionInterval::startWithTarget(target);
     _startScaleX = target->getScaleX();
     _startScaleY = target->getScaleY();
+    _startScaleZ = target->getScaleZ();
     _deltaX = _endScaleX - _startScaleX;
     _deltaY = _endScaleY - _startScaleY;
+    _deltaZ = _endScaleZ - _startScaleZ;
 }
 
 void ScaleTo::update(float time)
@@ -1548,6 +1551,7 @@ void ScaleTo::update(float time)
     {
         _target->setScaleX(_startScaleX + _deltaX * time);
         _target->setScaleY(_startScaleY + _deltaY * time);
+        _target->setScaleZ(_startScaleZ + _deltaZ * time);
     }
 }
 

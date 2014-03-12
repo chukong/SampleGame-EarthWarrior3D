@@ -131,6 +131,54 @@ void GameLayer::gameMaster(float dt)
         leader->schedule(schedule_selector(FodderLeader::shoot),CCRANDOM_0_1()*1+1,90,0);
         
     }
+    if(_elapsed > 15 && enemyCount < 4)
+    {
+        for(int q = 0; q< 2; q++)
+        {
+            //random if its from the top, left, or bottom
+            int direction = CCRANDOM_0_1()*4;
+            float rX, rY;
+            switch(direction)
+            {
+                case 0://top
+                    rY = BOUND_RECT.size.height/2+200;
+                    rX = ENEMY_BOUND_RECT.size.width*CCRANDOM_0_1();
+                    break;
+                case 1://bottom
+                    rY = -200;
+                    rX = ENEMY_BOUND_RECT.size.width*CCRANDOM_0_1();
+                    break;
+                case 2://left
+                    rY = ENEMY_BOUND_RECT.size.height*CCRANDOM_0_1();
+                    rX = ENEMY_BOUND_RECT.origin.x;
+                    break;
+                case 3://right
+                    rY = ENEMY_BOUND_RECT.size.height*CCRANDOM_0_1();
+                    rX = ENEMY_BOUND_RECT.size.width;
+                    break;
+            }
+            auto enemy = EnemyController::showCaseEnemy(kEnemyBigDude);
+            //enemy->setPosition(Point(100*CCRANDOM_MINUS1_1(), BOUND_RECT.size.height/2+200));
+            enemy->setPosition(rX,rY);
+            Point targetPos =Point(BOUND_RECT.size.width/3*CCRANDOM_MINUS1_1(),BOUND_RECT.size.height/3*CCRANDOM_0_1());
+            enemy->setScale(2*CCRANDOM_MINUS1_1()+2);
+            float randomTime = CCRANDOM_0_1()*1+1;
+            enemy->setRotation3D(Vertex3F(300,0,-CC_RADIANS_TO_DEGREES((enemy->getPosition()-targetPos).getAngle())+90));
+            enemy->runAction(
+                             Sequence::create(
+                                              Spawn::create(
+                                                            EaseSineOut::create(MoveTo::create(randomTime, targetPos)),
+                                                            EaseSineOut::create(ScaleTo::create(randomTime,1)),//TODO: replace with move 3d when possible
+                                                            EaseBackOut::create(RotateBy::create(randomTime+0.2,Vertex3F(-300,0,0))),
+                                                            nullptr
+                                                            ),
+                                              CallFunc::create(enemy,callfunc_selector(BigDude::showFinished)),
+                                              nullptr
+                             ));
+
+            
+        }
+    }
 }
 
 void GameLayer::update(float dt)
