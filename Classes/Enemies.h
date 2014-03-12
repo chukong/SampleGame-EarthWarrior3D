@@ -50,5 +50,11 @@ protected:
     float _turnRate = 50;
 };
 
+class Boss : public Fodder
+{
+    CREATE_FUNC(Boss);
+    bool init();
+};
+
 
 #endif /* defined(__Moon3d__Fodder__) */

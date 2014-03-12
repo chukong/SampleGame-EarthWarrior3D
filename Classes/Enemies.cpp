@@ -161,3 +161,20 @@ void BigDude::update(float dt, Node* player)
     float f = curRot + angleDif;
     setRotation(f);
 }
+
+bool Boss::init(){
+    _score = 666;
+    _Model = Sprite3D::create("boss.obj", "boss.png");
+    if(_Model)
+    {
+        _Model->setScale(10);
+        addChild(_Model);
+        _Model->setRotation3D(Vertex3F(90,0,0));
+        static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B(0,0,0));
+        _type = kEnemyFodder;
+        _HP = 1000;
+        _radius = 100;
+        return true;
+    }
+    return false;
+}

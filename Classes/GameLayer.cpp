@@ -127,7 +127,7 @@ void GameLayer::gameMaster(float dt)
         leader->schedule(schedule_selector(FodderLeader::shoot),CCRANDOM_0_1()*1+1,90,0);
         
     }
-    if(_elapsed > 15 && enemyCount < 4)
+    if(_elapsed > 10 && enemyCount < 4)
     {
         for(int q = 0; q< 2; q++)
         {
@@ -171,9 +171,12 @@ void GameLayer::gameMaster(float dt)
                                               CallFunc::create(enemy,callfunc_selector(BigDude::showFinished)),
                                               nullptr
                              ));
-
-            
         }
+    }
+    if(_elapsed > 60)
+    {
+        //spawn boss
+        
     }
 }
 
