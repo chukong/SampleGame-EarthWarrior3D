@@ -25,6 +25,7 @@ bool Fodder::init()
                 static_cast<Sprite3D*>(_Model)->setOutline(0.14, Color3B(0,0,0));
         _radius=40;
         _type = kEnemy;
+        _HP = 160;
         this->scheduleUpdate();
         return true;
     }
@@ -39,6 +40,26 @@ void Fodder::move(const Point& position,AirCraft * enemy)
     movingPerPeriodTime = totalTime*amplitudeFriction;
     sW = 2*Pi/movingPerPeriodTime;
     
+
+    int randomPositionNum = rand()%3;
+    switch (randomPositionNum)
+    {
+        case 0:
+            aPositionX = -300;
+            break;
+        case 1:
+            aPositionX = -100;
+            break;
+        case 2:
+            aPositionX = 100;
+            break;
+        case 3:
+            aPositionX = 300;
+            break;
+        default:
+            break;
+    }
+    
     isMoving = true;
     
     this->schedule(schedule_selector(Fodder::RemoveFodder) , totalTime, 1, 0.0);
@@ -51,7 +72,7 @@ void Fodder::update(float dt)
     }
     
     float fY = this->getPositionY()-fodderSpeed;
-    float fX = sA*sin(fY*sW);
+    float fX = sA*sin(fY*sW)+aPositionX;
     this->setPosition(Point(fX,fY));
    
     smoothAngle = -sin(fY*sW)*60;
@@ -65,4 +86,9 @@ void Fodder::RemoveFodder(float dt)
     aEnemyManager->standByEnemyVect.pushBack(fodder);
     aEnemyManager->availabelEnemyVect.eraseObject(fodder,false);
     isMoving = false;
+}
+
+void Fodder::die()
+{
+    _HP = 160;
 }

@@ -65,35 +65,15 @@ void GameLayer::createCraft(float dt)
     }
     int randStandByEnemy= rand()%aEnemyManager->standByEnemyVect.size();
 
-    float positionX;
-    int randomPositionNum = rand()%3;
-    switch (randomPositionNum)
-    {
-        case 0:
-            positionX = -300;
-            break;
-        case 1:
-            positionX = -100;
-            break;
-        case 2:
-            positionX = 100;
-            break;
-        case 3:
-            positionX = 300;
-            break;
-        default:
-            break;
-    }
-   
+    
     Fodder * enemy = static_cast<Fodder *>(aEnemyManager->standByEnemyVect.at(randStandByEnemy));
-    enemy->setPosition(positionX,900.0f);
+   // enemy->setPosition(positionX,900.0f);
     this->addChild(enemy);
     
     aEnemyManager->availabelEnemyVect.pushBack(aEnemyManager->standByEnemyVect.at(randStandByEnemy));
 
     aEnemyManager->standByEnemyVect.eraseObject(static_cast<AirCraft *>(aEnemyManager->standByEnemyVect.at(randStandByEnemy)),false);
 
-    
     int idx = aEnemyManager->availabelEnemyVect.size()-1;
     enemy->move(Point(enemy->getPosition3D().x,-visible_size_macro.height*0.5),aEnemyManager->availabelEnemyVect.at(idx));
 }

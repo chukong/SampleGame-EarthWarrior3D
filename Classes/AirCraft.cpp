@@ -20,4 +20,5 @@ void AirCraft::hurt(float damage)
 void AirCraft::die()
 {
     CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3");
+    this->removeAllChildrenWithCleanup(true);
 }

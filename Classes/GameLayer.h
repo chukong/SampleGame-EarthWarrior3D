@@ -26,11 +26,8 @@ protected:
     Sprite *spr;
     Player *_player;
     MotionStreak *_streak;
-    QuadTree *_collisionTree;
-    
 
-
-    QuadTree *container;
+    int FodderNum = 0;
     void createCraft(float dt);
 };
 #endif /* defined(__Moon3d__GameLayer__) */

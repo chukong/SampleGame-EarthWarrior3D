@@ -21,6 +21,7 @@ public:
 protected:
     AirCraft* fodder;
 
+    float aPositionX;
     float smoothAngle = 0;
     bool isMoving = false;
     Point endPosition;
@@ -33,6 +34,8 @@ protected:
     float sW;
     void update(float dt);
     void RemoveFodder(float dt);
+    
+    void die();
 };
 
 #endif /* defined(__Moon3d__Fodder__) */
