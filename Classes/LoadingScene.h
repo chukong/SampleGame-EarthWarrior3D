@@ -19,11 +19,15 @@ using namespace CocosDenshion;
 
 #define TOTAL_PIC_NUM 11
 
+#define PRELOAD_FODDER_COUNT 18
+#define PRELOAD_FODDERL_COUNT 3
+#define PRELOAD_BIGDUDE_COUBR 5
+
 class LoadingScene : public Layer
 {
 public:
     
-    LoadingScene():currentNum(0),totalNum(TOTAL_PIC_NUM){};
+    LoadingScene():currentNum(0),totalNum(TOTAL_PIC_NUM),m_curPreload_fodder_count(0),m_curPreload_fodderL_count(0),m_curPreload_BigDude_count(0){};
     ~LoadingScene();
     
     static Scene* createScene();
@@ -40,9 +44,11 @@ private:
     void LoadingResource();
     void LoadingMusic();
     void LoadingPic();
+    void LoadingEnemy(int type);
     
     void LoadingCallback(Ref* pObj);
     void GotoNextScene(Ref* pObj);
+    
     
 private:
     int currentNum;
@@ -50,6 +56,12 @@ private:
     
     ControlSlider* m_pSlider;
     LabelBMFont* m_pPercent;
+    
+    int m_curPreload_fodder_count;
+    int m_curPreload_fodderL_count;
+    int m_curPreload_BigDude_count;
+    
+    static int updatecount;
     
 };
 

@@ -22,7 +22,6 @@ Vector<Bullet*> BulletController::bullets;
 Vector<Missile*> BulletController::_missilePool;
 
 
-
 void BulletController::reset(){
     _inited = false;
     _bulletLayer = nullptr;
@@ -122,6 +121,11 @@ Vector<Fodder*> EnemyController::_fodderPool;
 Vector<FodderLeader*> EnemyController::_fodderLPool;
 Vector<BigDude*> EnemyController::_bigDudePool;
 
+
+int EnemyController::fooderCount=0;
+int EnemyController::fooderLCount=0;
+int EnemyController::BigDudeCount=0;
+
 const float EnemyController::EnemyMoveDist = -400;
 
 bool EnemyController::init(Node* enemyLayer)
@@ -139,6 +143,10 @@ void EnemyController::reset()
 }
 AirCraft* EnemyController::createOrGet(int type)
 {
+//    log("_fodderPool:%ld",_fodderPool.size());
+//    log("_fodderLpol:%ld",_fodderLPool.size());
+//    log("_BigDude:%ld",_fodderLPool.size());
+    
     AirCraft *enemy = nullptr;
     switch(type)
     {
@@ -151,6 +159,8 @@ AirCraft* EnemyController::createOrGet(int type)
             else
             {
                 enemy = Fodder::create();
+                ++fooderCount;
+                log("foodercount:%d....create",fooderCount);
                 enemy->retain();
             }
             break;
@@ -163,6 +173,8 @@ AirCraft* EnemyController::createOrGet(int type)
             else
             {
                 enemy = FodderLeader::create();
+                ++fooderLCount;
+                log("fooderLCount:%d....create",fooderLCount);
                 enemy->retain();
             }
             break;
@@ -175,6 +187,8 @@ AirCraft* EnemyController::createOrGet(int type)
             else
             {
                 enemy = BigDude::create();
+                ++BigDudeCount;
+                log("BigDudecount:%d....create",BigDudeCount);
                 enemy->retain();
             }
             break;
