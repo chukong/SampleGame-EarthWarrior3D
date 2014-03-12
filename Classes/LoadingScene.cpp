@@ -169,7 +169,7 @@ void LoadingScene::RunNextScene(float dt)
     auto helloworldScene=HelloWorld::createScene();
 
 
-    Director::getInstance()->replaceScene(TransitionFlipY::create(1.0f,helloworldScene,TransitionScene::Orientation::LEFT_OVER));
+    Director::getInstance()->replaceScene(TransitionZoomFlipX::create(1.0f,helloworldScene));
 
 }
 

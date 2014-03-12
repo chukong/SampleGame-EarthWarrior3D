@@ -343,7 +343,8 @@ void GameController::update(float dt, Player* player)
         {
             player->hurt(50);
             enemy->hurt(50);
-            //EnemyController::erase(k);
+            if(enemy->getType() != kEnemyBoss)
+            EnemyController::erase(k);
         }
         //TODO: if enemy collide with player
         //if(enemy->getPosition().getDistance(<#const cocos2d::Point &other#>))

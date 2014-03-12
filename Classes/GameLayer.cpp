@@ -56,7 +56,7 @@ bool GameLayer::init()
     addChild(_player,5);
     EffectManager::setLayer(this);
 
-    this->schedule(schedule_selector(GameLayer::gameMaster) , 1.5, -1, 1.0);
+    this->schedule(schedule_selector(GameLayer::gameMaster) , 1.5, -1, 2.0);
 
     BulletController::init(this);
     EnemyController::init(this);
