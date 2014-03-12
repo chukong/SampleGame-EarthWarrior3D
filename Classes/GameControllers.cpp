@@ -21,8 +21,6 @@ bool BulletController::_inited = false;
 Vector<Bullet*> BulletController::bullets;
 Vector<Missile*> BulletController::_missilePool;
 
-
-
 void BulletController::reset(){
     _inited = false;
     _bulletLayer = nullptr;
@@ -283,6 +281,7 @@ void GameController::update(float dt, Player* player)
             // loop all enemy bullets against player
             else if(b->getPosition().getDistance(player->getPosition()) < b->getRadius()+player->getRadius())
             {
+                player->hurt(b->getDamage());
                 BulletController::erase(i);
                 EffectManager::createExplosion(player->getPosition());
                 break;
