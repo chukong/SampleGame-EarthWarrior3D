@@ -73,7 +73,7 @@ Bullet* BulletController::spawnBullet(int type, Point pos, Point vec)
     if(bullet)
     {
         bullets.pushBack(bullet);
-        _bulletLayer->addChild(bullet);
+        _bulletLayer->addChild(bullet,1);
         //bullet->release();
         bullet->setPosition(pos);
         bullet->setVector(vec);
