@@ -95,6 +95,8 @@
 		681E73E518D04A96003D1A1A /* bossCannon.obj in Resources */ = {isa = PBXBuildFile; fileRef = 681E73E118D04A96003D1A1A /* bossCannon.obj */; };
 		681E73E718D04B20003D1A1A /* boss.obj in Resources */ = {isa = PBXBuildFile; fileRef = 681E73E618D04B20003D1A1A /* boss.obj */; };
 		681E73E818D04B20003D1A1A /* boss.obj in Resources */ = {isa = PBXBuildFile; fileRef = 681E73E618D04B20003D1A1A /* boss.obj */; };
+		681E73F518D06AB4003D1A1A /* Orbital Colossus_0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 681E73F418D06AB4003D1A1A /* Orbital Colossus_0.mp3 */; };
+		681E73F618D06AB4003D1A1A /* Orbital Colossus_0.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 681E73F418D06AB4003D1A1A /* Orbital Colossus_0.mp3 */; };
 		686EC63218BADFEF0065154C /* libcocos2dx Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC61118BADFD30065154C /* libcocos2dx Mac.a */; };
 		686EC63318BADFEF0065154C /* libcocos2dx-extensions Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC61318BADFD30065154C /* libcocos2dx-extensions Mac.a */; };
 		686EC63418BADFEF0065154C /* libCocosDenshion Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC61918BADFD30065154C /* libCocosDenshion Mac.a */; };
@@ -391,6 +393,7 @@
 		681E73E018D04A96003D1A1A /* boss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boss.png; sourceTree = "<group>"; };
 		681E73E118D04A96003D1A1A /* bossCannon.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bossCannon.obj; sourceTree = "<group>"; };
 		681E73E618D04B20003D1A1A /* boss.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boss.obj; sourceTree = "<group>"; };
+		681E73F418D06AB4003D1A1A /* Orbital Colossus_0.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Orbital Colossus_0.mp3"; sourceTree = "<group>"; };
 		686EC63518BAE16A0065154C /* GameLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameLayer.cpp; path = ../Classes/GameLayer.cpp; sourceTree = "<group>"; };
 		686EC63618BAE16A0065154C /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameLayer.h; path = ../Classes/GameLayer.h; sourceTree = "<group>"; };
 		686EC63918BAEFA70065154C /* groundLevel.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = groundLevel.jpg; sourceTree = "<group>"; };
@@ -669,6 +672,7 @@
 				1FBF59DC18CF06E5005154B8 /* loading_progress_thumb.png */,
 				1FBF59DD18CF06E5005154B8 /* num.fnt */,
 				68F22BD218CCD0B000B6521B /* emissionPart.plist */,
+				681E73F418D06AB4003D1A1A /* Orbital Colossus_0.mp3 */,
 				68F22BCC18CCAD4F00B6521B /* coco.png */,
 				68F22BCD18CCAD4F00B6521B /* coconut.obj */,
 				68F22BD618CDA24600B6521B /* diji1_v002.obj */,
@@ -930,6 +934,7 @@
 				68AB901418C9F468007DDB0D /* glow.plist in Resources */,
 				680A317918C72BB400D073CD /* flare.plist in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
+				681E73F518D06AB4003D1A1A /* Orbital Colossus_0.mp3 in Resources */,
 				68AB901818CB0CC8007DDB0D /* dijiyuanv001.obj in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
@@ -1011,6 +1016,7 @@
 				1FBF59ED18CF0727005154B8 /* num_0.png in Resources */,
 				688B39BC18C8E2AC00A14D84 /* boom.mp3 in Resources */,
 				688B39DA18C99A9A00A14D84 /* streak.png in Resources */,
+				681E73F618D06AB4003D1A1A /* Orbital Colossus_0.mp3 in Resources */,
 				1FBF59DF18CF06E5005154B8 /* loading_bk.png in Resources */,
 				686EC66118BB44010065154C /* fog.png in Resources */,
 			);
@@ -1110,8 +1116,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yuye Liu (XS9LS5LU53)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yuye Liu (XS9LS5LU53)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -1135,7 +1141,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "BAE15E13-DEC6-419F-B242-F4B7FCE190D6";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1146,8 +1152,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: yuye Liu (XS9LS5LU53)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yuye Liu (XS9LS5LU53)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1169,7 +1175,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "BAE15E13-DEC6-419F-B242-F4B7FCE190D6";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

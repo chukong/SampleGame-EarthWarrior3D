@@ -29,5 +29,6 @@ enum entityTypes
     
     kEnemyFodder,
     kEnemyFodderL,
-    kEnemyBigDude
+    kEnemyBigDude,
+    kEnemyBoss
 };

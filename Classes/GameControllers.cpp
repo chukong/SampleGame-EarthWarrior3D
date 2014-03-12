@@ -120,6 +120,7 @@ Vector<AirCraft*> EnemyController::showCaseEnemies;
 Vector<Fodder*> EnemyController::_fodderPool;
 Vector<FodderLeader*> EnemyController::_fodderLPool;
 Vector<BigDude*> EnemyController::_bigDudePool;
+Vector<Boss*> EnemyController::_bossPool;
 
 
 int EnemyController::fooderCount=0;
@@ -189,6 +190,18 @@ AirCraft* EnemyController::createOrGet(int type)
                 enemy = BigDude::create();
                 ++BigDudeCount;
                 log("BigDudecount:%d....create",BigDudeCount);
+                enemy->retain();
+            }
+            break;
+        case kEnemyBoss:
+            if(!_bossPool.empty())
+            {
+                enemy = _bossPool.back();
+                _bossPool.popBack();
+            }
+            else
+            {
+                enemy = Boss::create();
                 enemy->retain();
             }
             break;
@@ -270,7 +283,7 @@ void GameController::update(float dt, Player* player)
                             {
                             case kPlayerMissiles:
                             {
-                                EffectManager::createExplosion(e->getPosition());
+                                EffectManager::createExplosion(b->getPosition());
 
                                 CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
                             }
@@ -328,11 +341,14 @@ void GameController::update(float dt, Player* player)
             case kEnemyBigDude:
                 static_cast<BigDude*>(enemy)->update(dt, player);
                 break;
+            case kEnemyBoss:
+                static_cast<Boss*>(enemy)->update(dt, player);
+                break;
             default:
                 enemy->move(enemyMoveDist, dt);
                 break;
         }
-        if(!ENEMY_BOUND_RECT.containsPoint(enemy->getPosition()))
+        if(!ENEMY_BOUND_RECT.containsPoint(enemy->getPosition()) && enemy->getType() != kEnemyBoss)
         {
             //enemy went out side, kill it
             EnemyController::erase(k);
@@ -342,7 +358,7 @@ void GameController::update(float dt, Player* player)
         {
             player->hurt(50);
             enemy->hurt(50);
-            EnemyController::erase(k);
+            //EnemyController::erase(k);
         }
         //TODO: if enemy collide with player
         //if(enemy->getPosition().getDistance(<#const cocos2d::Point &other#>))

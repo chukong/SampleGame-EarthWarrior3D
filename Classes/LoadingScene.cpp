@@ -160,7 +160,7 @@ void LoadingScene::GotoNextScene(Ref* pObj)
     
     //goto next scene.
     auto helloworldScene=HelloWorld::createScene();
-    Director::getInstance()->replaceScene(TransitionFlipY::create(1.0f,helloworldScene,TransitionScene::Orientation::DOWN_OVER));
+    Director::getInstance()->replaceScene(TransitionZoomFlipX::create(1.0f,helloworldScene));
 }
 
 void LoadingScene::update(float dt)

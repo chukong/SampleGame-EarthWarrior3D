@@ -18,6 +18,7 @@ class Fodder;
 class FodderLeader;
 class BigDude;
 class Player;
+class Boss;
 class BulletController
 {
 public:
@@ -56,6 +57,7 @@ public:
     static Vector<Fodder*> _fodderPool;
     static Vector<FodderLeader*> _fodderLPool;
     static Vector<BigDude*> _bigDudePool;
+    static Vector<Boss*> _bossPool;
     
 protected:
     static bool _inited;

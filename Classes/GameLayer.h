@@ -36,6 +36,7 @@ protected:
 
     //QuadTree *container;
     void gameMaster(float dt);
-    float _elapsed = 0;
+    float _elapsed = 55;
+    bool _bossOut = false;
 };
 #endif /* defined(__Moon3d__GameLayer__) */

@@ -15,6 +15,7 @@ enum moveMode{
     kDefault,
     kTurn
 };
+class Sprite3D;
 class Fodder : public AirCraft
 {
 public:
@@ -52,8 +53,25 @@ protected:
 
 class Boss : public Fodder
 {
+public:
     CREATE_FUNC(Boss);
     bool init();
+    virtual void die();
+    virtual void shoot(float dt);
+    void update(float dt, Node* player);
+protected:
+    void createRandomExplosion();
+    void dying();
+    void dead();
+    void enterTheBattle();
+    void startShooting(float dt);
+    void startShooting();
+    Point _getCannon1Position();
+    Point _getCannon2Position();
+    Point _getCannon1Vector();
+    Point _getCannon2Vector();
+    Node* _Cannon1;
+    Node* _Cannon2;
 };
 
 
