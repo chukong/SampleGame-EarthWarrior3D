@@ -2,7 +2,7 @@
 //  LoadingScene.h
 //  Moon3d
 //
-//  Created by cocos01 on 3/10/14.
+//  Created by Jacky on 3/10/14.
 //
 //
 
