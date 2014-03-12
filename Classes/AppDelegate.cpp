@@ -1,6 +1,8 @@
 #include "AppDelegate.h"
+#include "MainMenuScene.h"
+#include "HelloWorldScene.h"
 #include "LoadingScene.h"
-
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
@@ -30,8 +32,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    auto scene = LoadingScene::createScene();
-
+    //auto scene = LoadingScene::createScene();
+    auto scene = MainMenuScene::createScene();
+    //auto scene = HelloWorld::createScene();
     // run
     director->runWithScene(scene);
     glEnable(GL_CULL_FACE);
@@ -40,16 +43,23 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
 void AppDelegate::applicationDidEnterBackground() {
+    SimpleAudioEngine::getInstance()->pauseAllEffects();
+    SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
     Director::getInstance()->stopAnimation();
-
+    
+    
     // if you use SimpleAudioEngine, it must be pause
     // SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 }
 
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground() {
+    SimpleAudioEngine::getInstance()->resumeAllEffects();
+    SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+ 
     Director::getInstance()->startAnimation();
-
+    
     // if you use SimpleAudioEngine, it must resume here
     // SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }
+

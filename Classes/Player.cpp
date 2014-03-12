@@ -12,7 +12,7 @@
 #include "GameControllers.h"
 #include "consts.h"
 #include "HelloWorldScene.h"
-
+#include "PublicApi.h"
 #define visible_size_macro Director::getInstance()->getVisibleSize()
 #define origin_point Director::getInstance()->getVisibleOrigin();
 
@@ -119,7 +119,7 @@ bool Player::hurt(float damage){
     
     auto hpView = ((HelloWorld*)Director::getInstance()->getRunningScene()->getChildByTag(100))->getHPView();
     //Rye
-    auto to = ProgressFromTo::create(0.5, fromHP, toHP);
+    auto to = ProgressFromTo::create(0.5, PublicApi::hp2percent(fromHP), PublicApi::hp2percent(toHP));
     hpView->runAction(to);
     
     if(_HP <= 0  && _alive)

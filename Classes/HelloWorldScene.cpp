@@ -59,9 +59,13 @@ bool HelloWorld::init()
     hpView->setBarChangeRate(Point(0, 1));
     hpView->setPercentage(100);
     hpView->setAnchorPoint(Point(0,1));
-    hpView->setPosition(Point(16, visibleSize.height+origin.y-31));
+    hpView->setPosition(Point(18, visibleSize.height+origin.y-32));
     addChild(hpView);
     
+    auto hpAbove = Sprite::create("hp_above.png");
+    hpAbove->setAnchorPoint(Point(0,1));
+    hpAbove->setPosition(Point(18, visibleSize.height+origin.y-32));
+    addChild(hpAbove);
     
     //Score
     auto rightTopUI = Sprite::create("right_top_ui.png");

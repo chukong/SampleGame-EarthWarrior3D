@@ -18,6 +18,7 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
 
+    
 private:
     CC_SYNTHESIZE(cocos2d::ProgressTimer*, hpView, HPView);
     CC_SYNTHESIZE(int, score, Score)

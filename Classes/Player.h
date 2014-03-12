@@ -43,6 +43,7 @@ protected:
     float targetAngle = 0;
     Point targetPos = Point(0,0);
     Point _trailOffset = Point(0,-40);
+    
 };
 
 
