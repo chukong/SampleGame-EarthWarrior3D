@@ -50,13 +50,21 @@ public:
     static Vector<AirCraft*> showCaseEnemies;
 
     static const float EnemyMoveDist;
-protected:
-    static bool _inited;
-    static Node *_enemyLayer;
+    
+    
     //all kinds of enemies container
     static Vector<Fodder*> _fodderPool;
     static Vector<FodderLeader*> _fodderLPool;
     static Vector<BigDude*> _bigDudePool;
+    
+protected:
+    static bool _inited;
+    static Node *_enemyLayer;
+    
+public:
+    static int fooderCount;
+    static int fooderLCount;
+    static int BigDudeCount;
     
 };
 
