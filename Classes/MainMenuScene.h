@@ -19,7 +19,9 @@ public:
     CREATE_FUNC(MainMenuScene);
     
 private:
-    void startgame();
+    void startgame(cocos2d::Ref* sender);
+    void license(cocos2d::Ref* sender);
+    void credits(cocos2d::Ref* sender);
 };
 
 #endif /* defined(__Moon3d__MainMenuScene__) */

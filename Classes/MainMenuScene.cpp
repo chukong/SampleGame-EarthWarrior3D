@@ -7,6 +7,7 @@
 //
 
 #include "MainMenuScene.h"
+#include "LoadingScene.h"
 USING_NS_CC;
 
 Scene* MainMenuScene::createScene()
@@ -31,6 +32,10 @@ bool MainMenuScene::init()
     {
         return false;
     }
+    CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Star_Chaser.mp3");
+    
+    Size visibleSize = Director::getInstance()->getVisibleSize();
+    Point origin = Director::getInstance()->getVisibleOrigin();
     
     //************* adds background ***********
     auto background = Sprite::create("loading_bk.png");
@@ -38,14 +43,33 @@ bool MainMenuScene::init()
     this->addChild(background,-1,-1);
     
     //************* adds start game ***********
-    auto startgame = MenuItemImage::create("dd.png", "dd.png", CC_CALLBACK_1(MainMenuScene::startgame, this) );
-    //MenuItemLabel::create(<#cocos2d::Node *label#>, <#const ccMenuCallback &callback#>)
+    auto startgame = MenuItemImage::create("start_game.png", "start_game.png", CC_CALLBACK_1(MainMenuScene::startgame, this));
+    startgame->setPosition(visibleSize.width/2,200);
     
-    
+    //************* license *******************
+    auto license = MenuItemImage::create("license.png", "license.png", CC_CALLBACK_1(MainMenuScene::license, this));
+    license->setPosition(visibleSize.width/2-200,100);
+
+    //************* quitgame ******************
+    auto credits = MenuItemImage::create("credits.png", "credits.png", CC_CALLBACK_1(MainMenuScene::credits, this));
+    credits->setPosition(visibleSize.width/2+200,100);
+
+    auto menu = Menu::create(startgame,license,credits, NULL);
+    menu->setPosition(origin);
+    this->addChild(menu);
     
     return true;
 }
 
-void MainMenuScene::startgame(){
+void MainMenuScene::startgame(Ref* sender){
+    CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+    Director::getInstance()->replaceScene(LoadingScene::createScene());
+}
+
+void MainMenuScene::credits(Ref* sender){
+    
+}
+
+void MainMenuScene::license(Ref* sender){
     
 }
