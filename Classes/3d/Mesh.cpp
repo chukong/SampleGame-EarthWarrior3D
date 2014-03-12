@@ -318,6 +318,7 @@ void ObjMeshData::trianglarAndGenerateNormals()
     _normalVertexLists.resize(faceVertexNormalList.size());
     for (int index = 0; index < _normalVertexLists.size(); ++index)
     {
+        _normalVertexLists[index] = vec3(0,0,0);
         for (const auto& facenormal : faceVertexNormalList[index])
         {
             _normalVertexLists[index] += facenormal;
