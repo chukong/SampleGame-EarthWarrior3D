@@ -9,6 +9,12 @@
 #include "LoadingScene.h"
 #include "HelloWorldScene.h"
 #include "3d/Sprite3D.h"
+#include "AirCraft.h"
+#include "Enemies.h"
+#include "GameControllers.h"
+#include "consts.h"
+
+int LoadingScene::updatecount=0;
 
 LoadingScene::~LoadingScene()
 {
@@ -154,10 +160,63 @@ void LoadingScene::GotoNextScene(Ref* pObj)
     
     //goto next scene.
     auto helloworldScene=HelloWorld::createScene();
-    Director::getInstance()->replaceScene(helloworldScene);
+    Director::getInstance()->replaceScene(TransitionFlipY::create(1.0f,helloworldScene,TransitionScene::Orientation::DOWN_OVER));
 }
 
 void LoadingScene::update(float dt)
 {
+    ++updatecount;
+    log("updateCount:%d........",updatecount);
     
+    if (m_curPreload_fodder_count<PRELOAD_FODDER_COUNT) {
+        LoadingEnemy(kEnemyFodder);
+        m_curPreload_fodder_count++;
+        log("update_create_enmey_fodder");
+    }
+    else if(m_curPreload_fodderL_count<PRELOAD_FODDERL_COUNT)
+    {
+        LoadingEnemy(kEnemyFodderL);
+        m_curPreload_fodderL_count++;
+        log("update_create_enmey_fodderL");
+    }
+    else if (m_curPreload_BigDude_count<PRELOAD_BIGDUDE_COUBR)
+    {
+        LoadingEnemy(kEnemyBigDude);
+        m_curPreload_BigDude_count++;
+        log("update_create_enmey_BigDude");
+    }
+    else
+    {
+        unscheduleUpdate();
+    }
+}
+
+void LoadingScene::LoadingEnemy(int type)
+{
+    switch(type)
+    {
+        case kEnemyFodder:
+        {
+            auto enemy_fodder = Fodder::create();
+            enemy_fodder->retain();
+            EnemyController::_fodderPool.pushBack(enemy_fodder);
+        }
+            break;
+        case kEnemyFodderL:
+        {
+            auto enemy_fodderL= FodderLeader::create();
+            enemy_fodderL->retain();
+            EnemyController::_fodderLPool.pushBack(enemy_fodderL);
+        }
+            break;
+        case kEnemyBigDude:
+        {
+            auto enmey_bigdude= BigDude::create();
+            enmey_bigdude->retain();
+            EnemyController::_bigDudePool.pushBack(enmey_bigdude);
+        }
+            break;
+        default:
+            break;
+    }
 }
