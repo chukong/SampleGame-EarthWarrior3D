@@ -37,12 +37,9 @@ bool GameLayer::init()
     
     
     _spr = Sprite::create("groundLevel.jpg");
-    _cloud = Sprite::create("cloud.png");
     addChild(_spr, -5);
     Texture2D::TexParams texRepeat = {GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_REPEAT};
     _spr->getTexture()->setTexParameters(texRepeat);
-    _cloud->getTexture()->setTexParameters(texRepeat);
-    _cloud->setScale(2.8);
     setRotation3D(Vertex3F(-30.0,0.0f,0.0f));
     _spr->setScale(1.4);
     _spr->setPosition(0.0f,400.0f);
