@@ -11,6 +11,7 @@
 #include "3d/Sprite3D.h"
 #include "AirCraft.h"
 #include "Enemies.h"
+#include "Bullets.h"
 #include "GameControllers.h"
 #include "consts.h"
 
@@ -18,7 +19,7 @@ int LoadingScene::updatecount=0;
 
 LoadingScene::~LoadingScene()
 {
-    NotificationCenter::getInstance()->destroyInstance();
+//    NotificationCenter::getInstance()->destroyInstance();
 }
 
 Scene* LoadingScene::createScene()
@@ -155,12 +156,16 @@ void LoadingScene::LoadingCallback(Ref* pObj)
 
 void LoadingScene::GotoNextScene(Ref* pObj)
 {
-    
-    this->removeAllChildren();
-    
     //goto next scene.
+    runAction(CCSequence::create(DelayTime::create(1.0f), CallFunc::create(this, callfunc_selector(LoadingScene::RunNextScene))));
+}
+
+void LoadingScene::RunNextScene()
+{
+    this->removeAllChildren();
     auto helloworldScene=HelloWorld::createScene();
-    Director::getInstance()->replaceScene(TransitionFlipY::create(1.0f,helloworldScene,TransitionScene::Orientation::DOWN_OVER));
+    Director::getInstance()->replaceScene(TransitionFlipY::create(1.0f,helloworldScene,TransitionScene::Orientation::LEFT_OVER));
+    
 }
 
 void LoadingScene::update(float dt)
@@ -171,19 +176,21 @@ void LoadingScene::update(float dt)
     if (m_curPreload_fodder_count<PRELOAD_FODDER_COUNT) {
         LoadingEnemy(kEnemyFodder);
         m_curPreload_fodder_count++;
-        log("update_create_enmey_fodder");
     }
     else if(m_curPreload_fodderL_count<PRELOAD_FODDERL_COUNT)
     {
         LoadingEnemy(kEnemyFodderL);
         m_curPreload_fodderL_count++;
-        log("update_create_enmey_fodderL");
     }
     else if (m_curPreload_BigDude_count<PRELOAD_BIGDUDE_COUBR)
     {
         LoadingEnemy(kEnemyBigDude);
         m_curPreload_BigDude_count++;
-        log("update_create_enmey_BigDude");
+    }
+    else if (m_curPreload_Missile_count<PRELOAD_MISSILE_COUNT)
+    {
+        LoadingBullet(kPlayerMissiles);
+        m_curPreload_Missile_count++;
     }
     else
     {
@@ -215,6 +222,21 @@ void LoadingScene::LoadingEnemy(int type)
             enmey_bigdude->retain();
             EnemyController::_bigDudePool.pushBack(enmey_bigdude);
         }
+            break;
+        default:
+            break;
+    }
+}
+
+void LoadingScene::LoadingBullet(int type)
+{
+    switch (type) {
+        case kPlayerMissiles:
+            {
+            auto bullet = Missile::create();
+            bullet->retain();
+            BulletController::_missilePool.pushBack(bullet);
+            }
             break;
         default:
             break;
