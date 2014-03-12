@@ -179,6 +179,7 @@ void GameLayer::gameMaster(float dt)
 
 void GameLayer::update(float dt)
 {
+    glEnable(GL_CULL_FACE);
     xScroll += speed*dt;
     _spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
     //_cloud->setTextureRect(Rect(0,((int)xScroll)%1024, 256, 1024));
