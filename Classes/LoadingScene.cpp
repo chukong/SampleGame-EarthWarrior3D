@@ -170,6 +170,7 @@ void LoadingScene::RunNextScene(float dt)
 
 
     Director::getInstance()->replaceScene(TransitionZoomFlipX::create(1.0f,helloworldScene));
+    //Director::getInstance()->replaceScene(helloworldScene);
 
 }
 

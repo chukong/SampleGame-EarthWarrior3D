@@ -10,6 +10,7 @@ typedef std::map<std::string, Mesh*>::iterator MeshMapIter;
 
 MeshCache::MeshCache()
 {
+    _cachedMeshes.clear();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     // listen the event when app go to foreground
     _backToForegroundlistener = EventListenerCustom::create(EVENT_COME_TO_FOREGROUND, CC_CALLBACK_1(MeshCache::listenBackToForeground, this));
