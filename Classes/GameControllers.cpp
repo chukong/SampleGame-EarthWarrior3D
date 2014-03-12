@@ -72,7 +72,7 @@ Bullet* BulletController::spawnBullet(int type, Point pos, Point vec)
     if(bullet)
     {
         bullets.pushBack(bullet);
-        _bulletLayer->addChild(bullet);
+        _bulletLayer->addChild(bullet,1);
         //bullet->release();
         bullet->setPosition(pos);
         bullet->setVector(vec);
@@ -297,6 +297,7 @@ void GameController::update(float dt, Player* player)
             // loop all enemy bullets against player
             else if(b->getPosition().getDistance(player->getPosition()) < b->getRadius()+player->getRadius())
             {
+                player->hurt(b->getDamage());
                 BulletController::erase(i);
                 EffectManager::createExplosion(player->getPosition());
                 break;

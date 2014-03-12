@@ -32,7 +32,7 @@ void SmallExplosion::createExplosion(Node* _effectLayer, Point pos){
     part1->setScale(0.7);
     part2->setTotalParticles(5);
     part2->setEmissionRate(9999999999);
-    _effectLayer->addChild(this);
+    _effectLayer->addChild(this,7);
     part1->setRotation3D(Vertex3F(30,0,0));
     part2->setRotation3D(Vertex3F(30,0,0));
     this->setPosition(pos);
@@ -66,7 +66,7 @@ bool BigExplosion::init(){
 
 void BigExplosion::createExplosion(Node *_effectLayer, Point pos){
 
-    _effectLayer->addChild(this);
+    _effectLayer->addChild(this,6);
     part1->resetSystem();
     part2->resetSystem();
     part3->resetSystem();

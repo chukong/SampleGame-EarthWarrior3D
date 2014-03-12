@@ -91,12 +91,12 @@ bool Missile::init()
 
         
         auto part2 = ParticleSystemQuad::create("emission.plist");
-        addChild(part2);
+        addChild(part2,1);
         part2->setPosition(0,-34);
         part2->setPositionType(tPositionType::GROUPED);
         //part2->setScale(2.5);
         auto part1 = ParticleSystemQuad::create("missileFlare.plist");
-        addChild(part1);
+        addChild(part1,2);
         part1->setPosition(0,-30);
         part1->setPositionType(tPositionType::GROUPED);
         part1->setScale(2.5);

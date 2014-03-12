@@ -34,7 +34,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // run
     director->runWithScene(scene);
-
+    glEnable(GL_CULL_FACE);
     return true;
 }
 

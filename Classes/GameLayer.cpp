@@ -38,8 +38,7 @@ bool GameLayer::init()
     
     _spr = Sprite::create("groundLevel.jpg");
     _cloud = Sprite::create("cloud.png");
-    addChild(_spr, -2);
-    //addChild(_cloud);
+    addChild(_spr, -5);
     Texture2D::TexParams texRepeat = {GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_REPEAT};
     _spr->getTexture()->setTexParameters(texRepeat);
     _cloud->getTexture()->setTexParameters(texRepeat);
@@ -52,12 +51,12 @@ bool GameLayer::init()
     
     _streak = MotionStreak::create(0.4, 1, 15, Color3B(82,255,253), "streak.png");
     _player->setTrail(_streak);
-    addChild(_streak,1);
+    addChild(_streak,3);
     _emissionPart = ParticleSystemQuad::create("emissionPart.plist");
     _player->setEmissionPart(_emissionPart);
-    addChild(_emissionPart,2);
+    addChild(_emissionPart,4);
     _emissionPart->setPositionType(tPositionType::FREE);
-    addChild(_player,3);
+    addChild(_player,5);
     EffectManager::setLayer(this);
 
     this->schedule(schedule_selector(GameLayer::gameMaster) , 1.5, -1, 0.0);
