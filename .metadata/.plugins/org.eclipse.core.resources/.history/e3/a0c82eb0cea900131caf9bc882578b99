@@ -1,0 +1,95 @@
+package org.cocos2dx.cpp;
+
+import android.app.NativeActivity;
+import android.os.Bundle;
+import android.util.Log;
+import java.util.List;  
+import android.app.Activity;  
+import android.app.ActivityManager;  
+import android.app.ActivityManager.RunningAppProcessInfo;  
+import android.content.Context;
+
+public class Cocos2dxActivity extends NativeActivity{
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		//For supports translucency
+		
+		//1.change "attribs" in cocos\2d\platform\android\nativeactivity.cpp
+		/*const EGLint attribs[] = {
+	            EGL_SURFACE_TYPE, EGL_WINDOW_BIT,
+	            EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,  
+	            //EGL_BLUE_SIZE, 5,   -->delete 
+	            //EGL_GREEN_SIZE, 6,  -->delete 
+	            //EGL_RED_SIZE, 5,    -->delete 
+	            EGL_BUFFER_SIZE, 32,  //-->new field
+	            EGL_DEPTH_SIZE, 16,
+	            EGL_STENCIL_SIZE, 8,
+	            EGL_NONE
+	    };*/
+		
+		//2.Set the format of window
+		// getWindow().setFormat(PixelFormat.TRANSLUCENT);
+		
+	}
+	@Override  
+    protected void onStop() 
+	{  
+            // TODO Auto-generated method stub  
+            super.onStop();  
+
+            if (!isAppOnForeground()) 
+            {  
+                    //app 进入后台  
+                       
+                    //全局变量isActive = false 记录当前已经进入后台  
+            }  
+    }  
+
+    @Override  
+    protected void onResume() 
+    {  
+            // TODO Auto-generated method stub  
+            super.onResume();  
+
+               
+            //if (!isActive) {  
+                    //app 从后台唤醒，进入前台  
+                       
+                    //isActive = true;  
+            //}  
+    }  
+
+    /** 
+     * 程序是否在前台运行 
+     *  
+     * @return 
+     */  
+    public boolean isAppOnForeground() 
+    {  
+            // Returns a list of application processes that are running on the  
+            // device  
+              
+            ActivityManager activityManager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);  
+            String packageName = getApplicationContext().getPackageName();  
+
+            List<RunningAppProcessInfo> appProcesses = activityManager  
+                            .getRunningAppProcesses();  
+            if (appProcesses == null)  
+                    return false;  
+
+            for (RunningAppProcessInfo appProcess : appProcesses) {  
+                    // The name of the process that this object is associated with.  
+                    if (appProcess.processName.equals(packageName)  
+                                    && appProcess.importance == RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {  
+                            return true;  
+                    }  
+            }  
+			
+    	Log.i("111111","background");
+            return false;  
+    }  
+}

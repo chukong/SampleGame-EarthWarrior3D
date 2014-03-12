@@ -6,7 +6,7 @@
 #include <sstream>
 
 #include "cocos2d.h"
-#include "2d/ccMacros.h"
+#include "../cocos2d/cocos/2d/ccMacros.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -318,6 +318,7 @@ void ObjMeshData::trianglarAndGenerateNormals()
     _normalVertexLists.resize(faceVertexNormalList.size());
     for (int index = 0; index < _normalVertexLists.size(); ++index)
     {
+        _normalVertexLists[index] = vec3(0,0,0);
         for (const auto& facenormal : faceVertexNormalList[index])
         {
             _normalVertexLists[index] += facenormal;
@@ -444,6 +445,7 @@ Mesh::Mesh(const string& name)
 
 Mesh::~Mesh()
 {
+    freeBuffers();
 }
 
 bool Mesh::loadFromFile(const std::string &name)
@@ -457,6 +459,11 @@ bool Mesh::loadFromFile(const std::string &name)
     parser.parse(objFile, data);
     
     data.convertToRenderMesh(_renderableMesh);
+    
+    generateVertices();
+    generateTriangleIndices();
+    buildBuffer();
+
     return true;
 }
 
@@ -508,15 +515,15 @@ int Mesh::getTriangleIndexCount() const
     return _faceCount * 3;
 }
 
-void Mesh::generateVertices(vector<float>& floats, unsigned char flags) const
+void Mesh::generateVertices()
 {
-    floats.resize(_renderableMesh._vertexs.size() * 8);
-    memcpy(&floats[0], &_renderableMesh._vertexs[0], _renderableMesh._vertexs.size() * 8 * sizeof(float));
+    _vertices.resize(_renderableMesh._vertexs.size() * 8);
+    memcpy(&_vertices[0], &_renderableMesh._vertexs[0], _renderableMesh._vertexs.size() * 8 * sizeof(float));
 }
 
-void Mesh::generateTriangleIndices(vector<unsigned short>& indices) const
+void Mesh::generateTriangleIndices()
 {
-    indices = _renderableMesh._indices;
+    _indices = _renderableMesh._indices;
 //    indices.resize(getTriangleIndexCount());
 //    vector<unsigned short>::iterator index = indices.begin();
 //    for (vector<Face>::const_iterator f = _faces.begin(); f != _faces.end(); ++f) {
@@ -524,4 +531,43 @@ void Mesh::generateTriangleIndices(vector<unsigned short>& indices) const
 //        *index++ = f->face.y;
 //        *index++ = f->face.z;
 //    }
+}
+
+void Mesh::freeBuffers()
+{
+    if(glIsBuffer(_vertexBuffer))
+    {
+        glDeleteBuffers(1, &_vertexBuffer);
+        _vertexBuffer = 0;
+    }
+    if(glIsBuffer(_indexBuffer))
+    {
+        glDeleteBuffers(1, &_indexBuffer);
+        _indexBuffer = 0;
+    }
+    _indexCount = 0;
+}
+
+void Mesh::buildBuffer()
+{
+    freeBuffers();
+
+    glGenBuffers(1, &_vertexBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER,
+                 _vertices.size() * sizeof(_vertices[0]),
+                 &_vertices[0],
+                 GL_STATIC_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    
+    // Create a new VBO for the indices
+    _indexCount = _indices.size();// model->GetTriangleIndexCount();
+
+    glGenBuffers(1, &_indexBuffer);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER,
+                 _indexCount * sizeof(GLushort),
+                 &_indices[0],
+                 GL_STATIC_DRAW);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }

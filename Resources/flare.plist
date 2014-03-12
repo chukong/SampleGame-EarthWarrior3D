@@ -51,9 +51,9 @@
 	<key>minRadiusVariance</key>
 	<real>0</real>
 	<key>particleLifespan</key>
-	<real>1.2</real>
+	<real>0.6</real>
 	<key>particleLifespanVariance</key>
-	<real>0.2581870555877686</real>
+	<real>0.158187055587769</real>
 	<key>radialAccelVariance</key>
 	<real>0</real>
 	<key>radialAcceleration</key>
@@ -99,9 +99,9 @@
 	<key>startColorVarianceRed</key>
 	<real>0</real>
 	<key>startParticleSize</key>
-	<real>0</real>
+	<integer>100</integer>
 	<key>startParticleSizeVariance</key>
-	<real>289.0821838378906</real>
+	<integer>50</integer>
 	<key>tangentialAccelVariance</key>
 	<real>0</real>
 	<key>tangentialAcceleration</key>

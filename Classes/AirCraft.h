@@ -16,13 +16,17 @@ USING_NS_CC;
 class AirCraft : public GameEntity
 {
 public:
-    void hurt(float damage);
-    float getHP();
-    void die();
+    virtual bool hurt(float damage);
+    virtual void die();
     void shoot();
+    //CC_SYNTHESIZE(float, _HP, HP);
+    bool alive();
+    virtual void move(float y, float dt);
+    virtual void reset();
 protected:
-    float _HP = 200;// hit points
-    
+    bool _alive = true;
+    float _HP;
+    int _score;
 };
 
 #endif /* defined(__Moon3d__AirCraft__) */

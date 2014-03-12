@@ -8,15 +8,62 @@
 
 #include "Effects.h"
 
-Vector<Node*> EffectPool::pool;
+Node* EffectManager::_effectLayer = nullptr;
+Vector<SmallExplosion*> EffectManager::_smallExplPool;
+Vector<BigExplosion*> EffectManager::_bigExplPool;
 
-bool ExplosionFX::init(){
-    _part1 = ParticleSystemQuad::create("toonSmoke.plist");
-    _part2 = ParticleSystemQuad::create("flare.plist");
-    addChild(_part1);
-    addChild(_part2);
-    _part1->setAutoRemoveOnFinish(true);
-    _part2->setAutoRemoveOnFinish(true);
-    setRotation3D(Vertex3F(30,0,0));
-    return (_part1 && _part2);
+void EffectManager::createExplosion(Point pos)
+{
+    if(!_effectLayer)
+    {
+        return;
+    }
+    
+    SmallExplosion* explosion = nullptr;
+    
+    if (!_smallExplPool.empty())
+    {
+        explosion = _smallExplPool.back();
+        _smallExplPool.popBack();
+    }
+    else
+    {
+        explosion = SmallExplosion::create();
+        explosion->retain();
+    }
+    
+    explosion->createExplosion(_effectLayer, pos);
+
+}
+
+void EffectManager::createBigExplosion(Point pos)
+{
+    if(!_effectLayer)
+    {
+        return;
+    }
+    
+    BigExplosion* explosion = nullptr;
+    
+    if (!_bigExplPool.empty())
+    {
+        explosion = _bigExplPool.back();
+        _bigExplPool.popBack();
+//        explosion->part1->resetSystem();
+//        explosion->part2->resetSystem();
+//        explosion->part3->resetSystem();
+    }
+    else
+    {
+        explosion = BigExplosion::create();
+        explosion->retain();
+    }
+    
+    explosion->createExplosion(_effectLayer, pos);
+    
+}
+
+void EffectManager::setLayer(Node *layer)
+{
+    _effectLayer = layer;
 }

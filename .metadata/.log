@@ -141,3 +141,32 @@ org.eclipse.core.internal.resources.ResourceException: Resource '/Moon3d/res' do
 
 !ENTRY org.eclipse.cdt.core 1 0 2014-03-12 15:40:05.760
 !MESSAGE Indexed 'Moon3d' (0 sources, 13 headers) in 0.15 sec: 0 declarations; 0 references; 13 unresolved inclusions; 0 syntax errors; 0 unresolved names (0.00%)
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-03-12 17:12:40.423
+!MESSAGE 
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource '/libcocos2dx/res' does not exist.
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:341)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:215)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:266)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:249)
+	at com.android.ide.eclipse.adt.internal.sdk.Sdk$7.run(Sdk.java:1453)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.core.resources 4 368 2014-03-12 17:12:40.423
+!MESSAGE Resource '/libcocos2dx/res' does not exist.
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-03-12 17:15:59.498
+!MESSAGE 
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource '/proj.android/res' does not exist.
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:341)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:215)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:266)
+	at org.eclipse.core.internal.resources.Container.members(Container.java:249)
+	at com.android.ide.eclipse.adt.internal.sdk.Sdk$7.run(Sdk.java:1453)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.core.resources 4 368 2014-03-12 17:15:59.498
+!MESSAGE Resource '/proj.android/res' does not exist.
+
+!ENTRY org.eclipse.cdt.core 1 0 2014-03-12 17:16:00.912
+!MESSAGE Indexed 'proj.android' (0 sources, 13 headers) in 0.08 sec: 0 declarations; 0 references; 13 unresolved inclusions; 0 syntax errors; 0 unresolved names (0.00%)

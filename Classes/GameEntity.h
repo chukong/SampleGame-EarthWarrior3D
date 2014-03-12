@@ -23,9 +23,11 @@ public:
     void setType(int type){_type = type;};
     int getType(){return _type;};
     float getRadius(){return _radius;};
+    void forward(float dist);
+    void forward(float dist, float angle);
 protected:
     Node *_Model;
-    float _radius = 10;
+    float _radius;
     Vertex3F _orientation;
     int _type;
     

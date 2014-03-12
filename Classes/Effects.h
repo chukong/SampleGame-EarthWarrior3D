@@ -10,22 +10,20 @@
 #define __Moon3d__Effects__
 
 #include "cocos2d.h"
+#include "Explosion.h"
 USING_NS_CC;
 
-class EffectPool
+class EffectManager
 {
 public:
-    static Vector<Node*> pool;
-};
-
-class ExplosionFX : public Node
-{
-public:
-    CREATE_FUNC(ExplosionFX);
-    bool init();
+    static void createExplosion(Point pos);
+    static void createBigExplosion(Point pos);
+    static void setLayer(Node* layer);
+    static Vector<SmallExplosion*> _smallExplPool;
+    static Vector<BigExplosion*> _bigExplPool;
 protected:
-    ParticleSystemQuad* _part1;
-    ParticleSystemQuad* _part2;
+    static Node* _effectLayer;
+
 };
 
 

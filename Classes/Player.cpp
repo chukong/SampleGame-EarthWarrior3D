@@ -7,14 +7,18 @@
 //
 
 #include "Player.h"
-#include "Bullet.h"
+#include "Bullets.h"
 #include "3d/Sprite3D.h"
-#include "BulletController.h"
+#include "GameControllers.h"
 #include "consts.h"
+#include "HelloWorldScene.h"
+
+#define visible_size_macro Director::getInstance()->getVisibleSize()
+#define origin_point Director::getInstance()->getVisibleOrigin();
 
 bool Player::init()
 {
-    _Model = Sprite3D::create("playerv001.obj", "playerv002_1024.png");
+    _Model = Sprite3D::create("playerv002.obj", "playerv002_256.png");
     //_Model = Sprite3D::create("Scania4.obj", "car00.png");
     if(_Model)
     {
@@ -22,6 +26,7 @@ bool Player::init()
         addChild(_Model);
         _Model->setRotation3D(Vertex3F(90,0,0));
         _radius = 40;
+        _HP = 100;
         
         auto listener = EventListenerTouchOneByOne::create();
         listener->setSwallowTouches(true);
@@ -31,10 +36,10 @@ bool Player::init()
         listener->onTouchEnded = CC_CALLBACK_2(Player::onTouchEnded, this);
         
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-        scheduleUpdate();
-        static_cast<Sprite3D*>(_Model)->setOutline(0.14, Color3B(0,0,0));
+        //scheduleUpdate();
+        static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B(0,0,0));
         schedule(schedule_selector(Player::shootMissile), 1.5, -1, 0);
-        schedule(schedule_selector(Player::shoot), 0.1, -1, 0);
+        schedule(schedule_selector(Player::shoot), 0.075, -1, 0);
         
         // engine trail
         auto part = ParticleSystemQuad::create("engine.plist");
@@ -75,8 +80,8 @@ void Player::onTouchEnded(Touch *touch, Event *event)
 void Player::shoot(float dt)
 {
 
-    BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(-20,20), Point(0,1600));
-    BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(20,20), Point(0,1600));
+    BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(-20,20), Point(-200,1600));
+    BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(20,20), Point(200,1600));
         BulletController::spawnBullet(kPlayerBullet, getPosition()+Point(0,20), Point(0,1600));
 }
 void Player::setPosition(Point pos)
@@ -90,11 +95,44 @@ void Player::setPosition(Point pos)
     {
         _streak->setPosition(pos+_trailOffset);
     }
+    if(_emissionPart)
+    {
+        _emissionPart->setPosition(pos);
+    }
 }
 void Player::shootMissile(float dt)
 {
-    auto left = BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(-50,-20), Point(-175,-175));
+    auto left = BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(-50,-20), Point(-200,-200));
     left->setRotation(-45);
-    auto right = BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(50,-20), Point(175,-175));
+    auto right = BulletController::spawnBullet(kPlayerMissiles, getPosition()+Point(50,-20), Point(200,-200));
     right->setRotation(45);
+}
+
+bool Player::hurt(float damage){
+    float fromHP = _HP;
+    float toHP = _HP-=damage;
+    
+    auto fade = FadeTo::create(0.2, 40);
+    auto fadeBack = FadeTo::create(0.2, 0);
+    auto warningLayer = Director::getInstance()->getRunningScene()->getChildByTag(456);
+    warningLayer->runAction(Sequence::create(fade,fadeBack,NULL));
+    
+    auto hpView = ((HelloWorld*)Director::getInstance()->getRunningScene()->getChildByTag(100))->getHPView();
+    //Rye
+    auto to = ProgressFromTo::create(0.5, fromHP, toHP);
+    hpView->runAction(to);
+    
+    if(_HP <= 0)
+    {
+        die();
+        return true;
+    }
+
+    return false;
+}
+
+void Player::die()
+{
+    _alive = false;
+    //TODO: Game ended, the player is dead!
 }
