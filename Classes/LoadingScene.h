@@ -17,7 +17,7 @@ USING_NS_CC;
 USING_NS_CC_EXT;
 using namespace CocosDenshion;
 
-#define TOTAL_PIC_NUM 20
+#define TOTAL_PIC_NUM 11
 
 class LoadingScene : public Layer
 {
