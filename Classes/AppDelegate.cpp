@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
+#include "MainMenuScene.h"
+#include "HelloWorldScene.h"
 #include "LoadingScene.h"
-
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
@@ -31,7 +32,8 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
     auto scene = LoadingScene::createScene();
-
+    //auto scene = MainMenuScene::createScene();
+    //auto scene = HelloWorld::createScene();
     // run
     director->runWithScene(scene);
 

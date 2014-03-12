@@ -186,6 +186,8 @@
 		BB4B4B3218CEFD3E003AF681 /* right_top_ui.png in Resources */ = {isa = PBXBuildFile; fileRef = BB4B4B3018CEFD3E003AF681 /* right_top_ui.png */; };
 		BB4B4B3418CF0D30003AF681 /* score_right_top.png in Resources */ = {isa = PBXBuildFile; fileRef = BB4B4B3318CF0D30003AF681 /* score_right_top.png */; };
 		BB4B4B3518CF0D30003AF681 /* score_right_top.png in Resources */ = {isa = PBXBuildFile; fileRef = BB4B4B3318CF0D30003AF681 /* score_right_top.png */; };
+		BBADCE9518D0133900DB3CD3 /* MainMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBADCE9318D0133900DB3CD3 /* MainMenuScene.cpp */; };
+		BBADCE9618D0171200DB3CD3 /* MainMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBADCE9318D0133900DB3CD3 /* MainMenuScene.cpp */; };
 		BBDA878518CDA2BF00A2F47E /* Explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBDA878318CDA2BF00A2F47E /* Explosion.cpp */; };
 		BBDA878618CDA2BF00A2F47E /* Explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBDA878318CDA2BF00A2F47E /* Explosion.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -471,6 +473,8 @@
 		BB4B4B2118CEEA02003AF681 /* hp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hp.png; sourceTree = "<group>"; };
 		BB4B4B3018CEFD3E003AF681 /* right_top_ui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_top_ui.png; sourceTree = "<group>"; };
 		BB4B4B3318CF0D30003AF681 /* score_right_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = score_right_top.png; sourceTree = "<group>"; };
+		BBADCE9318D0133900DB3CD3 /* MainMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainMenuScene.cpp; path = ../Classes/MainMenuScene.cpp; sourceTree = "<group>"; };
+		BBADCE9418D0133900DB3CD3 /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainMenuScene.h; path = ../Classes/MainMenuScene.h; sourceTree = "<group>"; };
 		BBDA878318CDA2BF00A2F47E /* Explosion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Explosion.cpp; path = ../Classes/Explosion.cpp; sourceTree = "<group>"; };
 		BBDA878418CDA2BF00A2F47E /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Explosion.h; path = ../Classes/Explosion.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -577,6 +581,8 @@
 				BBDA878418CDA2BF00A2F47E /* Explosion.h */,
 				BB4B4B1218CEE576003AF681 /* MenuLayer.cpp */,
 				BB4B4B1318CEE576003AF681 /* MenuLayer.h */,
+				BBADCE9318D0133900DB3CD3 /* MainMenuScene.cpp */,
+				BBADCE9418D0133900DB3CD3 /* MainMenuScene.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -967,7 +973,6 @@
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				68F22BD018CCAD4F00B6521B /* coconut.obj in Resources */,
 				1FBF59E018CF06E5005154B8 /* loading_progress_bk.png in Resources */,
-				688B39EA18C9A5BA00A14D84 /* rightTop.png in Resources */,
 				1FBF59EC18CF0727005154B8 /* num_0.png in Resources */,
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				1AFAF8BC16D35E4900DB1158 /* CloseNormal.png in Resources */,
@@ -1107,6 +1112,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
+				BBADCE9518D0133900DB3CD3 /* MainMenuScene.cpp in Sources */,
 				68005B9F18BEEC75007598C5 /* AirCraft.cpp in Sources */,
 				1F2F343118CF05A70058AE0A /* LoadingScene.cpp in Sources */,
 				BBDA878518CDA2BF00A2F47E /* Explosion.cpp in Sources */,
@@ -1143,6 +1149,7 @@
 				BBDA878618CDA2BF00A2F47E /* Explosion.cpp in Sources */,
 				680A318118C784D700D073CD /* Effects.cpp in Sources */,
 				680A315818C5D52300D073CD /* GameControllers.cpp in Sources */,
+				BBADCE9618D0171200DB3CD3 /* MainMenuScene.cpp in Sources */,
 				686EC63818BAE16A0065154C /* GameLayer.cpp in Sources */,
 				680A315418C5CDE500D073CD /* Bullets.cpp in Sources */,
 				68005B8F18BEE774007598C5 /* GameEntity.cpp in Sources */,
