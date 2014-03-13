@@ -39,7 +39,8 @@ bool MainMenuScene::init()
     // Licensed under CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
     CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Star_Chaser.mp3");
     
-    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("EarthWarrior.plist","EarthWarrior.png");
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("menu_scene.plist","menu_scene.png");
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Particle.plist","Particle.png");
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
@@ -90,11 +91,11 @@ bool MainMenuScene::init()
     background->setAnchorPoint(Point(0,0));
     this->addChild(background,-1,-1);
     
-    //************* adds logo *****************
-    auto logo = Sprite::createWithSpriteFrameName("LOGO.png");
-    logo->setAnchorPoint(Point(0.5,0.5));
-    logo->setPosition(visibleSize.width/2,visibleSize.height-200);
-    this->addChild(logo,3,3);
+//    //************* adds logo *****************
+//    auto logo = Sprite::createWithSpriteFrameName("LOGO.png");
+//    logo->setAnchorPoint(Point(0.5,0.5));
+//    logo->setPosition(visibleSize.width/2,visibleSize.height-200);
+//    this->addChild(logo,3,3);
     
     //************* adds start game ***********
     auto start_normal=Sprite::createWithSpriteFrameName("start_game.png");

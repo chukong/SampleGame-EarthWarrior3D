@@ -13,9 +13,15 @@
 #include "Enemies.h"
 #include "Bullets.h"
 #include "GameControllers.h"
+#include "ParticleManager.h"
 #include "consts.h"
 
 int LoadingScene::updatecount=0;
+int LoadingScene::m_curPreload_fodder_count=0;
+int LoadingScene::m_curPreload_fodderL_count=0;
+int LoadingScene::m_curPreload_BigDude_count=0;
+int LoadingScene::m_curPreload_Missile_count=0;
+int LoadingScene::m_curPreload_Boss_count=0;
 
 LoadingScene::~LoadingScene()
 {
@@ -58,6 +64,9 @@ void LoadingScene::InitBk()
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
+    
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("loadingAndHP.plist","loadingAndHP.png");
+    
     //bk
     auto loading_bk=Sprite::createWithSpriteFrameName("loading_bk.png");
     loading_bk->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
@@ -94,6 +103,7 @@ void LoadingScene::InitCoco()
 
 void LoadingScene::LoadingResource()
 {
+    LoadingParticle();
     //Loading Music
     LoadingMusic();
     
@@ -108,7 +118,7 @@ void LoadingScene::LoadingMusic()
     Audio->preloadEffect("hit.mp3");
     Audio->preloadEffect("boom2.mp3");
     Audio->preloadEffect("boom.mp3");
-    Audio->preloadBackgroundMusic("Orbital Colossus_0.mp3");
+    //Audio->preloadBackgroundMusic("Orbital Colossus_0.mp3");
     //Audio->preloadBackgroundMusic("Star_Chaser.mp3");
     
     // Music By Matthew Pable (http://www.matthewpablo.com/)
@@ -132,6 +142,9 @@ void LoadingScene::LoadingPic()
     TexureCache->addImageAsync("gameover_score_num_0.png",CC_CALLBACK_1(LoadingScene::LoadingCallback,this));
     TexureCache->addImageAsync("num_0.png",CC_CALLBACK_1(LoadingScene::LoadingCallback,this));
     TexureCache->addImageAsync("score_right_top.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+    
+    TexureCache->addImageAsync("gameover.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+
 }
 
 void LoadingScene::LoadingCallback(Ref* pObj)
@@ -155,6 +168,8 @@ void LoadingScene::LoadingCallback(Ref* pObj)
 void LoadingScene::GotoNextScene()
 {
     //goto next scene.
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("gameover.plist","gameover.png");
+    
     scheduleOnce(schedule_selector(LoadingScene::RunNextScene), 1.0f);
 }
 
@@ -162,8 +177,6 @@ void LoadingScene::RunNextScene(float dt)
 {
     this->removeAllChildren();
     auto helloworldScene=HelloWorld::createScene();
-
-
     Director::getInstance()->replaceScene(TransitionZoomFlipX::create(1.0f,helloworldScene));
 
 }
@@ -191,6 +204,11 @@ void LoadingScene::update(float dt)
     {
         LoadingBullet(kPlayerMissiles);
         m_curPreload_Missile_count++;
+    }
+    else if (m_curPreload_Boss_count<PRElOAD_BOSS_COUNT)
+    {
+        LoadingEnemy(kEnemyBoss);
+        m_curPreload_Boss_count++;
     }
     else
     {
@@ -222,6 +240,12 @@ void LoadingScene::LoadingEnemy(int type)
             enmey_bigdude->retain();
             EnemyController::_bigDudePool.pushBack(enmey_bigdude);
         }
+        case kEnemyBoss:
+        {
+            auto enemy_boss =Boss::create();
+            enemy_boss->retain();
+            EnemyController::_bossPool.pushBack(enemy_boss);
+        }
             break;
         default:
             break;
@@ -241,4 +265,18 @@ void LoadingScene::LoadingBullet(int type)
         default:
             break;
     }
+}
+
+void LoadingScene::LoadingParticle()
+{
+    auto particle=ParticleManager::getInstance();
+    particle->AddPlistData("missileFlare.plist","missileFlare");
+    particle->AddPlistData("emission.plist", "emission");
+    particle->AddPlistData("missileFlare.plist","missileFlare");
+    particle->AddPlistData("toonSmoke.plist", "toonSmoke");
+    particle->AddPlistData("flare.plist", "flare");
+    particle->AddPlistData("glow.plist", "glow");
+    particle->AddPlistData("debris.plist", "debris");
+    particle->AddPlistData("emissionPart.plist", "emissionPart");
+    particle->AddPlistData("engine.plist", "engine");
 }
