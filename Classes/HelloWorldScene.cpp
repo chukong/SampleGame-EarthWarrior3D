@@ -46,18 +46,18 @@ bool HelloWorld::init()
     auto sb = GameLayer::create();
     sb->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     addChild(sb);
-    auto fog = Sprite::create("fog.png");
+    auto fog = Sprite::createWithSpriteFrameName("fog.png");
     addChild(fog);
     fog->setPosition(visibleSize.width/2,visibleSize.height/2+285);
     fog->setScaleX(visibleSize.width/10);
     
     //HP
-    auto lefttopUI = Sprite::create("hp_empty.png");
+    auto lefttopUI = Sprite::createWithSpriteFrameName("hp_empty.png");
     lefttopUI->setAnchorPoint(Point(0,1));
     lefttopUI->setPosition(Point(0, visibleSize.height+origin.y));
     addChild(lefttopUI);
     
-    hpView = ProgressTimer::create(Sprite::create("hp.png"));
+    hpView = ProgressTimer::create(Sprite::createWithSpriteFrameName("hp.png"));
     hpView->setType(ProgressTimer::Type::BAR);
     hpView->setMidpoint(Point(0,0));
     hpView->setPercentage(1);
@@ -67,13 +67,13 @@ bool HelloWorld::init()
     hpView->setPosition(Point(18, visibleSize.height+origin.y-32));
     addChild(hpView);
     
-    auto hpAbove = Sprite::create("hp_above.png");
+    auto hpAbove = Sprite::createWithSpriteFrameName("hp_above.png");
     hpAbove->setAnchorPoint(Point(0,1));
     hpAbove->setPosition(Point(18, visibleSize.height+origin.y-32));
     addChild(hpAbove);
     
     //Score
-    auto rightTopUI = Sprite::create("right_top_ui.png");
+    auto rightTopUI = Sprite::createWithSpriteFrameName("right_top_ui.png");
     rightTopUI->setAnchorPoint(Point(1,1));
     rightTopUI->setPosition(origin+Point(visibleSize));
     this->addChild(rightTopUI);

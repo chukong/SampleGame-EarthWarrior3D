@@ -59,7 +59,7 @@ void LoadingScene::InitBk()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     
     //bk
-    auto loading_bk=Sprite::create("loading_bk.png");
+    auto loading_bk=Sprite::createWithSpriteFrameName("loading_bk.png");
     loading_bk->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
     addChild(loading_bk,0);
     
@@ -70,11 +70,11 @@ void LoadingScene::InitBk()
     this->addChild(m_pPercent,1);
     
     //progress
-    auto progress_bk=Sprite::create("loading_progress_bk.png");
+    auto progress_bk=Sprite::createWithSpriteFrameName("loading_progress_bk.png");
     progress_bk->setPosition(Point(visibleSize.width/2, visibleSize.height/2+300));
     addChild(progress_bk);
     
-    m_pProgress=Sprite::create("loading_progress_thumb.png");
+    m_pProgress=Sprite::createWithSpriteFrameName("loading_progress_thumb.png");
     m_pProgress->setPosition(Point(100, visibleSize.height/2+320));
     addChild(m_pProgress);
 }
@@ -107,6 +107,10 @@ void LoadingScene::LoadingMusic()
     Audio->preloadEffect("explodeEffect.mp3");
     Audio->preloadEffect("hit.mp3");
     Audio->preloadEffect("boom2.mp3");
+    Audio->preloadEffect("boom.mp3");
+    Audio->preloadEffect("Orbital Colossus_0.mp3");
+    Audio->preloadEffect("Star_Chaser.mp3");
+    
     // Music By Matthew Pable (http://www.matthewpablo.com/)
     // Licensed under CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
     Audio->playBackgroundMusic("Flux2.mp3");
@@ -115,26 +119,19 @@ void LoadingScene::LoadingMusic()
 void LoadingScene::LoadingPic()
 {
 	auto TexureCache=Director::getInstance()->getTextureCache();
+    TexureCache->addImageAsync("boss.png",CC_CALLBACK_1(LoadingScene::LoadingCallback,this));
+    TexureCache->addImageAsync("coco.png",CC_CALLBACK_1(LoadingScene::LoadingCallback,this));
     TexureCache->addImageAsync("groundLevel.jpg", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("bullets.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	//TexureCache->addImageAsync("car00.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	//TexureCache->addImageAsync("CloseNormal.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	//TexureCache->addImageAsync("CloseSelected.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	//TexureCache->addImageAsync("cloud.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("daodan_32.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	//TexureCache->addImageAsync("daodan_512.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("diji02_v002_128.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("hp_empty.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("dijiyuanv001.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	//TexureCache->addImageAsync("Done1.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	//TexureCache->addImageAsync("fighter.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("fog.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	//TexureCache->addImageAsync("HelloWorld.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	//TexureCache->addImageAsync("leftTop.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 	TexureCache->addImageAsync("playerv002_256.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("score_right_top.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("right_top_ui.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
-	TexureCache->addImageAsync("streak.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+    TexureCache->addImageAsync("streak.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+    
+    TexureCache->addImageAsync("gameover_score_num_0.png",CC_CALLBACK_1(LoadingScene::LoadingCallback,this));
+    TexureCache->addImageAsync("num_0.png",CC_CALLBACK_1(LoadingScene::LoadingCallback,this));
+    TexureCache->addImageAsync("score_right_top.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
 }
 
 void LoadingScene::LoadingCallback(Ref* pObj)

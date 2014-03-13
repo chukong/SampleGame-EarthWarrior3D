@@ -33,9 +33,9 @@ private:
     void credits_callback();
     
 private:
-    MenuItemImage* startgame_item;
-    MenuItemImage* license_item;
-    MenuItemImage* credits_item;
+    MenuItemSprite* startgame_item;
+    MenuItemSprite* license_item;
+    MenuItemSprite* credits_item;
 
 };
 
