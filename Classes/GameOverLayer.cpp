@@ -105,6 +105,7 @@ void GameOverLayer::menu_backtomenu_Callback(Ref* sender)
 
 void GameOverLayer::menu_backtomenu()
 {
+    CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
     Director::getInstance()->replaceScene(MainMenuScene::createScene());
 }
 
