@@ -103,6 +103,9 @@ void LoadingScene::InitCoco()
 
 void LoadingScene::LoadingResource()
 {
+    //Loading Particle
+    LoadingParticle();
+    
     //Loading Music
     LoadingMusic();
     
@@ -168,7 +171,6 @@ void LoadingScene::GotoNextScene()
 {
     //goto next scene.
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("gameover.plist","gameover.png");
-    LoadingParticle();
     scheduleOnce(schedule_selector(LoadingScene::RunNextScene), 1.0f);
 }
 

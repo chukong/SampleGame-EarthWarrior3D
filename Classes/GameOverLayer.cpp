@@ -8,6 +8,8 @@
 
 #include "GameOverLayer.h"
 #include "MainMenuScene.h"
+#include "HelloWorldScene.h"
+#include "GameLayer.h"
 
 GameOverLayer* GameOverLayer::create(int score)
 {
@@ -49,14 +51,14 @@ bool GameOverLayer::init()
                                            backtomenu_pressed,
                                            CC_CALLBACK_1(GameOverLayer::menu_backtomenu_Callback,this));
     
-    auto playagain_normal=Sprite::createWithSpriteFrameName("gameover_playagain.png");
-    auto playagain_pressed=Sprite::createWithSpriteFrameName("gameover_playagain.png");
-    playagain_Item = MenuItemSprite::create(playagain_normal,
-                                           playagain_pressed,
-                                           CC_CALLBACK_1(GameOverLayer::menu_playagain_Callback,this));
+//    auto playagain_normal=Sprite::createWithSpriteFrameName("gameover_playagain.png");
+//    auto playagain_pressed=Sprite::createWithSpriteFrameName("gameover_playagain.png");
+//    playagain_Item = MenuItemSprite::create(playagain_normal,
+//                                           playagain_pressed,
+//                                           CC_CALLBACK_1(GameOverLayer::menu_playagain_Callback,this));
     
-    auto menu = Menu::create(backtomenu_Item,playagain_Item,NULL);
-    menu->alignItemsHorizontallyWithPadding(20);
+    auto menu = Menu::create(backtomenu_Item,NULL);
+    //menu->alignItemsHorizontallyWithPadding(20);
     menu->setPosition(visibleSize.width/2, 100);
     this->addChild(menu, 2);
     
@@ -119,7 +121,9 @@ void GameOverLayer::menu_playagain_Callback(Ref* sender)
 
 void GameOverLayer::menu_playagain()
 {
-    
+    CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+    GameLayer::isDie=false;
+    Director::getInstance()->replaceScene(HelloWorld::createScene());
 }
 
 bool GameOverLayer::onTouchBegan(Touch *touch, Event *event)
