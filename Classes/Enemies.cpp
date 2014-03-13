@@ -151,6 +151,7 @@ void BigDude::shoot(float dt)
     bullet->setRotation(-CC_RADIANS_TO_DEGREES(angle)-90);
     bullet =BulletController::spawnBullet(kEnemyBullet, offset2, Point(cosf(angle)*-500, sinf(angle)*-500));
     bullet->setRotation(-CC_RADIANS_TO_DEGREES(angle)-90);
+        CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3");
 }
 
 void BigDude::update(float dt, Node* player)
@@ -286,7 +287,6 @@ void Boss::_turns()
                                EaseQuadraticActionInOut::create(RotateBy::create(2,40)),
                                DelayTime::create(2),
                                EaseQuadraticActionInOut::create(RotateBy::create(2,-40)),
-                               DelayTime::create(1),
                                EaseQuadraticActionInOut::create(RotateBy::create(1,20)),
                                DelayTime::create(2),
                                CallFunc::create(this, Boss::_next()),
@@ -320,20 +320,20 @@ void Boss::_dash()
     
     array->addControlPoint(Point(0,0));
     array->addControlPoint(Point(80*neg,-300));
-    array->addControlPoint(Point(600*neg,-900));
-    array->addControlPoint(Point(600*neg,-300));
+    array->addControlPoint(Point(500*neg,-900));
+    array->addControlPoint(Point(700*neg,-300));
     array->addControlPoint(Point(900*neg,600));
     array->addControlPoint(Point(0,0));
     
-    auto action = CardinalSplineBy::create(5, array,0);
+    auto action = CardinalSplineBy::create(5.5, array,0);
     runAction(Sequence::create(
-                               DelayTime::create(1),
+                               DelayTime::create(0.5),
                                EaseSineOut::create(action)
                                ,nullptr)
               );
     runAction(
               Sequence::create(
-                               DelayTime::create(1),
+                               DelayTime::create(0.5),
                                RotateBy::create(2.5, Vertex3F(-30,45*neg,-90*neg)),
                                 RotateBy::create(0.5, Vertex3F(0,0,250*neg)),
                                EaseBackOut::create(RotateBy::create(2.0, Vertex3F(30,-45*neg,-160*neg))),
