@@ -65,12 +65,16 @@ public:
      This plist files can be created manually or with Particle Designer:
      */
     static ParticleSystemQuad * create(const std::string& filename);
+    
+    static ParticleSystemQuad * create( ValueMap& map);
+    static ParticleSystemQuad * create(ValueMap& map, SpriteFrame *frame);
 
     /** Sets a new SpriteFrame as particle.
     WARNING: this method is experimental. Use setTextureWithRect instead.
     @since v0.99.4
     */
     void setDisplayFrame(SpriteFrame *spriteFrame);
+    
 
     /** Sets a new texture with a rect. The rect is in Points.
      @since v0.99.4
@@ -145,7 +149,8 @@ protected:
      * @lua NA
      */
     virtual bool initWithTotalParticles(int numberOfParticles) override;
-
+    bool initWithDictionaryAndFrame(ValueMap &dictionary, SpriteFrame* frame);
+    
     void setupVBOandVAO();
     void setupVBO();
     bool allocMemory();

@@ -94,6 +94,10 @@ void GameLayer::schedulePlayer()
 }
 void GameLayer::gameMaster(float dt)
 {
+    if(isDie)
+    {
+        return;
+    }
     _elapsed+=dt;
     int enemyCount =EnemyController::enemies.size();
     //if(_elapsed < 10 && enemyCount < 5)
@@ -194,6 +198,8 @@ void GameLayer::gameMaster(float dt)
         auto boss = EnemyController::spawnEnemy(kEnemyBoss);
         boss->setPosition(0,800);
         CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+        // Music By Matthew Pable (http://www.matthewpablo.com/)
+        // Licensed under CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Orbital Colossus_0.mp3", true);
     }
 }
@@ -209,15 +215,33 @@ void GameLayer::update(float dt)
     }
     else
     {
-//        if (_player) {
-//            _player->stop();
-//            removeChild(_player);
-//            _player=NULL;
-//            removeChild(_streak);
-//            _streak=NULL;
-//            removeChild(_emissionPart);
-//            _emissionPart=NULL;
-//        }
+        if (_player) {
+            _player->stop();
+            removeChild(_player);
+            _player=NULL;
+            removeChild(_streak);
+            _streak=NULL;
+            removeChild(_emissionPart);
+            _emissionPart=NULL;
+            scheduleOnce(schedule_selector(GameLayer::removeBulletAndEnmeys), 1/60);
+        }
+    }
+}
+
+void GameLayer::removeBulletAndEnmeys(float dt)
+{
+    for(int i=EnemyController::enemies.size()-1;i>=0;i--)
+    {
+        EnemyController::erase(i);
+    }
+    for(int i=EnemyController::showCaseEnemies.size()-1;i>=0;i--)
+    {
+        //EnemyController::erase(i);
+        EnemyController::showCaseEnemies.at(i)->removeFromParentAndCleanup(false);
+    }
+    for(int i=BulletController::bullets.size()-1;i>=0;i--)
+    {
+        BulletController::erase(i);
     }
 }
 
