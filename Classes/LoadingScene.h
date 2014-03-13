@@ -21,6 +21,7 @@ using namespace CocosDenshion;
 #define PRELOAD_FODDERL_COUNT 3
 #define PRELOAD_BIGDUDE_COUBR 5
 #define PRELOAD_MISSILE_COUNT 5
+#define PRElOAD_BOSS_COUNT    1
 
 class LoadingScene : public Layer
 {
@@ -31,7 +32,8 @@ public:
     m_curPreload_fodder_count(0),
     m_curPreload_fodderL_count(0),
     m_curPreload_BigDude_count(0),
-    m_curPreload_Missile_count(0){};
+    m_curPreload_Missile_count(0),
+    m_curPreload_Boss_count(0){};
     
     ~LoadingScene();
     
@@ -69,6 +71,7 @@ private:
     int m_curPreload_fodderL_count;
     int m_curPreload_BigDude_count;
     int m_curPreload_Missile_count;
+    int m_curPreload_Boss_count;
     
     static int updatecount;
     

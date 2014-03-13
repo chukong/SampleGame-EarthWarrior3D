@@ -198,6 +198,11 @@ void LoadingScene::update(float dt)
         LoadingBullet(kPlayerMissiles);
         m_curPreload_Missile_count++;
     }
+    else if (m_curPreload_Boss_count<PRElOAD_BOSS_COUNT)
+    {
+        LoadingEnemy(kEnemyBoss);
+        m_curPreload_Boss_count++;
+    }
     else
     {
         unscheduleUpdate();
@@ -227,6 +232,12 @@ void LoadingScene::LoadingEnemy(int type)
             auto enmey_bigdude= BigDude::create();
             enmey_bigdude->retain();
             EnemyController::_bigDudePool.pushBack(enmey_bigdude);
+        }
+        case kEnemyBoss:
+        {
+            auto enemy_boss =Boss::create();
+            enemy_boss->retain();
+            EnemyController::_bossPool.pushBack(enemy_boss);
         }
             break;
         default:
