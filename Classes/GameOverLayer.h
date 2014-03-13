@@ -31,6 +31,12 @@ private:
     
     void menu_backtomenu_Callback(Ref* sender);
     void menu_playagain_Callback(Ref* sender);
+    void menu_backtomenu();
+    void menu_playagain();
+    
+    virtual bool onTouchBegan(Touch *touch, Event *event);
+    virtual void onTouchMoved(Touch *touch, Event *event);
+    virtual void onTouchEnded(Touch *touch, Event *event);
 };
 
 #endif /* defined(__Moon3d__GameOverLayer__) */
