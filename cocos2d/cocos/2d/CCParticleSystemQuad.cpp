@@ -121,7 +121,17 @@ ParticleSystemQuad * ParticleSystemQuad::create(const std::string& filename)
     CC_SAFE_DELETE(ret);
     return ret;
 }
-
+ParticleSystemQuad * ParticleSystemQuad::create( ValueMap& map)
+{
+    ParticleSystemQuad *ret = new ParticleSystemQuad();
+    if (ret && ret->initWithDictionary(map))
+    {
+        ret->autorelease();
+        return ret;
+    }
+    CC_SAFE_DELETE(ret);
+    return ret;
+}
 ParticleSystemQuad * ParticleSystemQuad::createWithTotalParticles(int numberOfParticles) {
     ParticleSystemQuad *ret = new ParticleSystemQuad();
     if (ret && ret->initWithTotalParticles(numberOfParticles))

@@ -71,7 +71,9 @@ bool MainMenuScene::init()
 
     
     //************ adds stars ****************
-    auto stars = ParticleSystemQuad::create("vanishingPoint.plist");
+    auto fileUtil = FileUtils::getInstance();
+    auto plistData = fileUtil->getValueMapFromFile("vanishingPoint.plist");
+    auto stars = ParticleSystemQuad::create(plistData);
     stars->setAnchorPoint(Point(0.5f,0.5f));
     stars->setPosition(visible_size_macro.width-50,visible_size_macro.height/2 +40);
 //    stars->setTotalParticles(8);
@@ -95,18 +97,21 @@ bool MainMenuScene::init()
     //************* adds start game ***********
     startgame_item = MenuItemImage::create("start_game.png", "start_game.png", CC_CALLBACK_1(MainMenuScene::startgame, this));
     startgame_item->setPosition(visibleSize.width/2,200);
+    startgame_item->setScale(1.3);
     
     //************* license *******************
     license_item = MenuItemImage::create("license.png", "license.png", CC_CALLBACK_1(MainMenuScene::license, this));
     license_item->setPosition(visibleSize.width/2-200,100);
+    license_item->setScale(0.7);
 
     //************* credits ******************
     auto credits = MenuItemImage::create("credits.png", "credits.png", CC_CALLBACK_1(MainMenuScene::credits, this));
     credits->setPosition(visibleSize.width/2+200,100);
+
     //************* quitgame ******************
     credits_item = MenuItemImage::create("credits.png", "credits.png", CC_CALLBACK_1(MainMenuScene::credits, this));
     credits_item->setPosition(visibleSize.width/2+200,100);
-
+    credits_item->setScale(0.7);
     auto menu = Menu::create(startgame_item,license_item,credits_item, NULL);
     menu->setPosition(origin);
     this->addChild(menu,3);
