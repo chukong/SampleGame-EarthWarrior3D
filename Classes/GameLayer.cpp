@@ -189,6 +189,8 @@ void GameLayer::gameMaster(float dt)
         auto boss = EnemyController::spawnEnemy(kEnemyBoss);
         boss->setPosition(0,800);
         CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+        // Music By Matthew Pable (http://www.matthewpablo.com/)
+        // Licensed under CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
         CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Orbital Colossus_0.mp3", true);
     }
 }

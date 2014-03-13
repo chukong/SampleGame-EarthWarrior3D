@@ -35,6 +35,8 @@ bool MainMenuScene::init()
     {
         return false;
     }
+    // Music By Matthew Pable (http://www.matthewpablo.com/)
+    // Licensed under CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
     CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Star_Chaser.mp3");
     
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("menu_scene.plist","menu_scene.png");
