@@ -277,9 +277,6 @@ void GameController::update(float dt, Player* player)
                                 CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.mp3");
                                 break;
                         }
-                        //                        }
-                        auto bulletExpl = BulletExplosion::create();
-                        bulletExpl->showExplosion(b->getPosition());
                         BulletController::erase(i);
                         break;
                     }
@@ -347,6 +344,8 @@ void GameController::update(float dt, Player* player)
             enemy->hurt(50);
             if(enemy->getType() != kEnemyBoss)
                 EnemyController::erase(k);
+            if(enemy->getType() != kEnemyBoss && enemy->getType() != kEnemyBigDude)
+            EnemyController::erase(k);
         }
         //TODO: if enemy collide with player
         //if(enemy->getPosition().getDistance(<#const cocos2d::Point &other#>))

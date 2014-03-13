@@ -8,6 +8,10 @@
 
 #include "GameOverLayer.h"
 #include "MainMenuScene.h"
+#include "HelloWorldScene.h"
+#include "GameLayer.h"
+#include "GameControllers.h"
+#include "AirCraft.h"
 
 GameOverLayer* GameOverLayer::create(int score)
 {
@@ -105,6 +109,7 @@ void GameOverLayer::menu_backtomenu_Callback(Ref* sender)
 
 void GameOverLayer::menu_backtomenu()
 {
+    CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
     Director::getInstance()->replaceScene(MainMenuScene::createScene());
 }
 
@@ -118,7 +123,22 @@ void GameOverLayer::menu_playagain_Callback(Ref* sender)
 
 void GameOverLayer::menu_playagain()
 {
-    
+    CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+    GameLayer::isDie = false;
+    for(int i=EnemyController::enemies.size()-1;i>=0;i--)
+    {
+        EnemyController::erase(i);
+    }
+    for(int i=EnemyController::showCaseEnemies.size()-1;i>=0;i--)
+    {
+        //EnemyController::erase(i);
+        EnemyController::showCaseEnemies.at(i)->removeFromParentAndCleanup(false);
+    }
+    for(int i=BulletController::bullets.size()-1;i>=0;i--)
+    {
+        BulletController::erase(i);
+    }
+    Director::getInstance()->replaceScene(HelloWorld::createScene());
 }
 
 bool GameOverLayer::onTouchBegan(Touch *touch, Event *event)

@@ -18,25 +18,14 @@
 #include "GameEntity.h"
 #include "SimpleAudioEngine.h"
 #include "Effects.h"
+#include "ParticleManager.h"
 USING_NS_CC;
 using namespace std;
 
 bool GameLayer::isDie=false;
 
 bool GameLayer::init()
-{
-    // variable init
-    //_collisionTree = new QuadTree(0, BOUND_RECT);
-    //**************** explosion cache ****************
-    for (int i=0; i<10; i++) {
-        SmallExplosion* smallExpl = SmallExplosion::create();
-        smallExpl->retain();
-        BigExplosion* bigExpl = BigExplosion::create();
-        bigExpl->retain();
-        EffectManager::_smallExplPool.pushBack(smallExpl);
-        EffectManager::_bigExplPool.pushBack(bigExpl);
-    }
-    
+{    
     //************** animation cache ******************
     auto animation = Animation::create();
     animation->setDelayPerUnit(0.1);
@@ -62,7 +51,9 @@ bool GameLayer::init()
     _streak = MotionStreak::create(0.4, 1, 15, Color3B(82,255,253), "streak.png");
     _player->setTrail(_streak);
     addChild(_streak,3);
-    _emissionPart = ParticleSystemQuad::create("emissionPart.plist");
+    auto emission_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("engine.jpg");
+    ValueMap vm_emission=ParticleManager::getInstance()->GetPlistData("emissionPart");
+    _emissionPart = ParticleSystemQuad::create(vm_emission,emission_frame);
     _player->setEmissionPart(_emissionPart);
     addChild(_emissionPart,4);
     _emissionPart->setPositionType(tPositionType::FREE);
@@ -223,7 +214,9 @@ void GameLayer::update(float dt)
             _streak=NULL;
             removeChild(_emissionPart);
             _emissionPart=NULL;
-            scheduleOnce(schedule_selector(GameLayer::removeBulletAndEnmeys), 1/60);
+            //scheduleOnce(schedule_selector(GameLayer::removeBulletAndEnmeys), 1/60);
+            stopAllActions();
+            unscheduleAllSelectors();
         }
     }
 }

@@ -63,7 +63,7 @@ switch(_moveMode)
 }
 void Fodder::shoot(float dt)
 {
-    if(_target->alive())
+    if(!GameLayer::isDie && _target->alive())
     {
         //get angle to player;
         float angle = (getPosition()-_target->getPosition()).getAngle();
@@ -248,6 +248,7 @@ void BigDude::fall(){
     this->removeFromParentAndCleanup(false);
     EnemyController::_bigDudePool.pushBack(this);
     EnemyController::showCaseEnemies.eraseObject(this);
+    reset();
 }
 
 bool Boss::init(){
@@ -425,7 +426,12 @@ void Boss::dead(){
     EnemyController::showCaseEnemies.eraseObject(this);
     removeFromParent();
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
-
+    NotificationCenter::getInstance()->postNotification("ShowGameOver",NULL);
+    scheduleOnce(schedule_selector(Boss::_endGame), 1.5);
+}
+void Boss::_endGame(float dt)
+{
+    NotificationCenter::getInstance()->postNotification("ShowGameOver",NULL);
 }
 void Boss::die(){
     //sequence to 10 random explosion

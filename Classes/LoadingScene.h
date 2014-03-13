@@ -15,23 +15,20 @@
 USING_NS_CC;
 using namespace CocosDenshion;
 
-#define TOTAL_PIC_NUM 12
+#define TOTAL_PIC_NUM 13
 
 #define PRELOAD_FODDER_COUNT 18
 #define PRELOAD_FODDERL_COUNT 3
 #define PRELOAD_BIGDUDE_COUBR 5
 #define PRELOAD_MISSILE_COUNT 5
+#define PRElOAD_BOSS_COUNT    1
 
 class LoadingScene : public Layer
 {
 public:
     
     LoadingScene():currentNum(0),
-    totalNum(TOTAL_PIC_NUM),
-    m_curPreload_fodder_count(0),
-    m_curPreload_fodderL_count(0),
-    m_curPreload_BigDude_count(0),
-    m_curPreload_Missile_count(0){};
+    totalNum(TOTAL_PIC_NUM){};
     
     ~LoadingScene();
     
@@ -51,6 +48,7 @@ private:
     void LoadingPic();
     void LoadingEnemy(int type);
     void LoadingBullet(int type);
+    void LoadingParticle();
     
     void LoadingCallback(Ref* pObj);
     void GotoNextScene();
@@ -64,10 +62,11 @@ private:
     Sprite* m_pProgress;
     LabelBMFont* m_pPercent;
     
-    int m_curPreload_fodder_count;
-    int m_curPreload_fodderL_count;
-    int m_curPreload_BigDude_count;
-    int m_curPreload_Missile_count;
+    static int m_curPreload_fodder_count;
+    static int m_curPreload_fodderL_count;
+    static int m_curPreload_BigDude_count;
+    static int m_curPreload_Missile_count;
+    static int m_curPreload_Boss_count;
     
     static int updatecount;
     
