@@ -73,8 +73,11 @@ bool MainMenuScene::init()
     //************ adds stars ****************
     auto fileUtil = FileUtils::getInstance();
     auto plistData = fileUtil->getValueMapFromFile("vanishingPoint.plist");
+    auto sf = SpriteFrame::create("bullets.png", Rect(5,8,24,32));
+    //auto stars = ParticleSystemQuad::create(plistData, sf);
     auto stars = ParticleSystemQuad::create(plistData);
     stars->setAnchorPoint(Point(0.5f,0.5f));
+    //stars->setStartSize(100);
     stars->setPosition(visible_size_macro.width-50,visible_size_macro.height/2 +40);
 //    stars->setTotalParticles(8);
 //    stars->setEmissionRate(9999999999);
