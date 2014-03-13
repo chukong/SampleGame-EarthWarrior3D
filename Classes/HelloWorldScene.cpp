@@ -9,7 +9,7 @@ USING_NS_CC;
 
 HelloWorld::~HelloWorld()
 {
-    NotificationCenter::getInstance()->destroyInstance();
+    //NotificationCenter::getInstance()->destroyInstance();
 }
 
 Scene* HelloWorld::createScene()
@@ -89,7 +89,7 @@ bool HelloWorld::init()
     //this->addChild(scoreLabel);
 
     
-    
+    NotificationCenter::getInstance()->destroyInstance();
     NotificationCenter::getInstance()->addObserver(this,callfuncO_selector(HelloWorld::ShowGameOver),"ShowGameOver",NULL);
     
     // Easter Egg
@@ -117,7 +117,7 @@ void HelloWorld::increaseScore(float dt){
 
 void HelloWorld::ShowGameOver(Ref* pObj)
 {
-    unschedule(schedule_selector(HelloWorld::increaseScore));
+    //unschedule(schedule_selector(HelloWorld::increaseScore));
 //    BulletController::reset();
 //    EnemyController::reset();
     auto gameoverlayer=GameOverLayer::create(score);

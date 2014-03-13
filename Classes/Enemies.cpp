@@ -63,7 +63,7 @@ switch(_moveMode)
 }
 void Fodder::shoot(float dt)
 {
-    if(_target->alive())
+    if(!GameLayer::isDie && _target->alive())
     {
         //get angle to player;
         float angle = (getPosition()-_target->getPosition()).getAngle();

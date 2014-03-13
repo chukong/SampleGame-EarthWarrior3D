@@ -25,19 +25,7 @@ using namespace std;
 bool GameLayer::isDie=false;
 
 bool GameLayer::init()
-{
-    // variable init
-    //_collisionTree = new QuadTree(0, BOUND_RECT);
-    //**************** explosion cache ****************
-    for (int i=0; i<10; i++) {
-        SmallExplosion* smallExpl = SmallExplosion::create();
-        smallExpl->retain();
-        BigExplosion* bigExpl = BigExplosion::create();
-        bigExpl->retain();
-        EffectManager::_smallExplPool.pushBack(smallExpl);
-        EffectManager::_bigExplPool.pushBack(bigExpl);
-    }
-    
+{    
     //************** animation cache ******************
     auto animation = Animation::create();
     animation->setDelayPerUnit(0.1);
