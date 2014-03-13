@@ -599,28 +599,28 @@ void LayerColor::draw(Renderer *renderer, const kmMat4 &transform, bool transfor
 
 void LayerColor::onDraw()
 {
-//    CC_NODE_DRAW_SETUP();
-//
-//    GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION | GL::VERTEX_ATTRIB_FLAG_COLOR );
-//    //
-//    // Attributes
-//    //
-//#ifdef EMSCRIPTEN
-//    setGLBufferData(_noMVPVertices, 4 * sizeof(Vertex3F), 0);
-//    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, 0, 0);
-//
-//    setGLBufferData(_squareColors, 4 * sizeof(Color4F), 1);
-//    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_FLOAT, GL_FALSE, 0, 0);
-//#else
-//    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, 0, _noMVPVertices);
-//    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_FLOAT, GL_FALSE, 0, _squareColors);
-//#endif // EMSCRIPTEN
-//
-//    GL::blendFunc( _blendFunc.src, _blendFunc.dst );
-//
-//    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-//
-//    CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1,4);
+    CC_NODE_DRAW_SETUP();
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION | GL::VERTEX_ATTRIB_FLAG_COLOR );
+    //
+    // Attributes
+    //
+#ifdef EMSCRIPTEN
+    setGLBufferData(_noMVPVertices, 4 * sizeof(Vertex3F), 0);
+    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, 0, 0);
+
+    setGLBufferData(_squareColors, 4 * sizeof(Color4F), 1);
+    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_FLOAT, GL_FALSE, 0, 0);
+#else
+    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, 0, _noMVPVertices);
+    glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_FLOAT, GL_FALSE, 0, _squareColors);
+#endif // EMSCRIPTEN
+
+    GL::blendFunc( _blendFunc.src, _blendFunc.dst );
+
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+    CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1,4);
 }
 
 std::string LayerColor::getDescription() const
