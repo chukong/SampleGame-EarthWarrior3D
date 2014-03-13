@@ -46,6 +46,30 @@ bool MainMenuScene::init()
     this->addChild(plane, 10);
     this->scheduleUpdate();
     
+    //************ adds emission flare ****************
+    auto flare = ParticleSystemQuad::create("missileFlare.plist");
+    flare->setScale(5);
+    float originX = -9.0f;
+    float originY = 159.0f;
+    float originZ = 9.0f;
+    flare->setTotalParticles(50);
+    flare->setRotation3D(Vertex3F(-originX,-originY,-originZ));
+    flare->setPosition(-39,-2);
+    flare->setPositionType(tPositionType::GROUPED);
+    flare->setStartColor(Color4F(0,0.99,1,1));
+    plane->addChild(flare, -1);
+    
+    auto emis = ParticleSystemQuad::create("menuEmission.plist");
+    emis->setScale(3);
+    //emis->setTotalParticles(50);
+    emis->setRotation3D(Vertex3F(-originX,-originY,-originZ));
+    emis->setPosition(-45,-2);
+    emis->setPositionType(tPositionType::FREE);
+    emis->setRotation(180);
+    //emis->setStartColor(Color4F(0,0.99,1,1));
+    plane->addChild(emis, -2);
+
+    
     //************ adds stars ****************
     auto stars = ParticleSystemQuad::create("vanishingPoint.plist");
     stars->setAnchorPoint(Point(0.5f,0.5f));

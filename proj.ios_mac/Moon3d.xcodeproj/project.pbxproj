@@ -241,6 +241,8 @@
 		68AB901918CB0CC8007DDB0D /* dijiyuanv001.obj in Resources */ = {isa = PBXBuildFile; fileRef = 68AB901618CB0CC8007DDB0D /* dijiyuanv001.obj */; };
 		68AB901A18CB0CC8007DDB0D /* dijiyuanv001.png in Resources */ = {isa = PBXBuildFile; fileRef = 68AB901718CB0CC8007DDB0D /* dijiyuanv001.png */; };
 		68AB901B18CB0CC8007DDB0D /* dijiyuanv001.png in Resources */ = {isa = PBXBuildFile; fileRef = 68AB901718CB0CC8007DDB0D /* dijiyuanv001.png */; };
+		68B6880418D1887100F24C48 /* menuEmission.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68B6880318D1887100F24C48 /* menuEmission.plist */; };
+		68B6880518D1887100F24C48 /* menuEmission.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68B6880318D1887100F24C48 /* menuEmission.plist */; };
 		68B9375F18C0336A00CE1505 /* libcocos2dx iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC61F18BADFD30065154C /* libcocos2dx iOS.a */; };
 		68B9376018C0336A00CE1505 /* libcocos2dx-extensions iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC62118BADFD30065154C /* libcocos2dx-extensions iOS.a */; };
 		68B9376118C0336A00CE1505 /* libCocosDenshion iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 686EC62718BADFD30065154C /* libCocosDenshion iOS.a */; };
@@ -594,6 +596,7 @@
 		68AB901118C9F468007DDB0D /* glow.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = glow.plist; sourceTree = "<group>"; };
 		68AB901618CB0CC8007DDB0D /* dijiyuanv001.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dijiyuanv001.obj; sourceTree = "<group>"; };
 		68AB901718CB0CC8007DDB0D /* dijiyuanv001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dijiyuanv001.png; sourceTree = "<group>"; };
+		68B6880318D1887100F24C48 /* menuEmission.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = menuEmission.plist; sourceTree = "<group>"; };
 		68F22BB918CB3CB600B6521B /* explodeEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explodeEffect.mp3; sourceTree = "<group>"; };
 		68F22BCC18CCAD4F00B6521B /* coco.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coco.png; sourceTree = "<group>"; };
 		68F22BCD18CCAD4F00B6521B /* coconut.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = coconut.obj; sourceTree = "<group>"; };
@@ -854,6 +857,7 @@
 			isa = PBXGroup;
 			children = (
 				BB6659A118D1644300AF226B /* vanishingPoint.plist */,
+				68B6880318D1887100F24C48 /* menuEmission.plist */,
 				BBC7AC3C18D0862E0061C2B9 /* LOGO.png */,
 				BBC7AC3D18D0862E0061C2B9 /* mainmenu_BG.png */,
 				BBA83EAB18D056A800D09B70 /* hp.png */,
@@ -1248,6 +1252,7 @@
 				681E741618D08103003D1A1A /* gameover_score.png in Resources */,
 				68F22BD818CDA24600B6521B /* diji1_v002.obj in Resources */,
 				681E747D18D0938B003D1A1A /* bullets.png in Resources */,
+				68B6880418D1887100F24C48 /* menuEmission.plist in Resources */,
 				681E749F18D0938B003D1A1A /* dijiyuanv001.obj in Resources */,
 				681E749D18D0938B003D1A1A /* diji02_v002_128.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
@@ -1299,6 +1304,7 @@
 				68AB901B18CB0CC8007DDB0D /* dijiyuanv001.png in Resources */,
 				681E74B818D0938B003D1A1A /* toonSmoke.plist in Resources */,
 				681E74B618D0938B003D1A1A /* streak.png in Resources */,
+				68B6880518D1887100F24C48 /* menuEmission.plist in Resources */,
 				681E745C18D0938B003D1A1A /* Flux2.mp3 in Resources */,
 				681E748418D0938B003D1A1A /* loading_progress_bk.png in Resources */,
 				681E741118D08103003D1A1A /* gameover_score_bk.png in Resources */,
