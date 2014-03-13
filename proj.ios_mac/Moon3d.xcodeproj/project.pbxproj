@@ -164,6 +164,10 @@
 		BBA83EAD18D056A800D09B70 /* hp.png in Resources */ = {isa = PBXBuildFile; fileRef = BBA83EAB18D056A800D09B70 /* hp.png */; };
 		BBADCE9518D0133900DB3CD3 /* MainMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBADCE9318D0133900DB3CD3 /* MainMenuScene.cpp */; };
 		BBADCE9618D0171200DB3CD3 /* MainMenuScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBADCE9318D0133900DB3CD3 /* MainMenuScene.cpp */; };
+		BBC7AC3E18D0862E0061C2B9 /* LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC7AC3C18D0862E0061C2B9 /* LOGO.png */; };
+		BBC7AC3F18D0862E0061C2B9 /* LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC7AC3C18D0862E0061C2B9 /* LOGO.png */; };
+		BBC7AC4018D0862E0061C2B9 /* mainmenu_BG.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC7AC3D18D0862E0061C2B9 /* mainmenu_BG.png */; };
+		BBC7AC4118D0862E0061C2B9 /* mainmenu_BG.png in Resources */ = {isa = PBXBuildFile; fileRef = BBC7AC3D18D0862E0061C2B9 /* mainmenu_BG.png */; };
 		BBDA878518CDA2BF00A2F47E /* Explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBDA878318CDA2BF00A2F47E /* Explosion.cpp */; };
 		BBDA878618CDA2BF00A2F47E /* Explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBDA878318CDA2BF00A2F47E /* Explosion.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -437,6 +441,8 @@
 		BBA83EAB18D056A800D09B70 /* hp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hp.png; sourceTree = "<group>"; };
 		BBADCE9318D0133900DB3CD3 /* MainMenuScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MainMenuScene.cpp; path = ../Classes/MainMenuScene.cpp; sourceTree = "<group>"; };
 		BBADCE9418D0133900DB3CD3 /* MainMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainMenuScene.h; path = ../Classes/MainMenuScene.h; sourceTree = "<group>"; };
+		BBC7AC3C18D0862E0061C2B9 /* LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LOGO.png; sourceTree = "<group>"; };
+		BBC7AC3D18D0862E0061C2B9 /* mainmenu_BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainmenu_BG.png; sourceTree = "<group>"; };
 		BBDA878318CDA2BF00A2F47E /* Explosion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Explosion.cpp; path = ../Classes/Explosion.cpp; sourceTree = "<group>"; };
 		BBDA878418CDA2BF00A2F47E /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Explosion.h; path = ../Classes/Explosion.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -661,6 +667,8 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BBC7AC3C18D0862E0061C2B9 /* LOGO.png */,
+				BBC7AC3D18D0862E0061C2B9 /* mainmenu_BG.png */,
 				BBA83EAB18D056A800D09B70 /* hp.png */,
 				BBA83EA718D04B4500D09B70 /* hp_above.png */,
 				BBA83EA418D042D100D09B70 /* Star_Chaser.mp3 */,
@@ -928,6 +936,7 @@
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				68AB901218C9F468007DDB0D /* debris.plist in Resources */,
 				686EC63A18BAEFA70065154C /* groundLevel.jpg in Resources */,
+				BBC7AC3E18D0862E0061C2B9 /* LOGO.png in Resources */,
 				68F22BDA18CDA24600B6521B /* playerv002.obj in Resources */,
 				1FBF59DE18CF06E5005154B8 /* loading_bk.png in Resources */,
 				68F22BCE18CCAD4F00B6521B /* coco.png in Resources */,
@@ -973,6 +982,7 @@
 				68F22BD318CCD0B000B6521B /* emissionPart.plist in Resources */,
 				680A318918C8A29400D073CD /* engine.plist in Resources */,
 				680A316118C6471000D073CD /* daodanv001.obj in Resources */,
+				BBC7AC4018D0862E0061C2B9 /* mainmenu_BG.png in Resources */,
 				BBA83EA518D042D100D09B70 /* Star_Chaser.mp3 in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
 			);
@@ -992,6 +1002,7 @@
 				68AB900C18C9E029007DDB0D /* diji02_v002_128.png in Resources */,
 				686EC63B18BAEFA70065154C /* groundLevel.jpg in Resources */,
 				BBA83EAD18D056A800D09B70 /* hp.png in Resources */,
+				BBC7AC4118D0862E0061C2B9 /* mainmenu_BG.png in Resources */,
 				BBA83E9A18D03AB500D09B70 /* right_top_ui.png in Resources */,
 				68F22BD418CCD0B000B6521B /* emissionPart.plist in Resources */,
 				68F22BCF18CCAD4F00B6521B /* coco.png in Resources */,
@@ -1009,6 +1020,7 @@
 				68F22BBB18CB3CB600B6521B /* explodeEffect.mp3 in Resources */,
 				BB4B4B3518CF0D30003AF681 /* score_right_top.png in Resources */,
 				68AB901318C9F468007DDB0D /* debris.plist in Resources */,
+				BBC7AC3F18D0862E0061C2B9 /* LOGO.png in Resources */,
 				68F22BDB18CDA24600B6521B /* playerv002.obj in Resources */,
 				503AE0F817EB97AB00D1A890 /* Icon.icns in Resources */,
 				1FBF59E718CF06E5005154B8 /* num.fnt in Resources */,

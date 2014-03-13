@@ -8,6 +8,7 @@
 
 #include "MainMenuScene.h"
 #include "LoadingScene.h"
+//#include
 USING_NS_CC;
 
 Scene* MainMenuScene::createScene()
@@ -37,10 +38,27 @@ bool MainMenuScene::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
     
+    //************ adds Plane ****************
+    plane = Sprite3D::create("playerv002.obj", "playerv002_256.png");
+    plane->setPosition(visibleSize.width/2+100,visibleSize.height/2);
+    plane->setScale(65);
+    plane->setOutline(0.035, Color3B::BLACK);
+    plane->setRotation3D(Vertex3F(originX,originY,originZ));
+    this->addChild(plane);
+    this->scheduleUpdate();
+//    plane->runAction(Sequence::create(rotate, rotateBack,NULL));
+    
     //************* adds background ***********
-    auto background = Sprite::create("loading_bk.png");
+    auto background = Sprite::create("mainmenu_BG.png");
     background->setAnchorPoint(Point(0,0));
     this->addChild(background,-1,-1);
+    
+    //************* adds logo *****************
+    auto logo = Sprite::create("LOGO.png");
+    logo->setAnchorPoint(Point(0.5,0.5));
+    logo->setPosition(visibleSize.width/2,visibleSize.height-200);
+    this->addChild(logo,0,0);
+
     
     //************* adds start game ***********
     auto startgame = MenuItemImage::create("start_game.png", "start_game.png", CC_CALLBACK_1(MainMenuScene::startgame, this));
@@ -59,6 +77,17 @@ bool MainMenuScene::init()
     this->addChild(menu);
     
     return true;
+}
+
+void MainMenuScene::update(float dt){
+    pRate+=0.01;
+    float x = originX-pXA*sin(pXW*pRate);
+    float y = originY-pYA*sin(pYW*pRate);
+    float z = originZ-pZA*sin(pZW*pRate);
+    plane->setRotation3D(Vertex3F(x,y,z));
+    
+    plane->setPositionZ(0);
+    log("x:%f y:%f z:%f \n",x,y,z);
 }
 
 void MainMenuScene::startgame(Ref* sender){
