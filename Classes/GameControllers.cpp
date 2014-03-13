@@ -54,7 +54,7 @@ Bullet* BulletController::spawnBullet(int type, Point pos, Point vec)
                 bullet = _missilePool.back();
                 bullet->retain();
                 _missilePool.popBack();
-
+                
                 //bullet->reset();
             }
             else
@@ -262,26 +262,25 @@ void GameController::update(float dt, Player* player)
                     {
                         //collision happened
                         bool dead =  e->hurt(b->getDamage());
-                        if(!dead)
+                        //                        if(!dead)
+                        //                        {
+                        switch(b->getType())
                         {
-                            switch(b->getType())
-                            {
                             case kPlayerMissiles:
                             {
                                 EffectManager::createExplosion(b->getPosition());
-
+                                
                                 CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
                             }
                                 break;
                             default:
                                 CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.mp3");
                                 break;
-                            }
                         }
                         BulletController::erase(i);
                         break;
                     }
-
+                    
                 }
                 //*********** Enemy Loop ***************
                 if(b->getType() == kPlayerMissiles)
@@ -343,6 +342,8 @@ void GameController::update(float dt, Player* player)
         {
             player->hurt(50);
             enemy->hurt(50);
+            if(enemy->getType() != kEnemyBoss)
+                EnemyController::erase(k);
             if(enemy->getType() != kEnemyBoss && enemy->getType() != kEnemyBigDude)
             EnemyController::erase(k);
         }
