@@ -33,7 +33,7 @@ bool GameOverLayer::init()
     
     auto visibleSize=Director::getInstance()->getVisibleSize();
     
-    auto score_bk=Sprite::create("gameover_score_bk.png");
+    auto score_bk=Sprite::createWithSpriteFrameName("gameover_score_bk.png");
     score_bk->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
     addChild(score_bk,1);
     score_bk->setScale(0.2f);
@@ -43,13 +43,16 @@ bool GameOverLayer::init()
                                          CallFunc::create(CC_CALLBACK_0(GameOverLayer::ShowScore,this)),
                                          NULL));
     
-    
-    backtomenu_Item = MenuItemImage::create("gameover_backtomenu.png",
-                                           "gameover_backtomenu.png",
+    auto backtomenu_normal=Sprite::createWithSpriteFrameName("gameover_backtomenu.png");
+    auto backtomenu_pressed=Sprite::createWithSpriteFrameName("gameover_backtomenu.png");
+    backtomenu_Item = MenuItemSprite::create(backtomenu_normal,
+                                           backtomenu_pressed,
                                            CC_CALLBACK_1(GameOverLayer::menu_backtomenu_Callback,this));
     
-    playagain_Item = MenuItemImage::create("gameover_playagain.png",
-                                           "gameover_playagain.png",
+    auto playagain_normal=Sprite::createWithSpriteFrameName("gameover_backtomenu.png");
+    auto playagain_pressed=Sprite::createWithSpriteFrameName("gameover_backtomenu.png");
+    playagain_Item = MenuItemSprite::create(playagain_normal,
+                                           playagain_pressed,
                                            CC_CALLBACK_1(GameOverLayer::menu_playagain_Callback,this));
     
     auto menu = Menu::create(backtomenu_Item,playagain_Item,NULL);
@@ -73,7 +76,7 @@ void GameOverLayer::ShowScore()
 {
     auto visibleSize=Director::getInstance()->getVisibleSize();
     
-    auto score_text=Sprite::create("gameover_score.png");
+    auto score_text=Sprite::createWithSpriteFrameName("gameover_score.png");
     score_text->setPosition(Point(-200, visibleSize.height/2+30));
     score_text->runAction(MoveTo::create(0.5f, Point(visibleSize.width/2,visibleSize.height/2+30)));
     addChild(score_text,2);

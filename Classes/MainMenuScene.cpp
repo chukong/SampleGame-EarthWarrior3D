@@ -37,6 +37,8 @@ bool MainMenuScene::init()
     }
     CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Star_Chaser.mp3");
     
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("EarthWarrior.plist","EarthWarrior.png");
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
     
@@ -82,29 +84,32 @@ bool MainMenuScene::init()
     this->addChild(stars,1,1);
     
     //************* adds background ***********
-    auto background = Sprite::create("mainmenu_BG.png");
+    auto background = Sprite::createWithSpriteFrameName("mainmenu_BG.png");
     background->setAnchorPoint(Point(0,0));
     this->addChild(background,-1,-1);
     
     //************* adds logo *****************
-    auto logo = Sprite::create("LOGO.png");
+    auto logo = Sprite::createWithSpriteFrameName("LOGO.png");
     logo->setAnchorPoint(Point(0.5,0.5));
     logo->setPosition(visibleSize.width/2,visibleSize.height-200);
     this->addChild(logo,3,3);
     
     //************* adds start game ***********
-    startgame_item = MenuItemImage::create("start_game.png", "start_game.png", CC_CALLBACK_1(MainMenuScene::startgame, this));
+    auto start_normal=Sprite::createWithSpriteFrameName("start_game.png");
+    auto start_pressed=Sprite::createWithSpriteFrameName("start_game.png");
+    startgame_item = MenuItemSprite::create(start_normal, start_pressed, CC_CALLBACK_1(MainMenuScene::startgame, this));
     startgame_item->setPosition(visibleSize.width/2,200);
     
     //************* license *******************
-    license_item = MenuItemImage::create("license.png", "license.png", CC_CALLBACK_1(MainMenuScene::license, this));
+    auto license_normal=Sprite::createWithSpriteFrameName("license.png");
+    auto license_pressed=Sprite::createWithSpriteFrameName("license.png");
+    license_item = MenuItemSprite::create(license_normal, license_pressed, CC_CALLBACK_1(MainMenuScene::license, this));
     license_item->setPosition(visibleSize.width/2-200,100);
 
     //************* credits ******************
-    auto credits = MenuItemImage::create("credits.png", "credits.png", CC_CALLBACK_1(MainMenuScene::credits, this));
-    credits->setPosition(visibleSize.width/2+200,100);
-    //************* quitgame ******************
-    credits_item = MenuItemImage::create("credits.png", "credits.png", CC_CALLBACK_1(MainMenuScene::credits, this));
+    auto credits_normal=Sprite::createWithSpriteFrameName("credits.png");
+    auto credits_pressed=Sprite::createWithSpriteFrameName("credits.png");
+    credits_item = MenuItemSprite::create(credits_normal, credits_pressed, CC_CALLBACK_1(MainMenuScene::credits, this));
     credits_item->setPosition(visibleSize.width/2+200,100);
 
     auto menu = Menu::create(startgame_item,license_item,credits_item, NULL);

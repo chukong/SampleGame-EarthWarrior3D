@@ -24,8 +24,8 @@ public:
 private:
     
     int m_score;
-    MenuItemImage* backtomenu_Item;
-    MenuItemImage* playagain_Item;
+    MenuItemSprite* backtomenu_Item;
+    MenuItemSprite* playagain_Item;
     
     void ShowScore();
     
