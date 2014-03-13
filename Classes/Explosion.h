@@ -38,4 +38,15 @@ private:
     void recycle(float dt);
 
 };
+
+class BulletExplosion : public cocos2d::Sprite
+{
+public:
+    CREATE_FUNC(BulletExplosion);
+    bool init();
+    void showExplosion(cocos2d::Point point);
+    void explosionFinished(Ref* obj);
+};
+
+
 #endif /* defined(__Moon3d__Explosion__) */

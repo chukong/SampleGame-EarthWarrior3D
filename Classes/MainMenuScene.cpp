@@ -83,11 +83,6 @@ bool MainMenuScene::init()
     stars->setAnchorPoint(Point(0.5f,0.5f));
     //stars->setStartSize(100);
     stars->setPosition(visible_size_macro.width-50,visible_size_macro.height/2 +40);
-//    stars->setTotalParticles(8);
-//    stars->setEmissionRate(9999999999);
-//    stars->setScale(0.7);
-//    stars->setTotalParticles(5);
-//    stars->setEmissionRate(9999999999);
     this->addChild(stars,1,1);
     
     //************* adds background ***********

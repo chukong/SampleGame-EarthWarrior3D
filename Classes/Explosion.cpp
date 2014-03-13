@@ -79,3 +79,31 @@ void BigExplosion::recycle(float dt){
     this->removeFromParentAndCleanup(false);
     EffectManager::_bigExplPool.pushBack(this);
 }
+
+bool BulletExplosion::init(){
+    
+    auto texture = Director::getInstance()->getTextureCache()->addImage("player_bullet_explosion.png");
+    Sprite::initWithTexture(texture);
+    setTextureRect(Rect(0,0,26,17));
+    //this -> setTexture(texture);
+    return true;
+}
+
+void BulletExplosion::showExplosion(Point point){
+    auto animation = AnimationCache::getInstance()->getAnimation("bullet_expl");
+    auto animate = Animate::create(animation);
+    this->runAction(Sequence::create(animate,
+                                     CallFuncN::create(CC_CALLBACK_1(BulletExplosion::explosionFinished,this)),                                  NULL));
+    this->setScale(0.5);
+    this->runAction(ScaleBy::create(0.4, 2));
+    this->runAction(FadeOut::create(0.4));
+    this->setPosition(point);
+    this->setRotation3D(Vertex3F(30,0,0));
+    this->setBlendFunc(BlendFunc::ADDITIVE);
+    Director::getInstance()->getRunningScene()->getChildByTag(100)->getChildByTag(123)->addChild(this,3);
+}
+
+void BulletExplosion::explosionFinished(Ref* obj){
+    auto expl=static_cast<Sprite*>(obj);
+    expl->removeFromParentAndCleanup(false);
+}
