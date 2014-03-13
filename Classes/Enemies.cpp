@@ -262,10 +262,10 @@ void Boss::dead(){
 void Boss::die(){
     //sequence to 10 random explosion
     Vector<FiniteTimeAction*> explosions;
-    for(int i = 0; i < 30; i++)
+    for(int i = 0; i < 22; i++)
     {
         auto expl = CallFunc::create(this, callfunc_selector(Boss::createRandomExplosion));
-        auto delay = DelayTime::create(i*0.1);
+        auto delay = DelayTime::create(i*0.15);
         auto seq = Sequence::create(delay, expl, nullptr);
         explosions.pushBack(seq);
     }
