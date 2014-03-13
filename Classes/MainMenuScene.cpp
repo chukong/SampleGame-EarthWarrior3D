@@ -37,6 +37,8 @@ bool MainMenuScene::init()
     }
     CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Star_Chaser.mp3");
     
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("EarthWarrior.plist","EarthWarrior.png");
+    
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
     
@@ -87,34 +89,38 @@ bool MainMenuScene::init()
     this->addChild(stars,1,1);
     
     //************* adds background ***********
-    auto background = Sprite::create("mainmenu_BG.png");
+    auto background = Sprite::createWithSpriteFrameName("mainmenu_BG.png");
     background->setAnchorPoint(Point(0,0));
     this->addChild(background,-1,-1);
     
     //************* adds logo *****************
-    auto logo = Sprite::create("LOGO.png");
+    auto logo = Sprite::createWithSpriteFrameName("LOGO.png");
     logo->setAnchorPoint(Point(0.5,0.5));
     logo->setPosition(visibleSize.width/2,visibleSize.height-200);
     this->addChild(logo,3,3);
     
     //************* adds start game ***********
-    startgame_item = MenuItemImage::create("start_game.png", "start_game.png", CC_CALLBACK_1(MainMenuScene::startgame, this));
+    auto start_normal=Sprite::createWithSpriteFrameName("start_game.png");
+    auto start_pressed=Sprite::createWithSpriteFrameName("start_game.png");
+    startgame_item = MenuItemSprite::create(start_normal, start_pressed, CC_CALLBACK_1(MainMenuScene::startgame, this));
     startgame_item->setPosition(visibleSize.width/2,200);
     startgame_item->setScale(1.3);
     
     //************* license *******************
-    license_item = MenuItemImage::create("license.png", "license.png", CC_CALLBACK_1(MainMenuScene::license, this));
+    auto license_normal=Sprite::createWithSpriteFrameName("license.png");
+    auto license_pressed=Sprite::createWithSpriteFrameName("license.png");
+    license_item = MenuItemSprite::create(license_normal, license_pressed, CC_CALLBACK_1(MainMenuScene::license, this));
     license_item->setPosition(visibleSize.width/2-200,100);
     license_item->setScale(0.7);
 
     //************* credits ******************
-    auto credits = MenuItemImage::create("credits.png", "credits.png", CC_CALLBACK_1(MainMenuScene::credits, this));
-    credits->setPosition(visibleSize.width/2+200,100);
-
-    //************* quitgame ******************
-    credits_item = MenuItemImage::create("credits.png", "credits.png", CC_CALLBACK_1(MainMenuScene::credits, this));
+    auto credits_normal=Sprite::createWithSpriteFrameName("credits.png");
+    auto credits_pressed=Sprite::createWithSpriteFrameName("credits.png");
+    credits_item = MenuItemSprite::create(credits_normal, credits_pressed, CC_CALLBACK_1(MainMenuScene::credits, this));
     credits_item->setPosition(visibleSize.width/2+200,100);
     credits_item->setScale(0.7);
+
+    //************* Menu ******************
     auto menu = Menu::create(startgame_item,license_item,credits_item, NULL);
     menu->setPosition(origin);
     this->addChild(menu,3);
@@ -128,9 +134,9 @@ void MainMenuScene::update(float dt){
 }
 
 void MainMenuScene::startgame(Ref* sender){
-    startgame_item->runAction(Sequence::create(ScaleTo::create(0.1f, 1.1f),
-                                                ScaleTo::create(0.1f, 0.9f),
-                                                ScaleTo::create(0.1f, 1.0f),
+    startgame_item->runAction(Sequence::create(ScaleTo::create(0.1f, 1.4f),
+                                                ScaleTo::create(0.1f, 1.2f),
+                                                ScaleTo::create(0.1f, 1.3f),
                                                CallFunc::create(CC_CALLBACK_0(MainMenuScene::startgame_callback,this)),NULL));
 }
 
@@ -142,9 +148,9 @@ void MainMenuScene::startgame_callback()
 }
 
 void MainMenuScene::credits(Ref* sender){
-    credits_item->runAction(Sequence::create(ScaleTo::create(0.1f, 1.1f),
-                                               ScaleTo::create(0.1f, 0.9f),
-                                               ScaleTo::create(0.1f, 1.0f),
+    credits_item->runAction(Sequence::create(ScaleTo::create(0.1f, 0.8f),
+                                               ScaleTo::create(0.1f, 0.6f),
+                                               ScaleTo::create(0.1f, 0.7f),
                                              CallFunc::create(CC_CALLBACK_0(MainMenuScene::credits_callback, this)),NULL));
 }
 
@@ -154,9 +160,9 @@ void MainMenuScene::credits_callback()
 }
 
 void MainMenuScene::license(Ref* sender){
-    license_item->runAction(Sequence::create(ScaleTo::create(0.1f, 1.1f),
-                                               ScaleTo::create(0.1f, 0.9f),
-                                               ScaleTo::create(0.1f, 1.0f),
+    license_item->runAction(Sequence::create(ScaleTo::create(0.1f, 0.8f),
+                                               ScaleTo::create(0.1f, 0.6f),
+                                               ScaleTo::create(0.1f, 0.7f),
                                              CallFunc::create(CC_CALLBACK_0(MainMenuScene::license_callback, this)),NULL));
 }
 
