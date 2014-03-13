@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 #include "3d/Sprite3D.h"
+#include "Plane.h"
 class MainMenuScene : public cocos2d::Layer
 {
 public:
@@ -22,17 +23,9 @@ private:
     void startgame(cocos2d::Ref* sender);
     void license(cocos2d::Ref* sender);
     void credits(cocos2d::Ref* sender);
-    Sprite3D* plane;
-    float pRate = Pi/2;
-    float originX = -9.0f;
-    float originY = 159.0f;
-    float originZ = 9.0f;
-    const float pXW = 5.0f;
-    const float pYW = 5.0f;
-    const float pZW = 5.0f;
-    const float pXA = 1.0f;
-    const float pYA = 10.0f;
-    const float pZA = 10.0f;
+    Plane* plane;
+    float pRate = 3.1415926/2;
+
 };
 
 #endif /* defined(__Moon3d__MainMenuScene__) */

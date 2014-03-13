@@ -18,6 +18,7 @@ class Fodder;
 class FodderLeader;
 class BigDude;
 class Player;
+class Boss;
 class BulletController
 {
 public:
@@ -28,12 +29,13 @@ public:
     static Vector<Bullet*> bullets;
     static void erase(Bullet* b); //returns the bullet to the pool
     static void erase(int i);
+    
+    static Vector<Missile*> _missilePool;
 
 protected:
         //static BulletController *s_instance;
     static bool _inited;
     static Node *_bulletLayer;
-    static Vector<Missile*> _missilePool;
 };
 
 class EnemyController
@@ -56,15 +58,11 @@ public:
     static Vector<Fodder*> _fodderPool;
     static Vector<FodderLeader*> _fodderLPool;
     static Vector<BigDude*> _bigDudePool;
+    static Vector<Boss*> _bossPool;
     
 protected:
     static bool _inited;
     static Node *_enemyLayer;
-    
-public:
-    static int fooderCount;
-    static int fooderLCount;
-    static int BigDudeCount;
     
 };
 

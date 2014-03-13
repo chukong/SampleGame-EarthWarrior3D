@@ -56,7 +56,7 @@ bool GameLayer::init()
     addChild(_player,5);
     EffectManager::setLayer(this);
 
-    this->schedule(schedule_selector(GameLayer::gameMaster) , 1.5, -1, 0.0);
+    this->schedule(schedule_selector(GameLayer::gameMaster) , 1.5, -1, 2.0);
 
     BulletController::init(this);
     EnemyController::init(this);
@@ -65,6 +65,7 @@ bool GameLayer::init()
     
     _player->setPosition(Point(0,-1000));
     _player->runAction(Sequence::create(
+                                        DelayTime::create(0.75),
                        Spawn::create(
                                      EaseBackOut::create(MoveTo::create(1.7,Point(0,-200))),
                                      EaseSineOut::create(RotateBy::create(1.7,Vertex3F(0,720,0))),
@@ -83,7 +84,7 @@ void GameLayer::gameMaster(float dt)
     _elapsed+=dt;
     int enemyCount =EnemyController::enemies.size();
     //if(_elapsed < 10 && enemyCount < 5)
-    if(enemyCount < 5)
+    if(enemyCount < 5 &&_elapsed < 60)
     {
         Point random = Point(100*CCRANDOM_MINUS1_1(), BOUND_RECT.size.height/2+200);
         for(int i=0; i < 5; i++)
@@ -103,7 +104,7 @@ void GameLayer::gameMaster(float dt)
         static_cast<FodderLeader*>(leader)->setMoveMode(moveMode::kDefault);
     }
     //else if(_elapsed < 20 && enemyCount <5)
-    if(_elapsed > 4 && enemyCount <3)
+    if(_elapsed > 4 && enemyCount <3 &&_elapsed < 60)
     {
         Point random = Point(-400, BOUND_RECT.size.height/4*CCRANDOM_MINUS1_1()+350);
         for(int i=0; i < 3; i++)
@@ -127,7 +128,7 @@ void GameLayer::gameMaster(float dt)
         leader->schedule(schedule_selector(FodderLeader::shoot),CCRANDOM_0_1()*1+1,90,0);
         
     }
-    if(_elapsed > 15 && enemyCount < 4)
+    if(_elapsed > 10 && enemyCount < 4 &&_elapsed < 60 )
     {
         for(int q = 0; q< 2; q++)
         {
@@ -171,14 +172,22 @@ void GameLayer::gameMaster(float dt)
                                               CallFunc::create(enemy,callfunc_selector(BigDude::showFinished)),
                                               nullptr
                              ));
-
-            
         }
+    }
+    if(_elapsed > 65 && !_bossOut)
+    {
+        //spawn boss
+        _bossOut = true;
+        auto boss = EnemyController::spawnEnemy(kEnemyBoss);
+        boss->setPosition(0,800);
+        CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+        CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Orbital Colossus_0.mp3", true);
     }
 }
 
 void GameLayer::update(float dt)
 {
+    glEnable(GL_CULL_FACE);
     xScroll += speed*dt;
     _spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
     //_cloud->setTextureRect(Rect(0,((int)xScroll)%1024, 256, 1024));

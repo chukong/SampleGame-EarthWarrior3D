@@ -122,7 +122,7 @@ bool Player::hurt(float damage){
     auto to = ProgressFromTo::create(0.5, PublicApi::hp2percent(fromHP), PublicApi::hp2percent(toHP));
     hpView->runAction(to);
     
-    if(_HP <= 0)
+    if(_HP <= 0  && _alive)
     {
         die();
         return true;
@@ -134,5 +134,7 @@ bool Player::hurt(float damage){
 void Player::die()
 {
     _alive = false;
+    
     //TODO: Game ended, the player is dead!
+    NotificationCenter::getInstance()->postNotification("ShowGameOver",NULL);
 }

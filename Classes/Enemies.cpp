@@ -11,6 +11,9 @@
 #include "GameControllers.h"
 #include "Bullets.h"
 #include "consts.h"
+#include "SimpleAudioEngine.h"
+#include "Effects.h"
+#include "HelloWorldScene.h"
 
 bool Fodder::init()
 {
@@ -160,4 +163,173 @@ void BigDude::update(float dt, Node* player)
     
     float f = curRot + angleDif;
     setRotation(f);
+}
+
+bool Boss::init(){
+    _score = 666;
+    _Model = Sprite3D::create("boss.obj", "boss.png");
+    //auto cannon2 = Sprite3D::create("bossCannon.obj", "boos.png");
+    if(_Model)
+    {
+        
+        _Model->setScale(28);
+        addChild(_Model);
+        _Model->setRotation3D(Vertex3F(90,0,0));
+        static_cast<Sprite3D*>(_Model)->setOutline(0.1, Color3B(0,0,0));
+        _type = kEnemyBoss;
+        _HP = 10000;
+        _radius = 150;
+        auto cannon1 = Sprite3D::create("bossCannon.obj", "boss.png");
+        _Cannon1 = Node::create();
+        addChild(_Cannon1);
+        _Cannon1->addChild(cannon1);
+        cannon1->setScale(28);
+        cannon1->setRotation3D(Vertex3F(90,0,0));
+        _Cannon1->setPosition3D(Vertex3F(40,-100, 10));
+        cannon1->setOutline(0.1, Color3B(0,0,0));
+        
+        auto cannon2 = Sprite3D::create("bossCannon.obj", "boss.png");
+        _Cannon2 = Node::create();
+        addChild(_Cannon2);
+        _Cannon2->addChild(cannon2);
+        cannon2->setScale(28);
+        cannon2->setRotation3D(Vertex3F(90,0,0));
+        _Cannon2->setPosition3D(Vertex3F(-40,-100, 10));
+        cannon2->setOutline(0.1, Color3B(0,0,0));
+        //addChild(_Cannon2);
+        //_Cannon2->setPosition(-20,-200);
+        
+        _Cannon1->setRotation(-45);
+        _Cannon2->setRotation(45);
+        
+                enterTheBattle();
+        return true;
+    }
+    return false;
+}
+void Boss::enterTheBattle()
+{
+    setRotation3D(Vertex3F(100,0,0));
+    setScale(0.2);
+    runAction(
+              Sequence::create(
+                               Spawn::create(
+                                             EaseSineOut::create(MoveTo::create(4, Point(0,300))),
+                                             EaseSineOut::create(ScaleTo::create(4,1)),//TODO: replace with move 3d when possible
+                                             EaseBackOut::create(RotateBy::create(4+0.5,Vertex3F(-100,0,0))),
+                                             nullptr
+                                             ),                                             CallFunc::create(this, callfunc_selector(Boss::startShooting)),
+                               nullptr
+                               ));
+}
+void Boss::startShooting()
+{
+     schedule(schedule_selector(Boss::shoot),0.15, 6, 0);
+}
+void Boss::startShooting(float dt)
+{
+    startShooting();
+}
+void Boss::createRandomExplosion()
+{
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("explodeEffect.mp3");
+    EffectManager::createBigExplosion(getPosition()+Point(CCRANDOM_MINUS1_1()*200, CCRANDOM_MINUS1_1()*200));
+}
+void Boss::dying()
+{
+    _alive = false;
+    EnemyController::showCaseEnemies.pushBack(this);
+    EnemyController::enemies.eraseObject(this);
+}
+void Boss::dead(){
+    auto helloworld = (HelloWorld*)Director::getInstance()->getRunningScene()->getChildByTag(100);
+    int score = helloworld->getScore();
+    helloworld->setScore(score+=_score);
+    std::stringstream ss;
+    std::string str;
+    ss<<score;
+    ss>>str;
+    const char *p = str.c_str();
+    helloworld->getScoreLabel()->setString(p);
+    auto scale = ScaleTo::create(0.1, 1.2);
+    auto scaleBack = ScaleTo::create(0.1, 1);
+    auto label =helloworld->getScoreLabel();
+    label->runAction(Sequence::create(scale, scaleBack,NULL));
+    EnemyController::showCaseEnemies.eraseObject(this);
+    removeFromParent();
+    CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+}
+void Boss::die(){
+    //sequence to 10 random explosion
+    Vector<FiniteTimeAction*> explosions;
+    for(int i = 0; i < 22; i++)
+    {
+        auto expl = CallFunc::create(this, callfunc_selector(Boss::createRandomExplosion));
+        auto delay = DelayTime::create(i*0.15);
+        auto seq = Sequence::create(delay, expl, nullptr);
+        explosions.pushBack(seq);
+    }
+    auto giantExpl = Spawn::create(explosions);
+    Vector<FiniteTimeAction*> explosions2;
+    for(int i = 0; i < 15; i++)
+    {
+        auto expl = CallFunc::create(this, callfunc_selector(Boss::createRandomExplosion));
+        explosions2.pushBack(expl);
+    }
+    auto giantExpl2 = Spawn::create(explosions2);
+    auto callDead = CallFunc::create(this, callfunc_selector(Boss::dead));
+    auto final = Sequence::create(giantExpl, giantExpl2, callDead,nullptr);
+    runAction(final);
+    dying();
+}
+
+Point Boss::_getCannon1Position()
+{
+    Point offset = getPosition();
+    float angle = CC_DEGREES_TO_RADIANS(-getRotation()+90);
+    float offsetRad = CC_DEGREES_TO_RADIANS(28);
+    offset.x += cosf(angle+offsetRad)*-100;
+    offset.y += sinf(angle+offsetRad)*-100;
+    return offset;
+}
+Point Boss::_getCannon2Position()
+{
+    Point offset = getPosition();
+    float angle = CC_DEGREES_TO_RADIANS(-getRotation()+90);
+    float offsetRad = CC_DEGREES_TO_RADIANS(28);
+    offset.x += cosf(angle-offsetRad)*-100;
+    offset.y += sinf(angle-offsetRad)*-100;
+    return offset;
+}
+Point Boss::_getCannon1Vector()
+{
+    float angle = CC_DEGREES_TO_RADIANS(-_Cannon1->getRotation()+90);
+    return Point(cosf(angle)*-500, sinf(angle)*-500);
+}
+Point Boss::_getCannon2Vector()
+{
+    float angle = CC_DEGREES_TO_RADIANS(-_Cannon2->getRotation()+90);
+    return Point(cosf(angle)*-500, sinf(angle)*-500);
+}
+
+void Boss::shoot(float dt)
+{
+    auto bullet =BulletController::spawnBullet(kEnemyBullet, _getCannon1Position(), _getCannon1Vector());
+    bullet->setRotation(_Cannon1->getRotation()+180);
+    bullet =BulletController::spawnBullet(kEnemyBullet, _getCannon2Position(), _getCannon2Vector());
+    bullet->setRotation(_Cannon2->getRotation()+180);
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3");
+    schedule(schedule_selector(Boss::startShooting),1, 0, 3);
+}
+void Boss::update(float dt, Node* player)
+{
+    float angleRad = (_getCannon1Position()-player->getPosition()).getAngle();
+    float angleDeg = -CC_RADIANS_TO_DEGREES(angleRad)+90;
+    _Cannon1->setRotation(angleDeg);
+    
+    
+    angleRad = (_getCannon2Position()-player->getPosition()).getAngle();
+    angleDeg = -CC_RADIANS_TO_DEGREES(angleRad)+90;
+    _Cannon2->setRotation(angleDeg);
+
 }
