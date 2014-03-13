@@ -278,8 +278,8 @@ void GameController::update(float dt, Player* player)
                                 break;
                             }
                         }
-                        auto bulletExpl = BulletExplosion::create();
-                        bulletExpl->showExplosion(b->getPosition());
+                        //auto bulletExpl = BulletExplosion::create();
+                        //bulletExpl->showExplosion(b->getPosition());
                         BulletController::erase(i);
                         break;
                     }

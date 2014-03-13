@@ -19,7 +19,7 @@ public:
     bool init();
 private:
     float pRate = 3.1415926/2;
-    float originX = -9.0f;
+    float originX = -15.0f;
     float originY = 159.0f;
     float originZ = 9.0f;
     const float pXW = 1.1f;

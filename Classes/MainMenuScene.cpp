@@ -58,7 +58,7 @@ bool MainMenuScene::init()
     float originZ = 9.0f;
     flare->setTotalParticles(50);
     flare->setRotation3D(Vertex3F(-originX,-originY,-originZ));
-    flare->setPosition(-39,-2);
+    flare->setPosition(-39,0);
     flare->setPositionType(tPositionType::GROUPED);
     flare->setStartColor(Color4F(0,0.99,1,1));
     plane->addChild(flare, -1);
@@ -67,8 +67,8 @@ bool MainMenuScene::init()
     emis->setScale(3);
     //emis->setTotalParticles(50);
     emis->setRotation3D(Vertex3F(-originX,-originY,-originZ));
-    emis->setPosition(-45,-2);
-    emis->setPositionType(tPositionType::FREE);
+    emis->setPosition(-40,0);
+    emis->setPositionType(tPositionType::GROUPED);
     emis->setRotation(180);
     //emis->setStartColor(Color4F(0,0.99,1,1));
     plane->addChild(emis, -2);
@@ -82,7 +82,7 @@ bool MainMenuScene::init()
     auto stars = ParticleSystemQuad::create(plistData);
     stars->setAnchorPoint(Point(0.5f,0.5f));
     //stars->setStartSize(100);
-    stars->setPosition(visible_size_macro.width-50,visible_size_macro.height/2 +40);
+    stars->setPosition(visible_size_macro.width-90,visible_size_macro.height/2 +50);
     this->addChild(stars,1,1);
     
     //************* adds background ***********
@@ -127,7 +127,7 @@ bool MainMenuScene::init()
 
 void MainMenuScene::update(float dt){
     pRate+=0.01;
-    plane->setPosition3D(Vertex3F(visible_size_macro.width/2+100,480-20*sin(1.05*pRate),0));
+    plane->setPosition3D(Vertex3F(visible_size_macro.width/2+50,480-20*sin(1.05*pRate),0));
 }
 
 void MainMenuScene::startgame(Ref* sender){
