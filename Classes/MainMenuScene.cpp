@@ -8,6 +8,8 @@
 
 #include "MainMenuScene.h"
 #include "LoadingScene.h"
+#include "PublicApi.h"
+#include "Plane.h"
 #include "GameLayer.h"
 USING_NS_CC;
 
@@ -38,10 +40,33 @@ bool MainMenuScene::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
     
+    //************ adds Plane ****************
+    plane = Plane::create();
+    //plane->setPosition(visible_size_macro.width/2+100,visible_size_macro.height/2);
+    this->addChild(plane, 10);
+    this->scheduleUpdate();
+    
+    //************ adds stars ****************
+    auto stars = ParticleSystemQuad::create("vanishingPoint.plist");
+    stars->setAnchorPoint(Point(0.5f,0.5f));
+    stars->setPosition(visible_size_macro.width-50,visible_size_macro.height/2 +40);
+//    stars->setTotalParticles(8);
+//    stars->setEmissionRate(9999999999);
+//    stars->setScale(0.7);
+//    stars->setTotalParticles(5);
+//    stars->setEmissionRate(9999999999);
+    this->addChild(stars,1,1);
+    
     //************* adds background ***********
-    auto background = Sprite::create("loading_bk.png");
+    auto background = Sprite::create("mainmenu_BG.png");
     background->setAnchorPoint(Point(0,0));
     this->addChild(background,-1,-1);
+    
+    //************* adds logo *****************
+    auto logo = Sprite::create("LOGO.png");
+    logo->setAnchorPoint(Point(0.5,0.5));
+    logo->setPosition(visibleSize.width/2,visibleSize.height-200);
+    this->addChild(logo,3,3);
     
     //************* adds start game ***********
     startgame_item = MenuItemImage::create("start_game.png", "start_game.png", CC_CALLBACK_1(MainMenuScene::startgame, this));
@@ -51,15 +76,23 @@ bool MainMenuScene::init()
     license_item = MenuItemImage::create("license.png", "license.png", CC_CALLBACK_1(MainMenuScene::license, this));
     license_item->setPosition(visibleSize.width/2-200,100);
 
+    //************* credits ******************
+    auto credits = MenuItemImage::create("credits.png", "credits.png", CC_CALLBACK_1(MainMenuScene::credits, this));
+    credits->setPosition(visibleSize.width/2+200,100);
     //************* quitgame ******************
     credits_item = MenuItemImage::create("credits.png", "credits.png", CC_CALLBACK_1(MainMenuScene::credits, this));
     credits_item->setPosition(visibleSize.width/2+200,100);
 
     auto menu = Menu::create(startgame_item,license_item,credits_item, NULL);
     menu->setPosition(origin);
-    this->addChild(menu);
+    this->addChild(menu,3);
     
     return true;
+}
+
+void MainMenuScene::update(float dt){
+    pRate+=0.01;
+    plane->setPosition3D(Vertex3F(visible_size_macro.width/2+100,480-20*sin(1.05*pRate),0));
 }
 
 void MainMenuScene::startgame(Ref* sender){
