@@ -20,6 +20,7 @@ public:
     virtual bool init();
     void update(float dt);
     CREATE_FUNC(GameLayer);
+    static bool isDie;
     //virtual void onEnter();
 protected:
     float xScroll = 0.0f;

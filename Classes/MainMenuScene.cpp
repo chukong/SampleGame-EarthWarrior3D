@@ -10,6 +10,7 @@
 #include "LoadingScene.h"
 #include "PublicApi.h"
 #include "Plane.h"
+#include "GameLayer.h"
 USING_NS_CC;
 
 Scene* MainMenuScene::createScene()
@@ -68,18 +69,21 @@ bool MainMenuScene::init()
     this->addChild(logo,3,3);
     
     //************* adds start game ***********
-    auto startgame = MenuItemImage::create("start_game.png", "start_game.png", CC_CALLBACK_1(MainMenuScene::startgame, this));
-    startgame->setPosition(visibleSize.width/2,200);
+    startgame_item = MenuItemImage::create("start_game.png", "start_game.png", CC_CALLBACK_1(MainMenuScene::startgame, this));
+    startgame_item->setPosition(visibleSize.width/2,200);
     
     //************* license *******************
-    auto license = MenuItemImage::create("license.png", "license.png", CC_CALLBACK_1(MainMenuScene::license, this));
-    license->setPosition(visibleSize.width/2-200,100);
+    license_item = MenuItemImage::create("license.png", "license.png", CC_CALLBACK_1(MainMenuScene::license, this));
+    license_item->setPosition(visibleSize.width/2-200,100);
 
     //************* credits ******************
     auto credits = MenuItemImage::create("credits.png", "credits.png", CC_CALLBACK_1(MainMenuScene::credits, this));
     credits->setPosition(visibleSize.width/2+200,100);
+    //************* quitgame ******************
+    credits_item = MenuItemImage::create("credits.png", "credits.png", CC_CALLBACK_1(MainMenuScene::credits, this));
+    credits_item->setPosition(visibleSize.width/2+200,100);
 
-    auto menu = Menu::create(startgame,license,credits, NULL);
+    auto menu = Menu::create(startgame_item,license_item,credits_item, NULL);
     menu->setPosition(origin);
     this->addChild(menu,3);
     
@@ -92,14 +96,39 @@ void MainMenuScene::update(float dt){
 }
 
 void MainMenuScene::startgame(Ref* sender){
+    startgame_item->runAction(Sequence::create(ScaleTo::create(0.1f, 1.1f),
+                                                ScaleTo::create(0.1f, 0.9f),
+                                                ScaleTo::create(0.1f, 1.0f),
+                                               CallFunc::create(CC_CALLBACK_0(MainMenuScene::startgame_callback,this)),NULL));
+}
+
+void MainMenuScene::startgame_callback()
+{
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+    GameLayer::isDie=false;
     Director::getInstance()->replaceScene(LoadingScene::createScene());
 }
 
 void MainMenuScene::credits(Ref* sender){
+    credits_item->runAction(Sequence::create(ScaleTo::create(0.1f, 1.1f),
+                                               ScaleTo::create(0.1f, 0.9f),
+                                               ScaleTo::create(0.1f, 1.0f),
+                                             CallFunc::create(CC_CALLBACK_0(MainMenuScene::credits_callback, this)),NULL));
+}
+
+void MainMenuScene::credits_callback()
+{
     
 }
 
 void MainMenuScene::license(Ref* sender){
+    license_item->runAction(Sequence::create(ScaleTo::create(0.1f, 1.1f),
+                                               ScaleTo::create(0.1f, 0.9f),
+                                               ScaleTo::create(0.1f, 1.0f),
+                                             CallFunc::create(CC_CALLBACK_0(MainMenuScene::license_callback, this)),NULL));
+}
+
+void MainMenuScene::license_callback()
+{
     
 }

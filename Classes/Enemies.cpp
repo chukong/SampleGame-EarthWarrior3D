@@ -219,16 +219,92 @@ void Boss::enterTheBattle()
                                              EaseBackOut::create(RotateBy::create(4+0.5,Vertex3F(-100,0,0))),
                                              nullptr
                                              ),                                             CallFunc::create(this, callfunc_selector(Boss::startShooting)),
+                               CallFunc::create(this, callfunc_selector(Boss::_turns)),
                                nullptr
                                ));
+}
+void Boss::_turns()
+{
+    runAction
+    (
+                    Sequence::create
+                    (
+                        EaseSineInOut::create(MoveBy::create(2, Point(200,0))),
+                        EaseSineInOut::create(MoveBy::create(4, Point(-400,0))),
+                        EaseSineInOut::create(MoveBy::create(2, Point(200,0))),
+                    nullptr)
+     );
+    
+    runAction(
+              Sequence::create(
+                               EaseQuadraticActionInOut::create(RotateBy::create(1,-20)),
+                               EaseQuadraticActionInOut::create(RotateBy::create(2,40)),
+                               DelayTime::create(2),
+                               EaseQuadraticActionInOut::create(RotateBy::create(2,-40)),
+                               DelayTime::create(1),
+                               EaseQuadraticActionInOut::create(RotateBy::create(1,20)),
+                               DelayTime::create(2),
+                               CallFunc::create(this, Boss::_next()),
+                               nullptr
+              )
+    );
+}
+cocos2d::SEL_CallFunc Boss::_next()
+{
+    int random = CCRANDOM_0_1()*2;
+    cocos2d::SEL_CallFunc ret;
+    switch(random)
+    {
+        case 0:
+            ret = callfunc_selector(Boss::_turns);
+            break;
+        case 1:
+            ret = callfunc_selector(Boss::_dash);
+            break;
+        default:
+            ret = callfunc_selector(Boss::_dash);
+            break;
+    }
+    return ret;
+}
+void Boss::_dash()
+{
+    int neg = (CCRANDOM_0_1()>0.5)? -1: 1;
+    
+    auto array = PointArray::create(6);
+    
+    array->addControlPoint(Point(0,0));
+    array->addControlPoint(Point(80*neg,-300));
+    array->addControlPoint(Point(600*neg,-900));
+    array->addControlPoint(Point(600*neg,-300));
+    array->addControlPoint(Point(900*neg,600));
+    array->addControlPoint(Point(0,0));
+    
+    auto action = CardinalSplineBy::create(5, array,0);
+    runAction(Sequence::create(
+                               DelayTime::create(1),
+                               EaseSineOut::create(action)
+                               ,nullptr)
+              );
+    runAction(
+              Sequence::create(
+                               DelayTime::create(1),
+                               RotateBy::create(2.5, Vertex3F(-30,45*neg,-90*neg)),
+                                RotateBy::create(0.5, Vertex3F(0,0,250*neg)),
+                               EaseBackOut::create(RotateBy::create(2.0, Vertex3F(30,-45*neg,-160*neg))),
+                               CallFunc::create(this, Boss::_next()),
+              nullptr)
+              );
 }
 void Boss::startShooting()
 {
      schedule(schedule_selector(Boss::shoot),0.15, 6, 0);
+
 }
 void Boss::startShooting(float dt)
 {
     startShooting();
+
 }
 void Boss::createRandomExplosion()
 {
@@ -303,12 +379,12 @@ Point Boss::_getCannon2Position()
 }
 Point Boss::_getCannon1Vector()
 {
-    float angle = CC_DEGREES_TO_RADIANS(-_Cannon1->getRotation()+90);
+    float angle = CC_DEGREES_TO_RADIANS(-_Cannon1->getRotation()+90-getRotation());
     return Point(cosf(angle)*-500, sinf(angle)*-500);
 }
 Point Boss::_getCannon2Vector()
 {
-    float angle = CC_DEGREES_TO_RADIANS(-_Cannon2->getRotation()+90);
+    float angle = CC_DEGREES_TO_RADIANS(-_Cannon2->getRotation()+90-getRotation());
     return Point(cosf(angle)*-500, sinf(angle)*-500);
 }
 
@@ -325,11 +401,11 @@ void Boss::update(float dt, Node* player)
 {
     float angleRad = (_getCannon1Position()-player->getPosition()).getAngle();
     float angleDeg = -CC_RADIANS_TO_DEGREES(angleRad)+90;
-    _Cannon1->setRotation(angleDeg);
+    _Cannon1->setRotation(angleDeg-getRotation());
     
     
     angleRad = (_getCannon2Position()-player->getPosition()).getAngle();
     angleDeg = -CC_RADIANS_TO_DEGREES(angleRad)+90;
-    _Cannon2->setRotation(angleDeg);
+    _Cannon2->setRotation(angleDeg-getRotation());
 
 }

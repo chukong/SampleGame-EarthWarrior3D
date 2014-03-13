@@ -39,8 +39,8 @@ bool ObjMeshParser::parseComment(std::istream& lineStream, ObjMeshData& meshData
 
 bool ObjMeshParser::parseVertex(std::istream& lineStream, ObjMeshData& meshData)
 {
-    float x,y,z;
-    char whiteSpacex_y,whiteSpacey_z;
+    float x(0),y(0),z(0);
+    char whiteSpacex_y(0),whiteSpacey_z(0);
     lineStream>>x>>whiteSpacex_y>>std::ws>>y>>whiteSpacey_z>>std::ws>>z>>std::ws;
     //check
     if(lineStream.bad() || !lineStream.eof() || !std::isspace(whiteSpacex_y) || !std::isspace(whiteSpacey_z))
@@ -54,9 +54,9 @@ bool ObjMeshParser::parseVertex(std::istream& lineStream, ObjMeshData& meshData)
 
 bool ObjMeshParser::parseTextureVertex(std::istream& lineStream, ObjMeshData& meshData)
 {
-    float u,v;
+    float u(0),v(0);
     float w(0.f);
-    char whiteSpaceu_v;
+    char whiteSpaceu_v(0);
     lineStream>>u>>whiteSpaceu_v>>std::ws>>v>>std::ws;
     if(!lineStream.bad() || !lineStream.eof())
     {
@@ -78,8 +78,8 @@ bool ObjMeshParser::parseTextureVertex(std::istream& lineStream, ObjMeshData& me
 
 bool ObjMeshParser::parseNormal(std::istream& lineStream, ObjMeshData& meshData)
 {
-    float x,y,z;
-    char whiteSpacex_y,whiteSpacey_z;
+    float x(0),y(0),z(0);
+    char whiteSpacex_y(0),whiteSpacey_z(0);
     lineStream>>x>>whiteSpacex_y>>std::ws>>y>>whiteSpacey_z>>std::ws>>z>>std::ws;
     //check
     if(lineStream.bad() || !lineStream.eof() || !std::isspace(whiteSpacex_y) || !std::isspace(whiteSpacey_z))
@@ -103,7 +103,7 @@ bool ObjMeshParser::parseFace(std::istream& lineStream, ObjMeshData& meshData)
         //parse face vertex;
         {
             FaceVertex v(-1,-1,-1);
-            char placeHolder;
+            char placeHolder(0);
             std::stringstream faceVertexStream(faceVertexString);
             faceVertexStream >> v._vIndex;
             if(!faceVertexStream.eof())
@@ -133,7 +133,7 @@ bool ObjMeshParser::parseFace(std::istream& lineStream, ObjMeshData& meshData)
         }
         
         //try read white space
-        char whiteSpace;
+        char whiteSpace(0);
         if(!lineStream.eof())
         {
             lineStream >> whiteSpace >> std::ws;
@@ -372,6 +372,9 @@ Mesh::Mesh(const string& name)
 : _faceCount(0)
 , _vertexCount(0)
 , _texelCount(0)
+, _vertexBuffer(0)
+, _indexBuffer(0)
+, _indexCount(0)
 {
     _name = FileUtils::getInstance()->fullPathForFilename(name);
     loadFromFile(name);
@@ -552,7 +555,7 @@ void Mesh::freeBuffers()
 
 void Mesh::buildBuffer()
 {
-    //freeBuffers();
+    freeBuffers();
 
     glGenBuffers(1, &_vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
@@ -560,7 +563,7 @@ void Mesh::buildBuffer()
                  _vertices.size() * sizeof(_vertices[0]),
                  &_vertices[0],
                  GL_STATIC_DRAW);
-    //glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
     
     // Create a new VBO for the indices
     _indexCount = _indices.size();// model->GetTriangleIndexCount();
@@ -571,5 +574,5 @@ void Mesh::buildBuffer()
                  _indexCount * sizeof(GLushort),
                  &_indices[0],
                  GL_STATIC_DRAW);
-    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }

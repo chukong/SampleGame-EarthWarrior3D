@@ -88,8 +88,8 @@ protected:
     void countVertexData() const;
     std::string _name;
     //vector<ivec3> m_faces;
-    std::vector<Face> _faces;
-    std::vector<vec2> _texels;
+    //std::vector<Face> _faces;
+    //std::vector<vec2> _texels;
     mutable int _faceCount;
     mutable int _vertexCount;
     mutable int _texelCount;

@@ -7,6 +7,7 @@
 //
 
 #include "GameOverLayer.h"
+#include "MainMenuScene.h"
 
 GameOverLayer* GameOverLayer::create(int score)
 {
@@ -39,7 +40,7 @@ bool GameOverLayer::init()
     score_bk->runAction(Sequence::create(ScaleTo::create(0.2f, 1.1f),
                                          ScaleTo::create(0.1f, 0.9f),
                                          ScaleTo::create(0.1f, 1.0f),
-                                         CallFunc::create(this,callfunc_selector(GameOverLayer::ShowScore)),
+                                         CallFunc::create(CC_CALLBACK_0(GameOverLayer::ShowScore,this)),
                                          NULL));
     
     
@@ -55,6 +56,15 @@ bool GameOverLayer::init()
     menu->alignItemsHorizontallyWithPadding(20);
     menu->setPosition(visibleSize.width/2, 100);
     this->addChild(menu, 2);
+    
+    auto listener = EventListenerTouchOneByOne::create();
+    listener->setSwallowTouches(true);
+    
+    listener->onTouchBegan = CC_CALLBACK_2(GameOverLayer::onTouchBegan, this);
+    listener->onTouchMoved = CC_CALLBACK_2(GameOverLayer::onTouchMoved, this);
+    listener->onTouchEnded = CC_CALLBACK_2(GameOverLayer::onTouchEnded, this);
+    
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
     return true;
 }
@@ -86,13 +96,36 @@ void GameOverLayer::menu_backtomenu_Callback(Ref* sender)
 {
     backtomenu_Item->runAction(Sequence::create(ScaleTo::create(0.1f, 1.1f),
                                                 ScaleTo::create(0.1f, 0.9f),
-                                                ScaleTo::create(0.1f, 1.0f),NULL));
-//    Director::getInstance()->replaceScene();
+                                                ScaleTo::create(0.1f, 1.0f),
+                                                CallFunc::create(CC_CALLBACK_0(GameOverLayer::menu_backtomenu, this)),NULL));
+}
+
+void GameOverLayer::menu_backtomenu()
+{
+    Director::getInstance()->replaceScene(MainMenuScene::createScene());
 }
 
 void GameOverLayer::menu_playagain_Callback(Ref* sender)
 {
     playagain_Item->runAction(Sequence::create(ScaleTo::create(0.1f, 1.1f),
                                                 ScaleTo::create(0.1f, 0.9f),
-                                                ScaleTo::create(0.1f, 1.0f),NULL));
+                                                ScaleTo::create(0.1f, 1.0f),
+                                               CallFunc::create(CC_CALLBACK_0(GameOverLayer::menu_playagain, this)),NULL));
+}
+
+void GameOverLayer::menu_playagain()
+{
+    
+}
+
+bool GameOverLayer::onTouchBegan(Touch *touch, Event *event)
+{
+    return true;
+}
+void GameOverLayer::onTouchMoved(Touch *touch, Event *event)
+{
+    
+}
+void GameOverLayer::onTouchEnded(Touch *touch, Event *event)
+{
 }

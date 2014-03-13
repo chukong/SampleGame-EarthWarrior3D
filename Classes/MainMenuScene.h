@@ -12,6 +12,9 @@
 #include "cocos2d.h"
 #include "3d/Sprite3D.h"
 #include "Plane.h"
+
+USING_NS_CC;
+
 class MainMenuScene : public cocos2d::Layer
 {
 public:
@@ -25,6 +28,14 @@ private:
     void credits(cocos2d::Ref* sender);
     Plane* plane;
     float pRate = 3.1415926/2;
+    void startgame_callback();
+    void license_callback();
+    void credits_callback();
+    
+private:
+    MenuItemImage* startgame_item;
+    MenuItemImage* license_item;
+    MenuItemImage* credits_item;
 
 };
 

@@ -21,6 +21,8 @@
 USING_NS_CC;
 using namespace std;
 
+bool GameLayer::isDie=false;
+
 bool GameLayer::init()
 {
     // variable init
@@ -191,7 +193,21 @@ void GameLayer::update(float dt)
     xScroll += speed*dt;
     _spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
     //_cloud->setTextureRect(Rect(0,((int)xScroll)%1024, 256, 1024));
-    GameController::update(dt, _player);
+    if (!isDie) {
+        GameController::update(dt, _player);
+    }
+    else
+    {
+//        if (_player) {
+//            _player->stop();
+//            removeChild(_player);
+//            _player=NULL;
+//            removeChild(_streak);
+//            _streak=NULL;
+//            removeChild(_emissionPart);
+//            _emissionPart=NULL;
+//        }
+    }
 }
 
 
