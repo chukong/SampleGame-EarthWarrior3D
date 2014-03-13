@@ -43,9 +43,11 @@ public:
     CREATE_FUNC(BigDude);
     bool init();
     virtual void reset();
+    virtual void die();
     void update(float dt, Node* player);
     void showFinished();
     virtual void shoot(float dt);
+    void fall();
 protected:
     Point _targetPos;
     float _turnRate = 50;

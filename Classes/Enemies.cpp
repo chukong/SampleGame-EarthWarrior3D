@@ -165,6 +165,51 @@ void BigDude::update(float dt, Node* player)
     setRotation(f);
 }
 
+void BigDude::die(){
+    EnemyController::enemies.eraseObject(this);
+    EnemyController::showCaseEnemies.eraseObject(this);
+    EnemyController::_bigDudePool.pushBack(this);
+    Point nowPoint = this->getPosition();
+    log("now X: %f Y:%f \n",nowPoint.x,nowPoint.y);
+    Point targetPos = Point(nowPoint.x,nowPoint.y-200);
+    log("now X: %f Y:%f \n",targetPos.x,targetPos.y);
+    this->runAction(
+                     Sequence::create(
+                                      Spawn::create(
+                                                    EaseSineOut::create(MoveTo::create(2, targetPos)),
+                                                    EaseSineOut::create(ScaleTo::create(2,0.3)),//TODO: replace with move 3d when possible
+                                                    //EaseBackOut::create(RotateBy::create(2,Vertex3F(CC_RADIANS_TO_DEGREES((nowPoint-targetPos).getAngle()),CC_RADIANS_TO_DEGREES((nowPoint-targetPos).getAngle())+45,-CC_RADIANS_TO_DEGREES((nowPoint-targetPos).getAngle())+90))),
+                                                    RotateBy::create(2, Vertex3F(360+CCRANDOM_0_1()*600, 360+CCRANDOM_0_1()*600, 360+CCRANDOM_0_1()*600)),
+                                                    nullptr
+                                                    ),
+                                      CallFunc::create(this,callfunc_selector(BigDude::fall)),
+                                      nullptr
+                                      ));
+
+
+}
+
+void BigDude::fall(){
+    
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("explodeEffect.mp3");
+    EffectManager::createBigExplosion(getPosition());
+    auto helloworld = (HelloWorld*)Director::getInstance()->getRunningScene()->getChildByTag(100);
+    int score = helloworld->getScore();
+    helloworld->setScore(score+=_score);
+    std::stringstream ss;
+    std::string str;
+    ss<<score;
+    ss>>str;
+    const char *p = str.c_str();
+    helloworld->getScoreLabel()->setString(p);
+    _alive = false;
+    auto scale = ScaleTo::create(0.1, 1.2);
+    auto scaleBack = ScaleTo::create(0.1, 1);
+    auto label = helloworld->getScoreLabel();
+    label->runAction(Sequence::create(scale, scaleBack,NULL));
+    this->removeFromParentAndCleanup(false);
+}
+
 bool Boss::init(){
     _score = 666;
     _Model = Sprite3D::create("boss.obj", "boss.png");
