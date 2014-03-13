@@ -66,12 +66,15 @@ protected:
     void enterTheBattle();
     void startShooting(float dt);
     void startShooting();
+    void _turns();
     Point _getCannon1Position();
     Point _getCannon2Position();
     Point _getCannon1Vector();
     Point _getCannon2Vector();
     Node* _Cannon1;
     Node* _Cannon2;
+    void _dash();
+    cocos2d::SEL_CallFunc _next();
 };
 
 
