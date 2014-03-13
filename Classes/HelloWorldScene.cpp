@@ -27,7 +27,7 @@ Scene* HelloWorld::createScene()
     auto warningLayer = LayerColor::create(Color4B(255, 0, 0, 60));
     warningLayer->setOpacity(0);
     warningLayer->setTag(456);
-    scene->addChild(warningLayer);
+    scene->addChild(warningLayer,7);
     
     
     // return the scene

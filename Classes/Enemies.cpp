@@ -138,12 +138,13 @@ void BigDude::showFinished()
 }
 void BigDude::shoot(float dt)
 {
-    if(GameLayer::isDie)
+    if(!this->_alive)
     {
         unschedule(schedule_selector(BigDude::shoot));
         return;
     }
     //Point bulletVec = Point(getRotation())
+    
     Point offset1 = getPosition();
     Point offset2 = offset1;
     float angle = CC_DEGREES_TO_RADIANS(-getRotation()+90);
@@ -152,7 +153,7 @@ void BigDude::shoot(float dt)
     offset1.y += sinf(angle+offsetRad)*-50;
     offset2.x += cosf(angle-offsetRad)*-50;
     offset2.y += sinf(angle-offsetRad)*-50;
-    
+    //this->showMuzzle();
     auto bullet =BulletController::spawnBullet(kEnemyBullet, offset1, Point(cosf(angle)*-500, sinf(angle)*-500));
     bullet->setRotation(-CC_RADIANS_TO_DEGREES(angle)-90);
     bullet =BulletController::spawnBullet(kEnemyBullet, offset2, Point(cosf(angle)*-500, sinf(angle)*-500));
@@ -172,10 +173,40 @@ void BigDude::update(float dt, Node* player)
     setRotation(f);
 }
 
+void BigDude::showMuzzle(){
+    muzzle1 = Sprite::create("muzzle.png");
+    muzzle2 = Sprite::create("muzzle.png");
+    muzzle1->setScale(0.4);
+    muzzle2->setScale(0.4);
+    
+    Point offset1 = Point::ZERO;
+    Point offset2 = offset1;
+    float angle = 90;
+    float offsetRad = CC_DEGREES_TO_RADIANS(45);
+    offset1.x += cosf(offsetRad+angle)*-50;
+    offset1.y += sinf(offsetRad+angle)*-50;
+    offset2.x += cosf(-offsetRad+angle)*-50;
+    offset2.y += sinf(-offsetRad+angle)*-50;
+    
+    muzzle1->setPosition(offset1);
+    muzzle2->setPosition(offset2);
+    muzzle1->setRotation(-35.0f);
+    muzzle2->setRotation(-35.0f);
+    this->addChild(muzzle1);
+    this->addChild(muzzle2);
+    this->scheduleOnce(schedule_selector(BigDude::dismissMuzzle), 0.1);
+}
+
+void BigDude::dismissMuzzle(float dt){
+    muzzle1->removeFromParent();
+    muzzle2->removeFromParent();
+}
+
 void BigDude::die(){
+    this->_alive = false;
     EnemyController::enemies.eraseObject(this);
-    EnemyController::showCaseEnemies.eraseObject(this);
-    EnemyController::_bigDudePool.pushBack(this);
+    EnemyController::showCaseEnemies.pushBack(this);
+    
     Point nowPoint = this->getPosition();
     log("now X: %f Y:%f \n",nowPoint.x,nowPoint.y);
     Point targetPos = Point(nowPoint.x,nowPoint.y-200);
@@ -215,6 +246,8 @@ void BigDude::fall(){
     auto label = helloworld->getScoreLabel();
     label->runAction(Sequence::create(scale, scaleBack,NULL));
     this->removeFromParentAndCleanup(false);
+    EnemyController::_bigDudePool.pushBack(this);
+    EnemyController::showCaseEnemies.eraseObject(this);
 }
 
 bool Boss::init(){
@@ -349,6 +382,7 @@ void Boss::_dash()
 }
 void Boss::startShooting()
 {
+    log("startShooting");
      schedule(schedule_selector(Boss::shoot),0.15, 6, 0);
 
 }
@@ -359,6 +393,7 @@ void Boss::startShooting(float dt)
         unschedule(schedule_selector(Boss::startShooting));
         return;
     }
+    log("startShooting fd");
     startShooting();
 
 }
@@ -447,12 +482,34 @@ Point Boss::_getCannon2Vector()
     return Point(cosf(angle)*-500, sinf(angle)*-500);
 }
 
+void Boss::showMuzzle(){
+    muzzle1 = Sprite::create("muzzle.png");
+    muzzle2 = Sprite::create("muzzle.png");
+    muzzle1->setScale(0.4);
+    muzzle2->setScale(0.4);
+    muzzle1->setPosition(3,-30);
+    muzzle2->setPosition(3,-30);
+    muzzle1->setRotation(-35.0f);
+    muzzle2->setRotation(-35.0f);
+    _Cannon1->addChild(muzzle1);
+    _Cannon2->addChild(muzzle2);
+    this->scheduleOnce(schedule_selector(Boss::dismissMuzzle), 0.1);
+}
+
+void Boss::dismissMuzzle(float dt){
+    muzzle1->removeFromParent();
+    muzzle2->removeFromParent();
+}
+
 void Boss::shoot(float dt)
 {
     if (GameLayer::isDie) {
         return;
     }
     auto bullet =BulletController::spawnBullet(kEnemyBullet, _getCannon1Position(), _getCannon1Vector());
+    
+    showMuzzle();
+    
     bullet->setRotation(_Cannon1->getRotation()+180);
     bullet =BulletController::spawnBullet(kEnemyBullet, _getCannon2Position(), _getCannon2Vector());
     bullet->setRotation(_Cannon2->getRotation()+180);

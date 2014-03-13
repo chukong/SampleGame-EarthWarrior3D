@@ -216,6 +216,8 @@
 		A044DE7818C69F8000B6CCBD /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A044DE6F18C69F8000B6CCBD /* Mesh.cpp */; };
 		A044DE7918C69F8000B6CCBD /* Sprite3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A044DE7118C69F8000B6CCBD /* Sprite3D.cpp */; };
 		A044DE7A18C69F8000B6CCBD /* Sprite3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A044DE7118C69F8000B6CCBD /* Sprite3D.cpp */; };
+		BB2D115518D1E28800B0F241 /* muzzle.png in Resources */ = {isa = PBXBuildFile; fileRef = BB2D115418D1E28800B0F241 /* muzzle.png */; };
+		BB2D115618D1E28800B0F241 /* muzzle.png in Resources */ = {isa = PBXBuildFile; fileRef = BB2D115418D1E28800B0F241 /* muzzle.png */; };
 		BB66599518D14E5F00AF226B /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB66599318D14E5F00AF226B /* Plane.cpp */; };
 		BB66599618D14E5F00AF226B /* Plane.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB66599318D14E5F00AF226B /* Plane.cpp */; };
 		BB6659A218D1644300AF226B /* vanishingPoint.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB6659A118D1644300AF226B /* vanishingPoint.plist */; };
@@ -523,6 +525,7 @@
 		A044DE7418C69F8000B6CCBD /* Textured.es2.frag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Textured.es2.frag.h; sourceTree = "<group>"; };
 		A044DE7518C69F8000B6CCBD /* Textured.es2.vert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Textured.es2.vert.h; sourceTree = "<group>"; };
 		A044DE7618C69F8000B6CCBD /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
+		BB2D115418D1E28800B0F241 /* muzzle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = muzzle.png; sourceTree = "<group>"; };
 		BB66599318D14E5F00AF226B /* Plane.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Plane.cpp; path = ../Classes/Plane.cpp; sourceTree = "<group>"; };
 		BB66599418D14E5F00AF226B /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Plane.h; path = ../Classes/Plane.h; sourceTree = "<group>"; };
 		BB6659A118D1644300AF226B /* vanishingPoint.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = vanishingPoint.plist; sourceTree = "<group>"; };
@@ -757,9 +760,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BB6659C518D1D5CF00AF226B /* player_bullet_explosion.png */,
-				BB6659B518D19FBF00AF226B /* mainmenu_BG.png */,
-				BB6659B218D19D1C00AF226B /* loading_bk.png */,
+				BB2D115418D1E28800B0F241 /* muzzle.png */,
 				1F09B39818D1A25D0030D207 /* EarthWarrior.png */,
 				1F09B39518D1A2390030D207 /* EarthWarrior.plist */,
 				1F09B38B18D19F950030D207 /* score_right_top.png */,
@@ -1087,13 +1088,11 @@
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				68AB901A18CB0CC8007DDB0D /* dijiyuanv001.png in Resources */,
 				681E74A318D0938B003D1A1A /* emission.plist in Resources */,
-				BB6659B318D19D1C00AF226B /* loading_bk.png in Resources */,
 				680A316318C6471000D073CD /* diji1_v001.obj in Resources */,
 				681E746518D0938B003D1A1A /* gameover_score_num.fnt in Resources */,
 				681E74B718D0938B003D1A1A /* toonSmoke.plist in Resources */,
 				688B39BB18C8E2AC00A14D84 /* boom.mp3 in Resources */,
 				681E74A718D0938B003D1A1A /* explodeEffect.mp3 in Resources */,
-				BB6659B618D19FBF00AF226B /* mainmenu_BG.png in Resources */,
 				680A318618C8967400D073CD /* emission.plist in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
@@ -1121,6 +1120,7 @@
 				681E74B318D0938B003D1A1A /* playerv002.obj in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
 				5087E77E17EB970100C73F5D /* Default.png in Resources */,
+				BB2D115518D1E28800B0F241 /* muzzle.png in Resources */,
 				681E749718D0938B003D1A1A /* debris.plist in Resources */,
 				68AB900E18C9E0FD007DDB0D /* playerv002_256.png in Resources */,
 				680A318318C8927100D073CD /* missileFlare.plist in Resources */,
@@ -1163,6 +1163,7 @@
 				688B39CB18C977FF00A14D84 /* bullets.png in Resources */,
 				681E74B218D0938B003D1A1A /* playerv002_256.png in Resources */,
 				681E74A218D0938B003D1A1A /* dijiyuanv001.png in Resources */,
+				BB2D115618D1E28800B0F241 /* muzzle.png in Resources */,
 				681E749418D0938B003D1A1A /* coconut.obj in Resources */,
 				681E746418D0938B003D1A1A /* gameover_score_num_0.png in Resources */,
 				68F22BD118CCAD4F00B6521B /* coconut.obj in Resources */,
@@ -1170,7 +1171,6 @@
 				681E742518D09380003D1A1A /* bossCannon.obj in Resources */,
 				BBA83EA618D042D100D09B70 /* Star_Chaser.mp3 in Resources */,
 				680A318718C8967400D073CD /* emission.plist in Resources */,
-				BB6659C718D1D5CF00AF226B /* player_bullet_explosion.png in Resources */,
 				688B39EE18C9B48700A14D84 /* hit.mp3 in Resources */,
 				681E741518D08103003D1A1A /* gameover_score_num.fnt in Resources */,
 				681E748A18D0938B003D1A1A /* num.fnt in Resources */,
@@ -1210,8 +1210,6 @@
 				681E74A018D0938B003D1A1A /* dijiyuanv001.obj in Resources */,
 				681E749E18D0938B003D1A1A /* diji02_v002_128.png in Resources */,
 				681E74B418D0938B003D1A1A /* playerv002.obj in Resources */,
-				1FBF59DF18CF06E5005154B8 /* loading_bk.png in Resources */,
-				BB6659B418D19D1C00AF226B /* loading_bk.png in Resources */,
 				681E749A18D0938B003D1A1A /* diji1_v001.obj in Resources */,
 				681E74B018D0938B003D1A1A /* missileFlare.plist in Resources */,
 			);

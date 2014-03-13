@@ -46,9 +46,13 @@ public:
     virtual void die();
     void update(float dt, Node* player);
     void showFinished();
+    void showMuzzle();
+    void dismissMuzzle(float dt);
     virtual void shoot(float dt);
     void fall();
 protected:
+    Sprite* muzzle1;
+    Sprite* muzzle2;
     Point _targetPos;
     float _turnRate = 50;
 };
@@ -68,6 +72,8 @@ protected:
     void enterTheBattle();
     void startShooting(float dt);
     void startShooting();
+    void showMuzzle();
+    void dismissMuzzle(float dt);
     void _turns();
     Point _getCannon1Position();
     Point _getCannon2Position();
@@ -75,6 +81,8 @@ protected:
     Point _getCannon2Vector();
     Node* _Cannon1;
     Node* _Cannon2;
+    Sprite* muzzle1;
+    Sprite* muzzle2;
     void _dash();
     cocos2d::SEL_CallFunc _next();
 };
