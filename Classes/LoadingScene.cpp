@@ -17,6 +17,11 @@
 #include "consts.h"
 
 int LoadingScene::updatecount=0;
+int LoadingScene::m_curPreload_fodder_count=0;
+int LoadingScene::m_curPreload_fodderL_count=0;
+int LoadingScene::m_curPreload_BigDude_count=0;
+int LoadingScene::m_curPreload_Missile_count=0;
+int LoadingScene::m_curPreload_Boss_count=0;
 
 LoadingScene::~LoadingScene()
 {
