@@ -555,7 +555,7 @@ void Mesh::freeBuffers()
 
 void Mesh::buildBuffer()
 {
-    //freeBuffers();
+    freeBuffers();
 
     glGenBuffers(1, &_vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
@@ -563,7 +563,7 @@ void Mesh::buildBuffer()
                  _vertices.size() * sizeof(_vertices[0]),
                  &_vertices[0],
                  GL_STATIC_DRAW);
-    //glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
     
     // Create a new VBO for the indices
     _indexCount = _indices.size();// model->GetTriangleIndexCount();
@@ -574,5 +574,5 @@ void Mesh::buildBuffer()
                  _indexCount * sizeof(GLushort),
                  &_indices[0],
                  GL_STATIC_DRAW);
-    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
