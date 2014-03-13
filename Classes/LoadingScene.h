@@ -15,7 +15,7 @@
 USING_NS_CC;
 using namespace CocosDenshion;
 
-#define TOTAL_PIC_NUM 12
+#define TOTAL_PIC_NUM 13
 
 #define PRELOAD_FODDER_COUNT 18
 #define PRELOAD_FODDERL_COUNT 3
@@ -51,6 +51,7 @@ private:
     void LoadingPic();
     void LoadingEnemy(int type);
     void LoadingBullet(int type);
+    void LoadingParticle();
     
     void LoadingCallback(Ref* pObj);
     void GotoNextScene();

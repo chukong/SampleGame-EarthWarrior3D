@@ -13,6 +13,7 @@
 #include "GameEntity.h"
 #include "GameControllers.h"
 #include "Enemies.h"
+#include "ParticleManager.h"
 
 bool Bullet::init()
 {
@@ -25,7 +26,10 @@ bool Bullet::init()
         _type = kEnemyBullet;
         _owner = kEnemy;
         _damage = 10;
-        ParticleSystemQuad *p = ParticleSystemQuad::create("missileFlare.plist");
+        
+        auto part_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("toonFlare.png");
+        ValueMap vm=ParticleManager::getInstance()->GetPlistData("missileFlare");
+        ParticleSystemQuad *p = ParticleSystemQuad::create(vm,part_frame);
         //p->setEndColor(Color4F(1,0,0,1));
         //p->setStartColor(Color4F(1,0,0,1));
         p->setPositionType(tPositionType::GROUPED);
@@ -89,13 +93,18 @@ bool Missile::init()
         
         // missile effects
 
-        
-        auto part2 = ParticleSystemQuad::create("emission.plist");
+        auto part2_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("toonSmoke.png");
+        ValueMap vm2=ParticleManager::getInstance()->GetPlistData("emission");
+        auto part2 = ParticleSystemQuad::create(vm2,part2_frame);
         addChild(part2,1);
         part2->setPosition(0,-34);
         part2->setPositionType(tPositionType::GROUPED);
         //part2->setScale(2.5);
-        auto part1 = ParticleSystemQuad::create("missileFlare.plist");
+        
+        
+        auto part1_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("toonFlare.png");
+        ValueMap vm1=ParticleManager::getInstance()->GetPlistData("missileFlare");
+        auto part1 = ParticleSystemQuad::create(vm1,part1_frame);
         addChild(part1,2);
         part1->setPosition(0,-30);
         part1->setPositionType(tPositionType::GROUPED);

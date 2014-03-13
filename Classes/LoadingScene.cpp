@@ -13,6 +13,7 @@
 #include "Enemies.h"
 #include "Bullets.h"
 #include "GameControllers.h"
+#include "ParticleManager.h"
 #include "consts.h"
 
 int LoadingScene::updatecount=0;
@@ -57,6 +58,9 @@ bool LoadingScene::init()
 void LoadingScene::InitBk()
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
+    
+    
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("loadingAndHP.plist","loadingAndHP.png");
     
     //bk
     auto loading_bk=Sprite::createWithSpriteFrameName("loading_bk.png");
@@ -108,8 +112,7 @@ void LoadingScene::LoadingMusic()
     Audio->preloadEffect("hit.mp3");
     Audio->preloadEffect("boom2.mp3");
     Audio->preloadEffect("boom.mp3");
-    Audio->preloadEffect("Orbital Colossus_0.mp3");
-    Audio->preloadEffect("Star_Chaser.mp3");
+    Audio->preloadBackgroundMusic("Orbital Colossus_0.mp3");
     
     // Music By Matthew Pable (http://www.matthewpablo.com/)
     // Licensed under CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
@@ -132,6 +135,9 @@ void LoadingScene::LoadingPic()
     TexureCache->addImageAsync("gameover_score_num_0.png",CC_CALLBACK_1(LoadingScene::LoadingCallback,this));
     TexureCache->addImageAsync("num_0.png",CC_CALLBACK_1(LoadingScene::LoadingCallback,this));
     TexureCache->addImageAsync("score_right_top.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+    
+    TexureCache->addImageAsync("gameover.png", CC_CALLBACK_1(LoadingScene::LoadingCallback, this));
+
 }
 
 void LoadingScene::LoadingCallback(Ref* pObj)
@@ -155,6 +161,8 @@ void LoadingScene::LoadingCallback(Ref* pObj)
 void LoadingScene::GotoNextScene()
 {
     //goto next scene.
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("gameover.plist","gameover.png");
+    LoadingParticle();
     scheduleOnce(schedule_selector(LoadingScene::RunNextScene), 1.0f);
 }
 
@@ -162,8 +170,6 @@ void LoadingScene::RunNextScene(float dt)
 {
     this->removeAllChildren();
     auto helloworldScene=HelloWorld::createScene();
-
-
     Director::getInstance()->replaceScene(TransitionZoomFlipX::create(1.0f,helloworldScene));
 
 }
@@ -241,4 +247,18 @@ void LoadingScene::LoadingBullet(int type)
         default:
             break;
     }
+}
+
+void LoadingScene::LoadingParticle()
+{
+    auto particle=ParticleManager::getInstance();
+    particle->AddPlistData("missileFlare.plist","missileFlare");
+    particle->AddPlistData("emission.plist", "emission");
+    particle->AddPlistData("missileFlare.plist","missileFlare");
+    particle->AddPlistData("toonSmoke.plist", "toonSmoke");
+    particle->AddPlistData("flare.plist", "flare");
+    particle->AddPlistData("glow.plist", "glow");
+    particle->AddPlistData("debris.plist", "debris");
+    particle->AddPlistData("emissionPart.plist", "emissionPart");
+    particle->AddPlistData("engine.plist", "engine");
 }

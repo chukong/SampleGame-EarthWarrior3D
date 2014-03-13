@@ -18,6 +18,7 @@
 #include "GameEntity.h"
 #include "SimpleAudioEngine.h"
 #include "Effects.h"
+#include "ParticleManager.h"
 USING_NS_CC;
 using namespace std;
 
@@ -50,7 +51,9 @@ bool GameLayer::init()
     _streak = MotionStreak::create(0.4, 1, 15, Color3B(82,255,253), "streak.png");
     _player->setTrail(_streak);
     addChild(_streak,3);
-    _emissionPart = ParticleSystemQuad::create("emissionPart.plist");
+    auto emission_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("engine.jpg");
+    ValueMap vm_emission=ParticleManager::getInstance()->GetPlistData("emissionPart");
+    _emissionPart = ParticleSystemQuad::create(vm_emission,emission_frame);
     _player->setEmissionPart(_emissionPart);
     addChild(_emissionPart,4);
     _emissionPart->setPositionType(tPositionType::FREE);

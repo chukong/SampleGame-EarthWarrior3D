@@ -14,6 +14,7 @@
 #include "HelloWorldScene.h"
 #include "PublicApi.h"
 #include "GameLayer.h"
+#include "ParticleManager.h"
 #define visible_size_macro Director::getInstance()->getVisibleSize()
 #define origin_point Director::getInstance()->getVisibleOrigin();
 
@@ -43,7 +44,9 @@ bool Player::init()
         schedule(schedule_selector(Player::shoot), 0.075, -1, 0);
         
         // engine trail
-        auto part = ParticleSystemQuad::create("engine.plist");
+        auto part_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("engine.jpg");
+        ValueMap vm=ParticleManager::getInstance()->GetPlistData("engine");
+        auto part = ParticleSystemQuad::create(vm,part_frame);
         addChild(part);
         part->setPosition(0,-30);
         part->setScale(0.6);
