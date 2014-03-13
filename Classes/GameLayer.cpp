@@ -211,7 +211,9 @@ void GameLayer::update(float dt)
             _streak=NULL;
             removeChild(_emissionPart);
             _emissionPart=NULL;
-            scheduleOnce(schedule_selector(GameLayer::removeBulletAndEnmeys), 1/60);
+            //scheduleOnce(schedule_selector(GameLayer::removeBulletAndEnmeys), 1/60);
+            stopAllActions();
+            unscheduleAllSelectors();
         }
     }
 }

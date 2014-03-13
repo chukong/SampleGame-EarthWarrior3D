@@ -69,6 +69,7 @@ protected:
     void startShooting(float dt);
     void startShooting();
     void _turns();
+    void _endGame(float dt);
     Point _getCannon1Position();
     Point _getCannon2Position();
     Point _getCannon1Vector();

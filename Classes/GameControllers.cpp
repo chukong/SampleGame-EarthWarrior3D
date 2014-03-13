@@ -343,7 +343,7 @@ void GameController::update(float dt, Player* player)
         {
             player->hurt(50);
             enemy->hurt(50);
-            if(enemy->getType() != kEnemyBoss)
+            if(enemy->getType() != kEnemyBoss && enemy->getType() != kEnemyBigDude)
             EnemyController::erase(k);
         }
         //TODO: if enemy collide with player

@@ -390,7 +390,12 @@ void Boss::dead(){
     EnemyController::showCaseEnemies.eraseObject(this);
     removeFromParent();
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
-
+    NotificationCenter::getInstance()->postNotification("ShowGameOver",NULL);
+    scheduleOnce(schedule_selector(Boss::_endGame), 1.5);
+}
+void Boss::_endGame(float dt)
+{
+    NotificationCenter::getInstance()->postNotification("ShowGameOver",NULL);
 }
 void Boss::die(){
     //sequence to 10 random explosion
