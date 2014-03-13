@@ -138,7 +138,7 @@ void BigDude::showFinished()
 }
 void BigDude::shoot(float dt)
 {
-    if(!this->_alive)
+    if(GameLayer::isDie)
     {
         unschedule(schedule_selector(BigDude::shoot));
         return;

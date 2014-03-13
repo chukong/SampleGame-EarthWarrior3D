@@ -262,8 +262,8 @@ void GameController::update(float dt, Player* player)
                     {
                         //collision happened
                         bool dead =  e->hurt(b->getDamage());
-                        //                        if(!dead)
-                        //                        {
+                        if(!dead)
+                        {
                         switch(b->getType())
                         {
                             case kPlayerMissiles:
@@ -279,6 +279,7 @@ void GameController::update(float dt, Player* player)
                         }
                         BulletController::erase(i);
                         break;
+                        }
                     }
                     
                 }
@@ -342,8 +343,6 @@ void GameController::update(float dt, Player* player)
         {
             player->hurt(50);
             enemy->hurt(50);
-            if(enemy->getType() != kEnemyBoss)
-                EnemyController::erase(k);
             if(enemy->getType() != kEnemyBoss && enemy->getType() != kEnemyBigDude)
             EnemyController::erase(k);
         }
