@@ -39,5 +39,8 @@ protected:
     void gameMaster(float dt);
     float _elapsed = 55;
     bool _bossOut = false;
+    
+private:
+    void removeBulletAndEnmeys(float dt);
 };
 #endif /* defined(__Moon3d__GameLayer__) */

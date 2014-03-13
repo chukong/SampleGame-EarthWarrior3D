@@ -14,6 +14,7 @@
 #include "SimpleAudioEngine.h"
 #include "Effects.h"
 #include "HelloWorldScene.h"
+#include "GameLayer.h"
 
 bool Fodder::init()
 {
@@ -137,6 +138,11 @@ void BigDude::showFinished()
 }
 void BigDude::shoot(float dt)
 {
+    if(GameLayer::isDie)
+    {
+        unschedule(schedule_selector(BigDude::shoot));
+        return;
+    }
     //Point bulletVec = Point(getRotation())
     Point offset1 = getPosition();
     Point offset2 = offset1;
@@ -228,6 +234,11 @@ void Boss::startShooting()
 }
 void Boss::startShooting(float dt)
 {
+    if(GameLayer::isDie)
+    {
+        unschedule(schedule_selector(Boss::startShooting));
+        return;
+    }
     startShooting();
 }
 void Boss::createRandomExplosion()
@@ -314,6 +325,9 @@ Point Boss::_getCannon2Vector()
 
 void Boss::shoot(float dt)
 {
+    if (GameLayer::isDie) {
+        return;
+    }
     auto bullet =BulletController::spawnBullet(kEnemyBullet, _getCannon1Position(), _getCannon1Vector());
     bullet->setRotation(_Cannon1->getRotation()+180);
     bullet =BulletController::spawnBullet(kEnemyBullet, _getCannon2Position(), _getCannon2Vector());
