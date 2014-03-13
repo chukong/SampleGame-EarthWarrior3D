@@ -49,8 +49,8 @@ bool GameOverLayer::init()
                                            backtomenu_pressed,
                                            CC_CALLBACK_1(GameOverLayer::menu_backtomenu_Callback,this));
     
-    auto playagain_normal=Sprite::createWithSpriteFrameName("gameover_backtomenu.png");
-    auto playagain_pressed=Sprite::createWithSpriteFrameName("gameover_backtomenu.png");
+    auto playagain_normal=Sprite::createWithSpriteFrameName("gameover_playagain.png");
+    auto playagain_pressed=Sprite::createWithSpriteFrameName("gameover_playagain.png");
     playagain_Item = MenuItemSprite::create(playagain_normal,
                                            playagain_pressed,
                                            CC_CALLBACK_1(GameOverLayer::menu_playagain_Callback,this));

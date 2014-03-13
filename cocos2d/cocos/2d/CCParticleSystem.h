@@ -81,6 +81,7 @@ typedef struct sParticle {
 //typedef void (*CC_UPDATE_PARTICLE_IMP)(id, SEL, tParticle*, Point);
 
 class Texture2D;
+class SpriteFrame;
 
 /** @brief Particle System base class.
 Attributes of a Particle System:

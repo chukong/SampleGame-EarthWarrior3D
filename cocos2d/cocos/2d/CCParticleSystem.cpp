@@ -193,7 +193,6 @@ bool ParticleSystem::initWithDictionary(ValueMap& dictionary)
 {
     return initWithDictionary(dictionary, "");
 }
-
 bool ParticleSystem::initWithDictionary(ValueMap& dictionary, const std::string& dirname)
 {
     bool ret = false;
