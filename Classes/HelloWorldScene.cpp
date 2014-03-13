@@ -44,6 +44,7 @@ bool HelloWorld::init()
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
     auto sb = GameLayer::create();
+    sb->setTag(123);
     sb->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     addChild(sb);
     auto fog = Sprite::create("fog.png");

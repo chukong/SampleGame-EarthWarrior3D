@@ -27,7 +27,7 @@ bool GameLayer::init()
 {
     // variable init
     //_collisionTree = new QuadTree(0, BOUND_RECT);
-    
+    //**************** explosion cache ****************
     for (int i=0; i<10; i++) {
         SmallExplosion* smallExpl = SmallExplosion::create();
         smallExpl->retain();
@@ -37,6 +37,17 @@ bool GameLayer::init()
         EffectManager::_bigExplPool.pushBack(bigExpl);
     }
     
+    //************** animation cache ******************
+    auto animation = Animation::create();
+    animation->setDelayPerUnit(0.1);
+    auto texture = Director::getInstance()->getTextureCache()->addImage("player_bullet_explosion.png");
+    animation->addSpriteFrameWithTexture(texture, Rect(0,0,26,17));
+    animation->addSpriteFrameWithTexture(texture, Rect(0,18,26,22));
+    animation->addSpriteFrameWithTexture(texture, Rect(0,40,26,20));
+    animation->addSpriteFrameWithTexture(texture, Rect(0,61,26,23));
+
+    animation->retain();
+    AnimationCache::getInstance()->addAnimation(animation,"bullet_expl");
     
     _spr = Sprite::create("groundLevel.jpg");
     addChild(_spr, -5);

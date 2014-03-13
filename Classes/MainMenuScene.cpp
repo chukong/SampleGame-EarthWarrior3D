@@ -74,11 +74,6 @@ bool MainMenuScene::init()
     auto stars = ParticleSystemQuad::create("vanishingPoint.plist");
     stars->setAnchorPoint(Point(0.5f,0.5f));
     stars->setPosition(visible_size_macro.width-50,visible_size_macro.height/2 +40);
-//    stars->setTotalParticles(8);
-//    stars->setEmissionRate(9999999999);
-//    stars->setScale(0.7);
-//    stars->setTotalParticles(5);
-//    stars->setEmissionRate(9999999999);
     this->addChild(stars,1,1);
     
     //************* adds background ***********
@@ -87,10 +82,10 @@ bool MainMenuScene::init()
     this->addChild(background,-1,-1);
     
     //************* adds logo *****************
-    auto logo = Sprite::create("LOGO.png");
-    logo->setAnchorPoint(Point(0.5,0.5));
-    logo->setPosition(visibleSize.width/2,visibleSize.height-200);
-    this->addChild(logo,3,3);
+//    auto logo = Sprite::create("LOGO.png");
+//    logo->setAnchorPoint(Point(0.5,0.5));
+//    logo->setPosition(visibleSize.width/2,visibleSize.height-200);
+//    this->addChild(logo,3,3);
     
     //************* adds start game ***********
     startgame_item = MenuItemImage::create("start_game.png", "start_game.png", CC_CALLBACK_1(MainMenuScene::startgame, this));
