@@ -95,7 +95,7 @@ void GameLayer::gameMaster(float dt)
     if(enemyCount < 5 &&_elapsed < 60)
     {
         Point random = Point(100*CCRANDOM_MINUS1_1(), BOUND_RECT.size.height/2+200);
-        for(int i=0; i < 5; i++)
+        for(int i=0; i < 4; i++)
         {
             auto enemy1 = EnemyController::spawnEnemy(kEnemyFodder);
             enemy1->setPosition(random + Point(60,60)*(i+1));
@@ -109,10 +109,11 @@ void GameLayer::gameMaster(float dt)
         auto leader = EnemyController::spawnEnemy(kEnemyFodderL);
         leader->setPosition(random);
         leader->setRotation3D(Vertex3F(0,0,0));
+        static_cast<FodderLeader*>(leader)->setTarget(_player);
         static_cast<FodderLeader*>(leader)->setMoveMode(moveMode::kDefault);
     }
     //else if(_elapsed < 20 && enemyCount <5)
-    if(_elapsed > 4 && enemyCount <3 &&_elapsed < 60)
+    if(_elapsed > 4 && enemyCount <4 &&_elapsed < 60)
     {
         Point random = Point(-400, BOUND_RECT.size.height/4*CCRANDOM_MINUS1_1()+350);
         for(int i=0; i < 3; i++)
@@ -197,7 +198,6 @@ void GameLayer::gameMaster(float dt)
 
 void GameLayer::update(float dt)
 {
-    glEnable(GL_CULL_FACE);
     xScroll += speed*dt;
     _spr->setTextureRect(Rect(0,((int)xScroll)%2048,512,1200));
     //_cloud->setTextureRect(Rect(0,((int)xScroll)%1024, 256, 1024));

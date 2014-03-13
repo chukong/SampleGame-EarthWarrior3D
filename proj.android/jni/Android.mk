@@ -22,7 +22,11 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                	   ../../Classes/3d/Mesh.cpp \
                    ../../Classes/3d/MeshCache.cpp \
                	   ../../Classes/3d/Sprite3D.cpp \
-                   ../../Classes/LoadingScene.cpp                     
+                   ../../Classes/LoadingScene.cpp \
+                   ../../Classes/MainMenuScene.cpp \
+                   ../../Classes/GameOverLayer.cpp \
+                   ../../Classes/ParticleManager.cpp \
+                   ../../Classes/Plane.cpp                    
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes 
 

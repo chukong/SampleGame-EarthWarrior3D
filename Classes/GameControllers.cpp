@@ -264,22 +264,19 @@ void GameController::update(float dt, Player* player)
                         bool dead =  e->hurt(b->getDamage());
                         if(!dead)
                         {
-                        switch(b->getType())
-                        {
-                            case kPlayerMissiles:
+                            switch(b->getType())
                             {
-                                EffectManager::createExplosion(b->getPosition());
+                                case kPlayerMissiles:
+                                    EffectManager::createExplosion(b->getPosition());
                                 
-                                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
+                                    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
+                                    break;
+                                default:
+                                    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.mp3");
+                                    break;
                             }
-                                break;
-                            default:
-                                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.mp3");
-                                break;
                         }
                         BulletController::erase(i);
-                        break;
-                        }
                     }
                     
                 }
