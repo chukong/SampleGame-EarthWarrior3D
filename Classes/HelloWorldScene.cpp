@@ -7,6 +7,11 @@
 
 USING_NS_CC;
 
+HelloWorld::~HelloWorld()
+{
+    NotificationCenter::getInstance()->destroyInstance();
+}
+
 Scene* HelloWorld::createScene()
 {
     // 'scene' is an autorelease object

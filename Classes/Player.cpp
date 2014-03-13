@@ -13,6 +13,7 @@
 #include "consts.h"
 #include "HelloWorldScene.h"
 #include "PublicApi.h"
+#include "GameLayer.h"
 #define visible_size_macro Director::getInstance()->getVisibleSize()
 #define origin_point Director::getInstance()->getVisibleOrigin();
 
@@ -108,6 +109,12 @@ void Player::shootMissile(float dt)
     right->setRotation(45);
 }
 
+void Player::stop()
+{
+    unschedule(schedule_selector(Player::shoot));
+    unschedule(schedule_selector(Player::shootMissile));
+}
+
 bool Player::hurt(float damage){
     float fromHP = _HP;
     float toHP = _HP-=damage;
@@ -134,7 +141,7 @@ bool Player::hurt(float damage){
 void Player::die()
 {
     _alive = false;
-    
+    GameLayer::isDie=true;
     //TODO: Game ended, the player is dead!
     NotificationCenter::getInstance()->postNotification("ShowGameOver",NULL);
 }

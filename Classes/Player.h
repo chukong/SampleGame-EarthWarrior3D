@@ -34,6 +34,7 @@ public:
     
     void shoot(float dt);
     void shootMissile(float dt);
+    void stop();
     CC_SYNTHESIZE(MotionStreak*, _streak, Trail);
     CC_SYNTHESIZE(ParticleSystemQuad*, _emissionPart, EmissionPart);
     void setPosition(Point pos);
