@@ -17,6 +17,8 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
+    
+    ~HelloWorld();
 
     
 private:

@@ -10,11 +10,9 @@
 #define __Moon3d__LoadingScene__
 
 #include "cocos2d.h"
-#include "extensions/cocos-ext.h"
 #include "SimpleAudioEngine.h"
 
 USING_NS_CC;
-USING_NS_CC_EXT;
 using namespace CocosDenshion;
 
 #define TOTAL_PIC_NUM 11
@@ -55,15 +53,15 @@ private:
     void LoadingBullet(int type);
     
     void LoadingCallback(Ref* pObj);
-    void GotoNextScene(Ref* pObj);
+    void GotoNextScene();
     void RunNextScene(float dt);
     
-    
 private:
+    static bool isReg;
     int currentNum;
     int totalNum;
     
-    ControlSlider* m_pSlider;
+    Sprite* m_pProgress;
     LabelBMFont* m_pPercent;
     
     int m_curPreload_fodder_count;

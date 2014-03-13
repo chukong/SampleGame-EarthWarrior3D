@@ -11,6 +11,8 @@
 
 #include "cocos2d.h"
 
+USING_NS_CC;
+
 class MainMenuScene : public cocos2d::Layer
 {
 public:
@@ -22,6 +24,15 @@ private:
     void startgame(cocos2d::Ref* sender);
     void license(cocos2d::Ref* sender);
     void credits(cocos2d::Ref* sender);
+    
+    void startgame_callback();
+    void license_callback();
+    void credits_callback();
+    
+private:
+    MenuItemImage* startgame_item;
+    MenuItemImage* license_item;
+    MenuItemImage* credits_item;
 };
 
 #endif /* defined(__Moon3d__MainMenuScene__) */

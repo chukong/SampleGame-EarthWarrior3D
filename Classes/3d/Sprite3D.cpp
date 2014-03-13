@@ -195,7 +195,7 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
     const GLvoid* normalOffset = (const GLvoid*) sizeof(vec3);
     const GLvoid* texCoordOffset = (const GLvoid*) (2 * sizeof(vec3));
     GLint position = _attributes.Position;
-    GLint normal = _attributes.Normal;
+    //GLint normal = _attributes.Normal;
     GLint texCoord = _attributes.TextureCoord;
 
     glBindBuffer(GL_ARRAY_BUFFER, verBuf);
@@ -235,7 +235,7 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
         stride = sizeof(vec3) + sizeof(vec3) + sizeof(vec2);
         normalOffset = (const GLvoid*) sizeof(vec3);
         position = _attributesOutline.Position;
-        normal = _attributesOutline.Normal;
+        GLint normal = _attributesOutline.Normal;
         
         glBindBuffer(GL_ARRAY_BUFFER, verBuf);
         glVertexAttribPointer(position, 3, GL_FLOAT, GL_FALSE, stride, 0);
@@ -271,7 +271,7 @@ void Sprite3D::removeTexture()
         _texture = nullptr;
 
         this->updateBlendFunc();
-        buildProgram(_texture->getName() != 0);
+        buildProgram(false);
 	}
 }
 

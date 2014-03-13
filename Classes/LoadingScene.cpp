@@ -19,7 +19,6 @@ int LoadingScene::updatecount=0;
 
 LoadingScene::~LoadingScene()
 {
-//    NotificationCenter::getInstance()->destroyInstance();
 }
 
 Scene* LoadingScene::createScene()
@@ -49,7 +48,7 @@ bool LoadingScene::init()
     InitCoco();
     LoadingResource();
     
-    NotificationCenter::getInstance()->addObserver(this,callfuncO_selector(LoadingScene::GotoNextScene),"GotoNextScene",NULL);
+    //NotificationCenter::getInstance()->addObserver(this,callfuncO_selector(LoadingScene::GotoNextScene),"GotoNextScene",NULL);
     scheduleUpdate();
     
     return true;
@@ -70,14 +69,14 @@ void LoadingScene::InitBk()
     m_pPercent->setPosition(Point(visibleSize.width/2,visibleSize.height/2+170));
     this->addChild(m_pPercent,1);
     
-    //ControlSlider
-	m_pSlider = ControlSlider::create("loading_progress_bk.png","loading_progress_progress.png" ,"loading_progress_thumb.png");
-	m_pSlider->setAnchorPoint(Point(0.5f, 1.0f));
-	m_pSlider->setMinimumValue( 0 );
-	m_pSlider->setMaximumValue(100);
-	m_pSlider->setPosition(Point(visibleSize.width/2, visibleSize.height/2+300));
-	m_pSlider->setValue(0);
-	addChild(m_pSlider,1);
+    //progress
+    auto progress_bk=Sprite::create("loading_progress_bk.png");
+    progress_bk->setPosition(Point(visibleSize.width/2, visibleSize.height/2+300));
+    addChild(progress_bk);
+    
+    m_pProgress=Sprite::create("loading_progress_thumb.png");
+    m_pProgress->setPosition(Point(100, visibleSize.height/2+320));
+    addChild(m_pProgress);
 }
 
 void LoadingScene::InitCoco()
@@ -145,22 +144,21 @@ void LoadingScene::LoadingCallback(Ref* pObj)
 	int percent=(int)(((float)currentNum / totalNum) * 100);
     sprintf(tmp, "%d%%", percent);
     m_pPercent->setString(tmp);
-    m_pSlider->setValue(percent);
+    m_pProgress->runAction(MoveBy::create(0.01f, Point(420/TOTAL_PIC_NUM,0)));
+//    m_pSlider->setValue(percent);
     
 
     if (currentNum == totalNum)
     {
-        NotificationCenter::getInstance()->postNotification("GotoNextScene",NULL);
+        //NotificationCenter::getInstance()->postNotification("GotoNextScene",NULL);
+        GotoNextScene();
     }
 }
 
-void LoadingScene::GotoNextScene(Ref* pObj)
+void LoadingScene::GotoNextScene()
 {
     //goto next scene.
-    //runAction(CCSequence::create(DelayTime::create(1.0f), CallFunc::create(this, callfunc_selector(LoadingScene::RunNextScene))));
-    
-    
-    schedule(schedule_selector(LoadingScene::RunNextScene),1.0,0,1);
+    scheduleOnce(schedule_selector(LoadingScene::RunNextScene), 1.0f);
 }
 
 void LoadingScene::RunNextScene(float dt)
@@ -170,7 +168,6 @@ void LoadingScene::RunNextScene(float dt)
 
 
     Director::getInstance()->replaceScene(TransitionZoomFlipX::create(1.0f,helloworldScene));
-    //Director::getInstance()->replaceScene(helloworldScene);
 
 }
 
