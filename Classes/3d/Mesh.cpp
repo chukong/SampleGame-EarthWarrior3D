@@ -372,6 +372,9 @@ Mesh::Mesh(const string& name)
 : _faceCount(0)
 , _vertexCount(0)
 , _texelCount(0)
+, _vertexBuffer(0)
+, _indexBuffer(0)
+, _indexCount(0)
 {
     _name = FileUtils::getInstance()->fullPathForFilename(name);
     loadFromFile(name);
