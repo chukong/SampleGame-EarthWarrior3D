@@ -327,8 +327,8 @@ void Boss::_dash()
     array->addControlPoint(Point(0,0));
     array->addControlPoint(Point(80*neg,-300));
     array->addControlPoint(Point(500*neg,-900));
-    array->addControlPoint(Point(700*neg,-300));
-    array->addControlPoint(Point(900*neg,600));
+    array->addControlPoint(Point(700*neg,-600));
+    array->addControlPoint(Point(500*neg,400));
     array->addControlPoint(Point(0,0));
     
     auto action = CardinalSplineBy::create(5.5, array,0);
@@ -339,10 +339,10 @@ void Boss::_dash()
               );
     runAction(
               Sequence::create(
-                               DelayTime::create(0.5),
+                               EaseSineInOut::create(RotateBy::create(0.5, Vertex3F(0,30*neg,0))),
                                RotateBy::create(2.5, Vertex3F(-30,45*neg,-90*neg)),
-                                RotateBy::create(0.5, Vertex3F(0,0,250*neg)),
-                               EaseBackOut::create(RotateBy::create(2.0, Vertex3F(30,-45*neg,-160*neg))),
+                                RotateBy::create(1, Vertex3F(0,-35*neg,-200*neg)),
+                               EaseSineInOut::create(RotateBy::create(1.5, Vertex3F(30,-40*neg,-70*neg))),
                                CallFunc::create(this, Boss::_next()),
               nullptr)
               );
