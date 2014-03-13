@@ -229,7 +229,7 @@ bool Boss::init(){
         _Model->setRotation3D(Vertex3F(90,0,0));
         static_cast<Sprite3D*>(_Model)->setOutline(0.1, Color3B(0,0,0));
         _type = kEnemyBoss;
-        _HP = 10000;
+        _HP = 500;
         _radius = 150;
         auto cannon1 = Sprite3D::create("bossCannon.obj", "boss.png");
         _Cannon1 = Node::create();
@@ -390,9 +390,11 @@ void Boss::dead(){
     EnemyController::showCaseEnemies.eraseObject(this);
     removeFromParent();
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+
 }
 void Boss::die(){
     //sequence to 10 random explosion
+    stopAllActions();
     Vector<FiniteTimeAction*> explosions;
     for(int i = 0; i < 22; i++)
     {
@@ -413,6 +415,7 @@ void Boss::die(){
     auto final = Sequence::create(giantExpl, giantExpl2, callDead,nullptr);
     runAction(final);
     dying();
+    
 }
 
 Point Boss::_getCannon1Position()
