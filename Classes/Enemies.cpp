@@ -36,6 +36,7 @@ bool Fodder::init()
 void Fodder::reset()
 {
     AirCraft::reset();
+    _target = nullptr;
     _HP = 10;
 }
 void Fodder::setTurnRate(float turn)
@@ -70,10 +71,10 @@ void Fodder::shoot(float dt)
         auto bullet =BulletController::spawnBullet(kEnemyBullet, getPosition(), Point(cosf(angle)*-500, sinf(angle)*-500));
         //auto bullet =BulletController::spawnBullet(kEnemyBullet, getPosition(), Point(0,-500));
         bullet->setRotation(-CC_RADIANS_TO_DEGREES(angle)-90);
-        log("aaaaaaa");
+        //log("aaaaaaa");
     }
     else{
-        log("player is dead,hahahaha");
+        //log("player is dead,hahahaha");
     }
 }
 
@@ -138,7 +139,7 @@ void BigDude::showFinished()
 }
 void BigDude::shoot(float dt)
 {
-    if(!this->_alive)
+    if(GameLayer::isDie)
     {
         unschedule(schedule_selector(BigDude::shoot));
         return;
@@ -203,10 +204,11 @@ void BigDude::dismissMuzzle(float dt){
 }
 
 void BigDude::die(){
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
     this->_alive = false;
     EnemyController::enemies.eraseObject(this);
     EnemyController::showCaseEnemies.pushBack(this);
-    
+    EffectManager::createExplosion(getPosition());
     Point nowPoint = this->getPosition();
     log("now X: %f Y:%f \n",nowPoint.x,nowPoint.y);
     Point targetPos = Point(nowPoint.x,nowPoint.y-200);
@@ -263,7 +265,7 @@ bool Boss::init(){
         _Model->setRotation3D(Vertex3F(90,0,0));
         static_cast<Sprite3D*>(_Model)->setOutline(0.1, Color3B(0,0,0));
         _type = kEnemyBoss;
-        _HP = 500;
+        _HP = 5000;
         _radius = 150;
         auto cannon1 = Sprite3D::create("bossCannon.obj", "boss.png");
         _Cannon1 = Node::create();

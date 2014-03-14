@@ -47,7 +47,6 @@ bool MainMenuScene::init()
     
     //************ adds Plane ****************
     plane = Plane::create();
-    //plane->setPosition(visible_size_macro.width/2+100,visible_size_macro.height/2);
     this->addChild(plane, 10);
     this->scheduleUpdate();
     
@@ -66,36 +65,26 @@ bool MainMenuScene::init()
     
     auto emis = ParticleSystemQuad::create("menuEmission.plist");
     emis->setScale(3);
-    //emis->setTotalParticles(50);
     emis->setRotation3D(Vertex3F(-originX,-originY,-originZ));
     emis->setPosition(-40,0);
     emis->setPositionType(tPositionType::GROUPED);
     emis->setRotation(180);
-    //emis->setStartColor(Color4F(0,0.99,1,1));
     plane->addChild(emis, -2);
 
     
-    //************ adds stars ****************
+    //************ adds vanishing ****************
     auto fileUtil = FileUtils::getInstance();
     auto plistData = fileUtil->getValueMapFromFile("vanishingPoint.plist");
-    auto sf = SpriteFrame::create("bullets.png", Rect(5,8,24,32));
-    //auto stars = ParticleSystemQuad::create(plistData, sf);
-    auto stars = ParticleSystemQuad::create(plistData);
-    stars->setAnchorPoint(Point(0.5f,0.5f));
-    //stars->setStartSize(100);
-    stars->setPosition(visible_size_macro.width-90,visible_size_macro.height/2 +50);
-    this->addChild(stars,1,1);
+    //auto sf = SpriteFrame::create("bullets.png", Rect(5,8,24,32));
+    auto vanishing = ParticleSystemQuad::create(plistData);
+    vanishing->setAnchorPoint(Point(0.5f,0.5f));
+    vanishing->setPosition(visible_size_macro.width-90,visible_size_macro.height/2 +50);
+    this->addChild(vanishing,1,1);
     
     //************* adds background ***********
     auto background = Sprite::createWithSpriteFrameName("mainmenu_BG.png");
     background->setAnchorPoint(Point(0,0));
     this->addChild(background,-1,-1);
-    
-//    //************* adds logo *****************
-//    auto logo = Sprite::createWithSpriteFrameName("LOGO.png");
-//    logo->setAnchorPoint(Point(0.5,0.5));
-//    logo->setPosition(visibleSize.width/2,visibleSize.height-200);
-//    this->addChild(logo,3,3);
     
     //************* adds start game ***********
     auto start_normal=Sprite::createWithSpriteFrameName("start_game.png");

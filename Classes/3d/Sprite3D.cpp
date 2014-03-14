@@ -153,7 +153,7 @@ void Sprite3D::draw(Renderer* renderer, const kmMat4 &transform, bool transformU
 void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
 {
     glEnable(GL_DEPTH_TEST);
-    //glEnable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
     // ********** Base Draw *************
     
     _mainShader->use();

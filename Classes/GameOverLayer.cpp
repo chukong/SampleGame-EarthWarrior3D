@@ -60,7 +60,7 @@ bool GameOverLayer::init()
 //                                           CC_CALLBACK_1(GameOverLayer::menu_playagain_Callback,this));
     
     auto menu = Menu::create(backtomenu_Item,NULL);
-    //menu->alignItemsHorizontallyWithPadding(20);
+    menu->alignItemsHorizontallyWithPadding(20);
     menu->setPosition(visibleSize.width/2, 100);
     this->addChild(menu, 2);
     
@@ -110,7 +110,21 @@ void GameOverLayer::menu_backtomenu_Callback(Ref* sender)
 void GameOverLayer::menu_backtomenu()
 {
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+    
     Director::getInstance()->replaceScene(MainMenuScene::createScene());
+    for(int i=EnemyController::enemies.size()-1;i>=0;i--)
+    {
+        EnemyController::erase(i);
+    }
+    for(int i=EnemyController::showCaseEnemies.size()-1;i>=0;i--)
+    {
+        EnemyController::showCaseEnemies.at(i)->removeFromParentAndCleanup(false);
+        EnemyController::showCaseEnemies.erase(i);
+    }
+    for(int i=BulletController::bullets.size()-1;i>=0;i--)
+    {
+        BulletController::erase(i);
+    }
 }
 
 void GameOverLayer::menu_playagain_Callback(Ref* sender)
@@ -119,6 +133,7 @@ void GameOverLayer::menu_playagain_Callback(Ref* sender)
                                                 ScaleTo::create(0.1f, 0.9f),
                                                 ScaleTo::create(0.1f, 1.0f),
                                                CallFunc::create(CC_CALLBACK_0(GameOverLayer::menu_playagain, this)),NULL));
+    
 }
 
 void GameOverLayer::menu_playagain()

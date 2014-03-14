@@ -49,9 +49,6 @@ void EffectManager::createBigExplosion(Point pos)
     {
         explosion = _bigExplPool.back();
         _bigExplPool.popBack();
-//        explosion->part1->resetSystem();
-//        explosion->part2->resetSystem();
-//        explosion->part3->resetSystem();
     }
     else
     {

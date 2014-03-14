@@ -52,7 +52,7 @@ Bullet* BulletController::spawnBullet(int type, Point pos, Point vec)
             {
                 // if the pool is not empty, we don't need to create, just return that, and reset its data
                 bullet = _missilePool.back();
-                bullet->retain();
+                //bullet->retain();
                 _missilePool.popBack();
                 
                 //bullet->reset();
@@ -262,23 +262,21 @@ void GameController::update(float dt, Player* player)
                     {
                         //collision happened
                         bool dead =  e->hurt(b->getDamage());
-                        //                        if(!dead)
-                        //                        {
-                        switch(b->getType())
+                        if(!dead)
                         {
-                            case kPlayerMissiles:
+                            switch(b->getType())
                             {
-                                EffectManager::createExplosion(b->getPosition());
+                                case kPlayerMissiles:
+                                    EffectManager::createExplosion(b->getPosition());
                                 
-                                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
+                                    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom2.mp3");
+                                    break;
+                                default:
+                                    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.mp3");
+                                    break;
                             }
-                                break;
-                            default:
-                                CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("hit.mp3");
-                                break;
                         }
                         BulletController::erase(i);
-                        break;
                     }
                     
                 }
@@ -342,8 +340,6 @@ void GameController::update(float dt, Player* player)
         {
             player->hurt(50);
             enemy->hurt(50);
-            if(enemy->getType() != kEnemyBoss)
-                EnemyController::erase(k);
             if(enemy->getType() != kEnemyBoss && enemy->getType() != kEnemyBigDude)
             EnemyController::erase(k);
         }
