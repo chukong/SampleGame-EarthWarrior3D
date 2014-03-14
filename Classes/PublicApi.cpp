@@ -10,7 +10,7 @@
 USING_NS_CC;
 
 float PublicApi::hp2percent(float hp){
-    float percent;
+    float percent = 100.0f;
     if(hp>=100){
         percent = 100.f;
     }else if(83<=hp && hp<=99){

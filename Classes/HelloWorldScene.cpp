@@ -91,16 +91,6 @@ bool HelloWorld::init()
     
     NotificationCenter::getInstance()->destroyInstance();
     NotificationCenter::getInstance()->addObserver(this,callfuncO_selector(HelloWorld::ShowGameOver),"ShowGameOver",NULL);
-    
-    // Easter Egg
-//    auto cocos = Sprite3D::create("coconut.obj", "coco.png");
-//    auto coco = cocos;
-//    addChild(coco);
-//    coco->setScale(1);
-//    coco->setOutline(10, Color3B(0,0,0));
-//    coco->setPosition(320,480);
-//    coco->runAction(RepeatForever::create(RotateBy::create(0.3, Vertex3F(10,12,13))));
-    //glEnable(GL_DEPTH_TEST);
 
     return true;
 }

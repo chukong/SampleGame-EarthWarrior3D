@@ -71,10 +71,10 @@ void Fodder::shoot(float dt)
         auto bullet =BulletController::spawnBullet(kEnemyBullet, getPosition(), Point(cosf(angle)*-500, sinf(angle)*-500));
         //auto bullet =BulletController::spawnBullet(kEnemyBullet, getPosition(), Point(0,-500));
         bullet->setRotation(-CC_RADIANS_TO_DEGREES(angle)-90);
-        log("aaaaaaa");
+        //log("aaaaaaa");
     }
     else{
-        log("player is dead,hahahaha");
+        //log("player is dead,hahahaha");
     }
 }
 
