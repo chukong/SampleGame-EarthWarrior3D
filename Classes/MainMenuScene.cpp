@@ -11,6 +11,7 @@
 #include "PublicApi.h"
 #include "Plane.h"
 #include "GameLayer.h"
+#include "HelloWorldScene.h"
 USING_NS_CC;
 
 Scene* MainMenuScene::createScene()
@@ -131,7 +132,8 @@ void MainMenuScene::update(float dt){
     plane->setPosition3D(Vertex3F(visible_size_macro.width/2+50,480-20*sin(1.05*pRate),0));
 }
 
-void MainMenuScene::startgame(Ref* sender){
+void MainMenuScene::startgame(Ref* sender)
+{
     startgame_item->runAction(Sequence::create(ScaleTo::create(0.1f, 1.4f),
                                                 ScaleTo::create(0.1f, 1.2f),
                                                 ScaleTo::create(0.1f, 1.3f),
@@ -142,7 +144,8 @@ void MainMenuScene::startgame_callback()
 {
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
     GameLayer::isDie=false;
-    Director::getInstance()->replaceScene(LoadingScene::createScene());
+    auto scene = (LoadingScene::audioloaded) ? HelloWorld::createScene() :LoadingScene::createScene();
+    Director::getInstance()->replaceScene(scene);
 }
 
 void MainMenuScene::credits(Ref* sender){

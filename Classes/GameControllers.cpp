@@ -233,6 +233,9 @@ void EnemyController::erase(int i)
         case kEnemyBigDude:
             _bigDudePool.pushBack(static_cast<BigDude*>(e));
             break;
+        case kEnemyBoss:
+            _bossPool.pushBack(static_cast<Boss*>(e));
+            break;
     }
     enemies.erase(i);
     e->removeFromParentAndCleanup(false);

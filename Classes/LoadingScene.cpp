@@ -23,6 +23,9 @@ int LoadingScene::m_curPreload_BigDude_count=0;
 int LoadingScene::m_curPreload_Missile_count=0;
 int LoadingScene::m_curPreload_Boss_count=0;
 
+int LoadingScene::audioloaded = false;
+int LoadingScene::particleloaded = false;
+
 LoadingScene::~LoadingScene()
 {
 }
@@ -103,8 +106,10 @@ void LoadingScene::InitCoco()
 
 void LoadingScene::LoadingResource()
 {
+    if(!particleloaded)
     LoadingParticle();
     //Loading Music
+    if(!audioloaded)
     LoadingMusic();
     
     //Loading Picture
@@ -113,6 +118,7 @@ void LoadingScene::LoadingResource()
 
 void LoadingScene::LoadingMusic()
 {
+    audioloaded = true;
     auto Audio = CocosDenshion::SimpleAudioEngine::getInstance();
     Audio->preloadEffect("explodeEffect.mp3");
     Audio->preloadEffect("hit.mp3");
@@ -269,6 +275,7 @@ void LoadingScene::LoadingBullet(int type)
 
 void LoadingScene::LoadingParticle()
 {
+    particleloaded = true;
     auto particle=ParticleManager::getInstance();
     particle->AddPlistData("missileFlare.plist","missileFlare");
     particle->AddPlistData("emission.plist", "emission");

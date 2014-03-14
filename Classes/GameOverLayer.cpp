@@ -12,6 +12,7 @@
 #include "GameLayer.h"
 #include "GameControllers.h"
 #include "AirCraft.h"
+#include "Bullets.h"
 
 GameOverLayer* GameOverLayer::create(int score)
 {
@@ -114,17 +115,20 @@ void GameOverLayer::menu_backtomenu()
     Director::getInstance()->replaceScene(MainMenuScene::createScene());
     for(int i=EnemyController::enemies.size()-1;i>=0;i--)
     {
-        EnemyController::erase(i);
+        EnemyController::enemies.at(i)->removeFromParentAndCleanup(true);
     }
+    EnemyController::enemies.clear();
     for(int i=EnemyController::showCaseEnemies.size()-1;i>=0;i--)
     {
-        EnemyController::showCaseEnemies.at(i)->removeFromParentAndCleanup(false);
-        EnemyController::showCaseEnemies.erase(i);
+        EnemyController::showCaseEnemies.at(i)->removeFromParentAndCleanup(true);
+        //EnemyController::showCaseEnemies.erase(i);
     }
+    EnemyController::showCaseEnemies.clear();
     for(int i=BulletController::bullets.size()-1;i>=0;i--)
     {
-        BulletController::erase(i);
+        BulletController::bullets.erase(i);
     }
+    BulletController::bullets.clear();
 }
 
 void GameOverLayer::menu_playagain_Callback(Ref* sender)

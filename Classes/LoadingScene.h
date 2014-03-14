@@ -37,7 +37,7 @@ public:
     virtual bool init();
     
     void update(float dt);
-    
+    static int audioloaded;
     CREATE_FUNC(LoadingScene);
     
 private:
@@ -54,6 +54,7 @@ private:
     void GotoNextScene();
     void RunNextScene(float dt);
     
+    
 private:
     static bool isReg;
     int currentNum;
@@ -69,7 +70,8 @@ private:
     static int m_curPreload_Boss_count;
     
     static int updatecount;
-    
+
+    static int particleloaded;
 };
 
 
