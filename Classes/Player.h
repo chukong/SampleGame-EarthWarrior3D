@@ -40,6 +40,7 @@ public:
     void setPosition(Point pos);
     virtual bool hurt(float damage);
     virtual void die();
+    void hideWarningLayer();
 protected:
     float targetAngle = 0;
     Point targetPos = Point(0,0);

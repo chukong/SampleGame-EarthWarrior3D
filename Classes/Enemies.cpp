@@ -213,6 +213,7 @@ void BigDude::die(){
     log("now X: %f Y:%f \n",nowPoint.x,nowPoint.y);
     Point targetPos = Point(nowPoint.x,nowPoint.y-200);
     log("now X: %f Y:%f \n",targetPos.x,targetPos.y);
+    unscheduleAllSelectors();
     this->runAction(
                      Sequence::create(
                                       Spawn::create(

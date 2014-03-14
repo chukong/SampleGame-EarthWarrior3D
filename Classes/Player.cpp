@@ -21,7 +21,6 @@
 bool Player::init()
 {
     _Model = Sprite3D::create("playerv002.obj", "playerv002_256.png");
-    //_Model = Sprite3D::create("Scania4.obj", "car00.png");
     if(_Model)
     {
         _Model->setScale(8);
@@ -117,7 +116,10 @@ void Player::stop()
     unschedule(schedule_selector(Player::shoot));
     unschedule(schedule_selector(Player::shootMissile));
 }
-
+void Player::hideWarningLayer()
+{
+    setVisible(false);
+}
 bool Player::hurt(float damage){
     float fromHP = _HP;
     float toHP = _HP-=damage;
@@ -125,10 +127,11 @@ bool Player::hurt(float damage){
     auto fade = FadeTo::create(0.2, 40);
     auto fadeBack = FadeTo::create(0.2, 0);
     auto warningLayer = Director::getInstance()->getRunningScene()->getChildByTag(456);
-    warningLayer->runAction(Sequence::create(fade,fadeBack,NULL));
+    warningLayer->setVisible(true);
+    warningLayer->runAction(Sequence::create(fade,fadeBack,CallFunc::create(warningLayer, callfunc_selector(Player::hideWarningLayer)),NULL));
     
     auto hpView = ((HelloWorld*)Director::getInstance()->getRunningScene()->getChildByTag(100))->getHPView();
-    //Rye
+    
     auto to = ProgressFromTo::create(0.5, PublicApi::hp2percent(fromHP), PublicApi::hp2percent(toHP));
     hpView->runAction(to);
     
@@ -145,6 +148,5 @@ void Player::die()
 {
     _alive = false;
     GameLayer::isDie=true;
-    //TODO: Game ended, the player is dead!
     NotificationCenter::getInstance()->postNotification("ShowGameOver",NULL);
 }

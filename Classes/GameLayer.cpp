@@ -27,16 +27,16 @@ bool GameLayer::isDie=false;
 bool GameLayer::init()
 {    
     //************** animation cache ******************
-    auto animation = Animation::create();
-    animation->setDelayPerUnit(0.1);
-    auto texture = Director::getInstance()->getTextureCache()->addImage("player_bullet_explosion.png");
-    animation->addSpriteFrameWithTexture(texture, Rect(0,0,26,17));
-    animation->addSpriteFrameWithTexture(texture, Rect(0,18,26,22));
-    animation->addSpriteFrameWithTexture(texture, Rect(0,40,26,20));
-    animation->addSpriteFrameWithTexture(texture, Rect(0,61,26,23));
-
-    //animation->retain();
-    AnimationCache::getInstance()->addAnimation(animation,"bullet_expl");
+//    auto animation = Animation::create();
+//    animation->setDelayPerUnit(0.1);
+//    auto texture = Director::getInstance()->getTextureCache()->addImage("player_bullet_explosion.png");
+//    animation->addSpriteFrameWithTexture(texture, Rect(0,0,26,17));
+//    animation->addSpriteFrameWithTexture(texture, Rect(0,18,26,22));
+//    animation->addSpriteFrameWithTexture(texture, Rect(0,40,26,20));
+//    animation->addSpriteFrameWithTexture(texture, Rect(0,61,26,23));
+//
+//    animation->retain();
+//    AnimationCache::getInstance()->addAnimation(animation,"bullet_expl");
     
     _spr = Sprite::create("groundLevel.jpg");
     addChild(_spr, -5);
@@ -231,6 +231,7 @@ void GameLayer::removeBulletAndEnmeys(float dt)
     {
         //EnemyController::erase(i);
         EnemyController::showCaseEnemies.at(i)->removeFromParentAndCleanup(false);
+        EnemyController::showCaseEnemies.erase(i);
     }
     for(int i=BulletController::bullets.size()-1;i>=0;i--)
     {
