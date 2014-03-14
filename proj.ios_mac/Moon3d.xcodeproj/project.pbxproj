@@ -188,6 +188,12 @@
 		BB2D134018D2A4B600B0F241 /* toonSmoke.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2D12DB18D2A4B500B0F241 /* toonSmoke.plist */; };
 		BB2D134118D2A4B600B0F241 /* vanishingPoint.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2D12DC18D2A4B500B0F241 /* vanishingPoint.plist */; };
 		BB2D134218D2A4B600B0F241 /* vanishingPoint.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2D12DC18D2A4B500B0F241 /* vanishingPoint.plist */; };
+		BBA357BE18D3053700732321 /* LicenseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBA357BC18D3053700732321 /* LicenseLayer.cpp */; };
+		BBA357BF18D3053700732321 /* LicenseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BBA357BC18D3053700732321 /* LicenseLayer.cpp */; };
+		BBA357CB18D306E900732321 /* credits_03.png in Resources */ = {isa = PBXBuildFile; fileRef = BBA357CA18D306E900732321 /* credits_03.png */; };
+		BBA357CC18D306E900732321 /* credits_03.png in Resources */ = {isa = PBXBuildFile; fileRef = BBA357CA18D306E900732321 /* credits_03.png */; };
+		BBA357CE18D306F900732321 /* LICENSE_03.png in Resources */ = {isa = PBXBuildFile; fileRef = BBA357CD18D306F900732321 /* LICENSE_03.png */; };
+		BBA357CF18D306F900732321 /* LICENSE_03.png in Resources */ = {isa = PBXBuildFile; fileRef = BBA357CD18D306F900732321 /* LICENSE_03.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
 		BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF1C47EA1293683800B63C5D /* QuartzCore.framework */; };
@@ -475,6 +481,10 @@
 		BB2D12DA18D2A4B500B0F241 /* streak.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = streak.png; sourceTree = "<group>"; };
 		BB2D12DB18D2A4B500B0F241 /* toonSmoke.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = toonSmoke.plist; sourceTree = "<group>"; };
 		BB2D12DC18D2A4B500B0F241 /* vanishingPoint.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = vanishingPoint.plist; sourceTree = "<group>"; };
+		BBA357BC18D3053700732321 /* LicenseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LicenseLayer.cpp; path = ../Classes/LicenseLayer.cpp; sourceTree = "<group>"; };
+		BBA357BD18D3053700732321 /* LicenseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LicenseLayer.h; path = ../Classes/LicenseLayer.h; sourceTree = "<group>"; };
+		BBA357CA18D306E900732321 /* credits_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = credits_03.png; sourceTree = "<group>"; };
+		BBA357CD18D306F900732321 /* LICENSE_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LICENSE_03.png; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BF1C47EA1293683800B63C5D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -585,6 +595,8 @@
 				BB2D127518D1FD5B00B0F241 /* PublicApi.cpp */,
 				BB2D127618D1FD5B00B0F241 /* PublicApi.h */,
 				A044DE6E18C69F8000B6CCBD /* 3d */,
+				BBA357BC18D3053700732321 /* LicenseLayer.cpp */,
+				BBA357BD18D3053700732321 /* LicenseLayer.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -703,6 +715,8 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BBA357CD18D306F900732321 /* LICENSE_03.png */,
+				BBA357CA18D306E900732321 /* credits_03.png */,
 				BB2D12A918D2A4B500B0F241 /* boom.mp3 */,
 				BB2D12AA18D2A4B500B0F241 /* boom2.mp3 */,
 				BB2D12AB18D2A4B500B0F241 /* boss.obj */,
@@ -1019,6 +1033,8 @@
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				BB2D133518D2A4B600B0F241 /* playerv002.obj in Resources */,
 				BB2D133D18D2A4B600B0F241 /* streak.png in Resources */,
+				BBA357CB18D306E900732321 /* credits_03.png in Resources */,
+				BBA357CE18D306F900732321 /* LICENSE_03.png in Resources */,
 				BB2D133F18D2A4B600B0F241 /* toonSmoke.plist in Resources */,
 				BB2D12F918D2A4B500B0F241 /* dijiyuanv001.obj in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
@@ -1087,6 +1103,8 @@
 				BB2D133218D2A4B600B0F241 /* player_bullet_explosion.png in Resources */,
 				BB2D130A18D2A4B500B0F241 /* Marker Felt.ttf in Resources */,
 				BB2D131018D2A4B500B0F241 /* gameover.plist in Resources */,
+				BBA357CC18D306E900732321 /* credits_03.png in Resources */,
+				BBA357CF18D306F900732321 /* LICENSE_03.png in Resources */,
 				BB2D130618D2A4B500B0F241 /* flare.plist in Resources */,
 				BB2D12EA18D2A4B500B0F241 /* coco.png in Resources */,
 				BB2D131C18D2A4B600B0F241 /* loadingAndHP.png in Resources */,
@@ -1119,6 +1137,7 @@
 				BB2D128618D1FD5B00B0F241 /* GameEntity.cpp in Sources */,
 				BB2D129818D1FD5B00B0F241 /* Player.cpp in Sources */,
 				BB2D128A18D1FD5B00B0F241 /* GameOverLayer.cpp in Sources */,
+				BBA357BE18D3053700732321 /* LicenseLayer.cpp in Sources */,
 				BB2D128818D1FD5B00B0F241 /* GameLayer.cpp in Sources */,
 				BB2D128018D1FD5B00B0F241 /* Enemies.cpp in Sources */,
 				BB2D127818D1FD5B00B0F241 /* AirCraft.cpp in Sources */,
@@ -1145,6 +1164,7 @@
 				BB2D129718D1FD5B00B0F241 /* Plane.cpp in Sources */,
 				BB2D128B18D1FD5B00B0F241 /* GameOverLayer.cpp in Sources */,
 				BB2D128318D1FD5B00B0F241 /* Explosion.cpp in Sources */,
+				BBA357BF18D3053700732321 /* LicenseLayer.cpp in Sources */,
 				BB2D128718D1FD5B00B0F241 /* GameEntity.cpp in Sources */,
 				A044DE7818C69F8000B6CCBD /* Mesh.cpp in Sources */,
 				BB2D127B18D1FD5B00B0F241 /* AppDelegate.cpp in Sources */,

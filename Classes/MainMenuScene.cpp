@@ -12,6 +12,7 @@
 #include "Plane.h"
 #include "GameLayer.h"
 #include "HelloWorldScene.h"
+#include "LicenseLayer.h"
 USING_NS_CC;
 
 Scene* MainMenuScene::createScene()
@@ -146,7 +147,14 @@ void MainMenuScene::credits(Ref* sender){
 
 void MainMenuScene::credits_callback()
 {
-    
+    auto license =LicenseLayer::create("credits_03.png");
+    license->setAnchorPoint(Point(0.5f,0.5f));
+    license->setPosition(Point(visible_size_macro.width/2, visible_size_macro.height/2));
+    addChild(license,20);
+    license->runAction(Sequence::create(ScaleTo::create(0.2f, 1.1f),
+                                        ScaleTo::create(0.1f, 0.9f),
+                                        ScaleTo::create(0.1f, 1.0f),
+                                        NULL));
 }
 
 void MainMenuScene::license(Ref* sender){
@@ -158,5 +166,12 @@ void MainMenuScene::license(Ref* sender){
 
 void MainMenuScene::license_callback()
 {
-    
+    auto license =LicenseLayer::create("LICENSE_03.png");
+    license->setAnchorPoint(Point(0.5f,0.5f));
+    license->setPosition(Point(visible_size_macro.width/2, visible_size_macro.height/2));
+    addChild(license,20);
+    license->runAction(Sequence::create(ScaleTo::create(0.2f, 1.1f),
+                                        ScaleTo::create(0.1f, 0.9f),
+                                        ScaleTo::create(0.1f, 1.0f),
+                                        NULL));
 }

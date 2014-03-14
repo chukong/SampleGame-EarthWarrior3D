@@ -24,7 +24,7 @@
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{25,32}}</string>
 			<key>sourceSize</key>
@@ -37,7 +37,7 @@
 			<key>offset</key>
 			<string>{0,0}</string>
 			<key>rotated</key>
-			<true/>
+			<false/>
 			<key>sourceColorRect</key>
 			<string>{{0,0},{32,25}}</string>
 			<key>sourceSize</key>
