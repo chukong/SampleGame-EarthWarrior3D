@@ -19,7 +19,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     //glview->setDesignResolutionSize(480,800,ResolutionPolicy::FIXED_HEIGHT);
     if(!glview) {
-        glview = GLView::createWithRect("Moon3d", Rect(0, 0, 480, 640));
+        int height, width;
+        height = 800;
+        width = height*(640.0/960.0);
+        
+        glview = GLView::createWithRect("EarthWarrior3D", Rect(0, 0, width, height));
         
         director->setOpenGLView(glview);
     }

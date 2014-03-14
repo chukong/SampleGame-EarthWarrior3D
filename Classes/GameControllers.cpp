@@ -52,7 +52,7 @@ Bullet* BulletController::spawnBullet(int type, Point pos, Point vec)
             {
                 // if the pool is not empty, we don't need to create, just return that, and reset its data
                 bullet = _missilePool.back();
-                bullet->retain();
+                //bullet->retain();
                 _missilePool.popBack();
                 
                 //bullet->reset();

@@ -44,7 +44,7 @@ bool Player::init()
         schedule(schedule_selector(Player::shoot), 0.075, -1, 0);
         
         // engine trail
-        auto part_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("engine.jpg");
+        auto part_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("engine2.jpg");
         ValueMap vm=ParticleManager::getInstance()->GetPlistData("engine");
         auto part = ParticleSystemQuad::create(vm,part_frame);
         addChild(part);
