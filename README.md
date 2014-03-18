@@ -7,7 +7,7 @@ Using Cocos2d-x 3.0 and the experimental Sprite3D.
 
 The code of this project, Cocos2d-x, Sprite3D are all licensed under MIT
 
-Musics are copyrighted by [Matthew Pable](http://www.matthewpablo.com/), and licensed under CC-BY 3.0
+Musics are copyrighted by [Matthew Pablo](http://www.matthewpablo.com/), and licensed under CC-BY 3.0
 
 You may not use any art including 2d and 3d from this project for commercial purpose
 
