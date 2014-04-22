@@ -46,7 +46,7 @@ THE SOFTWARE.
 #include "CCScene.h"
 #include "renderer/CCCustomCommand.h"
 #include "renderer/CCRenderer.h"
-#include "CCString.h"
+#include "deprecated/CCString.h"
 
 NS_CC_BEGIN
 
@@ -584,7 +584,7 @@ void LayerColor::updateColor()
 void LayerColor::draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated)
 {
     _customCommand.init(_globalZOrder);
-    _customCommand.func = CC_CALLBACK_0(LayerColor::onDraw, this);
+    _customCommand.func = CC_CALLBACK_0(LayerColor::onDraw, this, transform, transformUpdated);
     renderer->addCommand(&_customCommand);
     
     for(int i = 0; i < 4; ++i)
@@ -594,13 +594,13 @@ void LayerColor::draw(Renderer *renderer, const kmMat4 &transform, bool transfor
         kmVec3TransformCoord(&pos, &pos, &_modelViewTransform);
         _noMVPVertices[i] = Vertex3F(pos.x,pos.y,pos.z);
     }
-    
 }
 
-void LayerColor::onDraw()
+void LayerColor::onDraw(const kmMat4& transform, bool transformUpdated)
 {
-    CC_NODE_DRAW_SETUP();
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    getShaderProgram()->use();
+    getShaderProgram()->setUniformsForBuiltins(transform);
+
     GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION | GL::VERTEX_ATTRIB_FLAG_COLOR );
     //
     // Attributes
@@ -627,9 +627,25 @@ std::string LayerColor::getDescription() const
 {
     return StringUtils::format("<LayerColor | Tag = %d>", _tag);
 }
+
 //
 // LayerGradient
-// 
+//
+LayerGradient::LayerGradient()
+: _startColor(Color4B::BLACK)
+, _endColor(Color4B::BLACK)
+, _startOpacity(255)
+, _endOpacity(255)
+, _alongVector(Point(0, -1))
+, _compressedInterpolation(true)
+{
+    
+}
+
+LayerGradient::~LayerGradient()
+{
+}
+
 LayerGradient* LayerGradient::create(const Color4B& start, const Color4B& end)
 {
     LayerGradient * layer = new LayerGradient();
@@ -684,9 +700,9 @@ bool LayerGradient::initWithColor(const Color4B& start, const Color4B& end, cons
     _endColor.g  = end.g;
     _endColor.b  = end.b;
 
-    _endOpacity   = end.a;
-    _startOpacity    = start.a;
-    _alongVector   = v;
+    _endOpacity     = end.a;
+    _startOpacity   = start.a;
+    _alongVector    = v;
 
     _compressedInterpolation = true;
 
@@ -833,6 +849,24 @@ LayerMultiplex::~LayerMultiplex()
     }
 }
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+LayerMultiplex * LayerMultiplex::createVariadic(Layer * layer, ...)
+{
+    va_list args;
+    va_start(args,layer);
+
+    LayerMultiplex * multiplexLayer = new LayerMultiplex();
+    if(multiplexLayer && multiplexLayer->initWithLayers(layer, args))
+    {
+        multiplexLayer->autorelease();
+        va_end(args);
+        return multiplexLayer;
+    }
+    va_end(args);
+    CC_SAFE_DELETE(multiplexLayer);
+    return nullptr;
+}
+#else
 LayerMultiplex * LayerMultiplex::create(Layer * layer, ...)
 {
     va_list args;
@@ -849,10 +883,11 @@ LayerMultiplex * LayerMultiplex::create(Layer * layer, ...)
     CC_SAFE_DELETE(multiplexLayer);
     return nullptr;
 }
+#endif
 
 LayerMultiplex * LayerMultiplex::createWithLayer(Layer* layer)
 {
-    return LayerMultiplex::create(layer, nullptr);
+    return LayerMultiplex::create(layer, NULL);
 }
 
 LayerMultiplex* LayerMultiplex::create()

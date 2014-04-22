@@ -26,8 +26,17 @@
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 
+#ifndef GLFW_EXPOSE_NATIVE_WIN32
+#define GLFW_EXPOSE_NATIVE_WIN32
+#endif
+
+#ifndef GLFW_EXPOSE_NATIVE_WGL
+#define GLFW_EXPOSE_NATIVE_WGL
+#endif
+
 #include "CCEditBox.h"
 #include "proj.win32/Win32InputBox.h"
+#include "glfw3native.h"
 
 NS_CC_EXT_BEGIN
 
@@ -38,8 +47,8 @@ EditBoxImpl* __createSystemEditBox(EditBox* pEditBox)
 
 EditBoxImplWin::EditBoxImplWin(EditBox* pEditText)
 : EditBoxImpl(pEditText)
-, _label(NULL)
-, _labelPlaceHolder(NULL)
+, _label(nullptr)
+, _labelPlaceHolder(nullptr)
 , _editBoxInputMode(EditBox::InputMode::SINGLE_LINE)
 , _editBoxInputFlag(EditBox::InputFlag::INTIAL_CAPS_ALL_CHARACTERS)
 , _keyboardReturnType(EditBox::KeyboardReturnType::DEFAULT)
@@ -61,14 +70,16 @@ void EditBoxImplWin::doAnimationWhenKeyboardMove(float duration, float distance)
 bool EditBoxImplWin::initWithSize(const Size& size)
 {
     //! int fontSize = getFontSizeAccordingHeightJni(size.height-12);
-    _label = LabelTTF::create("", "", size.height-12);
+    _label = Label::create();
+    _label->setSystemFontSize(size.height-12);
 	// align the text vertically center
     _label->setAnchorPoint(Point(0, 0.5f));
     _label->setPosition(Point(5, size.height / 2.0f));
     _label->setColor(_colText);
     _editBox->addChild(_label);
 
-    _labelPlaceHolder = LabelTTF::create("", "", size.height-12);
+    _labelPlaceHolder = Label::create();
+    _labelPlaceHolder->setSystemFontSize(size.height-12);
 	// align the text vertically center
     _labelPlaceHolder->setAnchorPoint(Point(0, 0.5f));
     _labelPlaceHolder->setPosition(Point(5, size.height / 2.0f));
@@ -83,13 +94,13 @@ bool EditBoxImplWin::initWithSize(const Size& size)
 void EditBoxImplWin::setFont(const char* pFontName, int fontSize)
 {
 	if(_label != NULL) {
-		_label->setFontName(pFontName);
-		_label->setFontSize(fontSize);
+		_label->setSystemFontName(pFontName);
+		_label->setSystemFontSize(fontSize);
 	}
 	
 	if(_labelPlaceHolder != NULL) {
-		_labelPlaceHolder->setFontName(pFontName);
-		_labelPlaceHolder->setFontSize(fontSize);
+		_labelPlaceHolder->setSystemFontName(pFontName);
+		_labelPlaceHolder->setSystemFontSize(fontSize);
 	}
 }
 
@@ -102,8 +113,8 @@ void EditBoxImplWin::setFontColor(const Color3B& color)
 void EditBoxImplWin::setPlaceholderFont(const char* pFontName, int fontSize)
 {
 	if(_labelPlaceHolder != NULL) {
-		_labelPlaceHolder->setFontName(pFontName);
-		_labelPlaceHolder->setFontSize(fontSize);
+		_labelPlaceHolder->setSystemFontName(pFontName);
+		_labelPlaceHolder->setSystemFontSize(fontSize);
 	}
 }
 
@@ -275,7 +286,10 @@ void EditBoxImplWin::openKeyboard()
 	std::string text = getText();
 	if (text.length())
 		strncpy(pText, text.c_str(), 100);
-	bool didChange = CWin32InputBox::InputBox("Input", placeHolder.c_str(), pText, 100, false) == IDOK;
+	GLView *glView = Director::getInstance()->getOpenGLView();
+	GLFWwindow *glfwWindow = glView->getWindow();
+	HWND hwnd = glfwGetWin32Window(glfwWindow);
+	bool didChange = CWin32InputBox::InputBox("Input", placeHolder.c_str(), pText, 100, false, hwnd) == IDOK;
 	
 	if (didChange) 	
 		setText(pText);

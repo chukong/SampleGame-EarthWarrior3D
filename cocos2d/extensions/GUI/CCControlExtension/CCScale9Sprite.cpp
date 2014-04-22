@@ -49,16 +49,16 @@ Scale9Sprite::Scale9Sprite()
 : _spritesGenerated(false)
 , _spriteFrameRotated(false)
 , _positionsAreDirty(false)
-, _scale9Image(NULL)
-, _topLeft(NULL)
-, _top(NULL)
-, _topRight(NULL)
-, _left(NULL)
-, _centre(NULL)
-, _right(NULL)
-, _bottomLeft(NULL)
-, _bottom(NULL)
-, _bottomRight(NULL)
+, _scale9Image(nullptr)
+, _topLeft(nullptr)
+, _top(nullptr)
+, _topRight(nullptr)
+, _left(nullptr)
+, _centre(nullptr)
+, _right(nullptr)
+, _bottomLeft(nullptr)
+, _bottom(nullptr)
+, _bottomRight(nullptr)
 , _opacityModifyRGB(false)
 , _insetLeft(0)
 , _insetTop(0)
@@ -458,16 +458,14 @@ void Scale9Sprite::updatePositions()
     _centre->setPosition(Point(leftWidth, bottomHeight));
 }
 
-bool Scale9Sprite::initWithFile(const char* file, const Rect& rect,  const Rect& capInsets)
-{
-    CCASSERT(file != NULL, "Invalid file for sprite");
-    
+bool Scale9Sprite::initWithFile(const std::string& file, const Rect& rect,  const Rect& capInsets)
+{    
     SpriteBatchNode *batchnode = SpriteBatchNode::create(file, 9);
     bool pReturn = this->initWithBatchNode(batchnode, rect, capInsets);
     return pReturn;
 }
 
-Scale9Sprite* Scale9Sprite::create(const char* file, const Rect& rect,  const Rect& capInsets)
+Scale9Sprite* Scale9Sprite::create(const std::string& file, const Rect& rect,  const Rect& capInsets)
 {
     Scale9Sprite* pReturn = new Scale9Sprite();
     if ( pReturn && pReturn->initWithFile(file, rect, capInsets) )
@@ -479,14 +477,13 @@ Scale9Sprite* Scale9Sprite::create(const char* file, const Rect& rect,  const Re
     return NULL;
 }
 
-bool Scale9Sprite::initWithFile(const char* file, const Rect& rect)
+bool Scale9Sprite::initWithFile(const std::string& file, const Rect& rect)
 {
-    CCASSERT(file != NULL, "Invalid file for sprite");
     bool pReturn = this->initWithFile(file, rect, Rect::ZERO);
     return pReturn;
 }
 
-Scale9Sprite* Scale9Sprite::create(const char* file, const Rect& rect)
+Scale9Sprite* Scale9Sprite::create(const std::string& file, const Rect& rect)
 {
     Scale9Sprite* pReturn = new Scale9Sprite();
     if ( pReturn && pReturn->initWithFile(file, rect) )
@@ -499,13 +496,13 @@ Scale9Sprite* Scale9Sprite::create(const char* file, const Rect& rect)
 }
 
 
-bool Scale9Sprite::initWithFile(const Rect& capInsets, const char* file)
+bool Scale9Sprite::initWithFile(const Rect& capInsets, const std::string& file)
 {
     bool pReturn = this->initWithFile(file, Rect::ZERO, capInsets);
     return pReturn;
 }
 
-Scale9Sprite* Scale9Sprite::create(const Rect& capInsets, const char* file)
+Scale9Sprite* Scale9Sprite::create(const Rect& capInsets, const std::string& file)
 {
     Scale9Sprite* pReturn = new Scale9Sprite();
     if ( pReturn && pReturn->initWithFile(capInsets, file) )
@@ -517,14 +514,14 @@ Scale9Sprite* Scale9Sprite::create(const Rect& capInsets, const char* file)
     return NULL;
 }
 
-bool Scale9Sprite::initWithFile(const char* file)
+bool Scale9Sprite::initWithFile(const std::string& file)
 {
     bool pReturn = this->initWithFile(file, Rect::ZERO);
     return pReturn;
     
 }
 
-Scale9Sprite* Scale9Sprite::create(const char* file)
+Scale9Sprite* Scale9Sprite::create(const std::string& file)
 {
     Scale9Sprite* pReturn = new Scale9Sprite();
     if ( pReturn && pReturn->initWithFile(file) )
@@ -578,7 +575,7 @@ Scale9Sprite* Scale9Sprite::createWithSpriteFrame(SpriteFrame* spriteFrame)
     return NULL;
 }
 
-bool Scale9Sprite::initWithSpriteFrameName(const char* spriteFrameName, const Rect& capInsets)
+bool Scale9Sprite::initWithSpriteFrameName(const std::string& spriteFrameName, const Rect& capInsets)
 {
     CCASSERT((SpriteFrameCache::getInstance()) != NULL, "SpriteFrameCache::getInstance() must be non-NULL");
 
@@ -591,7 +588,7 @@ bool Scale9Sprite::initWithSpriteFrameName(const char* spriteFrameName, const Re
     return pReturn;
 }
 
-Scale9Sprite* Scale9Sprite::createWithSpriteFrameName(const char* spriteFrameName, const Rect& capInsets)
+Scale9Sprite* Scale9Sprite::createWithSpriteFrameName(const std::string& spriteFrameName, const Rect& capInsets)
 {
     Scale9Sprite* pReturn = new Scale9Sprite();
     if ( pReturn && pReturn->initWithSpriteFrameName(spriteFrameName, capInsets) )
@@ -603,16 +600,14 @@ Scale9Sprite* Scale9Sprite::createWithSpriteFrameName(const char* spriteFrameNam
     return NULL;
 }
 
-bool Scale9Sprite::initWithSpriteFrameName(const char* spriteFrameName)
+bool Scale9Sprite::initWithSpriteFrameName(const std::string& spriteFrameName)
 {
     bool pReturn = this->initWithSpriteFrameName(spriteFrameName, Rect::ZERO);
     return pReturn;
 }
 
-Scale9Sprite* Scale9Sprite::createWithSpriteFrameName(const char* spriteFrameName)
+Scale9Sprite* Scale9Sprite::createWithSpriteFrameName(const std::string& spriteFrameName)
 {
-    CCASSERT(spriteFrameName != NULL, "spriteFrameName must be non-NULL");
-
     Scale9Sprite* pReturn = new Scale9Sprite();
     if ( pReturn && pReturn->initWithSpriteFrameName(spriteFrameName) )
     {

@@ -28,9 +28,8 @@ THE SOFTWARE.
 #include "CCApplication.h"
 #include "CCTouch.h"
 #include "CCStdC.h"
-#include "CCInteger.h"
 #include "CCEventListenerTouch.h"
-#include "CCString.h"
+#include "deprecated/CCString.h"
 
 #include <vector>
 #include <stdarg.h>
@@ -53,10 +52,26 @@ Menu::~Menu()
     CCLOGINFO("In the destructor of Menu. %p", this);
 }
 
+
 Menu* Menu::create()
 {
     return Menu::create(nullptr, nullptr);
 }
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+Menu * Menu::variadicCreate(MenuItem* item, ...)
+{
+    va_list args;
+    va_start(args,item);
+    
+    Menu *ret = Menu::createWithItems(item, args);
+    
+    va_end(args);
+    
+    return ret;
+}
+#else
+
 
 Menu * Menu::create(MenuItem* item, ...)
 {
@@ -69,6 +84,8 @@ Menu * Menu::create(MenuItem* item, ...)
     
     return ret;
 }
+#endif
+
 
 Menu* Menu::createWithArray(const Vector<MenuItem*>& arrayOfItems)
 {

@@ -76,7 +76,11 @@ ClippingNode::ClippingNode()
 
 ClippingNode::~ClippingNode()
 {
-    CC_SAFE_RELEASE(_stencil);
+    if (_stencil)
+    {
+        _stencil->stopAllActions();
+        _stencil->release();
+    }
 }
 
 ClippingNode* ClippingNode::create()
@@ -231,7 +235,7 @@ void ClippingNode::visit(Renderer *renderer, const kmMat4 &parentTransform, bool
 #else
         // since glAlphaTest do not exists in OES, use a shader that writes
         // pixel only if greater than an alpha threshold
-        GLProgram *program = ShaderCache::getInstance()->getProgram(GLProgram::SHADER_NAME_POSITION_TEXTURE_ALPHA_TEST);
+        GLProgram *program = ShaderCache::getInstance()->getProgram(GLProgram::SHADER_NAME_POSITION_TEXTURE_ALPHA_TEST_NO_MV);
         GLint alphaValueLocation = glGetUniformLocation(program->getProgram(), GLProgram::UNIFORM_NAME_ALPHA_TEST_VALUE);
         // set our alphaThreshold
         program->use();
@@ -291,9 +295,9 @@ Node* ClippingNode::getStencil() const
 
 void ClippingNode::setStencil(Node *stencil)
 {
+    CC_SAFE_RETAIN(stencil);
     CC_SAFE_RELEASE(_stencil);
     _stencil = stencil;
-    CC_SAFE_RETAIN(_stencil);
 }
 
 GLfloat ClippingNode::getAlphaThreshold() const

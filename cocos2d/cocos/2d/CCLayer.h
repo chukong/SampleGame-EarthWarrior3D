@@ -45,6 +45,7 @@ NS_CC_BEGIN
  * @{
  */
 
+class __Set;
 class TouchScriptHandlerEntry;
 
 class EventListenerTouch;
@@ -77,10 +78,10 @@ public:
     CC_DEPRECATED_ATTRIBUTE virtual void ccTouchesEnded(__Set *pTouches, Event *pEvent) final {CC_UNUSED_PARAM(pTouches); CC_UNUSED_PARAM(pEvent);}
     CC_DEPRECATED_ATTRIBUTE virtual void ccTouchesCancelled(__Set *pTouches, Event *pEvent) final {CC_UNUSED_PARAM(pTouches); CC_UNUSED_PARAM(pEvent);}
     
-	/* Callback function should not be deprecated, it will generate lots of warnings.
-	Since 'setTouchEnabled' was deprecated, it will make warnings if developer overrides onTouchXXX and invokes setTouchEnabled(true) instead of using EventDispatcher::addEventListenerWithXXX.
+    /* Callback function should not be deprecated, it will generate lots of warnings.
+       Since 'setTouchEnabled' was deprecated, it will make warnings if developer overrides onTouchXXX and invokes setTouchEnabled(true) instead of using EventDispatcher::addEventListenerWithXXX.
     */
-	virtual bool onTouchBegan(Touch *touch, Event *unused_event); 
+    virtual bool onTouchBegan(Touch *touch, Event *unused_event); 
     virtual void onTouchMoved(Touch *touch, Event *unused_event); 
     virtual void onTouchEnded(Touch *touch, Event *unused_event); 
     virtual void onTouchCancelled(Touch *touch, Event *unused_event);
@@ -162,11 +163,13 @@ public:
     // Overrides
     virtual std::string getDescription() const override;
 
-protected:
+CC_CONSTRUCTOR_ACCESS:
     Layer();
     virtual ~Layer();
-    virtual bool init();
 
+    virtual bool init() override;
+
+protected:
     //add the api for avoid use deprecated api
     void _addTouchListener();
 
@@ -266,8 +269,7 @@ public:
     // Overrides
     //
     virtual void draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated) override;
-    virtual void onDraw();
-    
+
     virtual void setContentSize(const Size & var) override;
     /** BlendFunction. Conforms to BlendProtocol protocol */
     /**
@@ -285,13 +287,17 @@ public:
     virtual void setBlendFunc(const BlendFunc& blendFunc) override;
 
     virtual std::string getDescription() const override;
-
-protected:
+    
+CC_CONSTRUCTOR_ACCESS:
     LayerColor();
     virtual ~LayerColor();
-    virtual bool init();
+    
+    bool init();
     bool initWithColor(const Color4B& color, GLfloat width, GLfloat height);
     bool initWithColor(const Color4B& color);
+
+protected:
+    void onDraw(const kmMat4& transform, bool transformUpdated);
 
     virtual void updateColor() override;
 
@@ -338,19 +344,6 @@ public:
 
     /** Creates a full-screen Layer with a gradient between start and end in the direction of v. */
     static LayerGradient* create(const Color4B& start, const Color4B& end, const Point& v);
-
-    virtual bool init();
-    /** Initializes the Layer with a gradient between start and end. 
-     * @js init
-     * @lua init
-     */
-    bool initWithColor(const Color4B& start, const Color4B& end);
-
-    /** Initializes the Layer with a gradient between start and end in the direction of v. 
-     * @js init
-     * @lua init
-     */
-    bool initWithColor(const Color4B& start, const Color4B& end, const Point& v);
     
     /** Whether or not the interpolation will be compressed in order to display all the colors of the gradient both in canonical and non canonical vectors
      Default: true
@@ -386,6 +379,23 @@ public:
     const Point& getVector() const;
 
     virtual std::string getDescription() const override;
+    
+CC_CONSTRUCTOR_ACCESS:
+    LayerGradient();
+    virtual ~LayerGradient();
+    
+    virtual bool init();
+    /** Initializes the Layer with a gradient between start and end.
+     * @js init
+     * @lua init
+     */
+    bool initWithColor(const Color4B& start, const Color4B& end);
+    
+    /** Initializes the Layer with a gradient between start and end in the direction of v.
+     * @js init
+     * @lua init
+     */
+    bool initWithColor(const Color4B& start, const Color4B& end, const Point& v);
 
 protected:
     virtual void updateColor() override;
@@ -426,7 +436,25 @@ public:
      * In lua:local create(...)
      * @endcode
      */
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+    // WP8 in VS2012 does not support nullptr in variable args lists and variadic templates are also not supported
+    typedef Layer* M;
+    static LayerMultiplex* create(M m1, std::nullptr_t listEnd) { return createVariadic(m1, NULL); }
+    static LayerMultiplex* create(M m1, M m2, std::nullptr_t listEnd) { return createVariadic(m1, m2, NULL); }
+    static LayerMultiplex* create(M m1, M m2, M m3, std::nullptr_t listEnd) { return createVariadic(m1, m2, m3, NULL); }
+    static LayerMultiplex* create(M m1, M m2, M m3, M m4, std::nullptr_t listEnd) { return createVariadic(m1, m2, m3, m4, NULL); }
+    static LayerMultiplex* create(M m1, M m2, M m3, M m4, M m5, std::nullptr_t listEnd) { return createVariadic(m1, m2, m3, m4, m5, NULL); }
+    static LayerMultiplex* create(M m1, M m2, M m3, M m4, M m5, M m6, std::nullptr_t listEnd) { return createVariadic(m1, m2, m3, m4, m5, m6, NULL); }
+    static LayerMultiplex* create(M m1, M m2, M m3, M m4, M m5, M m6, M m7, std::nullptr_t listEnd) { return createVariadic(m1, m2, m3, m4, m5, m6, m7, NULL); }
+    static LayerMultiplex* create(M m1, M m2, M m3, M m4, M m5, M m6, M m7, M m8, std::nullptr_t listEnd) { return createVariadic(m1, m2, m3, m4, m5, m6, m7, m8, NULL); }
+    static LayerMultiplex* create(M m1, M m2, M m3, M m4, M m5, M m6, M m7, M m8, M m9, std::nullptr_t listEnd) { return createVariadic(m1, m2, m3, m4, m5, m6, m7, m8, m9, NULL); }
+    static LayerMultiplex* create(M m1, M m2, M m3, M m4, M m5, M m6, M m7, M m8, M m9, M m10, std::nullptr_t listEnd) { return createVariadic(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10,  NULL); }
+
+    // On WP8 for variable argument lists longer than 10 items, use createWithArray or createVariadic with NULL as the last argument
+    static LayerMultiplex* createVariadic(Layer* item, ...) CC_REQUIRES_NULL_TERMINATION;
+#else
     static LayerMultiplex * create(Layer* layer, ... );
+#endif
 
     /**
      * lua script can not init with undetermined number of variables
@@ -449,9 +477,8 @@ public:
     void switchToAndReleaseMe(int n);
 
     virtual std::string getDescription() const override;
-
-protected:
     
+CC_CONSTRUCTOR_ACCESS:
     /**
      * @js ctor
      */
@@ -473,7 +500,8 @@ protected:
      @since v2.1
      */
     bool initWithArray(const Vector<Layer*>& arrayOfLayers);
-    
+
+protected:
     unsigned int _enabledLayer;
     Vector<Layer*>    _layers;
 

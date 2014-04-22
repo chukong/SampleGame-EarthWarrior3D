@@ -30,7 +30,6 @@ THE SOFTWARE.
 #include "CCDirector.h"
 #include "utlist.h"
 #include "ccCArray.h"
-#include "CCArray.h"
 #include "CCScriptSupport.h"
 
 NS_CC_BEGIN
@@ -233,11 +232,7 @@ void TimerScriptHandler::trigger()
 
 void TimerScriptHandler::cancel()
 {
-    if (0 != _scriptHandler)
-    {
-        ScriptEngineManager::getInstance()->getScriptEngine()->removeScriptHandler(_scriptHandler);
-        _scriptHandler = 0;
-    }
+
 }
 
 #endif

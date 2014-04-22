@@ -58,9 +58,10 @@ include_directories(
   ${COCOS2D_ROOT}/cocos/2d/platform/desktop
   ${COCOS2D_ROOT}/cocos/2d/platform/linux
   ${COCOS2D_ROOT}/cocos/base
+  ${COCOS2D_ROOT}/cocos/deprecated
   ${COCOS2D_ROOT}/cocos/physics
   ${COCOS2D_ROOT}/cocos/editor-support
-  ${COCOS2D_ROOT}/cocos/math/kazmath/include
+  ${COCOS2D_ROOT}/cocos/math/kazmath
   ${COCOS2D_ROOT}/extensions
   ${COCOS2D_ROOT}/external
   ${COCOS2D_ROOT}/external/edtaa3func
@@ -74,6 +75,7 @@ include_directories(
   ${COCOS2D_ROOT}/external/websockets/include/linux
   ${COCOS2D_ROOT}/external/spidermonkey/include/linux
   ${COCOS2D_ROOT}/external/linux-specific/fmod/include/${ARCH_DIR}
+  ${COCOS2D_ROOT}/external/xxhash
 )
 
 link_directories(
@@ -105,6 +107,9 @@ add_subdirectory(${COCOS2D_ROOT}/external/tinyxml2)
 # audio
 add_subdirectory(${COCOS2D_ROOT}/cocos/audio)
 
+# xxhash library
+add_subdirectory(${COCOS2D_ROOT}/external/xxhash)
+
 # cocos base library
 add_subdirectory(${COCOS2D_ROOT}/cocos/base)
 
@@ -114,8 +119,8 @@ add_subdirectory(${COCOS2D_ROOT}/cocos/2d)
 # cocos storage
 add_subdirectory(${COCOS2D_ROOT}/cocos/storage)
 
-# gui
-add_subdirectory(${COCOS2D_ROOT}/cocos/gui)
+# ui
+add_subdirectory(${COCOS2D_ROOT}/cocos/ui)
 
 # network
 add_subdirectory(${COCOS2D_ROOT}/cocos/network)
@@ -146,7 +151,7 @@ set(FMOD_LIB "fmodex")
 endif()
 
 target_link_libraries(${APP_NAME}
-  gui
+  ui
   network
   storage
   spine

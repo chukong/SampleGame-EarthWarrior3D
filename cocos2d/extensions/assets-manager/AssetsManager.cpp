@@ -30,7 +30,7 @@
 #include <vector>
 #include <thread>
 
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32) && (CC_TARGET_PLATFORM != CC_PLATFORM_WP8) && (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <errno.h>
@@ -83,9 +83,9 @@ AssetsManager::AssetsManager(const char* packageUrl/* =NULL */, const char* vers
 , _packageUrl(packageUrl)
 , _versionFileUrl(versionFileUrl)
 , _downloadedVersion("")
-, _curl(NULL)
+, _curl(nullptr)
 , _connectionTimeout(0)
-, _delegate(NULL)
+, _delegate(nullptr)
 , _isDownloading(false)
 , _shouldDeleteDelegateWhenExit(false)
 {
