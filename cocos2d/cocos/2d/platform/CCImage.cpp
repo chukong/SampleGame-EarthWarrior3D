@@ -46,7 +46,9 @@ extern "C"
 #include "atitc.h"
 #include "TGAlib.h"
 
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WP8) && (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
 #include "decode.h"
+#endif
 
 #include "ccMacros.h"
 #include "CCCommon.h"
@@ -1550,7 +1552,7 @@ bool Image::initWithTGAData(tImageTGA* tgaData)
     }
     else
     {
-        if (tgaData->imageData != nullptr)
+        if (tgaData && tgaData->imageData != nullptr)
         {
             free(tgaData->imageData);
             _data = nullptr;
@@ -1832,7 +1834,11 @@ bool Image::initWithPVRData(const unsigned char * data, ssize_t dataLen)
 
 bool Image::initWithWebpData(const unsigned char * data, ssize_t dataLen)
 {
-	bool bRet = false;
+	bool bRet = false;  
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+    CCLOG("WEBP image format not supported on WinRT or WP8");
+#else
 	do
 	{
         WebPDecoderConfig config;
@@ -1862,8 +1868,10 @@ bool Image::initWithWebpData(const unsigned char * data, ssize_t dataLen)
         
         bRet = true;
 	} while (0);
+#endif
 	return bRet;
 }
+
 
 bool Image::initWithRawData(const unsigned char * data, ssize_t dataLen, int width, int height, int bitsPerComponent, bool preMulti)
 {
@@ -2015,7 +2023,7 @@ bool Image::saveImageToPNG(const std::string& filePath, bool isToRGB)
         {
             if (isToRGB)
             {
-                unsigned char *pTempData = static_cast<unsigned char*>(malloc(_width * _height * 3 * sizeof(unsigned char*)));
+                unsigned char *pTempData = static_cast<unsigned char*>(malloc(_width * _height * 3 * sizeof(unsigned char)));
                 if (nullptr == pTempData)
                 {
                     fclose(fp);

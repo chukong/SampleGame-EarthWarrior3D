@@ -30,7 +30,7 @@ THE SOFTWARE.
 #include "platform/CCCommon.h"
 #include "ccMacros.h"
 #include "CCApplication.h"
-#include "CCString.h"
+#include "deprecated/CCString.h"
 #include <unistd.h>
 #include <sys/stat.h>
 #include <stdio.h>
@@ -100,9 +100,9 @@ string FileUtilsLinux::getWritablePath() const
     return _writablePath;
 }
 
-bool FileUtilsLinux::isFileExist(const std::string& strFilePath) const
+bool FileUtilsLinux::isFileExistInternal(const std::string& strFilePath) const
 {
-    if (0 == strFilePath.length())
+    if (strFilePath.empty())
     {
         return false;
     }

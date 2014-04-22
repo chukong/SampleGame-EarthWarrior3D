@@ -140,6 +140,16 @@ public:
     /** Destructor of EventDispatcher */
     ~EventDispatcher();
 
+#if CC_NODE_DEBUG_VERIFY_EVENT_LISTENERS && COCOS2D_DEBUG > 0
+    
+    /**
+     * To help track down event listener issues in debug builds.
+     * Verifies that the node has no event listeners associated with it when destroyed.
+     */
+    void debugCheckNodeHasNoEventListenersOnDestruction(Node* node);
+    
+#endif
+
 protected:
     friend class Node;
     
@@ -197,7 +207,7 @@ protected:
     void sortEventListeners(const EventListener::ListenerID& listenerID);
     
     /** Sorts the listeners of specified type by scene graph priority */
-    void sortEventListenersOfSceneGraphPriority(const EventListener::ListenerID& listenerID);
+    void sortEventListenersOfSceneGraphPriority(const EventListener::ListenerID& listenerID, Node* rootNode);
     
     /** Sorts the listeners of specified type by fixed priority */
     void sortEventListenersOfFixedPriority(const EventListener::ListenerID& listenerID);

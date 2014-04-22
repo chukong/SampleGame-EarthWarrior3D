@@ -46,6 +46,17 @@ bool MainMenuScene::init()
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Point origin = Director::getInstance()->getVisibleOrigin();
+    Size winSize = Director::getInstance()->getWinSize();
+//    if(){
+//        log("x");
+//    }else if(920 == visibleSize.height){
+//        log("y");
+//    }
+//    log("w:%f",visibleSize.width);
+//    log("h:%f",visibleSize.height);
+//    log("w:%f",winSize.width);
+//    log("h:%f",winSize.height);
+    
     
     //************ adds Plane ****************
     plane = Plane::create();

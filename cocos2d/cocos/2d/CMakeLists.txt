@@ -7,7 +7,7 @@ set(PLATFORM_SRC
   platform/win32/CCFileUtilsWin32.cpp
   platform/win32/CCCommon.cpp
   platform/win32/CCApplication.cpp
-  platform/win32/CCGLView.cpp
+  platform/desktop/CCGLView.cpp
   platform/win32/CCDevice.cpp
 )
 
@@ -103,7 +103,6 @@ set(COCOS2D_SRC
   base64.cpp
   ccUtils.cpp
   CCVertex.cpp
-  CCNotificationCenter.cpp
   TGAlib.cpp
   ZipUtils.cpp
   ccCArray.cpp
@@ -130,13 +129,11 @@ set(COCOS2D_SRC
   ccFPSImages.c
   ccTypes.cpp
   cocos2d.cpp
-  CCDeprecated.cpp
   platform/CCSAXParser.cpp
   platform/CCThread.cpp
   platform/CCGLViewProtocol.cpp
   platform/CCFileUtils.cpp
   platform/CCImage.cpp
-  ../../external/edtaa3func/edtaa3func.cpp
   renderer/CCCustomCommand.cpp
   renderer/CCFrustum.cpp
   renderer/CCGroupCommand.cpp
@@ -146,6 +143,9 @@ set(COCOS2D_SRC
   renderer/CCRenderCommand.cpp
   renderer/CCRenderer.cpp
   renderer/CCRenderMaterial.cpp
+  ../deprecated/CCDeprecated.cpp
+  ../deprecated/CCNotificationCenter.cpp
+  ../../external/edtaa3func/edtaa3func.cpp
 )
 
 include(../physics/CMakeLists.txt)
@@ -218,6 +218,7 @@ target_link_libraries(cocos2d
   tinyxml2
   kazmath
   unzip
+  xxhash
   ${COCOS_LINK}
 )
 

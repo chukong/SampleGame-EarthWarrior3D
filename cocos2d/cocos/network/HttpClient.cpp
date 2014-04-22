@@ -339,7 +339,7 @@ public:
         if (CURLE_OK != curl_easy_perform(_curl))
             return false;
         CURLcode code = curl_easy_getinfo(_curl, CURLINFO_RESPONSE_CODE, responseCode);
-        if (code != CURLE_OK || *responseCode != 200) {
+        if (code != CURLE_OK || !(*responseCode >= 200 && *responseCode < 300)) {
             CCLOGERROR("Curl curl_easy_getinfo failed: %s", curl_easy_strerror(code));
             return false;
         }
@@ -469,12 +469,14 @@ void HttpClient::send(HttpRequest* request)
         
     request->retain();
     
-    s_requestQueueMutex.lock();
-    s_requestQueue->pushBack(request);
-    s_requestQueueMutex.unlock();
-    
-    // Notify thread start to work
-    s_SleepCondition.notify_one();
+    if (nullptr != s_requestQueue) {
+        s_requestQueueMutex.lock();
+        s_requestQueue->pushBack(request);
+        s_requestQueueMutex.unlock();
+        
+        // Notify thread start to work
+        s_SleepCondition.notify_one();
+    }
 }
 
 // Poll and notify main thread if responses exists in queue

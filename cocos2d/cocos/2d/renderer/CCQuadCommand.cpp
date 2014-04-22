@@ -25,32 +25,44 @@
 
 #include "renderer/CCQuadCommand.h"
 #include "ccGLStateCache.h"
+#include "xxhash.h"
 
 NS_CC_BEGIN
 
+
+static  void convertIntToByteArray(int value, int* output)
+{
+    *output = value;
+}
+
 QuadCommand::QuadCommand()
-:_textureID(0)
+:_materialID(0)
+,_textureID(0)
+,_shader(nullptr)
 ,_blendType(BlendFunc::DISABLE)
+,_quads(nullptr)
 ,_quadsCount(0)
 {
     _type = RenderCommand::Type::QUAD_COMMAND;
-    _shader = nullptr;
-    _quads = nullptr;
 }
 
 void QuadCommand::init(float globalOrder, GLuint textureID, GLProgram* shader, BlendFunc blendType, V3F_C4B_T2F_Quad* quad, ssize_t quadCount, const kmMat4 &mv)
 {
     _globalOrder = globalOrder;
-    _textureID = textureID;
-    _blendType = blendType;
-    _shader = shader;
 
     _quadsCount = quadCount;
     _quads = quad;
 
     _mv = mv;
 
-    generateMaterialID();
+    if( _textureID != textureID || _blendType.src != blendType.src || _blendType.dst != blendType.dst || _shader != shader) {
+        
+        _textureID = textureID;
+        _blendType = blendType;
+        _shader = shader;
+        
+        generateMaterialID();
+    }
 }
 
 QuadCommand::~QuadCommand()
@@ -59,12 +71,6 @@ QuadCommand::~QuadCommand()
 
 void QuadCommand::generateMaterialID()
 {
-    //Generate Material ID
-    //TODO fix shader ID generation
-    CCASSERT(_shader->getProgram() < pow(2,10), "ShaderID is greater than 2^10");
-    //TODO fix texture ID generation
-    CCASSERT(_textureID < pow(2,18), "TextureID is greater than 2^18");
-
     //TODO fix blend id generation
     int blendID = 0;
     if(_blendType == BlendFunc::DISABLE)
@@ -87,25 +93,20 @@ void QuadCommand::generateMaterialID()
     {
         blendID = 4;
     }
-
-    //TODO Material ID should be part of the ID
-    //
-    // Temporal hack (later, these 32-bits should be packed in 24-bits
-    //
-    // +---------------------+-------------------+----------------------------------------+
-    // | Shader ID (10 bits) | Blend ID (4 bits) | empty (18bits) |  Texture ID (32 bits) |
-    // +---------------------+-------------------+----------------------------------------+
-
-    _materialID = (uint64_t)_shader->getProgram() << 54
-            | (uint64_t)blendID << 50
-            | (uint64_t)_textureID << 0;
+    
+    // convert program id, texture id and blend id into byte array
+    int intArray[3];
+    convertIntToByteArray(_shader->getProgram(), intArray);
+    convertIntToByteArray(blendID, intArray+1);
+    convertIntToByteArray(_textureID, intArray+2);
+    
+    _materialID = XXH32((const void*)intArray, sizeof(intArray), 0);
 }
 
 void QuadCommand::useMaterial() const
 {
     _shader->use();
-
-    _shader->setUniformsForBuiltins();
+    _shader->setUniformsForBuiltins(_mv);
 
     //Set texture
     GL::bindTexture2D(_textureID);

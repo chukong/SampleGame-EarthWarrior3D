@@ -36,8 +36,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "mat3.h"
 #include "quaternion.h"
 #include "plane.h"
-
 #include "neon_matrix_impl.h"
+
 
 /**
  * Fills a kmMat4 structure with the values from a 16
@@ -273,7 +273,6 @@ kmMat4* kmMat4Multiply(kmMat4* pOut, const kmMat4* pM1, const kmMat4* pM2)
 
 
 	memcpy(pOut->mat, mat, sizeof(kmScalar)*16);
-
 #endif
 
 	return pOut;

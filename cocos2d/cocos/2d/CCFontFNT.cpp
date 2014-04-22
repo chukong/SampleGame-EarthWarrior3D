@@ -29,7 +29,7 @@
 #include "CCDirector.h"
 #include "CCFontAtlas.h"
 #include "CCMap.h"
-#include "CCString.h"
+#include "deprecated/CCString.h"
 #include "CCTextureCache.h"
 #include "ccUTF8.h"
 #include "platform/CCFileUtils.h"
@@ -816,7 +816,7 @@ FontAtlas * FontFNT::createFontAtlas()
         return 0;
     
     // add the texture
-    tempAtlas->addTexture(*tempTexture, 0);
+    tempAtlas->addTexture(tempTexture, 0);
     
     // done
     return tempAtlas;

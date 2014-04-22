@@ -254,7 +254,7 @@ EditBoxImplMac::EditBoxImplMac(EditBox* pEditText)
 : EditBoxImpl(pEditText)
 , _anchorPoint(Point(0.5f, 0.5f))
 , _maxTextLength(-1)
-, _sysEdit(NULL)
+, _sysEdit(nullptr)
 {
     //! TODO: Retina on Mac
     //! _inRetinaMode = [[CCEAGLView sharedEGLView] contentScaleFactor] == 2.0f ? true : false;
@@ -378,7 +378,7 @@ NSPoint EditBoxImplMac::convertDesignCoordToScreenCoord(const Point& designCoord
         screenPos.y = screenPos.y / 2.0f;
     }
     
-    CCLOG("[EditBox] pos x = %f, y = %f", screenGLPos.x, screenGLPos.y);
+    CCLOGINFO("[EditBox] pos x = %f, y = %f", screenGLPos.x, screenGLPos.y);
     return screenPos;
 }
 

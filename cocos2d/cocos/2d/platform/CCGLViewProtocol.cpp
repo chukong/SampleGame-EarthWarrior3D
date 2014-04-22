@@ -26,9 +26,7 @@ THE SOFTWARE.
 #include "CCGLViewProtocol.h"
 #include "CCTouch.h"
 #include "CCDirector.h"
-#include "CCSet.h"
 #include "CCEventDispatcher.h"
-
 
 NS_CC_BEGIN
 
@@ -37,7 +35,7 @@ namespace {
     static Touch* g_touches[EventTouch::MAX_TOUCHES] = { nullptr };
     static unsigned int g_indexBitsUsed = 0;
     // System touch pointer ID (It may not be ascending order number) <-> Ascending order number from 0
-    static std::map<int, int> g_touchIdReorderMap;
+    static std::map<intptr_t, int> g_touchIdReorderMap;
     
     static int getUnUsedIndex()
     {
@@ -87,6 +85,49 @@ void GLViewProtocol::pollInputEvents()
 {
 }
 
+
+void GLViewProtocol::updateDesignResolutionSize()
+{
+    if (_screenSize.width > 0 && _screenSize.height > 0
+        && _designResolutionSize.width > 0 && _designResolutionSize.height > 0)
+    {
+        _scaleX = (float)_screenSize.width / _designResolutionSize.width;
+        _scaleY = (float)_screenSize.height / _designResolutionSize.height;
+        
+        if (_resolutionPolicy == ResolutionPolicy::NO_BORDER)
+        {
+            _scaleX = _scaleY = MAX(_scaleX, _scaleY);
+        }
+        
+        else if (_resolutionPolicy == ResolutionPolicy::SHOW_ALL)
+        {
+            _scaleX = _scaleY = MIN(_scaleX, _scaleY);
+        }
+        
+        else if ( _resolutionPolicy == ResolutionPolicy::FIXED_HEIGHT) {
+            _scaleX = _scaleY;
+            _designResolutionSize.width = ceilf(_screenSize.width/_scaleX);
+        }
+        
+        else if ( _resolutionPolicy == ResolutionPolicy::FIXED_WIDTH) {
+            _scaleY = _scaleX;
+            _designResolutionSize.height = ceilf(_screenSize.height/_scaleY);
+        }
+        
+        // calculate the rect of viewport
+        float viewPortW = _designResolutionSize.width * _scaleX;
+        float viewPortH = _designResolutionSize.height * _scaleY;
+        
+        _viewPortRect.setRect((_screenSize.width - viewPortW) / 2, (_screenSize.height - viewPortH) / 2, viewPortW, viewPortH);
+        
+        // reset director's member variables to fit visible rect
+        auto director = Director::getInstance();
+        director->_winSizeInPoints = getDesignResolutionSize();
+        director->createStatsLabel();
+        director->setGLDefaultValues();
+    }
+}
+
 void GLViewProtocol::setDesignResolutionSize(float width, float height, ResolutionPolicy resolutionPolicy)
 {
     CCASSERT(resolutionPolicy != ResolutionPolicy::UNKNOWN, "should set resolutionPolicy");
@@ -97,44 +138,10 @@ void GLViewProtocol::setDesignResolutionSize(float width, float height, Resoluti
     }
 
     _designResolutionSize.setSize(width, height);
-    
-    _scaleX = (float)_screenSize.width / _designResolutionSize.width;
-    _scaleY = (float)_screenSize.height / _designResolutionSize.height;
-    
-    if (resolutionPolicy == ResolutionPolicy::NO_BORDER)
-    {
-        _scaleX = _scaleY = MAX(_scaleX, _scaleY);
-    }
-    
-    else if (resolutionPolicy == ResolutionPolicy::SHOW_ALL)
-    {
-        _scaleX = _scaleY = MIN(_scaleX, _scaleY);
-    }
-
-    else if ( resolutionPolicy == ResolutionPolicy::FIXED_HEIGHT) {
-    	_scaleX = _scaleY;
-    	_designResolutionSize.width = ceilf(_screenSize.width/_scaleX);
-    }
-
-    else if ( resolutionPolicy == ResolutionPolicy::FIXED_WIDTH) {
-    	_scaleY = _scaleX;
-    	_designResolutionSize.height = ceilf(_screenSize.height/_scaleY);
-    }
-
-    // calculate the rect of viewport    
-    float viewPortW = _designResolutionSize.width * _scaleX;
-    float viewPortH = _designResolutionSize.height * _scaleY;
-
-    _viewPortRect.setRect((_screenSize.width - viewPortW) / 2, (_screenSize.height - viewPortH) / 2, viewPortW, viewPortH);
-    
     _resolutionPolicy = resolutionPolicy;
     
-	// reset director's member variables to fit visible rect
-    auto director = Director::getInstance();
-    director->_winSizeInPoints = getDesignResolutionSize();
-    director->createStatsLabel();
-    director->setGLDefaultValues();
-}
+    updateDesignResolutionSize();
+ }
 
 const Size& GLViewProtocol::getDesignResolutionSize() const 
 {
@@ -226,9 +233,9 @@ const std::string& GLViewProtocol::getViewName() const
     return _viewName;
 }
 
-void GLViewProtocol::handleTouchesBegin(int num, int ids[], float xs[], float ys[])
+void GLViewProtocol::handleTouchesBegin(int num, intptr_t ids[], float xs[], float ys[])
 {
-    int id = 0;
+    intptr_t id = 0;
     float x = 0.0f;
     float y = 0.0f;
     int unusedIndex = 0;
@@ -241,7 +248,6 @@ void GLViewProtocol::handleTouchesBegin(int num, int ids[], float xs[], float ys
         y = ys[i];
 
         auto iter = g_touchIdReorderMap.find(id);
-        unusedIndex = 0;
 
         // it is a new touch
         if (iter == g_touchIdReorderMap.end())
@@ -276,9 +282,9 @@ void GLViewProtocol::handleTouchesBegin(int num, int ids[], float xs[], float ys
     dispatcher->dispatchEvent(&touchEvent);
 }
 
-void GLViewProtocol::handleTouchesMove(int num, int ids[], float xs[], float ys[])
+void GLViewProtocol::handleTouchesMove(int num, intptr_t ids[], float xs[], float ys[])
 {
-    int id = 0;
+    intptr_t id = 0;
     float x = 0.0f;
     float y = 0.0f;
     EventTouch touchEvent;
@@ -308,7 +314,7 @@ void GLViewProtocol::handleTouchesMove(int num, int ids[], float xs[], float ys[
         else
         {
             // It is error, should return.
-            CCLOG("Moving touches with id: %d error", id);
+            CCLOG("Moving touches with id: %ld error", id);
             return;
         }
     }
@@ -324,9 +330,9 @@ void GLViewProtocol::handleTouchesMove(int num, int ids[], float xs[], float ys[
     dispatcher->dispatchEvent(&touchEvent);
 }
 
-void GLViewProtocol::handleTouchesOfEndOrCancel(EventTouch::EventCode eventCode, int num, int ids[], float xs[], float ys[])
+void GLViewProtocol::handleTouchesOfEndOrCancel(EventTouch::EventCode eventCode, int num, intptr_t ids[], float xs[], float ys[])
 {
-    int id = 0;
+    intptr_t id = 0;
     float x = 0.0f;
     float y = 0.0f;
     EventTouch touchEvent;
@@ -361,7 +367,7 @@ void GLViewProtocol::handleTouchesOfEndOrCancel(EventTouch::EventCode eventCode,
         } 
         else
         {
-            CCLOG("Ending touches with id: %d error", id);
+            CCLOG("Ending touches with id: %ld error", static_cast<long>(id));
             return;
         } 
 
@@ -384,12 +390,12 @@ void GLViewProtocol::handleTouchesOfEndOrCancel(EventTouch::EventCode eventCode,
     }
 }
 
-void GLViewProtocol::handleTouchesEnd(int num, int ids[], float xs[], float ys[])
+void GLViewProtocol::handleTouchesEnd(int num, intptr_t ids[], float xs[], float ys[])
 {
     handleTouchesOfEndOrCancel(EventTouch::EventCode::ENDED, num, ids, xs, ys);
 }
 
-void GLViewProtocol::handleTouchesCancel(int num, int ids[], float xs[], float ys[])
+void GLViewProtocol::handleTouchesCancel(int num, intptr_t ids[], float xs[], float ys[])
 {
     handleTouchesOfEndOrCancel(EventTouch::EventCode::CANCELLED, num, ids, xs, ys);
 }

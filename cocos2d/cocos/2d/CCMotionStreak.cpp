@@ -139,8 +139,56 @@ bool MotionStreak::initWithFade(float fade, float minSeg, float stroke, const Co
 
 void MotionStreak::setPosition(const Point& position)
 {
-    _startingPositionInitialized = true;
+    if (!_startingPositionInitialized) {
+        _startingPositionInitialized = true;
+    }
     _positionR = position;
+}
+
+void MotionStreak::setPosition(float x, float y)
+{
+    if (!_startingPositionInitialized) {
+        _startingPositionInitialized = true;
+    }
+    _positionR.x = x;
+    _positionR.y = y;
+}
+
+const Point& MotionStreak::getPosition() const
+{
+    return _positionR;
+}
+
+void MotionStreak::getPosition(float* x, float* y) const
+{
+    *x = _positionR.x;
+    *y = _positionR.y;
+}
+
+float MotionStreak::getPositionX() const
+{
+    return _positionR.x;
+}
+
+void MotionStreak::setPositionX(float x)
+{
+    if (!_startingPositionInitialized) {
+        _startingPositionInitialized = true;
+    }
+    _positionR.x = x;
+}
+
+float MotionStreak::getPositionY() const
+{
+    return  _positionR.y;
+}
+
+void MotionStreak::setPositionY(float y)
+{
+    if (!_startingPositionInitialized) {
+        _startingPositionInitialized = true;
+    }
+    _positionR.y = y;
 }
 
 void MotionStreak::tintWithColor(const Color3B& colors)
@@ -325,10 +373,10 @@ void MotionStreak::reset()
     _nuPoints = 0;
 }
 
-void MotionStreak::onDraw()
+void MotionStreak::onDraw(const kmMat4 &transform, bool transformUpdated)
 {  
     getShaderProgram()->use();
-    getShaderProgram()->setUniformsForBuiltins(_modelViewTransform);
+    getShaderProgram()->setUniformsForBuiltins(transform);
 
     GL::enableVertexAttribs(GL::VERTEX_ATTRIB_FLAG_POS_COLOR_TEX );
     GL::blendFunc( _blendFunc.src, _blendFunc.dst );
@@ -360,9 +408,8 @@ void MotionStreak::draw(Renderer *renderer, const kmMat4 &transform, bool transf
     if(_nuPoints <= 1)
         return;
     _customCommand.init(_globalZOrder);
-    _customCommand.func = CC_CALLBACK_0(MotionStreak::onDraw, this);
+    _customCommand.func = CC_CALLBACK_0(MotionStreak::onDraw, this, transform, transformUpdated);
     renderer->addCommand(&_customCommand);
-
 }
 
 NS_CC_END

@@ -117,7 +117,7 @@ public:
     * Supported image extensions: .png, .jpg
     * @since v0.8
     */
-    virtual void addImageAsync(const std::string &filepath, std::function<void(Texture2D*)> callback);
+    virtual void addImageAsync(const std::string &filepath, const std::function<void(Texture2D*)>& callback);
 
     /** Returns a Texture2D object given an Image.
     * If the image was not previously loaded, it will create a new Texture2D object and it will return it.
@@ -133,6 +133,14 @@ public:
     */
     Texture2D* getTextureForKey(const std::string& key) const;
     CC_DEPRECATED_ATTRIBUTE Texture2D* textureForKey(const std::string& key) const { return getTextureForKey(key); }
+
+    /** Reload texture from the image file
+    * If the file image hasn't loaded before, load it.
+    * Otherwise the texture will be reloaded from the file image.
+    * The "filenName" parameter is the related/absolute path of the file image.
+    * Return true if the reloading is succeed, otherwise return false.
+    */
+    bool reloadTexture(const std::string& fileName);
 
     /** Purges the dictionary of loaded textures.
     * Call this method if you receive the "Memory Warning"
@@ -243,6 +251,7 @@ protected:
 
     std::string _fileName;
 
+    bool                      _hasMipmaps;
     Texture2D::TexParams      _texParams;
     std::string               _text;
     FontDefinition            _fontDefinition;
@@ -256,6 +265,7 @@ public:
     static void addDataTexture(Texture2D *tt, void* data, int dataLen, Texture2D::PixelFormat pixelFormat, const Size& contentSize);
     static void addImage(Texture2D *tt, Image *image);
 
+    static void setHasMipmaps(Texture2D *t, bool hasMipmaps);
     static void setTexParameters(Texture2D *t, const Texture2D::TexParams &texParams);
     static void removeTexture(Texture2D *t);
     static void reloadAllTextures();

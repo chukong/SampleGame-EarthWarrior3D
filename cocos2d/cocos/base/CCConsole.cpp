@@ -38,7 +38,7 @@
 #if defined(_MSC_VER) || defined(__MINGW32__)
 #include <io.h>
 #include <WS2tcpip.h>
-
+#include <Winsock2.h>
 #define bzero(a, b) memset(a, 0, b);
 
 #else
@@ -48,6 +48,7 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/un.h>
+#include <sys/ioctl.h>
 #endif
 
 #include "CCDirector.h"
@@ -58,7 +59,7 @@
 #include "CCConfiguration.h"
 #include "CCTextureCache.h"
 #include "CCGLView.h"
-
+#include "base64.h"
 NS_CC_BEGIN
 
 //TODO: these general utils should be in a seperate class
@@ -105,6 +106,8 @@ static bool isFloat( std::string myString ) {
     // Check the entire string was consumed and if either failbit or badbit is set
     return iss.eof() && !iss.fail(); 
 }
+
+#if CC_TARGET_PLATFORM != CC_PLATFORM_WINRT && CC_TARGET_PLATFORM != CC_PLATFORM_WP8
 
 // helper free functions
 
@@ -176,6 +179,7 @@ static void printFileUtils(int fd)
     }
     sendPrompt(fd);
 }
+#endif
 
 
 #if defined(__MINGW32__)
@@ -210,20 +214,22 @@ static void _log(const char *format, va_list args)
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
     __android_log_print(ANDROID_LOG_DEBUG, "cocos2d-x debug info",  "%s", buf);
 
-#elif CC_TARGET_PLATFORM ==  CC_PLATFORM_WIN32
+#elif CC_TARGET_PLATFORM ==  CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT || CC_TARGET_PLATFORM == CC_PLATFORM_WP8
     WCHAR wszBuf[MAX_LOG_LENGTH] = {0};
     MultiByteToWideChar(CP_UTF8, 0, buf, -1, wszBuf, sizeof(wszBuf));
     OutputDebugStringW(wszBuf);
-    WideCharToMultiByte(CP_ACP, 0, wszBuf, sizeof(wszBuf), buf, sizeof(buf), NULL, FALSE);
+    WideCharToMultiByte(CP_ACP, 0, wszBuf, -1, buf, sizeof(buf), NULL, FALSE);
     printf("%s", buf);
-
 #else
     // Linux, Mac, iOS, etc
     fprintf(stdout, "cocos2d: %s", buf);
     fflush(stdout);
 #endif
 
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT) && (CC_TARGET_PLATFORM != CC_PLATFORM_WP8)
     Director::getInstance()->getConsole()->log(buf);
+#endif
+
 }
 
 // XXX: Deprecated
@@ -242,6 +248,8 @@ void log(const char * format, ...)
     _log(format, args);
     va_end(args);
 }
+
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT) && (CC_TARGET_PLATFORM != CC_PLATFORM_WP8)
 
 //
 // Console code
@@ -282,14 +290,15 @@ Console::Console()
         { "texture", "Flush or print the TextureCache info. Args: [flush | ] ", std::bind(&Console::commandTextures, this, std::placeholders::_1, std::placeholders::_2) },
         { "director", "director commands, type -h or [director help] to list supported directives", std::bind(&Console::commandDirector, this, std::placeholders::_1, std::placeholders::_2) },
         { "touch", "simulate touch event via console, type -h or [touch help] to list supported directives", std::bind(&Console::commandTouch, this, std::placeholders::_1, std::placeholders::_2) },
-        { "upload", "upload file. Args: [filename filesize]", std::bind(&Console::commandUpload, this, std::placeholders::_1, std::placeholders::_2) },
+        { "upload", "upload file. Args: [filename base64_encoded_data]", std::bind(&Console::commandUpload, this, std::placeholders::_1) },
     };
 
      ;
 	for (int i = 0; i < sizeof(commands)/sizeof(commands[0]); ++i)
 	{
-		_commands.insert ( std::pair<std::string,Command>(commands[i].name,commands[i]) );
+		_commands[commands[i].name] = commands[i];
 	}
+	_writablePath = FileUtils::getInstance()->getWritablePath();
 }
 
 Console::~Console()
@@ -297,10 +306,9 @@ Console::~Console()
     stop();
 }
 
-
 bool Console::listenOnTCP(int port)
 {
-    int listenfd, n;
+    int listenfd = -1, n;
     const int on = 1;
     struct addrinfo hints, *res, *ressave;
     char serv[30];
@@ -367,7 +375,6 @@ bool Console::listenOnTCP(int port)
 
 
     freeaddrinfo(ressave);
-
     return listenOnFileDescriptor(listenfd);
 }
 
@@ -408,13 +415,13 @@ void Console::commandHelp(int fd, const std::string &args)
     for(auto it=_commands.begin();it!=_commands.end();++it)
     {
         auto cmd = it->second;
-        mydprintf(fd, "\t%s", cmd.name);
-        ssize_t tabs = strlen(cmd.name) / 8;
+        mydprintf(fd, "\t%s", cmd.name.c_str());
+        ssize_t tabs = strlen(cmd.name.c_str()) / 8;
         tabs = 3 - tabs;
         for(int j=0;j<tabs;j++){
              mydprintf(fd, "\t");
         }
-        mydprintf(fd,"%s\n", cmd.help);
+        mydprintf(fd,"%s\n", cmd.help.c_str());
     } 
 }
 
@@ -456,7 +463,7 @@ void Console::commandFileUtils(int fd, const std::string &args)
 void Console::commandConfig(int fd, const std::string& args)
 {
     Scheduler *sched = Director::getInstance()->getScheduler();
-    sched->performFunctionInCocosThread( [&](){
+    sched->performFunctionInCocosThread( [=](){
         mydprintf(fd, "%s", Configuration::getInstance()->getInfo().c_str());
         sendPrompt(fd);
     }
@@ -497,7 +504,7 @@ void Console::commandResolution(int fd, const std::string& args)
         stream >> width >> height>> policy;
 
         Scheduler *sched = Director::getInstance()->getScheduler();
-        sched->performFunctionInCocosThread( [&](){
+        sched->performFunctionInCocosThread( [=](){
             Director::getInstance()->getOpenGLView()->setDesignResolutionSize(width, height, static_cast<ResolutionPolicy>(policy));
         } );
     }
@@ -531,13 +538,13 @@ void Console::commandProjection(int fd, const std::string& args)
     }
     else if( args.compare("2d") == 0)
     {
-        sched->performFunctionInCocosThread( [&](){
+        sched->performFunctionInCocosThread( [=](){
             director->setProjection(Director::Projection::_2D);
         } );
     }
     else if( args.compare("3d") == 0)
     {
-        sched->performFunctionInCocosThread( [&](){
+        sched->performFunctionInCocosThread( [=](){
             director->setProjection(Director::Projection::_3D);
         } );
     }
@@ -553,14 +560,14 @@ void Console::commandTextures(int fd, const std::string& args)
 
     if( args.compare("flush")== 0)
     {
-        sched->performFunctionInCocosThread( [&](){
+        sched->performFunctionInCocosThread( [](){
             Director::getInstance()->getTextureCache()->removeAllTextures();
         }
                                             );
     }
     else if(args.length()==0)
     {
-        sched->performFunctionInCocosThread( [&](){
+        sched->performFunctionInCocosThread( [=](){
             mydprintf(fd, "%s", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
             sendPrompt(fd);
         }
@@ -580,6 +587,7 @@ void Console::commandDirector(int fd, const std::string& args)
     {
         const char help[] = "available director directives:\n"
                             "\tpause, pause all scheduled timers, the draw rate will be 4 FPS to reduce CPU consumption\n"
+                            "\tend, exit this app.\n"
                             "\tresume, resume all scheduled timers\n"
                             "\tstop, Stops the animation. Nothing will be drawn.\n"
                             "\tstart, Restart the animation again, Call this function only if [director stop] was called earlier\n";
@@ -588,7 +596,7 @@ void Console::commandDirector(int fd, const std::string& args)
     else if(args == "pause")
     {
         Scheduler *sched = director->getScheduler();
-            sched->performFunctionInCocosThread( [&](){
+            sched->performFunctionInCocosThread( [](){
             Director::getInstance()->pause();
         }
                                         );
@@ -601,7 +609,7 @@ void Console::commandDirector(int fd, const std::string& args)
     else if(args == "stop")
     {
         Scheduler *sched = director->getScheduler();
-        sched->performFunctionInCocosThread( [&](){
+        sched->performFunctionInCocosThread( [](){
             Director::getInstance()->stopAnimation();
         }
                                         );
@@ -609,6 +617,10 @@ void Console::commandDirector(int fd, const std::string& args)
     else if(args == "start")
     {
         director->startAnimation();
+    }
+    else if(args == "end")
+    {
+        director->end();
     }
 
 }
@@ -639,7 +651,7 @@ void Console::commandTouch(int fd, const std::string& args)
                 float x = std::atof(argv[1].c_str());
                 float y = std::atof(argv[2].c_str());
 
-                srand (time(NULL));
+                srand ((unsigned)time(nullptr));
                 _touchId = rand();
                 Scheduler *sched = Director::getInstance()->getScheduler();
                 sched->performFunctionInCocosThread( [&](){
@@ -667,7 +679,7 @@ void Console::commandTouch(int fd, const std::string& args)
                 float x2 = std::atof(argv[3].c_str());
                 float y2 = std::atof(argv[4].c_str());
 
-                srand (time(NULL));
+                srand ((unsigned)time(nullptr));
                 _touchId = rand();
 
                 Scheduler *sched = Director::getInstance()->getScheduler();
@@ -754,32 +766,150 @@ void Console::commandTouch(int fd, const std::string& args)
     }
 }
 
-void Console::commandUpload(int fd, const std::string& args)
-{
-    auto argv = split(args,' ');
-    if(argv.size() == 2)
-    {
-        _upload_file_name = argv[0];
-        _upload_file_size = std::atoi(argv[1].c_str());
-        _file_uploading = true;        
-    }
-    else 
-    {
-        const char msg[] = "upload: invalid arguments.\n";
-        send(fd, msg, sizeof(msg) - 1, 0);
-    }
+static char invalid_filename_char[] = {':', '/', '\\', '?', '%', '*', '<', '>', '"', '|', '\r', '\n', '\t'};
 
+void Console::commandUpload(int fd)
+{
+    ssize_t n, rc;
+    char buf[512], c;
+    char *ptr = buf;
+    //read file name
+    for( n = 0; n < sizeof(buf) - 1; n++ )
+    {
+        if( (rc = recv(fd, &c, 1, 0)) ==1 ) 
+        {
+            for(char x : invalid_filename_char)
+            {
+                if(c == x)
+                {
+                    const char err[] = "upload: invalid file name!\n";
+                    send(fd, err, sizeof(err),0);
+                    return;
+                }
+            }
+            if(c == ' ') 
+            {
+                break;
+            }
+            *ptr++ = c;
+        } 
+        else if( rc == 0 ) 
+        {
+            break;
+        } 
+        else if( errno == EINTR ) 
+        {
+            continue;
+        } 
+        else 
+        {
+            break;
+        }
+    }
+    *ptr = 0;
+
+    std::string filepath = _writablePath + std::string(buf);
+
+    FILE* fp = fopen(filepath.c_str(), "wb");
+    if(!fp)
+    {
+        const char err[] = "can't create file!\n";
+        send(fd, err, sizeof(err),0);
+        return;
+    }
+    
+    while (true) 
+    {
+        char data[4];
+        for(int i = 0; i < 4; i++)
+        {
+            data[i] = '=';
+        }
+        bool more_data;
+        readBytes(fd, data, 4, &more_data);
+        if(!more_data)
+        {
+            break;
+        }
+        unsigned char *decode;
+        unsigned char *in = (unsigned char *)data;
+        int dt = base64Decode(in, 4, &decode);
+        for(int i = 0; i < dt; i++)
+        {
+            fwrite(decode+i, 1, 1, fp);
+        }
+        free(decode);
+    }
+    fclose(fp);
 }
+
+ssize_t Console::readBytes(int fd, char* buffer, size_t maxlen, bool* more)
+{
+    size_t n;
+	int rc;
+    char c, *ptr = buffer;
+    *more = false;
+    for( n = 0; n < maxlen; n++ ) {
+        if( (rc = recv(fd, &c, 1, 0)) ==1 ) {
+            *ptr++ = c;
+            if(c == '\n') {
+                return n;
+            }
+        } else if( rc == 0 ) {
+            return 0;
+        } else if( errno == EINTR ) {
+            continue;
+        } else {
+            return -1;
+        }
+    }
+    *more = true;
+    return n;
+}
+
 bool Console::parseCommand(int fd)
 {
     char buf[512];
-    auto r = readline(fd, buf, sizeof(buf)-1);
-    if(r < 1)
+    bool more_data;
+    auto h = readBytes(fd, buf, 6, &more_data);
+    if( h < 0)
     {
-        const char err[] = "Unknown error!\n";
-        sendPrompt(fd);
-        send(fd, err, sizeof(err),0);
         return false;
+    }
+    if(strncmp(buf, "upload", 6) == 0)
+    {
+        char c = '\0';
+        recv(fd, &c, 1, 0);
+        if(c == ' ')
+        {
+            commandUpload(fd);
+            sendPrompt(fd);
+            return true;
+        }
+        else
+        {
+            const char err[] = "upload: invalid args! Type 'help' for options\n";
+            send(fd, err, sizeof(err),0);
+            sendPrompt(fd);
+            return true;
+            
+        }
+    }
+    if(!more_data)
+    {
+        buf[h] = 0;
+    }
+    else
+    {
+        char *pb = buf + 6;
+        auto r = readline(fd, pb, sizeof(buf)-6);
+        if(r < 0)
+        {
+            const char err[] = "Unknown error!\n";
+            sendPrompt(fd);
+            send(fd, err, sizeof(err),0);
+            return false;
+        }
     }
     std::string cmdLine;
 
@@ -792,14 +922,14 @@ bool Console::parseCommand(int fd)
         const char err[] = "Unknown command. Type 'help' for options\n";
         send(fd, err, sizeof(err),0);
         sendPrompt(fd);
-        return false;
+        return true;
     }
 
     auto it = _commands.find(trim(args[0]));
     if(it != _commands.end())
     {
         std::string args2;
-        for(int i = 1; i < args.size(); ++i)
+        for(size_t i = 1; i < args.size(); ++i)
         {   
             if(i > 1)
             {
@@ -814,7 +944,6 @@ bool Console::parseCommand(int fd)
         const char err[] = "Unknown command. Type 'help' for options\n";
         send(fd, err, sizeof(err),0);
     }
-
     sendPrompt(fd);
 
     return true;
@@ -825,12 +954,13 @@ bool Console::parseCommand(int fd)
 //
 
 
-ssize_t Console::readline(int fd, char* ptr, int maxlen)
+ssize_t Console::readline(int fd, char* ptr, size_t maxlen)
 {
-    ssize_t n, rc;
+    size_t n;
+	int rc;
     char c;
 
-    for( n=1; n<maxlen-1; n++ ) {
+    for( n = 0; n < maxlen - 1; n++ ) {
         if( (rc = recv(fd, &c, 1, 0)) ==1 ) {
             *ptr++ = c;
             if(c == '\n') {
@@ -849,47 +979,6 @@ ssize_t Console::readline(int fd, char* ptr, int maxlen)
     return n;
 }
 
-ssize_t Console::readfile(int fd, std::string& file_name, int file_size)
-{
-    ssize_t n, rc;
-    char c;
-
-    auto sharedFileUtils = FileUtils::getInstance();
-    
-    std::string writablePath = sharedFileUtils->getWritablePath();
-    std::string fileName = writablePath+file_name;
-    
-    FILE* fp = fopen(fileName.c_str(), "wb");
-    if(!fp)
-    {
-        const char err[] = "can't create file!\n";
-        send(fd, err, sizeof(err),0);
-        return 0;
-    }
-
-    // if (fp)
-    // {
-    //     size_t ret = fwrite(szBuf, 1, strl6en(szBuf), fp);
-    //     CCASSERT(ret != 0, "fwrite function returned zero value");
-    //     fclose(fp);
-    //     if (ret != 0)
-    //         log("Writing file to writable path succeed.");
-    // }
-    
-    for( n=0; n<file_size; n++ ) {
-        if( (rc = recv(fd, &c, 1, 0)) ==1 ) {
-            fwrite(&c, 1, 1, fp);
-        } else if( rc == 0 ) {
-            return 0;
-        } else if( errno == EINTR ) {
-            continue;
-        } else {
-            return -1;
-        }
-    }
-    fclose(fp);
-    return n;
-}
 
 void Console::addClient()
 {
@@ -922,7 +1011,6 @@ void Console::log(const char* buf)
 //
 // Main Loop
 //
-
 void Console::loop()
 {
     fd_set copy_set;
@@ -971,18 +1059,27 @@ void Console::loop()
             for(const auto &fd: _fds) {
                 if(FD_ISSET(fd,&copy_set)) 
                 {
-                    if(!_file_uploading)
+                    //fix Bug #4302 Test case ConsoleTest--ConsoleUploadFile crashed on Linux
+                    //On linux, if you send data to a closed socket, the sending process will 
+                    //receive a SIGPIPE, which will cause linux system shutdown the sending process.
+                    //Add this ioctl code to check if the socket has been closed by peer.
+                    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+                    u_long n = 0;
+                    ioctlsocket(fd, FIONREAD, &n);
+#else
+                    int n = 0;
+                    ioctl(fd, FIONREAD, &n);
+#endif
+                    if(n == 0)
                     {
-                        if( ! parseCommand(fd) )
-                        {
-                            to_remove.push_back(fd);
-                        }
+                        //no data received, or fd is closed
+                        continue;
                     }
-                    else
-                    {
-                        readfile(fd, _upload_file_name, _upload_file_size);
-                        _file_uploading = false;
 
+                    if( ! parseCommand(fd) )
+                    {
+                        to_remove.push_back(fd);
                     }
                     if(--nready <= 0)
                         break;
@@ -1027,5 +1124,8 @@ void Console::loop()
 #endif
     _running = false;
 }
+
+#endif /* #if (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT) && (CC_TARGET_PLATFORM != CC_PLATFORM_WP8) */
+
 
 NS_CC_END

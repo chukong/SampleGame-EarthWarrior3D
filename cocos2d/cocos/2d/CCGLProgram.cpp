@@ -32,10 +32,14 @@ THE SOFTWARE.
 #include "ccMacros.h"
 #include "platform/CCFileUtils.h"
 #include "uthash.h"
-#include "CCString.h"
+#include "deprecated/CCString.h"
 // extern
 #include "kazmath/GL/matrix.h"
 #include "kazmath/kazmath.h"
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+#include "CCPrecompiledShaders.h"
+#endif
 
 NS_CC_BEGIN
 
@@ -49,6 +53,7 @@ typedef struct _hashUniformEntry
 const char* GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR = "ShaderPositionTextureColor";
 const char* GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR_NO_MVP = "ShaderPositionTextureColor_noMVP";
 const char* GLProgram::SHADER_NAME_POSITION_TEXTURE_ALPHA_TEST = "ShaderPositionTextureColorAlphaTest";
+const char* GLProgram::SHADER_NAME_POSITION_TEXTURE_ALPHA_TEST_NO_MV = "ShaderPositionTextureColorAlphaTest_NoMV";
 const char* GLProgram::SHADER_NAME_POSITION_COLOR = "ShaderPositionColor";
 const char* GLProgram::SHADER_NAME_POSITION_COLOR_NO_MVP = "ShaderPositionColor_noMVP";
 const char* GLProgram::SHADER_NAME_POSITION_TEXTURE = "ShaderPositionTexture";
@@ -57,10 +62,10 @@ const char* GLProgram::SHADER_NAME_POSITION_TEXTURE_A8_COLOR = "ShaderPositionTe
 const char* GLProgram::SHADER_NAME_POSITION_U_COLOR = "ShaderPosition_uColor";
 const char* GLProgram::SHADER_NAME_POSITION_LENGTH_TEXTURE_COLOR = "ShaderPositionLengthTextureColor";
 
-const char* GLProgram::SHADER_NAME_LABEL_DISTANCEFIELD_NORMAL = "ShaderLabelNormol";
-const char* GLProgram::SHADER_NAME_LABEL_DISTANCEFIELD_GLOW = "ShaderLabelGlow";
-const char* GLProgram::SHADER_NAME_LABEL_DISTANCEFIELD_OUTLINE = "ShaderLabelOutline";
-const char* GLProgram::SHADER_NAME_LABEL_DISTANCEFIELD_SHADOW = "ShaderLabelShadow";
+const char* GLProgram::SHADER_NAME_LABEL_DISTANCEFIELD_NORMAL = "ShaderLabelDFNormal";
+const char* GLProgram::SHADER_NAME_LABEL_DISTANCEFIELD_GLOW = "ShaderLabelDFGlow";
+const char* GLProgram::SHADER_NAME_LABEL_NORMAL = "ShaderLabelNormal";
+const char* GLProgram::SHADER_NAME_LABEL_OUTLINE = "ShaderLabelOutline";
 
 
 // uniform names
@@ -78,6 +83,7 @@ const char* GLProgram::UNIFORM_NAME_ALPHA_TEST_VALUE = "CC_alpha_value";
 const char* GLProgram::ATTRIBUTE_NAME_COLOR = "a_color";
 const char* GLProgram::ATTRIBUTE_NAME_POSITION = "a_position";
 const char* GLProgram::ATTRIBUTE_NAME_TEX_COORD = "a_texCoord";
+
 
 GLProgram::GLProgram()
 : _program(0)
@@ -115,6 +121,18 @@ GLProgram::~GLProgram()
 
 bool GLProgram::initWithByteArrays(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray)
 {
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+    GLboolean hasCompiler = false;
+    glGetBooleanv(GL_SHADER_COMPILER, &hasCompiler);
+    _hasShaderCompiler = (hasCompiler == GL_TRUE);
+
+    if(!_hasShaderCompiler)
+    {
+        return initWithPrecompiledProgramByteArray(vShaderByteArray,fShaderByteArray);
+    }
+#endif
+
     _program = glCreateProgram();
     CHECK_GL_ERROR_DEBUG();
 
@@ -125,7 +143,8 @@ bool GLProgram::initWithByteArrays(const GLchar* vShaderByteArray, const GLchar*
         if (!compileShader(&_vertShader, GL_VERTEX_SHADER, vShaderByteArray))
         {
             CCLOG("cocos2d: ERROR: Failed to compile vertex shader");
-        }
+ 			return false;
+       }
     }
 
     // Create and compile fragment shader
@@ -134,6 +153,7 @@ bool GLProgram::initWithByteArrays(const GLchar* vShaderByteArray, const GLchar*
         if (!compileShader(&_fragShader, GL_FRAGMENT_SHADER, fShaderByteArray))
         {
             CCLOG("cocos2d: ERROR: Failed to compile fragment shader");
+			return false;
         }
     }
 
@@ -151,8 +171,33 @@ bool GLProgram::initWithByteArrays(const GLchar* vShaderByteArray, const GLchar*
     
     CHECK_GL_ERROR_DEBUG();
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+    _shaderId = CCPrecompiledShaders::getInstance()->addShaders(vShaderByteArray, fShaderByteArray);
+#endif
+
     return true;
 }
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+bool GLProgram::initWithPrecompiledProgramByteArray(const GLchar* vShaderByteArray, const GLchar* fShaderByteArray)
+{
+    bool haveProgram = false;
+
+    _program = glCreateProgram();
+    CHECK_GL_ERROR_DEBUG();
+
+    _vertShader = _fragShader = 0;
+
+    haveProgram = CCPrecompiledShaders::getInstance()->loadProgram(_program, vShaderByteArray, fShaderByteArray);
+
+    CHECK_GL_ERROR_DEBUG();
+    _hashForUniforms = NULL;
+
+    CHECK_GL_ERROR_DEBUG();  
+
+    return haveProgram;
+}
+#endif
 
 bool GLProgram::initWithFilenames(const std::string &vShaderFilename, const std::string &fShaderFilename)
 {
@@ -274,6 +319,15 @@ bool GLProgram::link()
 {
     CCASSERT(_program != 0, "Cannot link invalid program");
     
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+    if(!_hasShaderCompiler)
+    {
+        // precompiled shader program is already linked
+        return true;
+    }
+#endif
+
     GLint status = GL_TRUE;
     
     glLinkProgram(_program);
@@ -290,7 +344,7 @@ bool GLProgram::link()
     
     _vertShader = _fragShader = 0;
 	
-#if COCOS2D_DEBUG
+#if DEBUG || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
     glGetProgramiv(_program, GL_LINK_STATUS, &status);
 	
     if (status == GL_FALSE)
@@ -300,7 +354,14 @@ bool GLProgram::link()
         _program = 0;
     }
 #endif
-	
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+    if (status == GL_TRUE)
+    {
+        CCPrecompiledShaders::getInstance()->addProgram(_program, _shaderId);
+    }
+#endif
+
     return (status == GL_TRUE);
 }
 
@@ -350,7 +411,7 @@ bool GLProgram::updateUniformLocation(GLint location, const GLvoid* data, unsign
     {
         return false;
     }
-    
+
     bool updated = true;
     tHashUniformEntry *element = nullptr;
     HASH_FIND_INT(_hashForUniforms, &location, element);

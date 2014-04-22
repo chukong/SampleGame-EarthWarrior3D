@@ -29,8 +29,6 @@ USING_NS_CC;
 
 int main(int argc, char *argv[])
 {
-//    auto view = GLView::createWithRect("Moon3d", Rect(0, 0, 480, 800));
-//    Director::getInstance()->setOpenGLView(view);
     AppDelegate app;
     return Application::getInstance()->run();
 }

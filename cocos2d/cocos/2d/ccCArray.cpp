@@ -26,10 +26,9 @@ THE SOFTWARE.
 
 #include "ccCArray.h"
 #include "CCRef.h"
+#include "ccTypes.h"
 
 NS_CC_BEGIN
-
-const ssize_t CC_INVALID_INDEX = -1;
 
 /** Allocates and initializes a new array with specified capacity */
 ccArray* ccArrayNew(ssize_t capacity)
@@ -278,8 +277,8 @@ void ccArrayFullRemoveArray(ccArray *arr, ccArray *minusArr)
 	arr->num -= back;
 }
 
-// #pragma mark -
-// #pragma mark ccCArray for Values (c structures)
+// 
+// // ccCArray for Values (c structures)
 
 /** Allocates and initializes a new C array with specified capacity */
 ccCArray* ccCArrayNew(ssize_t capacity)

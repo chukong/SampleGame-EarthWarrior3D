@@ -34,11 +34,10 @@ THE SOFTWARE.
 #include "ccGLStateCache.h"
 #include "CCDirector.h"
 #include "TransformUtils.h"
-#include "CCInteger.h"
 #include "platform/CCFileUtils.h"
 // external
 #include "kazmath/GL/matrix.h"
-#include "CCString.h"
+#include "deprecated/CCString.h"
 
 NS_CC_BEGIN
 
@@ -224,6 +223,24 @@ void LabelAtlas::setString(const std::string &label)
 const std::string& LabelAtlas::getString(void) const
 {
     return _string;
+}
+
+void LabelAtlas::updateColor()
+{
+    if (_textureAtlas)
+    {
+        Color4B color4( _displayedColor.r, _displayedColor.g, _displayedColor.b, _displayedOpacity );
+        auto quads = _textureAtlas->getQuads();
+        ssize_t length = _string.length();
+        for (int index = 0; index < length; index++)
+        {
+            quads[index].bl.colors = color4;
+            quads[index].br.colors = color4;
+            quads[index].tl.colors = color4;
+            quads[index].tr.colors = color4;
+            _textureAtlas->updateQuad(&quads[index], index);
+        }
+    }
 }
 
 //CCLabelAtlas - draw
