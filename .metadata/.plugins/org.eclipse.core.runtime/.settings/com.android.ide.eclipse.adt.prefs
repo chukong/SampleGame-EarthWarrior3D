@@ -1,0 +1,4 @@
+com.android.ide.eclipse.adt.fixLegacyEditors=1
+com.android.ide.eclipse.adt.sdk=/Users/su1livan/Desktop/adt-bundle-mac-x86_64-20131030/sdk
+com.android.ide.eclipse.adt.xmlEditor=true
+eclipse.preferences.version=1
