@@ -4,6 +4,8 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <cctype>
+
 
 #include "cocos2d.h"
 #include "../cocos2d/cocos/2d/ccMacros.h"
