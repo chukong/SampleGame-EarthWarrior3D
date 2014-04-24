@@ -176,7 +176,7 @@ Director::~Director(void)
     CC_SAFE_RELEASE(_notificationNode);
     CC_SAFE_RELEASE(_scheduler);
     CC_SAFE_RELEASE(_actionManager);
-    CC_SAFE_RELEASE(_eventDispatcher);
+    
 
     delete _eventAfterUpdate;
     delete _eventAfterDraw;
@@ -189,6 +189,8 @@ Director::~Director(void)
     delete _console;
 #endif
 
+    CC_SAFE_RELEASE(_eventDispatcher);
+    
     // clean auto release pool
     PoolManager::destroyInstance();
 
@@ -661,6 +663,17 @@ void Director::replaceScene(Scene *scene)
 {
     CCASSERT(_runningScene, "Use runWithScene: instead to start the director");
     CCASSERT(scene != nullptr, "the scene should not be null");
+	
+    if (_nextScene)
+    {
+        if (_nextScene->isRunning())
+        {
+            _nextScene->onExitTransitionDidStart();
+            _nextScene->onExit();
+        }
+        _nextScene->cleanup();
+        _nextScene = nullptr;
+    }
 
     ssize_t index = _scenesStack.size();
 
