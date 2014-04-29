@@ -38,8 +38,8 @@ public:
     static cocos2d::Scene* scene();
     
     // a selector callback
-    void menuBackCallback(Object* pSender);
-    void eventMenuCallback(Object* pSender);
+    void menuBackCallback(Ref* pSender);
+    void eventMenuCallback(Ref* pSender);
 
     void loadPlugins();
     void unloadPlugins();

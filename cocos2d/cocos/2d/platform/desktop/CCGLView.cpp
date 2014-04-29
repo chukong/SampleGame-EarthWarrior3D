@@ -24,11 +24,11 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "CCGLView.h"
-#include "CCDirector.h"
-#include "CCTouch.h"
-#include "CCEventDispatcher.h"
-#include "CCEventKeyboard.h"
-#include "CCEventMouse.h"
+#include "2d/CCDirector.h"
+#include "2d/CCTouch.h"
+#include "2d/CCEventDispatcher.h"
+#include "2d/CCEventKeyboard.h"
+#include "2d/CCEventMouse.h"
 #include "CCIMEDispatcher.h"
 
 #include <unordered_map>
@@ -548,7 +548,7 @@ void GLView::onGLFWMouseCallBack(GLFWwindow* window, int button, int action, int
         if(GLFW_PRESS == action)
         {
             _captured = true;
-            if (this->getViewPortRect().equals(Rect::ZERO) || this->getViewPortRect().containsPoint(Point(_mouseX,_mouseY)))
+            if (this->getViewPortRect().equals(Rect::ZERO) || this->getViewPortRect().containsPoint(Vector2(_mouseX,_mouseY)))
             {
                 intptr_t id = 0;
                 this->handleTouchesBegin(1, &id, &_mouseX, &_mouseY);

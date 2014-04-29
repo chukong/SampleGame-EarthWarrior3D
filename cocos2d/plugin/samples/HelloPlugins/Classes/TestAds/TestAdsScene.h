@@ -44,14 +44,14 @@ public:
     static cocos2d::Scene* scene();
     
     // a selector callback
-    void menuBackCallback(Object* pSender);
-    void testShow(Object* pSender);
-	void testHide(Object* pSender);
+    void menuBackCallback(Ref* pSender);
+    void testShow(Ref* pSender);
+	void testHide(Ref* pSender);
 
 	// option changed callback
-	void caseChanged(Object* pSender);
-	void posChanged(Object* pSender);
-	void typeChanged(Object* pSender);
+	void caseChanged(Ref* pSender);
+	void posChanged(Ref* pSender);
+	void typeChanged(Ref* pSender);
 
     // implement the "static node()" method manually
     CREATE_FUNC(TestAds);

@@ -26,18 +26,15 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "CCAtlasNode.h"
-#include "CCTextureAtlas.h"
+#include "2d/CCTextureAtlas.h"
 #include "CCTextureCache.h"
-#include "CCDirector.h"
-#include "CCGLProgram.h"
+#include "2d/CCDirector.h"
+#include "2d/CCGLProgram.h"
 #include "CCShaderCache.h"
-#include "ccGLStateCache.h"
-#include "CCDirector.h"
+#include "2d/ccGLStateCache.h"
+#include "2d/CCDirector.h"
 #include "TransformUtils.h"
-#include "renderer/CCRenderer.h"
-
-// external
-#include "kazmath/GL/matrix.h"
+#include "2d/renderer/CCRenderer.h"
 
 NS_CC_BEGIN
 
@@ -136,7 +133,7 @@ void AtlasNode::updateAtlasValues()
 }
 
 // AtlasNode - draw
-void AtlasNode::draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated)
+void AtlasNode::draw(Renderer *renderer, const Matrix &transform, bool transformUpdated)
 {
     _quadCommand.init(
               _globalZOrder,

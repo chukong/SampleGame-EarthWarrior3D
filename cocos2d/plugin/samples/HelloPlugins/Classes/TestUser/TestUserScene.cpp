@@ -110,22 +110,22 @@ bool TestUser::init()
     return true;
 }
 
-void TestUser::caseChanged(Object* pSender)
+void TestUser::caseChanged(Ref* pSender)
 {
     _selectedCase = _caseItem->getSelectedIndex();
 }
 
-void TestUser::testLogin(Object* pSender)
+void TestUser::testLogin(Ref* pSender)
 {
     MyUserManager::getInstance()->loginByMode((MyUserManager::MyUserMode) (_selectedCase + 1));
 }
 
-void TestUser::testLogout(Object* pSender)
+void TestUser::testLogout(Ref* pSender)
 {
     MyUserManager::getInstance()->logoutByMode((MyUserManager::MyUserMode) (_selectedCase + 1));
 }
 
-void TestUser::menuBackCallback(Object* pSender)
+void TestUser::menuBackCallback(Ref* pSender)
 {
     MyUserManager::purgeManager();
 

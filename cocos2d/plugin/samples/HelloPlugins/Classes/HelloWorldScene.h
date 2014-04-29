@@ -13,8 +13,8 @@ public:
     static cocos2d::Scene* scene();
     
     // a selector callback
-    void menuCloseCallback(Object* pSender);
-    void menuCallback(Object* pSender);
+    void menuCloseCallback(cocos2d::Ref* pSender);
+    void menuCallback(cocos2d::Ref* pSender);
     
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);

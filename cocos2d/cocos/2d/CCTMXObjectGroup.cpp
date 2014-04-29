@@ -26,7 +26,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 #include "CCTMXObjectGroup.h"
-#include "ccMacros.h"
+#include "2d/ccMacros.h"
 
 NS_CC_BEGIN
 
@@ -34,7 +34,7 @@ NS_CC_BEGIN
 
 TMXObjectGroup::TMXObjectGroup()
     : _groupName("")
-    , _positionOffset(Point::ZERO)
+    , _positionOffset(Vector2::ZERO)
 {
 }
 

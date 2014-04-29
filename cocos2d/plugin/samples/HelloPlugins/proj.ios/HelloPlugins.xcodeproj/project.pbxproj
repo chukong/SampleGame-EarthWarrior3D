@@ -98,20 +98,6 @@
 			remoteGlobalIDString = A03F2ED617814268006731B9;
 			remoteInfo = "CocosDenshion Mac";
 		};
-		FA84884D182B3AE400858BDD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA848830182B3AE300858BDD /* cocos2d_libs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A03F31FD1781479B006731B9;
-			remoteInfo = "jsbindings Mac";
-		};
-		FA84884F182B3AE400858BDD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA848830182B3AE300858BDD /* cocos2d_libs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A6FB53017854BC300CDF010;
-			remoteInfo = "luabindings Mac";
-		};
 		FA848851182B3AE400858BDD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FA848830182B3AE300858BDD /* cocos2d_libs.xcodeproj */;
@@ -146,20 +132,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = A07A4FB4178387730073F6A7;
 			remoteInfo = "CocosDenshion iOS";
-		};
-		FA84885B182B3AE400858BDD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA848830182B3AE300858BDD /* cocos2d_libs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A07A5030178387750073F6A7;
-			remoteInfo = "jsbindings iOS";
-		};
-		FA84885D182B3AE400858BDD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FA848830182B3AE300858BDD /* cocos2d_libs.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1A119791178526AA00D62A44;
-			remoteInfo = "luabindings iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -399,15 +371,11 @@
 				FA848848182B3AE400858BDD /* libchipmunk Mac.a */,
 				FA84884A182B3AE400858BDD /* libbox2d Mac.a */,
 				FA84884C182B3AE400858BDD /* libCocosDenshion Mac.a */,
-				FA84884E182B3AE400858BDD /* libjsbindings Mac.a */,
-				FA848850182B3AE400858BDD /* libluabindings Mac.a */,
 				FA848852182B3AE400858BDD /* libcocos2dx iOS.a */,
 				FA848854182B3AE400858BDD /* libcocos2dx-extensions iOS.a */,
 				FA848856182B3AE400858BDD /* libchipmunk iOS.a */,
 				FA848858182B3AE400858BDD /* libbox2d iOS.a */,
 				FA84885A182B3AE400858BDD /* libCocosDenshion iOS.a */,
-				FA84885C182B3AE400858BDD /* libjsbindings iOS.a */,
-				FA84885E182B3AE400858BDD /* libluabindings iOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -569,20 +537,6 @@
 			remoteRef = FA84884B182B3AE400858BDD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		FA84884E182B3AE400858BDD /* libjsbindings Mac.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libjsbindings Mac.a";
-			remoteRef = FA84884D182B3AE400858BDD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA848850182B3AE400858BDD /* libluabindings Mac.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libluabindings Mac.a";
-			remoteRef = FA84884F182B3AE400858BDD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		FA848852182B3AE400858BDD /* libcocos2dx iOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -616,20 +570,6 @@
 			fileType = archive.ar;
 			path = "libCocosDenshion iOS.a";
 			remoteRef = FA848859182B3AE400858BDD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA84885C182B3AE400858BDD /* libjsbindings iOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libjsbindings iOS.a";
-			remoteRef = FA84885B182B3AE400858BDD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		FA84885E182B3AE400858BDD /* libluabindings iOS.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libluabindings iOS.a";
-			remoteRef = FA84885D182B3AE400858BDD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -716,7 +656,7 @@
 				PRODUCT_NAME = HelloPlugins;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../../../cocos/math/kazmath/include\" \"$(SRCROOT)/../../../../cocos/base\" \"$(SRCROOT)/../../../../cocos\" \"$(SRCROOT)/../../../../cocos/2d\" \"$(SRCROOT)/../../../../cocos/2d/platform/ios\" \"$(SRCROOT)/../../../../cocos/physics\" \"$(SRCROOT)/../../../protocols/include\"";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../../../cocos/math/kazmath\" \"$(SRCROOT)/../../../../cocos/base\" \"$(SRCROOT)/../../../../cocos\" \"$(SRCROOT)/../../../../cocos/2d\" \"$(SRCROOT)/../../../../cocos/2d/platform/ios\" \"$(SRCROOT)/../../../../cocos/physics\" \"$(SRCROOT)/../../../protocols/include\"";
 				VALID_ARCHS = "armv6 armv7 i386";
 			};
 			name = Debug;
@@ -749,7 +689,7 @@
 				PRODUCT_NAME = HelloPlugins;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../../../cocos/math/kazmath/include\" \"$(SRCROOT)/../../../../cocos/base\" \"$(SRCROOT)/../../../../cocos\" \"$(SRCROOT)/../../../../cocos/2d\" \"$(SRCROOT)/../../../../cocos/2d/platform/ios\" \"$(SRCROOT)/../../../../cocos/physics\" \"$(SRCROOT)/../../../protocols/include\"";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../../../../cocos/math/kazmath\" \"$(SRCROOT)/../../../../cocos/base\" \"$(SRCROOT)/../../../../cocos\" \"$(SRCROOT)/../../../../cocos/2d\" \"$(SRCROOT)/../../../../cocos/2d/platform/ios\" \"$(SRCROOT)/../../../../cocos/physics\" \"$(SRCROOT)/../../../protocols/include\"";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

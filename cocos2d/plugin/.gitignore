@@ -60,6 +60,7 @@ build_*_vc10/
 *.xcbkptlist
 *.xcscheme
 *.xcworkspacedata
+*.xcworkspace
 *.xcuserstate
 xcschememanagement.plist
 build/

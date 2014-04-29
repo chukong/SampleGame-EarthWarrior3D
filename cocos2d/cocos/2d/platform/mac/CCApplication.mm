@@ -23,15 +23,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#include "CCPlatformConfig.h"
+#include "base/CCPlatformConfig.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_MAC
 
 #import "CCApplication.h"
 #import <Cocoa/Cocoa.h>
 #include <algorithm>
-#include "platform/CCFileUtils.h"
-#include "CCGeometry.h"
-#include "CCDirector.h"
+#include "2d/platform/CCFileUtils.h"
+#include "base/CCGeometry.h"
+#include "2d/CCDirector.h"
 #import "CCDirectorCaller.h"
 #include "CCGLView.h"
 
@@ -66,7 +66,7 @@ int Application::run()
 {
     if(!applicationDidFinishLaunching())
     {
-        return 0;
+        return 1;
     }
     
     long lastTime = 0L;
@@ -105,7 +105,7 @@ int Application::run()
     
     glview->release();
     
-    return true;
+    return 0;
 }
 
 void Application::setAnimationInterval(double interval)

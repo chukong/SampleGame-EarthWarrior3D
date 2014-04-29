@@ -28,18 +28,20 @@ THE SOFTWARE.
 #ifndef __CCDIRECTOR_H__
 #define __CCDIRECTOR_H__
 
-#include "CCPlatformMacros.h"
+#include "base/CCPlatformMacros.h"
 
-#include "CCRef.h"
-#include "ccTypes.h"
-#include "CCGeometry.h"
-#include "CCVector.h"
+#include "base/CCRef.h"
+#include "2d/ccTypes.h"
+#include "base/CCGeometry.h"
+#include "base/CCVector.h"
 #include "CCGL.h"
 #include "CCLabelAtlas.h"
-#include "kazmath/mat4.h"
-
+#include <stack>
+#include "math/CCMath.h"
 
 NS_CC_BEGIN
+
+USING_NS_CC_MATH;
 
 /**
  * @addtogroup base_nodes
@@ -60,7 +62,7 @@ class EventListenerCustom;
 class TextureCache;
 class Renderer;
 
-#if  (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT) && (CC_TARGET_PLATFORM != CC_PLATFORM_WP8)
+#if  (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
 class Console;
 #endif
 
@@ -84,8 +86,29 @@ and when to execute the Scenes.
   - GL_COLOR_ARRAY is enabled
   - GL_TEXTURE_COORD_ARRAY is enabled
 */
+enum class MATRIX_STACK_TYPE
+{
+    MATRIX_STACK_MODELVIEW,
+    MATRIX_STACK_PROJECTION,
+    MATRIX_STACK_TEXTURE
+};
+
 class CC_DLL Director : public Ref
 {
+private:
+    std::stack<Matrix> _modelViewMatrixStack;
+    std::stack<Matrix> _projectionMatrixStack;
+    std::stack<Matrix> _textureMatrixStack;
+protected:
+    void initMatrixStack();
+public:
+    void pushMatrix(MATRIX_STACK_TYPE type);
+    void popMatrix(MATRIX_STACK_TYPE type);
+    void loadIdentityMatrix(MATRIX_STACK_TYPE type);
+    void loadMatrix(MATRIX_STACK_TYPE type, const Matrix& mat);
+    void multiplyMatrix(MATRIX_STACK_TYPE type, const Matrix& mat);
+    Matrix getMatrix(MATRIX_STACK_TYPE type);
+    void resetMatrixStack();
 public:
     static const char *EVENT_PROJECTION_CHANGED;
     static const char* EVENT_AFTER_UPDATE;
@@ -210,17 +233,17 @@ public:
     
     /** returns visible origin of the OpenGL view in points.
      */
-    Point getVisibleOrigin() const;
+    Vector2 getVisibleOrigin() const;
 
     /** converts a UIKit coordinate to an OpenGL coordinate
      Useful to convert (multi) touch coordinates to the current layout (portrait or landscape)
      */
-    Point convertToGL(const Point& point);
+    Vector2 convertToGL(const Vector2& point);
 
     /** converts an OpenGL coordinate to a UIKit coordinate
      Useful to convert node points to window points for calls such as glScissor
      */
-    Point convertToUI(const Point& point);
+    Vector2 convertToUI(const Vector2& point);
 
     /// XXX: missing description 
     float getZEye() const;
@@ -371,7 +394,7 @@ public:
     /** Returns the Console 
      @since v3.0
      */
-#if  (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT) && (CC_TARGET_PLATFORM != CC_PLATFORM_WP8)
+#if  (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
     Console* getConsole() const { return _console; }
 #endif
 
@@ -482,7 +505,7 @@ protected:
     /* Renderer for the Director */
     Renderer *_renderer;
 
-#if  (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT) && (CC_TARGET_PLATFORM != CC_PLATFORM_WP8)
+#if  (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
     /* Console for the director */
     Console *_console;
 #endif

@@ -26,10 +26,10 @@
 #include "CCFontAtlas.h"
 #include "CCFontFreeType.h"
 #include "ccUTF8.h"
-#include "CCDirector.h"
-#include "CCEventListenerCustom.h"
-#include "CCEventDispatcher.h"
-#include "CCEventType.h"
+#include "2d/CCDirector.h"
+#include "2d/CCEventListenerCustom.h"
+#include "2d/CCEventDispatcher.h"
+#include "2d/CCEventType.h"
 
 NS_CC_BEGIN
 
@@ -221,7 +221,7 @@ bool FontAtlas::getLetterDefinitionForChar(unsigned short  letteCharUTF16, FontL
 bool FontAtlas::prepareLetterDefinitions(unsigned short *utf16String)
 {
     FontFreeType* fontTTf = dynamic_cast<FontFreeType*>(_font);
-    if(fontTTf == nullptr)
+    if(fontTTf == nullptr || utf16String == nullptr)
         return false;
 
     int length = cc_wcslen(utf16String);

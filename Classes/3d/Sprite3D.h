@@ -27,6 +27,7 @@
 #include <vector>
 
 #include "cocos2d.h"
+#include "CCMath.h"
 
 #include "Mesh.h"
 
@@ -63,8 +64,8 @@ protected:
 
     void setModel(Mesh *model);
     bool buildProgram(bool textured);
-    void draw(cocos2d::Renderer* renderer, const kmMat4 &transform, bool transformUpdated);
-    void onDraw(const kmMat4 &transform, bool transformUpdated);
+    void draw(cocos2d::Renderer* renderer, const cocos2d::math::Matrix &transform, bool transformUpdated);
+    void onDraw(const cocos2d::math::Matrix &transform, bool transformUpdated);
     void setTexture(cocos2d::Texture2D* texture);
     void updateBlendFunc();
     void setTextureName(const std::string& textureName);

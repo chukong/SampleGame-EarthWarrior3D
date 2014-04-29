@@ -29,6 +29,7 @@ THE SOFTWARE.
 #include "CCStdC.h"
 #include "CCGL.h"
 #include "platform/CCCommon.h"
+#include "InputEvent.h"
 #include "CCGeometry.h"
 #include "platform/CCGLViewProtocol.h"
 #include <agile.h>
@@ -37,7 +38,8 @@ THE SOFTWARE.
 
 #include <agile.h>
 #include <DirectXMath.h>
-
+#include <mutex>
+#include <queue>
 
 NS_CC_BEGIN
 
@@ -55,7 +57,7 @@ public:
 
 
 private:
-	cocos2d::Point GetCCPoint(Windows::UI::Core::PointerEventArgs^ args);
+	cocos2d::Vector2 GetCCPoint(Windows::UI::Core::PointerEventArgs^ args);
 
 	void OnTextKeyDown(Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e); 
 	void OnTextKeyUp(Object^ sender, Windows::UI::Xaml::Input::KeyRoutedEventArgs^ e); 
@@ -78,7 +80,7 @@ private:
 
 	Platform::Agile<Windows::UI::Core::CoreWindow> m_window;
 
-	Windows::Foundation::Point m_lastPoint;
+	Windows::Foundation::Vector2 m_lastPoint;
 	Windows::Foundation::EventRegistrationToken m_eventToken;
 	bool m_lastPointValid;
 	bool m_textInputEnabled;
@@ -110,10 +112,11 @@ public:
 	void UpdateForWindowSizeChange();
 	void OnRendering();
     void OnSuspending();
+    void GLView::QueueEvent(std::shared_ptr<InputEvent>& event);
 
 private:
 	Windows::Foundation::EventRegistrationToken m_eventToken;
-	Windows::Foundation::Point m_lastPoint;
+	Windows::Foundation::Vector2 m_lastPoint;
 	bool m_lastPointValid;
 
 public:
@@ -148,6 +151,9 @@ private:
     float m_fFrameZoomFactor;
 	WinRTWindow^ m_winRTWindow;
 	Windows::Foundation::Rect m_keyboardRect;
+
+    std::queue<std::shared_ptr<InputEvent>> mInputEvents;
+    std::mutex mMutex;
 };
 
 NS_CC_END

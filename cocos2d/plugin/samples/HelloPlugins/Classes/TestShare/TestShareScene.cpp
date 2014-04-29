@@ -113,7 +113,7 @@ bool TestShare::init()
     return true;
 }
 
-void TestShare::eventMenuCallback(Object* pSender)
+void TestShare::eventMenuCallback(Ref* pSender)
 {
 	MenuItemLabel* pMenuItem = (MenuItemLabel*)pSender;
     TShareInfo pInfo;
@@ -123,7 +123,7 @@ void TestShare::eventMenuCallback(Object* pSender)
     MyShareManager::getInstance()->shareByMode(pInfo, mode);
 }
 
-void TestShare::menuBackCallback(Object* pSender)
+void TestShare::menuBackCallback(Ref* pSender)
 {
     MyShareManager::purgeManager();
     Scene* newScene = HelloWorld::scene();

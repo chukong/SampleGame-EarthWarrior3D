@@ -36,11 +36,11 @@ public:
     static cocos2d::Scene* scene();
     
     // a selector callback
-    void menuBackCallback(Object* pSender);
-    void testSubmit(Object* pSender);
-    void testUnlock(Object* pSender);
-    void testLeaderboard(Object* pSender);
-    void testAchievement(Object* pSender);
+    void menuBackCallback(Ref* pSender);
+    void testSubmit(Ref* pSender);
+    void testUnlock(Ref* pSender);
+    void testLeaderboard(Ref* pSender);
+    void testAchievement(Ref* pSender);
 
     // implement the "static node()" method manually
     CREATE_FUNC(TestSocial);

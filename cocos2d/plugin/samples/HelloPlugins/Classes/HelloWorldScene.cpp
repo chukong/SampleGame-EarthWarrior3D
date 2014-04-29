@@ -80,7 +80,7 @@ bool HelloWorld::init()
     return true;
 }
 
-void HelloWorld::menuCallback(Object* pSender)
+void HelloWorld::menuCallback(Ref* pSender)
 {
     MenuItemFont *pItem = (MenuItemFont*) pSender;
     Scene* newScene = NULL;
@@ -114,7 +114,7 @@ void HelloWorld::menuCallback(Object* pSender)
     }
 }
 
-void HelloWorld::menuCloseCallback(Object* pSender)
+void HelloWorld::menuCloseCallback(Ref* pSender)
 {
     Director::getInstance()->end();
 

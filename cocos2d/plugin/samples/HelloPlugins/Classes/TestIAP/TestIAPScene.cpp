@@ -114,7 +114,7 @@ bool TestIAP::init()
     return true;
 }
 
-void TestIAP::eventMenuCallback(Object* pSender)
+void TestIAP::eventMenuCallback(Ref* pSender)
 {
     MenuItemLabel* pMenuItem = (MenuItemLabel*)pSender;
     TProductInfo pInfo;
@@ -126,7 +126,7 @@ void TestIAP::eventMenuCallback(Object* pSender)
     MyPurchase::getInstance()->payByMode(pInfo, mode);
 }
 
-void TestIAP::menuBackCallback(Object* pSender)
+void TestIAP::menuBackCallback(Ref* pSender)
 {
 	MyPurchase::purgePurchase();
 

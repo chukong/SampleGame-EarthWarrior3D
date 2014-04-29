@@ -5,7 +5,7 @@ attribute vec3 Normal;
 attribute vec2 TextureCoord;
 
 uniform vec3 DiffuseMaterial;
-uniform mat3 NormalMatrix;
+uniform mat4 NormalMatrix;
 
 varying vec4 DestinationColor;
 varying vec2 TextureCoordOut;
@@ -25,7 +25,7 @@ static const char* outLineShader = STRINGIFY(
 attribute vec4 Position;
 attribute vec3 Normal;
 uniform float OutlineWidth;
-uniform mat3 NormalMatrix;
+uniform mat4 NormalMatrix;
 void main(void)
 {
     vec4 pos = Position;

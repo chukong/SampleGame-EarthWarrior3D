@@ -29,7 +29,7 @@ THE SOFTWARE.
 #define __CC_PARTICLE_SYSTEM_QUAD_H__
 
 #include  "CCParticleSystem.h"
-#include "renderer/CCQuadCommand.h"
+#include "2d/renderer/CCQuadCommand.h"
 
 NS_CC_BEGIN
 
@@ -74,7 +74,6 @@ public:
     @since v0.99.4
     */
     void setDisplayFrame(SpriteFrame *spriteFrame);
-    
 
     /** Sets a new texture with a rect. The rect is in Points.
      @since v0.99.4
@@ -98,7 +97,7 @@ public:
      * @js NA
      * @lua NA
      */
-    virtual void updateQuadWithParticle(tParticle* particle, const Point& newPosition) override;
+    virtual void updateQuadWithParticle(tParticle* particle, const Vector2& newPosition) override;
     /**
      * @js NA
      * @lua NA
@@ -108,7 +107,7 @@ public:
      * @js NA
      * @lua NA
      */
-    virtual void draw(Renderer *renderer, const kmMat4 &transform, bool transformUpdated) override;
+    virtual void draw(Renderer *renderer, const Matrix &transform, bool transformUpdated) override;
 
     /**
      * @js NA
@@ -148,16 +147,11 @@ protected:
     /** initializes the texture with a rectangle measured Points */
     void initTexCoordsWithRect(const Rect& rect);
     
-    /** Updates texture coords */
-    void updateTexCoords();
-    
-    // Overrides
-    /**
-     * @js NA
-     * @lua NA
-     */
     bool initWithDictionaryAndFrame(ValueMap &dictionary, SpriteFrame* frame);
     
+    /** Updates texture coords */
+    void updateTexCoords();
+
     void setupVBOandVAO();
     void setupVBO();
     bool allocMemory();

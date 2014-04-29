@@ -31,9 +31,9 @@ THE SOFTWARE.
 #include <map>
 #include <map>
 
-#include "CCRef.h"
-#include "CCGeometry.h"
-#include "ccTypes.h"
+#include "base/CCRef.h"
+#include "base/CCGeometry.h"
+#include "2d/ccTypes.h"
 #ifdef EMSCRIPTEN
 #include "CCGLBufferedNode.h"
 #endif // EMSCRIPTEN
@@ -230,7 +230,7 @@ public:
     These functions require GL_TEXTURE_2D and both GL_VERTEX_ARRAY and GL_TEXTURE_COORD_ARRAY client states to be enabled.
     */
     /** draws a texture at a given point */
-    void drawAtPoint(const Point& point);
+    void drawAtPoint(const Vector2& point);
     /** draws a texture inside a rect */
     void drawInRect(const Rect& rect);
 

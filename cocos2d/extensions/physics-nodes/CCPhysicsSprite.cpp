@@ -165,7 +165,7 @@ void PhysicsSprite::setIgnoreBodyRotation(bool bIgnoreBodyRotation)
 }
 
 // Override the setters and getters to always reflect the body's properties.
-const Point& PhysicsSprite::getPosition() const
+const Vector2& PhysicsSprite::getPosition() const
 {
     return getPosFromPhysics();
 }
@@ -175,7 +175,7 @@ void PhysicsSprite::getPosition(float* x, float* y) const
     if (x == NULL || y == NULL) {
         return;
     }
-    const Point& pos = getPosFromPhysics();
+    const Vector2& pos = getPosFromPhysics();
     *x = pos.x;
     *y = pos.y;
 }
@@ -257,25 +257,25 @@ void PhysicsSprite::setPTMRatio(float fRatio)
 // Common to Box2d and Chipmunk
 //
 
-const Point& PhysicsSprite::getPosFromPhysics() const
+const Vector2& PhysicsSprite::getPosFromPhysics() const
 {
-    static Point s_physicPosion;
+    static Vector2 s_physicPosion;
 #if CC_ENABLE_CHIPMUNK_INTEGRATION
 
     cpVect cpPos = cpBodyGetPos(_CPBody);
-    s_physicPosion = Point(cpPos.x, cpPos.y);
+    s_physicPosion = Vector2(cpPos.x, cpPos.y);
 
 #elif CC_ENABLE_BOX2D_INTEGRATION
 
     b2Vec2 pos = _pB2Body->GetPosition();
     float x = pos.x * _PTMRatio;
     float y = pos.y * _PTMRatio;
-    s_physicPosion = Point(x,y);
+    s_physicPosion = Vector2(x,y);
 #endif
     return s_physicPosion;
 }
 
-void PhysicsSprite::setPosition(const Point &pos)
+void PhysicsSprite::setPosition(const Vector2 &pos)
 {
 #if CC_ENABLE_CHIPMUNK_INTEGRATION
 
@@ -328,73 +328,83 @@ void PhysicsSprite::setRotation(float fRotation)
 
 }
 
-// returns the transform matrix according the Chipmunk Body values
-const kmMat4& PhysicsSprite::getNodeToParentTransform() const
+void PhysicsSprite::syncPhysicsTransform() const
 {
     // Although scale is not used by physics engines, it is calculated just in case
 	// the sprite is animated (scaled up/down) using actions.
 	// For more info see: http://www.cocos2d-iphone.org/forum/topic/68990
-
+    
 #if CC_ENABLE_CHIPMUNK_INTEGRATION
-
+    
 	cpVect rot = (_ignoreBodyRotation ? cpvforangle(-CC_DEGREES_TO_RADIANS(_rotationX)) : _CPBody->rot);
 	float x = _CPBody->p.x + rot.x * -_anchorPointInPoints.x * _scaleX - rot.y * -_anchorPointInPoints.y * _scaleY;
 	float y = _CPBody->p.y + rot.y * -_anchorPointInPoints.x * _scaleX + rot.x * -_anchorPointInPoints.y * _scaleY;
-
+    
 	if (_ignoreAnchorPointForPosition)
     {
 		x += _anchorPointInPoints.x;
 		y += _anchorPointInPoints.y;
 	}
-
     
-    kmScalar mat[] = {  (kmScalar)rot.x * _scaleX, (kmScalar)rot.y * _scaleX, 0,  0,
-                        (kmScalar)-rot.y * _scaleY, (kmScalar)rot.x * _scaleY,  0,  0,
-                        0,  0,  1,  0,
-                        x,	y,  0,  1};
-
-
-    kmMat4Fill(&_transform, mat);
-    
-    return _transform;
-
-
-#elif CC_ENABLE_BOX2D_INTEGRATION
-
-    b2Vec2 pos  = _pB2Body->GetPosition();
-
-	float x = pos.x * _PTMRatio;
-	float y = pos.y * _PTMRatio;
-
-	if (_ignoreAnchorPointForPosition)
-    {
-		x += _anchorPointInPoints.x;
-		y += _anchorPointInPoints.y;
-	}
-
-	// Make matrix
-	float radians = _pB2Body->GetAngle();
-	float c = cosf(radians);
-	float s = sinf(radians);
-
-	if (!_anchorPointInPoints.equals(Point::ZERO))
-    {
-		x += ((c * -_anchorPointInPoints.x * _scaleX) + (-s * -_anchorPointInPoints.y * _scaleY));
-		y += ((s * -_anchorPointInPoints.x * _scaleX) + (c * -_anchorPointInPoints.y * _scaleY));
-	}
-
-	// Rot, Translate Matrix
-    
-    kmScalar mat[] = {  (kmScalar)c * _scaleX, (kmScalar)s * _scaleX, 0,  0,
-        (kmScalar)-s * _scaleY, (kmScalar)c * _scaleY,  0,  0,
+    float mat[] = {  (float)rot.x * _scaleX, (float)rot.y * _scaleX, 0,  0,
+        (float)-rot.y * _scaleY, (float)rot.x * _scaleY,  0,  0,
         0,  0,  1,  0,
         x,	y,  0,  1};
     
     
-    kmMat4Fill(&_transform, mat);
-
-	return _transform;
+    _transform.set(mat);
+    
+#elif CC_ENABLE_BOX2D_INTEGRATION
+    
+    b2Vec2 pos  = _pB2Body->GetPosition();
+    
+	float x = pos.x * _PTMRatio;
+	float y = pos.y * _PTMRatio;
+    
+	if (_ignoreAnchorPointForPosition)
+    {
+		x += _anchorPointInPoints.x;
+		y += _anchorPointInPoints.y;
+	}
+    
+	// Make matrix
+	float radians = _pB2Body->GetAngle();
+	float c = cosf(radians);
+	float s = sinf(radians);
+    
+	if (!_anchorPointInPoints.equals(Vector2::ZERO))
+    {
+		x += ((c * -_anchorPointInPoints.x * _scaleX) + (-s * -_anchorPointInPoints.y * _scaleY));
+		y += ((s * -_anchorPointInPoints.x * _scaleX) + (c * -_anchorPointInPoints.y * _scaleY));
+	}
+    
+	// Rot, Translate Matrix
+    
+    float mat[] = {  (float)c * _scaleX, (float)s * _scaleX, 0,  0,
+        (float)-s * _scaleY, (float)c * _scaleY,  0,  0,
+        0,  0,  1,  0,
+        x,	y,  0,  1};
+    
+    _transform.set(mat);
 #endif
+}
+
+// returns the transform matrix according the Chipmunk Body values
+const Matrix& PhysicsSprite::getNodeToParentTransform() const
+{
+    syncPhysicsTransform();
+    
+	return _transform;
+}
+
+void PhysicsSprite::draw(Renderer *renderer, const Matrix &transform, bool transformUpdated)
+{
+    if (isDirty())
+    {
+        syncPhysicsTransform();
+    }
+    
+    Sprite::draw(renderer, _transform, transformUpdated);
 }
 
 NS_CC_EXT_END

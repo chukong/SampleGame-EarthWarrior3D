@@ -26,9 +26,9 @@ THE SOFTWARE.
 #ifndef __CCDEVICE_H__
 #define __CCDEVICE_H__
 
-#include "CCPlatformMacros.h"
-#include "ccMacros.h"
-#include "CCData.h"
+#include "base/CCPlatformMacros.h"
+#include "2d/ccMacros.h"
+#include "base/CCData.h"
 
 NS_CC_BEGIN
 

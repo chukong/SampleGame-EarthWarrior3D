@@ -30,15 +30,18 @@ THE SOFTWARE.
 #include "platform/CCCommon.h"
 #include "CCGeometry.h"
 #include "platform/CCGLViewProtocol.h"
+#include "InputEvent.h"
+
+
 #include <agile.h>
 
 #include <wrl/client.h>
 #include <d3d11_1.h>
+#include <mutex>
+#include <queue>
 
 #include <agile.h>
 #include <DirectXMath.h>
-#include "kazmath/mat4.h"
-#include "../wp8-xaml/cpp/InputEvent.h"
 
 #include <EGL/egl.h>
 
@@ -59,8 +62,8 @@ public:
     virtual void swapBuffers();
     virtual void setViewPortInPoints(float x , float y , float w , float h);
     virtual void setScissorInPoints(float x , float y , float w , float h);
-    const kmMat4* getOrientationMatrix() const;
-    const kmMat4* getReverseOrientationMatrix () const {return &m_reverseOrientationMatrix;};
+    const Matrix& getOrientationMatrix() const;
+    const Matrix& getReverseOrientationMatrix () const {return m_reverseOrientationMatrix;};
 
     Windows::Graphics::Display::DisplayOrientations getDeviceOrientation() {return m_orientation;};
 
@@ -83,7 +86,12 @@ public:
 	void OnWindowClosed(Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::CoreWindowEventArgs^ args);
 	void OnResuming(Platform::Object^ sender, Platform::Object^ args);
 	void OnSuspending(Platform::Object^ sender, Windows::ApplicationModel::SuspendingEventArgs^ args);
-    
+    void OnBackKeyPress();
+
+    void QueueBackKeyPress();
+    void QueuePointerEvent(PointerEventType type, Windows::UI::Core::PointerEventArgs^ args);
+    void GLView::QueueEvent(std::shared_ptr<InputEvent>& event);
+
     void SetXamlEventDelegate(PhoneDirect3DXamlAppComponent::Cocos2dEventDelegate^ delegate) { m_delegate = delegate; };
     void SetXamlMessageBoxDelegate(PhoneDirect3DXamlAppComponent::Cocos2dMessageBoxDelegate^ delegate) { m_messageBoxDelegate = delegate; };
     void SetXamlEditBoxDelegate(PhoneDirect3DXamlAppComponent::Cocos2dEditBoxDelegate^ delegate) { m_editBoxDelegate = delegate; };
@@ -107,6 +115,11 @@ public:
     @brief    get the shared main open gl window
     */
 	static GLView* sharedOpenGLView();
+
+    void ProcessEvents();
+    void AddPointerEvent(PointerEventType type, Windows::UI::Core::PointerEventArgs^ args);
+
+
 
 protected:
     GLView();
@@ -134,8 +147,8 @@ private:
 	void UpdateWindowSize();
     void UpdateOrientationMatrix();
 
-    cocos2d::Point TransformToOrientation(Windows::Foundation::Point point);
- 	cocos2d::Point  GetPoint(Windows::UI::Core::PointerEventArgs^ args);
+    cocos2d::Vector2 TransformToOrientation(Windows::Foundation::Point point);
+ 	cocos2d::Vector2  GetPoint(Windows::UI::Core::PointerEventArgs^ args);
        
     Windows::Foundation::Rect m_windowBounds;
 	Windows::Foundation::EventRegistrationToken m_eventToken;
@@ -150,8 +163,8 @@ private:
 	bool m_lastPointValid;
 	bool m_windowClosed;
 	bool m_windowVisible;
-    kmMat4 m_orientationMatrix;
-    kmMat4 m_reverseOrientationMatrix;
+    Matrix m_orientationMatrix;
+    Matrix m_reverseOrientationMatrix;
 
 
     bool m_running;
@@ -165,6 +178,10 @@ private:
     PhoneDirect3DXamlAppComponent::Cocos2dEventDelegate^ m_delegate;
     PhoneDirect3DXamlAppComponent::Cocos2dMessageBoxDelegate^ m_messageBoxDelegate;
     PhoneDirect3DXamlAppComponent::Cocos2dEditBoxDelegate^ m_editBoxDelegate;
+
+    std::queue<std::shared_ptr<InputEvent>> mInputEvents;
+    std::mutex mMutex;
+
 };
 
 NS_CC_END

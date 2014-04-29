@@ -160,7 +160,7 @@ bool TestAds::init()
     return true;
 }
 
-void TestAds::testShow(Object* pSender)
+void TestAds::testShow(Ref* pSender)
 {
     if (_ads)
 	{
@@ -168,12 +168,12 @@ void TestAds::testShow(Object* pSender)
 	}
 }
 
-void TestAds::testHide(Object* pSender)
+void TestAds::testHide(Ref* pSender)
 {
 	_ads->hideAds(adInfo);
 }
 
-void TestAds::menuBackCallback(Object* pSender)
+void TestAds::menuBackCallback(Ref* pSender)
 {
     if (_admob != NULL)
     {
@@ -192,7 +192,7 @@ void TestAds::menuBackCallback(Object* pSender)
     Director::getInstance()->replaceScene(newScene);
 }
 
-void TestAds::caseChanged(Object* pSender)
+void TestAds::caseChanged(Ref* pSender)
 {
 	std::string strLog = "";
 	switch (_caseItem->getSelectedIndex())
@@ -211,7 +211,7 @@ void TestAds::caseChanged(Object* pSender)
 	log("case selected change to : %s", strLog.c_str());
 }
 
-void TestAds::posChanged(Object* pSender)
+void TestAds::posChanged(Ref* pSender)
 {
 	int selectIndex = _posItem->getSelectedIndex();
 	_pos = (ProtocolAds::AdsPos) selectIndex;

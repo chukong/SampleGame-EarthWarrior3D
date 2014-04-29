@@ -143,14 +143,14 @@ bool Sprite3D::buildProgram(bool textured)
     return true;
 }
 
-void Sprite3D::draw(Renderer* renderer, const kmMat4 &transform, bool transformUpdated)
+void Sprite3D::draw(Renderer* renderer, const cocos2d::math::Matrix &transform, bool transformUpdated)
 {
     _customCommand.init(_globalZOrder);
     _customCommand.func = CC_CALLBACK_0(Sprite3D::onDraw, this, transform, transformUpdated);
     Director::getInstance()->getRenderer()->addCommand(&_customCommand);
 }
 
-void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
+void Sprite3D::onDraw(const cocos2d::math::Matrix &transform, bool transformUpdated)
 {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
@@ -160,7 +160,7 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
     _mainShader->setUniformsForBuiltins(transform);
 
     GL::blendFunc( _blendFunc.src, _blendFunc.dst );
-    kmGLLoadIdentity();
+    Director::getInstance()->loadIdentityMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
     
 	if (_texture->getName()) {
         GL::bindTexture2D(_texture->getName());
@@ -182,9 +182,8 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
 
     // Set the normal matrix.
     // It's orthogonal, so its Inverse-Transpose is itself!
-    kmMat3 normals;
-    kmMat3AssignMat4(&normals, &_modelViewTransform);
-    glUniformMatrix3fv(_uniforms.NormalMatrix, 1, 0, &normals.mat[0]);
+
+    glUniformMatrix3fv(_uniforms.NormalMatrix, 1, 0, &_modelViewTransform.m[0]);
 
     GLuint verBuf = _model->getVertexBuffer();
     GLuint indexBuf = _model->getIndexBuffer();
@@ -225,9 +224,7 @@ void Sprite3D::onDraw(const kmMat4 &transform, bool transformUpdated)
         
         // Set the normal matrix.
         // It's orthogonal, so its Inverse-Transpose is itself!
-        //kmMat3 normals;
-        kmMat3AssignMat4(&normals, &_modelViewTransform);
-        glUniformMatrix3fv(_uniformsOutline.NormalMatrix, 1, 0, &normals.mat[0]);
+        glUniformMatrix3fv(_uniformsOutline.NormalMatrix, 1, 0, &_modelViewTransform.m[0]);
         glUniform1f(_uniformsOutline.OutlineWidth, _outLineWidth);
         Color4F fOutlineColor(_outlineColor);
         glUniform3f(_uniformsOutline.OutlineColor,fOutlineColor.r,fOutlineColor.g,fOutlineColor.b);

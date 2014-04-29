@@ -24,8 +24,8 @@ distribution.
 #ifndef TINYXML2_INCLUDED
 #define TINYXML2_INCLUDED
 
-#include "CCPlatformConfig.h"
-#include "CCPlatformMacros.h"
+#include "base/CCPlatformConfig.h"
+#include "base/CCPlatformMacros.h"
 
 #if defined(ANDROID_NDK) || defined(__BORLANDC__) || (CC_TARGET_PLATFORM == CC_PLATFORM_BLACKBERRY)
 #   include <ctype.h>

@@ -26,11 +26,11 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "CCScheduler.h"
-#include "ccMacros.h"
-#include "CCDirector.h"
+#include "2d/ccMacros.h"
+#include "2d/CCDirector.h"
 #include "utlist.h"
-#include "ccCArray.h"
-#include "CCScriptSupport.h"
+#include "2d/ccCArray.h"
+#include "2d/CCScriptSupport.h"
 
 NS_CC_BEGIN
 

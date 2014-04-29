@@ -6,6 +6,21 @@ import os
 import requests
 import sys
 import traceback
+from jenkinsapi.jenkins import Jenkins
+
+def check_queue_build(action, pr_num, statuses_url):
+    username = os.environ['JENKINS_ADMIN']
+    password = os.environ['JENKINS_ADMIN_PW']
+    J = Jenkins('http://115.28.134.83:8000',username,password)
+    queues = J.get_queue()
+    for key,queue in queues.iteritems():
+      q_payload_str = queue.get_parameters()['payload'].decode('utf-8','ignore')
+      q_payload = json.loads(q_payload_str)
+      q_pr_num = q_payload['number']
+      q_statuses_url = q_payload['statuses_url']
+      if(q_pr_num == pr_num):
+        if(action == 'closed') or (q_statuses_url != statuses_url):
+          queues.delete_item(queue)
 
 def main():
     #get payload from os env
@@ -38,6 +53,11 @@ def main():
 
     #set commit status to pending
     target_url = os.environ['JOB_PULL_REQUEST_BUILD_URL']
+
+    try:    
+        check_queue_build(action, pr_num, statuses_url)
+    except:
+        print 'Can not find build in queue'
     
     if(action == 'closed'):
         print 'pull request #' + str(pr_num) + ' is '+action+', no build triggered'
@@ -49,8 +69,11 @@ def main():
     message = last_commit['commit']['message']
 
     pattern = re.compile("\[ci(\s+)skip\]", re.I)
-    result = pattern.search(message)
-    if result is not None:
+    result_commit_title = pattern.search(message)
+
+    title = pr['title']
+    result_pr_title = pattern.search(title)
+    if result_commit_title is not None or result_pr_title is not None:
         print 'skip build for pull request #' + str(pr_num)
         return(0)
     

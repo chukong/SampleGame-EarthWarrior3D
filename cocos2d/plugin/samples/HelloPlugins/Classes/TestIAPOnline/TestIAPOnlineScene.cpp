@@ -118,7 +118,7 @@ bool TestIAPOnline::init()
     return true;
 }
 
-void TestIAPOnline::eventMenuCallback(Object* pSender)
+void TestIAPOnline::eventMenuCallback(Ref* pSender)
 {
     MenuItemLabel* pMenuItem = (MenuItemLabel*)pSender;
     MyIAPOLManager::MyPayMode mode = (MyIAPOLManager::MyPayMode) (pMenuItem->getTag() - TAG_PAY_BY_QH360 + 1);
@@ -156,7 +156,7 @@ void TestIAPOnline::eventMenuCallback(Object* pSender)
     MyIAPOLManager::getInstance()->payByMode(pInfo, mode);
 }
 
-void TestIAPOnline::menuBackCallback(Object* pSender)
+void TestIAPOnline::menuBackCallback(Ref* pSender)
 {
 	MyIAPOLManager::purge();
 

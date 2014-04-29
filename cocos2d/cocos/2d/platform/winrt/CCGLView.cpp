@@ -24,7 +24,6 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "CCGLView.h"
-#include "CCSet.h"
 #include "ccMacros.h"
 #include "CCDirector.h"
 #include "CCTouch.h"
@@ -166,11 +165,11 @@ void WinRTWindow::ResizeWindow()
      GLView::sharedOpenGLView()->UpdateForWindowSizeChange();
 }
 
-cocos2d::Point WinRTWindow::GetCCPoint(PointerEventArgs^ args) {
+cocos2d::Vector2 WinRTWindow::GetCCPoint(PointerEventArgs^ args) {
 	auto p = args->CurrentPoint;
 	float x = getScaledDPIValue(p->Position.X);
 	float y = getScaledDPIValue(p->Position.Y);
-    Point pt(x, y);
+    Vector2 pt(x, y);
 
 	float zoomFactor = GLView::sharedOpenGLView()->getFrameZoomFactor();
 
@@ -265,7 +264,7 @@ void WinRTWindow::OnPointerWheelChanged(CoreWindow^ sender, PointerEventArgs^ ar
 {
     float direction = (float)args->CurrentPoint->Properties->MouseWheelDelta;
     int id = 0;
-    Point p(0.0f,0.0f);
+    Vector2 p(0.0f,0.0f);
     GLView::sharedOpenGLView()->handleTouchesBegin(1, &id, &p.x, &p.y);
     p.y += direction;
     GLView::sharedOpenGLView()->handleTouchesMove(1, &id, &p.x, &p.y);
@@ -276,7 +275,7 @@ void WinRTWindow::OnPointerWheelChanged(CoreWindow^ sender, PointerEventArgs^ ar
 void WinRTWindow::OnPointerPressed(CoreWindow^ sender, PointerEventArgs^ args)
 {
     int id = args->CurrentPoint->PointerId;
-    Point pt = GetCCPoint(args);
+    Vector2 pt = GetCCPoint(args);
     GLView::sharedOpenGLView()->handleTouchesBegin(1, &id, &pt.x, &pt.y);
 }
 
@@ -288,7 +287,7 @@ void WinRTWindow::OnPointerMoved(CoreWindow^ sender, PointerEventArgs^ args)
 		if (m_lastPointValid)
 		{
 			int id = args->CurrentPoint->PointerId;
-			Point p = GetCCPoint(args);
+			Vector2 p = GetCCPoint(args);
 			GLView::sharedOpenGLView()->handleTouchesMove(1, &id, &p.x, &p.y);
 		}
 		m_lastPoint = currentPoint->Position;
@@ -303,7 +302,7 @@ void WinRTWindow::OnPointerMoved(CoreWindow^ sender, PointerEventArgs^ args)
 void WinRTWindow::OnPointerReleased(CoreWindow^ sender, PointerEventArgs^ args)
 {
     int id = args->CurrentPoint->PointerId;
-    Point pt = GetCCPoint(args);
+    Vector2 pt = GetCCPoint(args);
     GLView::sharedOpenGLView()->handleTouchesEnd(1, &id, &pt.x, &pt.y);
 }
 
@@ -514,6 +513,12 @@ void GLView::UpdateForWindowSizeChange()
         GLView::sharedOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, ResolutionPolicy::SHOW_ALL);
         Director::sharedDirector()->setProjection(Director::sharedDirector()->getProjection());
    }
+}
+
+void GLView::QueueEvent(std::shared_ptr<InputEvent>& event)
+{
+    std::lock_guard<std::mutex> guard(mMutex);
+    mInputEvents.push(event);
 }
 
 NS_CC_END

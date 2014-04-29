@@ -36,11 +36,11 @@ public:
     static cocos2d::Scene* scene();
     
     // a selector callback
-    void menuBackCallback(Object* pSender);
-    void testLogin(Object* pSender);
-    void testLogout(Object* pSender);
+    void menuBackCallback(Ref* pSender);
+    void testLogin(Ref* pSender);
+    void testLogout(Ref* pSender);
     
-    void caseChanged(Object* pSender);
+    void caseChanged(Ref* pSender);
 
     // implement the "static node()" method manually
     CREATE_FUNC(TestUser);

@@ -116,13 +116,13 @@ bool TestSocial::init()
     return true;
 }
 
-void TestSocial::testSubmit(Object* pSender)
+void TestSocial::testSubmit(Ref* pSender)
 {
     int nIdx = _caseItem->getSelectedIndex();
     MySocialManager::getInstance()->submitScore((MySocialManager::MySocialMode)(nIdx + 1), "0", 30000);
 }
 
-void TestSocial::testUnlock(Object* pSender)
+void TestSocial::testUnlock(Ref* pSender)
 {
     int nIdx = _caseItem->getSelectedIndex();
     TAchievementInfo info;
@@ -132,19 +132,19 @@ void TestSocial::testUnlock(Object* pSender)
     MySocialManager::getInstance()->unlockAchievement((MySocialManager::MySocialMode)(nIdx + 1), info);
 }
 
-void TestSocial::testLeaderboard(Object* pSender)
+void TestSocial::testLeaderboard(Ref* pSender)
 {
     int nIdx = _caseItem->getSelectedIndex();
     MySocialManager::getInstance()->showLeaderboard((MySocialManager::MySocialMode)(nIdx + 1), "0");
 }
 
-void TestSocial::testAchievement(Object* pSender)
+void TestSocial::testAchievement(Ref* pSender)
 {
     int nIdx = _caseItem->getSelectedIndex();
     MySocialManager::getInstance()->showAchievement((MySocialManager::MySocialMode)(nIdx + 1));
 }
 
-void TestSocial::menuBackCallback(Object* pSender)
+void TestSocial::menuBackCallback(Ref* pSender)
 {
     MySocialManager::purgeManager();
     Scene* newScene = HelloWorld::scene();
