@@ -24,7 +24,7 @@ class BulletController
 public:
     static void reset();
     static bool init(Node *bulletLayer);
-    static Bullet* spawnBullet(int type, Point pos, Point vec);
+    static Bullet* spawnBullet(int type, math::Vector2 pos, math::Vector2 vec);
     //static void update(float dt);
     static Vector<Bullet*> bullets;
     static void erase(Bullet* b); //returns the bullet to the pool

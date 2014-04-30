@@ -42,7 +42,7 @@ bool GameLayer::init()
     addChild(_spr, -5);
     Texture2D::TexParams texRepeat = {GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_REPEAT};
     _spr->getTexture()->setTexParameters(texRepeat);
-    setRotation3D(Vertex3F(-30.0,0.0f,0.0f));
+    //setRotation3D(Vector3(-30.0,0.0f,0.0f));
     _spr->setScale(1.4);
     _spr->setPosition(0.0f,400.0f);
     

@@ -160,7 +160,7 @@ void Sprite3D::onDraw(const cocos2d::math::Matrix &transform, bool transformUpda
     _mainShader->setUniformsForBuiltins(transform);
 
     GL::blendFunc( _blendFunc.src, _blendFunc.dst );
-    Director::getInstance()->loadIdentityMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
+    kmGLLoadIdentity();
     
 	if (_texture->getName()) {
         GL::bindTexture2D(_texture->getName());
@@ -183,7 +183,7 @@ void Sprite3D::onDraw(const cocos2d::math::Matrix &transform, bool transformUpda
     // Set the normal matrix.
     // It's orthogonal, so its Inverse-Transpose is itself!
 
-    glUniformMatrix3fv(_uniforms.NormalMatrix, 1, 0, &_modelViewTransform.m[0]);
+    glUniformMatrix4fv(_uniforms.NormalMatrix, 1, 0, &_modelViewTransform.m[0]);
 
     GLuint verBuf = _model->getVertexBuffer();
     GLuint indexBuf = _model->getIndexBuffer();
@@ -224,7 +224,7 @@ void Sprite3D::onDraw(const cocos2d::math::Matrix &transform, bool transformUpda
         
         // Set the normal matrix.
         // It's orthogonal, so its Inverse-Transpose is itself!
-        glUniformMatrix3fv(_uniformsOutline.NormalMatrix, 1, 0, &_modelViewTransform.m[0]);
+        glUniformMatrix4fv(_uniformsOutline.NormalMatrix, 1, 0, &_modelViewTransform.m[0]);
         glUniform1f(_uniformsOutline.OutlineWidth, _outLineWidth);
         Color4F fOutlineColor(_outlineColor);
         glUniform3f(_uniformsOutline.OutlineColor,fOutlineColor.r,fOutlineColor.g,fOutlineColor.b);
