@@ -29,7 +29,8 @@ bool Bullet::init()
         
         auto part_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("toonFlare.png");
         ValueMap vm=ParticleManager::getInstance()->GetPlistData("missileFlare");
-        ParticleSystemQuad *p = ParticleSystemQuad::create(vm,part_frame);
+        ParticleSystemQuad *p = ParticleSystemQuad::create(vm);
+        p->setDisplayFrame(part_frame);
         //p->setEndColor(Color4F(1,0,0,1));
         //p->setStartColor(Color4F(1,0,0,1));
         p->setPositionType(tPositionType::GROUPED);
@@ -95,7 +96,8 @@ bool Missile::init()
 
         auto part2_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("toonSmoke.png");
         ValueMap vm2=ParticleManager::getInstance()->GetPlistData("emission");
-        auto part2 = ParticleSystemQuad::create(vm2,part2_frame);
+        auto part2 = ParticleSystemQuad::create(vm2);
+        part2->setDisplayFrame(part2_frame);
         addChild(part2,1);
         part2->setPosition(0,-34);
         part2->setPositionType(tPositionType::GROUPED);
@@ -104,7 +106,8 @@ bool Missile::init()
         
         auto part1_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("toonFlare.png");
         ValueMap vm1=ParticleManager::getInstance()->GetPlistData("missileFlare");
-        auto part1 = ParticleSystemQuad::create(vm1,part1_frame);
+        auto part1 = ParticleSystemQuad::create(vm1);
+        part1->setDisplayFrame(part1_frame);
         addChild(part1,2);
         part1->setPosition(0,-30);
         part1->setPositionType(tPositionType::GROUPED);

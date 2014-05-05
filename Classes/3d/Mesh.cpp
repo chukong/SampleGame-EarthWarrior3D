@@ -6,9 +6,7 @@
 #include <sstream>
 #include <cctype>
 
-
 #include "cocos2d.h"
-#include "../cocos2d/cocos/2d/ccMacros.h"
 
 using namespace std;
 using namespace cocos2d;

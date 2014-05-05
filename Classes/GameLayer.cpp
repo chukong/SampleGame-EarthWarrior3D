@@ -53,7 +53,8 @@ bool GameLayer::init()
     addChild(_streak,3);
     auto emission_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("engine.jpg");
     ValueMap vm_emission=ParticleManager::getInstance()->GetPlistData("emissionPart");
-    _emissionPart = ParticleSystemQuad::create(vm_emission,emission_frame);
+    _emissionPart = ParticleSystemQuad::create(vm_emission);
+    _emissionPart->setDisplayFrame(emission_frame);
     _player->setEmissionPart(_emissionPart);
     addChild(_emissionPart,4);
     _emissionPart->setPositionType(tPositionType::FREE);

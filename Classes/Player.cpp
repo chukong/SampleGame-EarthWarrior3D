@@ -45,7 +45,8 @@ bool Player::init()
         // engine trail
         auto part_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("engine2.jpg");
         ValueMap vm=ParticleManager::getInstance()->GetPlistData("engine");
-        auto part = ParticleSystemQuad::create(vm,part_frame);
+        auto part = ParticleSystemQuad::create(vm);
+        part->setDisplayFrame(part_frame);
         addChild(part);
         part->setPosition(0,-30);
         part->setScale(0.6);
