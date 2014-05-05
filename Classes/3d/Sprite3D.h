@@ -27,7 +27,6 @@
 #include <vector>
 
 #include "cocos2d.h"
-#include "CCMath.h"
 
 #include "Mesh.h"
 
