@@ -807,9 +807,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D6058900D05DD3D006BFB54 /* Moon3D iOS */ = {
+		1D6058900D05DD3D006BFB54 /* EarthWarrior3D iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Moon3D iOS" */;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "EarthWarrior3D iOS" */;
 			buildPhases = (
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
@@ -824,14 +824,14 @@
 				1AC6FB2B180E99E1004C840B /* PBXTargetDependency */,
 				1AC6FB2D180E99E1004C840B /* PBXTargetDependency */,
 			);
-			name = "Moon3D iOS";
+			name = "EarthWarrior3D iOS";
 			productName = iphone;
 			productReference = 1D6058910D05DD3D006BFB54 /* Moon3D iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5087E73D17EB910900C73F5D /* Moon3D Mac */ = {
+		5087E73D17EB910900C73F5D /* EarthWarrior3D Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5087E76C17EB910900C73F5D /* Build configuration list for PBXNativeTarget "Moon3D Mac" */;
+			buildConfigurationList = 5087E76C17EB910900C73F5D /* Build configuration list for PBXNativeTarget "EarthWarrior3D Mac" */;
 			buildPhases = (
 				5087E74817EB910900C73F5D /* Resources */,
 				5087E75617EB910900C73F5D /* Sources */,
@@ -846,7 +846,7 @@
 				1AC6FB1A180E9959004C840B /* PBXTargetDependency */,
 				1AC6FB1C180E9959004C840B /* PBXTargetDependency */,
 			);
-			name = "Moon3D Mac";
+			name = "EarthWarrior3D Mac";
 			productName = iphone;
 			productReference = 5087E76F17EB910900C73F5D /* Moon3D Mac.app */;
 			productType = "com.apple.product-type.application";
@@ -884,8 +884,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				1D6058900D05DD3D006BFB54 /* Moon3D iOS */,
-				5087E73D17EB910900C73F5D /* Moon3D Mac */,
+				1D6058900D05DD3D006BFB54 /* EarthWarrior3D iOS */,
+				5087E73D17EB910900C73F5D /* EarthWarrior3D Mac */,
 			);
 		};
 /* End PBXProject section */
@@ -1398,7 +1398,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Moon3D iOS" */ = {
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "EarthWarrior3D iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
@@ -1407,7 +1407,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		5087E76C17EB910900C73F5D /* Build configuration list for PBXNativeTarget "Moon3D Mac" */ = {
+		5087E76C17EB910900C73F5D /* Build configuration list for PBXNativeTarget "EarthWarrior3D Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5087E76D17EB910900C73F5D /* Debug */,
