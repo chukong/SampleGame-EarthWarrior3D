@@ -6,13 +6,13 @@
 #include <vector>
 
 #include "Vector.h"
-#include "ccTypes.h"
+#include "cocos2d.h"
 
-struct Face
-{
-    ivec3 face;
-    ivec3 texi;
-};
+//struct Face
+//{
+//    ivec3 face;
+//    ivec3 texi;
+//};
 
 struct FaceVertex
 {
@@ -31,9 +31,9 @@ struct RenderMesh
 {
     struct RenderVertex
     {
-        vec3 vertex;
-        vec3 normal;
-        vec2 uv;
+        cocos2d::Vector3 vertex;
+        cocos2d::Vector3 normal;
+        cocos2d::Vector2 uv;
     };
     
     std::vector<RenderVertex> _vertexs;
@@ -43,9 +43,9 @@ struct RenderMesh
 struct ObjMeshData
 {
     //mesh data
-    std::vector<vec3> _vertexLists;
-    std::vector<vec2> _uvVertexLists;
-    std::vector<vec3> _normalVertexLists;
+    std::vector<cocos2d::Vector3> _vertexLists;
+    std::vector<cocos2d::Vector2> _uvVertexLists;
+    std::vector<cocos2d::Vector3> _normalVertexLists;
     std::vector<std::vector<FaceVertex>> _faceLists;
     
 public:

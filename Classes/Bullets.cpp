@@ -53,7 +53,7 @@ bool Bullet::init()
         p->setScale(2.5);
         p->setTotalParticles(2);
         _Model->addChild(p,-1);
-        p->setPosition(Point(_Model->getContentSize()/2));
+        p->setPosition(Vector2(_Model->getContentSize()/2));
         setScale(1.5);
         //static_cast<Sprite*>(_Model)->setFlippedY(true);
         return true;

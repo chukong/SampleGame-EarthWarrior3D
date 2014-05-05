@@ -308,8 +308,9 @@ void ObjMeshData::trianglarAndGenerateNormals()
         vec3 v2 = _vertexLists[face[1]._vIndex];
         vec3 v3 = _vertexLists[face[2]._vIndex];
         
-        vec3 fn = (v2-v1).Cross(v3-v2);
-        fn.Normalize();
+        vec3 fn = (v2-v1);
+        fn.cross(v3-v2);
+        fn.normalize();
         faceVertexNormalList[face[0]._vIndex].push_back(fn);
         faceVertexNormalList[face[1]._vIndex].push_back(fn);
         faceVertexNormalList[face[2]._vIndex].push_back(fn);
@@ -324,8 +325,8 @@ void ObjMeshData::trianglarAndGenerateNormals()
             _normalVertexLists[index] += facenormal;
         }
         
-        _normalVertexLists[index] /= faceVertexNormalList[index].size();
-        _normalVertexLists[index].Normalize();
+        _normalVertexLists[index] = _normalVertexLists[index] / faceVertexNormalList[index].size();
+        _normalVertexLists[index].normalize();
     }
 }
 
