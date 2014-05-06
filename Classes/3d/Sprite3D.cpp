@@ -160,7 +160,7 @@ void Sprite3D::onDraw(const cocos2d::Matrix &transform, bool transformUpdated)
     _mainShader->setUniformsForBuiltins(transform);
 
     GL::blendFunc( _blendFunc.src, _blendFunc.dst );
-    kmGLLoadIdentity();
+    Director::getInstance()->loadIdentityMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
     
 	if (_texture->getName()) {
         GL::bindTexture2D(_texture->getName());
@@ -215,7 +215,7 @@ void Sprite3D::onDraw(const cocos2d::Matrix &transform, bool transformUpdated)
         _outlineShader->use();
         _outlineShader->setUniformsForBuiltins(_modelViewTransform);
         //GL::blendFunc( _blendFunc.src, _blendFunc.dst );
-        kmGLLoadIdentity();
+        Director::getInstance()->loadIdentityMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
         GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION );
         
         // Initialize various state.
