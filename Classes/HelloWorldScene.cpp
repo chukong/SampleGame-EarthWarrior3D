@@ -119,7 +119,8 @@ bool HelloWorld::init()
     return true;
 }
 
-void HelloWorld::increaseScore(float dt){
+void HelloWorld::increaseScore(float dt)
+{
     this->score++;
     std::stringstream ss;
     std::string str;
@@ -138,7 +139,7 @@ void HelloWorld::ShowGameOver(Ref* pObj)
     addChild(gameoverlayer,10);
 }
 
-void HelloWorld::menuCloseCallback(Ref* pSender)
+void HelloWorld::menuCloseCallback(Ref* sender)
 {
     Director::getInstance()->end();
 
