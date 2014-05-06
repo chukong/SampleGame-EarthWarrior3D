@@ -133,9 +133,10 @@ void Player::stop()
     unschedule(schedule_selector(Player::shoot));
     unschedule(schedule_selector(Player::shootMissile));
 }
-void Player::hideWarningLayer()
+void Player::hideWarningLayer(Node* node)
 {
-    setVisible(false);
+    if(node)
+        node->setVisible(false);
 }
 bool Player::hurt(float damage){
     float fromHP = _HP;
@@ -145,7 +146,10 @@ bool Player::hurt(float damage){
     auto fadeBack = FadeTo::create(0.2, 0);
     auto warningLayer = Director::getInstance()->getRunningScene()->getChildByTag(456);
     warningLayer->setVisible(true);
-    warningLayer->runAction(Sequence::create(fade,fadeBack,CallFunc::create(warningLayer, callfunc_selector(Player::hideWarningLayer)),NULL));
+    warningLayer->runAction(Sequence::create(fade,fadeBack,
+                                             CallFunc::create(
+                                                              CC_CALLBACK_0(Player::hideWarningLayer, this, warningLayer)
+                                                              ),NULL));
     
     auto hpView = ((HelloWorld*)Director::getInstance()->getRunningScene()->getChildByTag(100))->getHPView();
     

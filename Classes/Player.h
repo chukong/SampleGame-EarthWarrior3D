@@ -56,7 +56,7 @@ public:
     void setPosition(Vector2 pos);
     virtual bool hurt(float damage);
     virtual void die();
-    void hideWarningLayer();
+    void hideWarningLayer(Node* node);
 protected:
     float targetAngle = 0;
     Vector2 targetPos = Vector2(0,0);
