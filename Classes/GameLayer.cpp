@@ -120,12 +120,12 @@ void GameLayer::gameMaster(float dt)
             auto enemy2 = EnemyController::spawnEnemy(kEnemyFodder);
             enemy2->setPosition(random + Vector2(-60,60)*(i+1));
             static_cast<Fodder*>(enemy2)->setMoveMode(moveMode::kDefault);
-            enemy1->setRotation3D(Vector3::zero());
-            enemy2->setRotation3D(Vector3::zero());
+            enemy1->setRotation3D(Vector3::ZERO);
+            enemy2->setRotation3D(Vector3::ZERO);
         }
         auto leader = EnemyController::spawnEnemy(kEnemyFodderL);
         leader->setPosition(random);
-        leader->setRotation3D(Vector3::zero());
+        leader->setRotation3D(Vector3::ZERO);
         static_cast<FodderLeader*>(leader)->setTarget(_player);
         static_cast<FodderLeader*>(leader)->setMoveMode(moveMode::kDefault);
     }
