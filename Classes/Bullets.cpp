@@ -75,12 +75,12 @@ bool PlayerBullet::init()
     return false;
 }
 
-void Bullet::setVector(Point vec)
+void Bullet::setVector(Vector2 vec)
 {
     _vector = vec;
 }
 
-Point Bullet::getVector()
+Vector2 Bullet::getVector()
 {
     return _vector;
 }
@@ -99,7 +99,7 @@ bool Missile::init()
         _type = kPlayerMissiles;
         _owner = kPlayer;
         _Model->setScale(3);
-        _Model->setRotation3D(Vertex3F(90,0,0));
+        _Model->setRotation3D(Vector3(90,0,0));
         _damage = 20;
         static_cast<Sprite3D*>(_Model)->setOutline(0.3, Color3B(0,0,0));
         
@@ -153,19 +153,19 @@ void Missile::update(float dt)
         
         float f = curRot + angleDif;
         setRotation(f);
-        setPosition(getPosition()+Point(sinf(CC_DEGREES_TO_RADIANS(f))*_velocity,cosf(CC_DEGREES_TO_RADIANS(f))*_velocity) + _vector*dt);
+        setPosition(getPosition()+Vector2(sinf(CC_DEGREES_TO_RADIANS(f))*_velocity,cosf(CC_DEGREES_TO_RADIANS(f))*_velocity) + _vector*dt);
         _vector = _vector * (1-dt);
         
     }
     else{
         float f = getRotation();
         setRotation(f);
-        setPosition(getPosition()+Point(sinf(CC_DEGREES_TO_RADIANS(f))*_velocity,cosf(CC_DEGREES_TO_RADIANS(f))*_velocity) + _vector*dt);
+        setPosition(getPosition()+Vector2(sinf(CC_DEGREES_TO_RADIANS(f))*_velocity,cosf(CC_DEGREES_TO_RADIANS(f))*_velocity) + _vector*dt);
         _vector = _vector * (1-dt*0.5);
     }
     // missiles need to rotate
     _yRotation += _yRotSpeed*dt;
-    _Model->setRotation3D(Vertex3F(90,_yRotation, 0));
+    _Model->setRotation3D(Vector3(90,_yRotation, 0));
     
     
     

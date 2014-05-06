@@ -183,7 +183,7 @@ void GameLayer::gameMaster(float dt)
             auto enemy = EnemyController::showCaseEnemy(kEnemyBigDude);
             //enemy->setPosition(Vector2(100*CCRANDOM_MINUS1_1(), BOUND_RECT.size.height/2+200));
             enemy->setPosition(rX,rY);
-            Point targetPos =Vector2(BOUND_RECT.size.width/3*CCRANDOM_MINUS1_1(),BOUND_RECT.size.height/3*CCRANDOM_0_1());
+            Vector2 targetPos =Vector2(BOUND_RECT.size.width/3*CCRANDOM_MINUS1_1(),BOUND_RECT.size.height/3*CCRANDOM_0_1());
             enemy->setScale(2*CCRANDOM_MINUS1_1()+2);
             float randomTime = CCRANDOM_0_1()*1+1;
             enemy->setRotation3D(Vector3(300,0,-CC_RADIANS_TO_DEGREES((enemy->getPosition()-targetPos).getAngle())+90));
