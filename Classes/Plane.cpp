@@ -32,8 +32,8 @@ bool Plane::init(){
     if(_Model){
         _Model->setScale(55);
         ((Sprite3D*)_Model)->setOutline(0.035, Color3B::BLACK);
-        _Model->setRotation3D(math::Vector3(originX,originY,originZ));
-        this->setRotation3D(math::Vector3(originX, originY, originZ));
+        _Model->setRotation3D(Vector3(originX,originY,originZ));
+        this->setRotation3D(Vector3(originX, originY, originZ));
         this->addChild(_Model);
         this->scheduleUpdate();
     }
@@ -42,5 +42,5 @@ bool Plane::init(){
 
 void Plane::update(float dt){
     pRate+=0.01;
-    _Model->setRotation3D(math::Vector3(0-pXA*sin(pXW*pRate),0,0-pZA*sin(pZW*pRate)));
+    _Model->setRotation3D(Vector3(0-pXA*sin(pXW*pRate),0,0-pZA*sin(pZW*pRate)));
 }

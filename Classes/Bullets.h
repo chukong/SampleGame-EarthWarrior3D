@@ -35,13 +35,13 @@ class Bullet : public GameEntity
 public:
     CREATE_FUNC(Bullet);
     bool init();
-    void setVector(math::Vector2 vec);
-    math::Vector2 getVector();
+    void setVector(Vector2 vec);
+    Vector2 getVector();
     virtual void reset();
     CC_SYNTHESIZE(float, _damage, Damage);
     CC_SYNTHESIZE(int, _owner, Owner)
 protected:
-    math::Vector2 _vector;
+    Vector2 _vector;
 };
 
 class PlayerBullet : public Bullet

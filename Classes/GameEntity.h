@@ -35,7 +35,7 @@ public:
     CREATE_FUNC(GameEntity);
     Node *getModel();
     void remove();
-    math::Vector3 getOrientation();
+    Vector3 getOrientation();
     void setType(int type){_type = type;};
     int getType(){return _type;};
     float getRadius(){return _radius;};
@@ -44,7 +44,7 @@ public:
 protected:
     Node *_Model;
     float _radius;
-    math::Vector3 _orientation;
+    Vector3 _orientation;
     int _type;
     
 };

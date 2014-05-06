@@ -69,7 +69,7 @@ public:
 protected:
     Sprite* muzzle1;
     Sprite* muzzle2;
-    math::Vector2 _targetPos;
+    Vector2 _targetPos;
     float _turnRate = 50;
 };
 
@@ -92,10 +92,10 @@ protected:
     void dismissMuzzle(float dt);
     void _turns();
     void _endGame(float dt);
-    math::Vector2 _getCannon1Position();
-    math::Vector2 _getCannon2Position();
-    math::Vector2 _getCannon1Vector();
-    math::Vector2 _getCannon2Vector();
+    Vector2 _getCannon1Position();
+    Vector2 _getCannon2Position();
+    Vector2 _getCannon1Vector();
+    Vector2 _getCannon2Vector();
     Node* _Cannon1;
     Node* _Cannon2;
     Sprite* muzzle1;

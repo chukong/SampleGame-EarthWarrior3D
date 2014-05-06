@@ -84,12 +84,12 @@ bool GameLayer::init()
     scheduleUpdate();
     
     
-    _player->setPosition(Point(0,-1000));
+    _player->setPosition(Vector2(0,-1000));
     _player->runAction(Sequence::create(
                                         DelayTime::create(0.75),
                        Spawn::create(
-                                     EaseBackOut::create(MoveTo::create(1.7,Point(0,-200))),
-                                     EaseSineOut::create(RotateBy::create(1.7,Vertex3F(0,720,0))),
+                                     EaseBackOut::create(MoveTo::create(1.7,Vector2(0,-200))),
+                                     EaseSineOut::create(RotateBy::create(1.7,Vector3(0,720,0))),
                                      nullptr
                                      ),
                        CallFunc::create(CC_CALLBACK_0(GameLayer::schedulePlayer,this)),nullptr));
@@ -111,37 +111,37 @@ void GameLayer::gameMaster(float dt)
     //if(_elapsed < 10 && enemyCount < 5)
     if(enemyCount < 5 &&_elapsed < 60)
     {
-        Point random = Point(100*CCRANDOM_MINUS1_1(), BOUND_RECT.size.height/2+200);
+        Vector2 random = Vector2(100*CCRANDOM_MINUS1_1(), BOUND_RECT.size.height/2+200);
         for(int i=0; i < 4; i++)
         {
             auto enemy1 = EnemyController::spawnEnemy(kEnemyFodder);
-            enemy1->setPosition(random + Point(60,60)*(i+1));
+            enemy1->setPosition(random + Vector2(60,60)*(i+1));
             static_cast<Fodder*>(enemy1)->setMoveMode(moveMode::kDefault);
             auto enemy2 = EnemyController::spawnEnemy(kEnemyFodder);
-            enemy2->setPosition(random + Point(-60,60)*(i+1));
+            enemy2->setPosition(random + Vector2(-60,60)*(i+1));
             static_cast<Fodder*>(enemy2)->setMoveMode(moveMode::kDefault);
-            enemy1->setRotation3D(Vertex3F(0,0,0));
-            enemy2->setRotation3D(Vertex3F(0,0,0));
+            enemy1->setRotation3D(Vector3::zero());
+            enemy2->setRotation3D(Vector3::zero());
         }
         auto leader = EnemyController::spawnEnemy(kEnemyFodderL);
         leader->setPosition(random);
-        leader->setRotation3D(Vertex3F(0,0,0));
+        leader->setRotation3D(Vector3::zero());
         static_cast<FodderLeader*>(leader)->setTarget(_player);
         static_cast<FodderLeader*>(leader)->setMoveMode(moveMode::kDefault);
     }
     //else if(_elapsed < 20 && enemyCount <5)
     if(_elapsed > 4 && enemyCount <4 &&_elapsed < 60)
     {
-        Point random = Point(-400, BOUND_RECT.size.height/4*CCRANDOM_MINUS1_1()+350);
+        Vector2 random = Vector2(-400, BOUND_RECT.size.height/4*CCRANDOM_MINUS1_1()+350);
         for(int i=0; i < 3; i++)
         {
             float randomAngle = CCRANDOM_MINUS1_1()*70;
             auto enemy = EnemyController::spawnEnemy(kEnemyFodder);
-            enemy->setPosition(random + Point(60,60)*(i+1));
+            enemy->setPosition(random + Vector2(60,60)*(i+1));
             static_cast<Fodder*>(enemy)->setTurnRate(randomAngle*0.5);
             enemy->setRotation(-randomAngle-90);
             auto enemy2 = EnemyController::spawnEnemy(kEnemyFodder);
-            enemy2->setPosition(random + Point(-60,60)*(i+1));
+            enemy2->setPosition(random + Vector2(-60,60)*(i+1));
             static_cast<Fodder*>(enemy2)->setTurnRate(randomAngle*0.5);
             enemy2->setRotation(-randomAngle-90);
         }
@@ -181,18 +181,18 @@ void GameLayer::gameMaster(float dt)
                     break;
             }
             auto enemy = EnemyController::showCaseEnemy(kEnemyBigDude);
-            //enemy->setPosition(Point(100*CCRANDOM_MINUS1_1(), BOUND_RECT.size.height/2+200));
+            //enemy->setPosition(Vector2(100*CCRANDOM_MINUS1_1(), BOUND_RECT.size.height/2+200));
             enemy->setPosition(rX,rY);
-            Point targetPos =Point(BOUND_RECT.size.width/3*CCRANDOM_MINUS1_1(),BOUND_RECT.size.height/3*CCRANDOM_0_1());
+            Point targetPos =Vector2(BOUND_RECT.size.width/3*CCRANDOM_MINUS1_1(),BOUND_RECT.size.height/3*CCRANDOM_0_1());
             enemy->setScale(2*CCRANDOM_MINUS1_1()+2);
             float randomTime = CCRANDOM_0_1()*1+1;
-            enemy->setRotation3D(Vertex3F(300,0,-CC_RADIANS_TO_DEGREES((enemy->getPosition()-targetPos).getAngle())+90));
+            enemy->setRotation3D(Vector3(300,0,-CC_RADIANS_TO_DEGREES((enemy->getPosition()-targetPos).getAngle())+90));
             enemy->runAction(
                              Sequence::create(
                                               Spawn::create(
                                                             EaseSineOut::create(MoveTo::create(randomTime, targetPos)),
                                                             EaseSineOut::create(ScaleTo::create(randomTime,1)),//TODO: replace with move 3d when possible
-                                                            EaseBackOut::create(RotateBy::create(randomTime+0.2,Vertex3F(-300,0,0))),
+                                                            EaseBackOut::create(RotateBy::create(randomTime+0.2,Vector3(-300,0,0))),
                                                             nullptr
                                                             ),
                                               CallFunc::create(enemy,callfunc_selector(BigDude::showFinished)),

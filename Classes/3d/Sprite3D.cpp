@@ -143,14 +143,14 @@ bool Sprite3D::buildProgram(bool textured)
     return true;
 }
 
-void Sprite3D::draw(Renderer* renderer, const cocos2d::math::Matrix &transform, bool transformUpdated)
+void Sprite3D::draw(Renderer* renderer, const cocos2d::Matrix &transform, bool transformUpdated)
 {
     _customCommand.init(_globalZOrder);
     _customCommand.func = CC_CALLBACK_0(Sprite3D::onDraw, this, transform, transformUpdated);
     Director::getInstance()->getRenderer()->addCommand(&_customCommand);
 }
 
-void Sprite3D::onDraw(const cocos2d::math::Matrix &transform, bool transformUpdated)
+void Sprite3D::onDraw(const cocos2d::Matrix &transform, bool transformUpdated)
 {
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
