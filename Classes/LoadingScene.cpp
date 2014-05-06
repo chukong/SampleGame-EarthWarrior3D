@@ -93,7 +93,7 @@ void LoadingScene::InitBk()
     
     
     //LabelPercent
-    m_pPercent=LabelBMFont::create("0%", "num.fnt");
+    m_pPercent=Label::createWithBMFont("num.fnt","0%");
     m_pPercent->setPosition(Vector2(visibleSize.width/2,visibleSize.height/2+170));
     this->addChild(m_pPercent,1);
     

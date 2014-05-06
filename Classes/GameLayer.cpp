@@ -195,7 +195,7 @@ void GameLayer::gameMaster(float dt)
                                                             EaseBackOut::create(RotateBy::create(randomTime+0.2,Vector3(-300,0,0))),
                                                             nullptr
                                                             ),
-                                              CallFunc::create(enemy,callfunc_selector(BigDude::showFinished)),
+                                              CallFunc::create(CC_CALLBACK_0(BigDude::showFinished, static_cast<BigDude*>(enemy))),
                                               nullptr
                              ));
         }

@@ -77,7 +77,7 @@ private:
     int totalNum;
     
     Sprite* m_pProgress;
-    LabelBMFont* m_pPercent;
+    Label* m_pPercent;
     
     static int m_curPreload_fodder_count;
     static int m_curPreload_fodderL_count;

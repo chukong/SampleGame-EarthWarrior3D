@@ -327,7 +327,7 @@ void Boss::enterTheBattle()
                                              EaseSineOut::create(ScaleTo::create(4,1)),//TODO: replace with move 3d when possible
                                              EaseBackOut::create(RotateBy::create(4+0.5,Vector3(-100,0,0))),
                                              nullptr
-                                             ),                                             CallFunc::create(this, callfunc_selector(Boss::startShooting)),
+                                             ),                                             CallFunc::create(std::bind(static_cast<void(Boss::*)(void)>(&Boss::startShooting), this)),
                                CallFunc::create(CC_CALLBACK_0(Boss::_turns,this)),
                                nullptr
                                ));
@@ -353,28 +353,27 @@ void Boss::_turns()
                                EaseQuadraticActionInOut::create(RotateBy::create(2,-40)),
                                EaseQuadraticActionInOut::create(RotateBy::create(1,20)),
                                DelayTime::create(2),
-                               CallFunc::create(this, Boss::_next()),
+                               CallFunc::create(CC_CALLBACK_0(Boss::_next, this)),
                                nullptr
               )
     );
 }
-cocos2d::SEL_CallFunc Boss::_next()
+
+void Boss::_next()
 {
     int random = CCRANDOM_0_1()*2;
-    cocos2d::SEL_CallFunc ret;
     switch(random)
     {
         case 0:
-            ret = callfunc_selector(Boss::_turns);
+            _turns();
             break;
         case 1:
-            ret = callfunc_selector(Boss::_dash);
+            _dash();
             break;
         default:
-            ret = callfunc_selector(Boss::_dash);
+            _dash();
             break;
     }
-    return ret;
 }
 
 void Boss::_dash()
@@ -402,7 +401,7 @@ void Boss::_dash()
                                RotateBy::create(2.5, Vector3(-30,45*neg,-90*neg)),
                                 RotateBy::create(1, Vector3(0,-35*neg,-200*neg)),
                                EaseSineInOut::create(RotateBy::create(1.5, Vector3(30,-40*neg,-70*neg))),
-                               CallFunc::create(this, Boss::_next()),
+                               CallFunc::create(CC_CALLBACK_0(Boss::_next, this)),
               nullptr)
               );
 }

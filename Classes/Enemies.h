@@ -101,7 +101,7 @@ protected:
     Sprite* muzzle1;
     Sprite* muzzle2;
     void _dash();
-    cocos2d::SEL_CallFunc _next();
+    void _next();
 };
 
 
