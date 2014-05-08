@@ -62,7 +62,7 @@ bool Player::init()
         auto part_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("engine2.jpg");
         ValueMap vm=ParticleManager::getInstance()->GetPlistData("engine");
         auto part = ParticleSystemQuad::create(vm);
-        part->setDisplayFrame(part_frame);
+        part->setTextureWithRect(part_frame->getTexture(), part_frame->getRect());
         addChild(part);
         part->setPosition(0,-30);
         part->setScale(0.6);
