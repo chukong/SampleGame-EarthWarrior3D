@@ -23,7 +23,6 @@
  ****************************************************************************/
 
 #include "Bullets.h"
-#include "3d/Sprite3D.h"
 #include "consts.h"
 #include "GameLayer.h"
 #include "GameEntity.h"

@@ -26,7 +26,6 @@
 #define __Moon3d__MainMenuScene__
 
 #include "cocos2d.h"
-#include "3d/Sprite3D.h"
 #include "Plane.h"
 
 USING_NS_CC;

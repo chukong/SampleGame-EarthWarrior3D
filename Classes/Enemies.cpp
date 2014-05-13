@@ -23,7 +23,6 @@
  ****************************************************************************/
 
 #include "Enemies.h"
-#include "3d/Sprite3D.h"
 #include "GameControllers.h"
 #include "Bullets.h"
 #include "consts.h"

@@ -24,7 +24,6 @@
  
 #include "HelloWorldScene.h"
 #include "GameLayer.h"
-#include "3d/Sprite3D.h"
 #include "HelloWorldScene.h"
 #include "GameOverLayer.h"
 #include "GameControllers.h"

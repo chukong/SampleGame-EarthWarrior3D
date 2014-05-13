@@ -31,7 +31,7 @@ enum moveMode{
     kDefault,
     kTurn
 };
-class Sprite3D;
+
 class Fodder : public AirCraft
 {
 public:

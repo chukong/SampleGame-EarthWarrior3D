@@ -24,7 +24,6 @@
 
 #include "LoadingScene.h"
 #include "HelloWorldScene.h"
-#include "3d/Sprite3D.h"
 #include "AirCraft.h"
 #include "Enemies.h"
 #include "Bullets.h"

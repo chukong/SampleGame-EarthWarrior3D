@@ -24,7 +24,6 @@
 
 #include "Player.h"
 #include "Bullets.h"
-#include "3d/Sprite3D.h"
 #include "GameControllers.h"
 #include "consts.h"
 #include "HelloWorldScene.h"
