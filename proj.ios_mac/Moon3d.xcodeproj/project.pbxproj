@@ -56,12 +56,6 @@
 		50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF629517ECD46A001EB2F8 /* Icon-100.png */; };
 		50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A017ECD613001EB2F8 /* Icon-29.png */; };
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
-		BB0C48A3190910CE0015152C /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4879190910CE0015152C /* Mesh.cpp */; };
-		BB0C48A4190910CE0015152C /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4879190910CE0015152C /* Mesh.cpp */; };
-		BB0C48A5190910CE0015152C /* MeshCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB0C487B190910CE0015152C /* MeshCache.cpp */; };
-		BB0C48A6190910CE0015152C /* MeshCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB0C487B190910CE0015152C /* MeshCache.cpp */; };
-		BB0C48A7190910CE0015152C /* Sprite3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB0C487D190910CE0015152C /* Sprite3D.cpp */; };
-		BB0C48A8190910CE0015152C /* Sprite3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB0C487D190910CE0015152C /* Sprite3D.cpp */; };
 		BB0C48A9190910CE0015152C /* AirCraft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4882190910CE0015152C /* AirCraft.cpp */; };
 		BB0C48AA190910CE0015152C /* AirCraft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4882190910CE0015152C /* AirCraft.cpp */; };
 		BB0C48AB190910CE0015152C /* Bullets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4884190910CE0015152C /* Bullets.cpp */; };
@@ -395,16 +389,6 @@
 		50EF629517ECD46A001EB2F8 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
 		50EF62A017ECD613001EB2F8 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		50EF62A117ECD613001EB2F8 /* Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-50.png"; sourceTree = "<group>"; };
-		BB0C4878190910CE0015152C /* Colored.es2.frag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colored.es2.frag.h; sourceTree = "<group>"; };
-		BB0C4879190910CE0015152C /* Mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
-		BB0C487A190910CE0015152C /* Mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mesh.h; sourceTree = "<group>"; };
-		BB0C487B190910CE0015152C /* MeshCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshCache.cpp; sourceTree = "<group>"; };
-		BB0C487C190910CE0015152C /* MeshCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeshCache.h; sourceTree = "<group>"; };
-		BB0C487D190910CE0015152C /* Sprite3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite3D.cpp; sourceTree = "<group>"; };
-		BB0C487E190910CE0015152C /* Sprite3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite3D.h; sourceTree = "<group>"; };
-		BB0C487F190910CE0015152C /* Textured.es2.frag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Textured.es2.frag.h; sourceTree = "<group>"; };
-		BB0C4880190910CE0015152C /* Textured.es2.vert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Textured.es2.vert.h; sourceTree = "<group>"; };
-		BB0C4881190910CE0015152C /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
 		BB0C4882190910CE0015152C /* AirCraft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AirCraft.cpp; path = ../Classes/AirCraft.cpp; sourceTree = "<group>"; };
 		BB0C4883190910CE0015152C /* AirCraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AirCraft.h; path = ../Classes/AirCraft.h; sourceTree = "<group>"; };
 		BB0C4884190910CE0015152C /* Bullets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bullets.cpp; path = ../Classes/Bullets.cpp; sourceTree = "<group>"; };
@@ -567,7 +551,6 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				BB0C4877190910CE0015152C /* 3d */,
 				BB0C4882190910CE0015152C /* AirCraft.cpp */,
 				BB0C4883190910CE0015152C /* AirCraft.h */,
 				BB0C4884190910CE0015152C /* Bullets.cpp */,
@@ -776,24 +759,6 @@
 			);
 			name = Resources;
 			path = ../Resources;
-			sourceTree = "<group>";
-		};
-		BB0C4877190910CE0015152C /* 3d */ = {
-			isa = PBXGroup;
-			children = (
-				BB0C4878190910CE0015152C /* Colored.es2.frag.h */,
-				BB0C4879190910CE0015152C /* Mesh.cpp */,
-				BB0C487A190910CE0015152C /* Mesh.h */,
-				BB0C487B190910CE0015152C /* MeshCache.cpp */,
-				BB0C487C190910CE0015152C /* MeshCache.h */,
-				BB0C487D190910CE0015152C /* Sprite3D.cpp */,
-				BB0C487E190910CE0015152C /* Sprite3D.h */,
-				BB0C487F190910CE0015152C /* Textured.es2.frag.h */,
-				BB0C4880190910CE0015152C /* Textured.es2.vert.h */,
-				BB0C4881190910CE0015152C /* Vector.h */,
-			);
-			name = 3d;
-			path = ../Classes/3d;
 			sourceTree = "<group>";
 		};
 		BB0C48E2190910E60015152C /* fonts */ = {
@@ -1109,7 +1074,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB0C48B1190910CE0015152C /* Explosion.cpp in Sources */,
-				BB0C48A3190910CE0015152C /* Mesh.cpp in Sources */,
 				BB0C48BD190910CE0015152C /* LoadingScene.cpp in Sources */,
 				BB0C48B5190910CE0015152C /* GameEntity.cpp in Sources */,
 				BB0C48C3190910CE0015152C /* Plane.cpp in Sources */,
@@ -1121,8 +1085,6 @@
 				BB0C48BB190910CE0015152C /* LicenseLayer.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				BB0C48AD190910CE0015152C /* Effects.cpp in Sources */,
-				BB0C48A7190910CE0015152C /* Sprite3D.cpp in Sources */,
-				BB0C48A5190910CE0015152C /* MeshCache.cpp in Sources */,
 				BB0C48C1190910CE0015152C /* ParticleManager.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				BB0C48AB190910CE0015152C /* Bullets.cpp in Sources */,
@@ -1145,17 +1107,14 @@
 				BB0C48BC190910CE0015152C /* LicenseLayer.cpp in Sources */,
 				5087E75817EB910900C73F5D /* HelloWorldScene.cpp in Sources */,
 				BB0C48B0190910CE0015152C /* Enemies.cpp in Sources */,
-				BB0C48A6190910CE0015152C /* MeshCache.cpp in Sources */,
 				BB0C48AA190910CE0015152C /* AirCraft.cpp in Sources */,
 				BB0C48C6190910CE0015152C /* Player.cpp in Sources */,
 				BB0C48B8190910CE0015152C /* GameLayer.cpp in Sources */,
 				BB0C48B4190910CE0015152C /* GameControllers.cpp in Sources */,
 				BB0C48C8190910CE0015152C /* PublicApi.cpp in Sources */,
-				BB0C48A4190910CE0015152C /* Mesh.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				BB0C48C0190910CE0015152C /* MainMenuScene.cpp in Sources */,
 				BB0C48BA190910CE0015152C /* GameOverLayer.cpp in Sources */,
-				BB0C48A8190910CE0015152C /* Sprite3D.cpp in Sources */,
 				BB0C48AE190910CE0015152C /* Effects.cpp in Sources */,
 				BB0C48BE190910CE0015152C /* LoadingScene.cpp in Sources */,
 				BB0C48AC190910CE0015152C /* Bullets.cpp in Sources */,
