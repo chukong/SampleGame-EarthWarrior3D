@@ -30,7 +30,7 @@ bool Plane::init(){
     _Model = Sprite3D::create("playerv002.obj", "playerv002_256.png");
     if(_Model){
         _Model->setScale(55);
-        ((Sprite3D*)_Model)->setOutline(0.035, Color3B::BLACK);
+        //((Sprite3D*)_Model)->setOutline(0.035, Color3B::BLACK);
         _Model->setRotation3D(Vector3(originX,originY,originZ));
         this->setRotation3D(Vector3(originX, originY, originZ));
         this->addChild(_Model);

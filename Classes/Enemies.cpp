@@ -40,7 +40,7 @@ bool Fodder::init()
         _Model->setScale(6);
         addChild(_Model);
         _Model->setRotation3D(Vector3(90,0,0));
-        static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B(0,0,0));
+        //static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B(0,0,0));
         _type = kEnemyFodder;
         _HP = 10;
         _radius = 30;
@@ -103,7 +103,7 @@ bool FodderLeader::init()
         _Model->setScale(8);
         addChild(_Model);
         _Model->setRotation3D(Vector3(90,0,0));
-        static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B(255,0,0));
+        //static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B(255,0,0));
         _type = kEnemyFodderL;
         _HP = 20;
         _radius = 35;
@@ -127,7 +127,7 @@ bool BigDude::init()
         _Model->setScale(8);
         addChild(_Model);
         _Model->setRotation3D(Vector3(90,0,0));
-        static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B::BLACK);
+        //static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B::BLACK);
         _type = kEnemyBigDude;
         _HP = 30;
         _radius = 40;
@@ -282,7 +282,7 @@ bool Boss::init()
         _Model->setScale(28);
         addChild(_Model);
         _Model->setRotation3D(Vector3(90,0,0));
-        static_cast<Sprite3D*>(_Model)->setOutline(0.1, Color3B(0,0,0));
+        //static_cast<Sprite3D*>(_Model)->setOutline(0.1, Color3B(0,0,0));
         _type = kEnemyBoss;
         _HP = 5000;
         _radius = 150;
@@ -293,7 +293,7 @@ bool Boss::init()
         cannon1->setScale(28);
         cannon1->setRotation3D(Vector3(90,0,0));
         _Cannon1->setPosition3D(Vector3(40,-100, 10));
-        cannon1->setOutline(0.1, Color3B(0,0,0));
+        //cannon1->setOutline(0.1, Color3B(0,0,0));
         
         auto cannon2 = Sprite3D::create("bossCannon.obj", "boss.png");
         _Cannon2 = Node::create();
@@ -302,7 +302,7 @@ bool Boss::init()
         cannon2->setScale(28);
         cannon2->setRotation3D(Vector3(90,0,0));
         _Cannon2->setPosition3D(Vector3(-40,-100, 10));
-        cannon2->setOutline(0.1, Color3B(0,0,0));
+        //cannon2->setOutline(0.1, Color3B(0,0,0));
         //addChild(_Cannon2);
         //_Cannon2->setPosition(-20,-200);
         
