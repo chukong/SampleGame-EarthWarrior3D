@@ -113,7 +113,8 @@ void LoadingScene::InitCoco()
     if(coco)
     {
         coco->setPosition(Vector2(visibleSize.width/2, visibleSize.height/2-150));
-        //coco->setOutline(10,Color3B(0,0,0));
+        GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(coco), 10, Color3B(0,0,0));
+        
         addChild(coco,1);
         coco->runAction(RepeatForever::create(RotateBy::create(0.8f,Vector3(0,360,0))));
     }

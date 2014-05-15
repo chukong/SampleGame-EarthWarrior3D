@@ -47,3 +47,14 @@ void GameEntity::forward(float dist, float angle)
     setRotation(getRotation()-angle);
     forward(dist);
 }
+
+void GameEntity::UseOutlineEffect(Sprite3D* sprite, float width, Color3B color)
+{
+    if(nullptr == sprite)
+        CCLOGERROR("Can not apply outline effect to a null Sprite3D");
+    
+    Sprite3DOutlineEffect* effect = Sprite3DOutlineEffect::create();
+    sprite->setEffect(effect);
+    effect->setOutlineColor(Vector3(color.r/255.0f, color.g/255.0f, color.b/255.0f));
+    effect->setOutlineWidth(width);
+}

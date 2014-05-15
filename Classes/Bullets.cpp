@@ -101,8 +101,7 @@ bool Missile::init()
         _Model->setScale(3);
         _Model->setRotation3D(Vector3(90,0,0));
         _damage = 20;
-        //static_cast<Sprite3D*>(_Model)->setOutline(0.3, Color3B(0,0,0));
-        
+        GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.3, Color3B(0,0,0));
         _left = (CCRANDOM_MINUS1_1()>0);
         if(_left)
             _yRotSpeed *= -1;

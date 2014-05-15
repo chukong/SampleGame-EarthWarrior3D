@@ -41,6 +41,8 @@ public:
     float getRadius(){return _radius;};
     void forward(float dist);
     void forward(float dist, float angle);
+public:
+    static void UseOutlineEffect(Sprite3D* sprite, float width, Color3B color);
 protected:
     Node *_Model;
     float _radius;
