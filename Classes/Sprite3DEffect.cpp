@@ -7,6 +7,7 @@
 //
 
 #include "Sprite3DEffect.h"
+#include "3d/CCMesh.h"
 
 static int tuple_sort( const std::tuple<ssize_t,Effect3D*,CustomCommand> &tuple1, const std::tuple<ssize_t,Effect3D*,CustomCommand> &tuple2 )
 {

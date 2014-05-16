@@ -65,7 +65,7 @@ bool Player::init()
         
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
         //scheduleUpdate();
-        GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.2, Color3B(0,0,0));
+        GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.02, Color3B(0,0,0));
         
         schedule(schedule_selector(Player::shootMissile), 1.5, -1, 0);
         schedule(schedule_selector(Player::shoot), 0.075, -1, 0);
