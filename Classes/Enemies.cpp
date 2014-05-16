@@ -34,6 +34,7 @@
 bool Fodder::init()
 {
     _score = 10;
+	_alive = true;
     _Model = Sprite3D::create("dijiyuanv001.obj", "dijiyuanv001.png");
     if(_Model)
     {
@@ -97,6 +98,7 @@ void Fodder::shoot(float dt)
 bool FodderLeader::init()
 {
     _score = 20;
+	_alive = true;
     _Model = Sprite3D::create("dijiyuanv001.obj", "dijiyuanv001.png");
     if(_Model)
     {
@@ -121,6 +123,8 @@ void FodderLeader::reset()
 bool BigDude::init()
 {
     _score = 20;
+	_alive = true;
+	_turnRate = 50;
     _Model = Sprite3D::create("diji1_v002.obj", "diji02_v002_128.png");
     if(_Model)
     {
@@ -276,6 +280,7 @@ void BigDude::fall()
 bool Boss::init()
 {
     _score = 666;
+	_alive = true;
     _Model = Sprite3D::create("boss.obj", "boss.png");
     //auto cannon2 = Sprite3D::create("bossCannon.obj", "boos.png");
     if(_Model)

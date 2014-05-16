@@ -94,6 +94,13 @@ bool Missile::init()
     _Model = Sprite3D::create("daodanv001.obj", "daodan_32.png");
     if(_Model)
     {
+		_accel = 15;
+		_turnRate = 180;
+		_yRotSpeed = 1400;
+		_yRotation = 0;
+		_left = false;
+		_velocity = 0;
+
         addChild(_Model);
         _radius=10;
         _type = kPlayerMissiles;
@@ -101,6 +108,7 @@ bool Missile::init()
         _Model->setScale(3);
         _Model->setRotation3D(Vector3(90,0,0));
         _damage = 20;
+		_target = nullptr;
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.3, Color3B(0,0,0));
         _left = (CCRANDOM_MINUS1_1()>0);
         if(_left)

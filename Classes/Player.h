@@ -41,10 +41,10 @@ public:
     virtual void onTouchEnded(Touch *touch, Event *event);
     void update(float dt);
     
-    const float rollSpeed = 1.5;// recommended 1.5
-    const float returnSpeed = 10;// recommended 4
-    const float maxRoll = 75;
-    const float rollReturnThreshold = 1.02;
+    static const float rollSpeed;// recommended 1.5
+    static const float returnSpeed;// recommended 4
+    static const float maxRoll;
+    static const float rollReturnThreshold;
     void setTargetAngle(float angle){targetAngle = angle;};
     void setTargetPos(Vector2 target){targetPos = target;};
     
@@ -58,9 +58,9 @@ public:
     virtual void die();
     void hideWarningLayer(Node* node);
 protected:
-    float targetAngle = 0;
-    Vector2 targetPos = Vector2(0,0);
-    Vector2 _trailOffset = Vector2(0,-40);
+    float targetAngle;
+    Vector2 targetPos;
+    Vector2 _trailOffset;
     
 };
 

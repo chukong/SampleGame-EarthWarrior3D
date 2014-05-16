@@ -26,7 +26,20 @@
 #include "PublicApi.h"
 
 
+const float Plane::pXW = 1.1f;
+const float Plane::pYW = 5.0f;
+const float Plane::pZW = 1.0f;
+const float Plane::pXA = 1.0f;
+const float Plane::pYA = 10.0f;
+const float Plane::pZA = 7.0f;
+
 bool Plane::init(){
+
+	pRate = 3.1415926/2;
+    originX = -15.0f;
+    originY = 159.0f;
+    originZ = 9.0f;
+
     _Model = Sprite3D::create("playerv002.obj", "playerv002_256.png");
     if(_Model){
         _Model->setScale(55);

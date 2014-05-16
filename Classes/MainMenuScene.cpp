@@ -53,6 +53,9 @@ bool MainMenuScene::init()
     {
         return false;
     }
+	
+	pRate = 3.1415926/2;
+
     // Music By Matthew Pable (http://www.matthewpablo.com/)
     // Licensed under CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
     CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Star_Chaser.mp3");
