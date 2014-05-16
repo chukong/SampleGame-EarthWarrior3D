@@ -54,6 +54,7 @@ bool Player::init()
         _Model->setRotation3D(Vec3(90,0,0));
         _radius = 40;
         _HP = 100;
+        _alive = true;
         
         auto listener = EventListenerTouchOneByOne::create();
         listener->setSwallowTouches(true);

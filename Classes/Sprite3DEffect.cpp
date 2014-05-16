@@ -7,7 +7,6 @@
 //
 
 #include "Sprite3DEffect.h"
-#include "cocos/3d/CCMesh.h"
 
 static int tuple_sort( const std::tuple<ssize_t,Effect3D*,CustomCommand> &tuple1, const std::tuple<ssize_t,Effect3D*,CustomCommand> &tuple2 )
 {
@@ -107,13 +106,13 @@ Effect3DOutline* Effect3DOutline::create()
 bool Effect3DOutline::init()
 {
     
-    GLProgram* glprogram = GLProgram::createWithFilenames("Shaders3D/OutLine.vert", "Shaders3D/OutLine.frag");
+    GLProgram* glprogram = Effect3DOutline::getOrCreateProgram();
     if(nullptr == glprogram)
     {
         CC_SAFE_DELETE(glprogram);
         return false;
     }
-    _glProgramState = GLProgramState::getOrCreateWithGLProgram(glprogram);
+    _glProgramState = GLProgramState::create(glprogram);
     if(nullptr == _glProgramState)
     {
         return false;
@@ -123,6 +122,20 @@ bool Effect3DOutline::init()
     _glProgramState->setUniformFloat("OutlineWidth", _outlineWidth);
     
     return true;
+}
+
+const std::string Effect3DOutline::_vertShaderFile = "Shaders3D/OutLine.vert";
+const std::string Effect3DOutline::_fragShaderFile = "Shaders3D/OutLine.frag";
+const std::string Effect3DOutline::_keyInGLProgramCache = "Effect3DLibrary_Outline";
+GLProgram* Effect3DOutline::getOrCreateProgram()
+{
+    auto program = GLProgramCache::getInstance()->getGLProgram(_keyInGLProgramCache);
+    if(program == nullptr)
+    {
+        program = GLProgram::createWithFilenames(_vertShaderFile, _fragShaderFile);
+        GLProgramCache::getInstance()->addGLProgram(program, _keyInGLProgramCache);
+    }
+    return program;
 }
 
 Effect3DOutline::Effect3DOutline()
