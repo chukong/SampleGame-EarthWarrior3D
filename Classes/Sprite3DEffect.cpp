@@ -68,6 +68,7 @@ void EffectSprite3D::eraseEffect(Effect3D* effect)
         if(std::get<1>(*iter) != effect) continue;
         else
         {
+            CC_SAFE_RELEASE_NULL(std::get<1>(*iter));
             _effects.erase(iter);
             break;
         }
