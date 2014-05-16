@@ -33,11 +33,20 @@
 #define visible_size_macro Director::getInstance()->getVisibleSize()
 #define origin_point Director::getInstance()->getVisibleOrigin();
 
+const float Player::rollSpeed = 1.5;// recommended 1.5
+const float Player::returnSpeed = 10;// recommended 4
+const float Player::maxRoll = 75;
+const float Player::rollReturnThreshold = 1.02;
+
 bool Player::init()
 {
     _Model = Sprite3D::create("playerv002.obj", "playerv002_256.png");
     if(_Model)
     {
+		targetAngle = 0;
+		targetPos = Vector2(0,0);
+		_trailOffset = Vector2(0,-40);
+
         _Model->setScale(8);
         addChild(_Model);
         _Model->setRotation3D(Vector3(90,0,0));
@@ -73,7 +82,7 @@ bool Player::init()
 }
 void Player::update(float dt)
 {
-    float smoothedAngle =fmin(fmax(targetAngle*(1-dt*returnSpeed*(rollReturnThreshold-fabsf(targetAngle)/maxRoll)),-maxRoll),maxRoll);
+    float smoothedAngle =std::min(std::max(targetAngle*(1-dt*returnSpeed*(rollReturnThreshold-fabsf(targetAngle)/maxRoll)),-maxRoll),maxRoll);
     setRotation3D(Vector3(fabsf(smoothedAngle)*0.15,smoothedAngle, 0));
     targetAngle = getRotation3D().y;
 }

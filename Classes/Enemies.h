@@ -70,7 +70,7 @@ protected:
     Sprite* muzzle1;
     Sprite* muzzle2;
     Vector2 _targetPos;
-    float _turnRate = 50;
+    float _turnRate;
 };
 
 class Boss : public Fodder

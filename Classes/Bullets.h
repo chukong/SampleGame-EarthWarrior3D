@@ -60,13 +60,13 @@ public:
     CC_SYNTHESIZE(GameEntity*, _target, Target)
     virtual void reset();
 protected:
-    float _accel = 15;
-    float _turnRate = 180;
+    float _accel;
+    float _turnRate;
     //float _maxSpeed = 100;
-    float _yRotSpeed = 1400;
-    float _yRotation = 0;
-    bool _left = false;
-    float _velocity = 0;
+    float _yRotSpeed ;
+    float _yRotation;
+    bool _left;
+    float _velocity;
 };
 
 #endif /* defined(__Moon3d__Bullet__) */

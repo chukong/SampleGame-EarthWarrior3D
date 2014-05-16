@@ -54,6 +54,11 @@ bool GameLayer::init()
 //    animation->retain();
 //    AnimationCache::getInstance()->addAnimation(animation,"bullet_expl");
     
+	xScroll = 0.0f;
+    speed = -60.0f;
+	_elapsed = 20; //testing purpose, this was set to near boss timer
+    _bossOut = false;
+
     _spr = Sprite::create("groundLevel.jpg");
     addChild(_spr, -5);
     Texture2D::TexParams texRepeat = {GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_REPEAT};

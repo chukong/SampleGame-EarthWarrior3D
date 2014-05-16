@@ -40,7 +40,7 @@ public:
     virtual void move(float y, float dt);
     virtual void reset();
 protected:
-    bool _alive = true;
+    bool _alive;
     float _HP;
     int _score;
 };
