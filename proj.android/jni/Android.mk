@@ -24,6 +24,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/GameOverLayer.cpp \
                    ../../Classes/ParticleManager.cpp \
                    ../../Classes/Plane.cpp \
+                   ../../Classes/Sprite3DEffect.cpp \
                    ../../Classes/LicenseLayer.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
