@@ -51,6 +51,11 @@ protected:
     
     Vec3 _outlineColor;
     float _outlineWidth;
+public:
+    static const std::string _vertShaderFile;
+    static const std::string _fragShaderFile;
+    static const std::string _keyInGLProgramCache;
+    static GLProgram* getOrCreateProgram();
     
 };
 
