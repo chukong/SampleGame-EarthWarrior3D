@@ -23,6 +23,7 @@
  ****************************************************************************/
 
 #include "GameEntity.h"
+#include "Sprite3DEffect.h"
 
 USING_NS_CC_MATH;
 
@@ -52,7 +53,29 @@ void GameEntity::UseOutlineEffect(Sprite3D* sprite, float width, Color3B color)
 {
     if(nullptr == sprite)
         CCLOGERROR("Can not apply outline effect to a null Sprite3D");
-    
+    EffectSprite3D* _effectSprite3D = dynamic_cast<EffectSprite3D*>(sprite);
+    if(_effectSprite3D)
+    {
+        Effect3DOutline* effect(nullptr);
+        for (ssize_t index = 0; index < _effectSprite3D->getEffectCount(); ++index)
+        {
+            effect = dynamic_cast<Effect3DOutline*>(_effectSprite3D->getEffect(index));
+            if(nullptr != effect) break;
+        }
+        if(effect)
+        {
+            effect->setOutlineColor(Vec3(color.r/255.0f, color.g/255.0f, color.b/255.0f));
+            effect->setOutlineWidth(width);
+        }
+        else
+        {
+            effect = Effect3DOutline::create();
+            effect->setOutlineColor(Vec3(color.r/255.0f, color.g/255.0f, color.b/255.0f));
+            effect->setOutlineWidth(width);
+            _effectSprite3D->addEffect(effect, 1);
+        }
+        
+    }
 //    Sprite3DOutlineEffect* effect = Sprite3DOutlineEffect::create();
 //    sprite->setEffect(effect);
 //    effect->setOutlineColor(Vec3(color.r/255.0f, color.g/255.0f, color.b/255.0f));

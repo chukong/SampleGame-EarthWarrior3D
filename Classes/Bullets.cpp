@@ -29,6 +29,7 @@
 #include "GameControllers.h"
 #include "Enemies.h"
 #include "ParticleManager.h"
+#include "Sprite3DEffect.h"
 
 bool Bullet::init()
 {
@@ -91,7 +92,7 @@ void Bullet::reset()
 
 bool Missile::init()
 {
-    _Model = Sprite3D::create("daodanv001.obj", "daodan_32.png");
+    _Model = EffectSprite3D::createFromObjFileAndTexture("daodanv001.obj", "daodan_32.png");
     if(_Model)
     {
 		_accel = 15;

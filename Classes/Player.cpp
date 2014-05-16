@@ -30,6 +30,8 @@
 #include "PublicApi.h"
 #include "GameLayer.h"
 #include "ParticleManager.h"
+#include "Sprite3DEffect.h"
+
 #define visible_size_macro Director::getInstance()->getVisibleSize()
 #define origin_point Director::getInstance()->getVisibleOrigin();
 
@@ -40,7 +42,7 @@ const float Player::rollReturnThreshold = 1.02;
 
 bool Player::init()
 {
-    _Model = Sprite3D::create("playerv002.obj", "playerv002_256.png");
+    _Model = EffectSprite3D::createFromObjFileAndTexture("playerv002.obj", "playerv002_256.png");
     if(_Model)
     {
 		targetAngle = 0;

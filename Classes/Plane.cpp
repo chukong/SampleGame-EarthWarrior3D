@@ -24,6 +24,7 @@
  
 #include "Plane.h"
 #include "PublicApi.h"
+#include "Sprite3DEffect.h"
 
 
 const float Plane::pXW = 1.1f;
@@ -40,7 +41,7 @@ bool Plane::init(){
     originY = 159.0f;
     originZ = 9.0f;
 
-    _Model = Sprite3D::create("playerv002.obj", "playerv002_256.png");
+    _Model = EffectSprite3D::createFromObjFileAndTexture("playerv002.obj", "playerv002_256.png");
     if(_Model){
         _Model->setScale(55);
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.035, Color3B(0,0,0));

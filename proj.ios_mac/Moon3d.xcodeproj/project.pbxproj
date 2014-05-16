@@ -56,6 +56,10 @@
 		50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF629517ECD46A001EB2F8 /* Icon-100.png */; };
 		50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A017ECD613001EB2F8 /* Icon-29.png */; };
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
+		B21386761925C30000A2C310 /* Sprite3DEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21386741925C30000A2C310 /* Sprite3DEffect.cpp */; };
+		B21386771925C30000A2C310 /* Sprite3DEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21386741925C30000A2C310 /* Sprite3DEffect.cpp */; };
+		B213867B1925C60E00A2C310 /* Shaders3D in Resources */ = {isa = PBXBuildFile; fileRef = B213867A1925C60E00A2C310 /* Shaders3D */; };
+		B213867C1925C60E00A2C310 /* Shaders3D in Resources */ = {isa = PBXBuildFile; fileRef = B213867A1925C60E00A2C310 /* Shaders3D */; };
 		BB0C48A9190910CE0015152C /* AirCraft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4882190910CE0015152C /* AirCraft.cpp */; };
 		BB0C48AA190910CE0015152C /* AirCraft.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4882190910CE0015152C /* AirCraft.cpp */; };
 		BB0C48AB190910CE0015152C /* Bullets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4884190910CE0015152C /* Bullets.cpp */; };
@@ -389,6 +393,9 @@
 		50EF629517ECD46A001EB2F8 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
 		50EF62A017ECD613001EB2F8 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		50EF62A117ECD613001EB2F8 /* Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-50.png"; sourceTree = "<group>"; };
+		B21386741925C30000A2C310 /* Sprite3DEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sprite3DEffect.cpp; path = ../Classes/Sprite3DEffect.cpp; sourceTree = "<group>"; };
+		B21386751925C30000A2C310 /* Sprite3DEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sprite3DEffect.h; path = ../Classes/Sprite3DEffect.h; sourceTree = "<group>"; };
+		B213867A1925C60E00A2C310 /* Shaders3D */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shaders3D; sourceTree = "<group>"; };
 		BB0C4882190910CE0015152C /* AirCraft.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AirCraft.cpp; path = ../Classes/AirCraft.cpp; sourceTree = "<group>"; };
 		BB0C4883190910CE0015152C /* AirCraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AirCraft.h; path = ../Classes/AirCraft.h; sourceTree = "<group>"; };
 		BB0C4884190910CE0015152C /* Bullets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bullets.cpp; path = ../Classes/Bullets.cpp; sourceTree = "<group>"; };
@@ -588,6 +595,8 @@
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */,
 				1AFAF8B616D35DE700DB1158 /* HelloWorldScene.h */,
+				B21386741925C30000A2C310 /* Sprite3DEffect.cpp */,
+				B21386751925C30000A2C310 /* Sprite3DEffect.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -703,6 +712,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B213867A1925C60E00A2C310 /* Shaders3D */,
 				BB0C48CB190910E60015152C /* boom.mp3 */,
 				BB0C48CC190910E60015152C /* boom2.mp3 */,
 				BB0C48CD190910E60015152C /* boss.obj */,
@@ -825,7 +835,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
-						DevelopmentTeam = MDDB52YB8L;
+						DevelopmentTeam = NQ596S94Q5;
 					};
 				};
 			};
@@ -951,6 +961,7 @@
 				BB0C494B190910E70015152C /* missileFlare.plist in Resources */,
 				BB0C4959190910E70015152C /* player_bullet_explosion.png in Resources */,
 				BB0C4933190910E70015152C /* gameover_score_num.fnt in Resources */,
+				B213867B1925C60E00A2C310 /* Shaders3D in Resources */,
 				BB0C495F190910E70015152C /* score_right_top.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				BB0C4941190910E70015152C /* loadingAndHP.plist in Resources */,
@@ -1017,6 +1028,7 @@
 				BB0C4940190910E70015152C /* LICENSE_03.png in Resources */,
 				BB0C492A190910E70015152C /* explodeEffect.mp3 in Resources */,
 				BB0C4920190910E70015152C /* dijiyuanv001.obj in Resources */,
+				B213867C1925C60E00A2C310 /* Shaders3D in Resources */,
 				BB0C490A190910E70015152C /* bossCannon.obj in Resources */,
 				BB0C4908190910E70015152C /* boss.png in Resources */,
 				BB0C492C190910E70015152C /* flare.plist in Resources */,
@@ -1073,6 +1085,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B21386761925C30000A2C310 /* Sprite3DEffect.cpp in Sources */,
 				BB0C48B1190910CE0015152C /* Explosion.cpp in Sources */,
 				BB0C48BD190910CE0015152C /* LoadingScene.cpp in Sources */,
 				BB0C48B5190910CE0015152C /* GameEntity.cpp in Sources */,
@@ -1103,6 +1116,7 @@
 			files = (
 				5087E75717EB910900C73F5D /* AppDelegate.cpp in Sources */,
 				BB0C48C2190910CE0015152C /* ParticleManager.cpp in Sources */,
+				B21386771925C30000A2C310 /* Sprite3DEffect.cpp in Sources */,
 				BB0C48C4190910CE0015152C /* Plane.cpp in Sources */,
 				BB0C48BC190910CE0015152C /* LicenseLayer.cpp in Sources */,
 				5087E75817EB910900C73F5D /* HelloWorldScene.cpp in Sources */,
@@ -1184,6 +1198,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -1204,6 +1219,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1215,6 +1231,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COMPRESS_PNG_FILES = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1233,6 +1250,7 @@
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = "";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

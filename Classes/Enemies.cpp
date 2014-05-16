@@ -30,12 +30,13 @@
 #include "Effects.h"
 #include "HelloWorldScene.h"
 #include "GameLayer.h"
+#include "Sprite3DEffect.h"
 
 bool Fodder::init()
 {
     _score = 10;
 	_alive = true;
-    _Model = Sprite3D::create("dijiyuanv001.obj", "dijiyuanv001.png");
+    _Model = EffectSprite3D::createFromObjFileAndTexture("dijiyuanv001.obj", "dijiyuanv001.png");
     if(_Model)
     {
         _Model->setScale(6);
@@ -99,7 +100,7 @@ bool FodderLeader::init()
 {
     _score = 20;
 	_alive = true;
-    _Model = Sprite3D::create("dijiyuanv001.obj", "dijiyuanv001.png");
+    _Model = EffectSprite3D::createFromObjFileAndTexture("dijiyuanv001.obj", "dijiyuanv001.png");
     if(_Model)
     {
         _Model->setScale(8);
@@ -125,7 +126,7 @@ bool BigDude::init()
     _score = 20;
 	_alive = true;
 	_turnRate = 50;
-    _Model = Sprite3D::create("diji1_v002.obj", "diji02_v002_128.png");
+    _Model = EffectSprite3D::createFromObjFileAndTexture("diji1_v002.obj", "diji02_v002_128.png");
     if(_Model)
     {
         _Model->setScale(8);
@@ -281,7 +282,7 @@ bool Boss::init()
 {
     _score = 666;
 	_alive = true;
-    _Model = Sprite3D::create("boss.obj", "boss.png");
+    _Model = EffectSprite3D::createFromObjFileAndTexture("boss.obj", "boss.png");
     //auto cannon2 = Sprite3D::create("bossCannon.obj", "boos.png");
     if(_Model)
     {
@@ -292,7 +293,7 @@ bool Boss::init()
         _type = kEnemyBoss;
         _HP = 5000;
         _radius = 150;
-        auto cannon1 = Sprite3D::create("bossCannon.obj", "boss.png");
+        auto cannon1 = EffectSprite3D::createFromObjFileAndTexture("bossCannon.obj", "boss.png");
         _Cannon1 = Node::create();
         addChild(_Cannon1);
         _Cannon1->addChild(cannon1);
@@ -300,7 +301,7 @@ bool Boss::init()
         cannon1->setRotation3D(Vec3(90,0,0));
         _Cannon1->setPosition3D(Vec3(40,-100, 10));
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(cannon1), 0.1, Color3B(0,0,0));
-        auto cannon2 = Sprite3D::create("bossCannon.obj", "boss.png");
+        auto cannon2 = EffectSprite3D::createFromObjFileAndTexture("bossCannon.obj", "boss.png");
         _Cannon2 = Node::create();
         addChild(_Cannon2);
         _Cannon2->addChild(cannon2);

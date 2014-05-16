@@ -30,6 +30,7 @@
 #include "GameControllers.h"
 #include "ParticleManager.h"
 #include "consts.h"
+#include "Sprite3DEffect.h"
 
 int LoadingScene::updatecount=0;
 int LoadingScene::m_curPreload_fodder_count=0;
@@ -109,7 +110,7 @@ void LoadingScene::InitBk()
 void LoadingScene::InitCoco()
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    auto coco = Sprite3D::create("coconut.obj", "coco.png");
+    auto coco = EffectSprite3D::createFromObjFileAndTexture("coconut.obj", "coco.png");
     if(coco)
     {
         coco->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2-150));
