@@ -69,6 +69,9 @@
     <ClCompile Include="..\Classes\PublicApi.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Sprite3DEffect.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -129,6 +132,9 @@
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\PublicApi.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Sprite3DEffect.h">
       <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>
