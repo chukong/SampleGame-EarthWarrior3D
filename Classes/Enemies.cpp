@@ -40,7 +40,7 @@ bool Fodder::init()
     {
         _Model->setScale(6);
         addChild(_Model);
-        _Model->setRotation3D(Vector3(90,0,0));
+        _Model->setRotation3D(Vec3(90,0,0));
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.2, Color3B(0,0,0));
         _type = kEnemyFodder;
         _HP = 10;
@@ -58,7 +58,7 @@ void Fodder::reset()
 void Fodder::setTurnRate(float turn)
 {
     setMoveMode(moveMode::kTurn);
-    setRotation3D(Vector3(fabsf(turn)*0.15, turn, 0));
+    setRotation3D(Vec3(fabsf(turn)*0.15, turn, 0));
     _turn = turn;
 }
 float Fodder::getTurnRate()
@@ -84,8 +84,8 @@ void Fodder::shoot(float dt)
     {
         //get angle to player;
         float angle = (getPosition()-_target->getPosition()).getAngle();
-        auto bullet =BulletController::spawnBullet(kEnemyBullet, getPosition(), Vector2(cosf(angle)*-500, sinf(angle)*-500));
-        //auto bullet =BulletController::spawnBullet(kEnemyBullet, getPosition(), Vector2(0,-500));
+        auto bullet =BulletController::spawnBullet(kEnemyBullet, getPosition(), Vec2(cosf(angle)*-500, sinf(angle)*-500));
+        //auto bullet =BulletController::spawnBullet(kEnemyBullet, getPosition(), Vec2(0,-500));
         bullet->setRotation(-CC_RADIANS_TO_DEGREES(angle)-90);
         //log("aaaaaaa");
     }
@@ -104,7 +104,7 @@ bool FodderLeader::init()
     {
         _Model->setScale(8);
         addChild(_Model);
-        _Model->setRotation3D(Vector3(90,0,0));
+        _Model->setRotation3D(Vec3(90,0,0));
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.2, Color3B(255,0,0));
         _type = kEnemyFodderL;
         _HP = 20;
@@ -130,7 +130,7 @@ bool BigDude::init()
     {
         _Model->setScale(8);
         addChild(_Model);
-        _Model->setRotation3D(Vector3(90,0,0));
+        _Model->setRotation3D(Vec3(90,0,0));
         //static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B::BLACK);
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.2, Color3B::BLACK);
         _type = kEnemyBigDude;
@@ -164,10 +164,10 @@ void BigDude::shoot(float dt)
         unschedule(schedule_selector(BigDude::shoot));
         return;
     }
-    //Point bulletVec = Vector2(getRotation())
+    //Point bulletVec = Vec2(getRotation())
     
-    Vector2 offset1 = getPosition();
-    Vector2 offset2 = offset1;
+    Vec2 offset1 = getPosition();
+    Vec2 offset2 = offset1;
     float angle = CC_DEGREES_TO_RADIANS(-getRotation()+90);
     float offsetRad = CC_DEGREES_TO_RADIANS(45);
     offset1.x += cosf(angle+offsetRad)*-50;
@@ -175,9 +175,9 @@ void BigDude::shoot(float dt)
     offset2.x += cosf(angle-offsetRad)*-50;
     offset2.y += sinf(angle-offsetRad)*-50;
     //this->showMuzzle();
-    auto bullet =BulletController::spawnBullet(kEnemyBullet, offset1, Vector2(cosf(angle)*-500, sinf(angle)*-500));
+    auto bullet =BulletController::spawnBullet(kEnemyBullet, offset1, Vec2(cosf(angle)*-500, sinf(angle)*-500));
     bullet->setRotation(-CC_RADIANS_TO_DEGREES(angle)-90);
-    bullet =BulletController::spawnBullet(kEnemyBullet, offset2, Vector2(cosf(angle)*-500, sinf(angle)*-500));
+    bullet =BulletController::spawnBullet(kEnemyBullet, offset2, Vec2(cosf(angle)*-500, sinf(angle)*-500));
     bullet->setRotation(-CC_RADIANS_TO_DEGREES(angle)-90);
         CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("boom.mp3");
 }
@@ -201,8 +201,8 @@ void BigDude::showMuzzle()
     muzzle1->setScale(0.4);
     muzzle2->setScale(0.4);
     
-    Vector2 offset1 = Vector2::ZERO;
-    Vector2 offset2 = offset1;
+    Vec2 offset1 = Vec2::ZERO;
+    Vec2 offset2 = offset1;
     float angle = 90;
     float offsetRad = CC_DEGREES_TO_RADIANS(45);
     offset1.x += cosf(offsetRad+angle)*-50;
@@ -232,9 +232,9 @@ void BigDude::die()
     EnemyController::enemies.eraseObject(this);
     EnemyController::showCaseEnemies.pushBack(this);
     EffectManager::createExplosion(getPosition());
-    Vector2 nowPoint = this->getPosition();
+    Vec2 nowPoint = this->getPosition();
     log("now X: %f Y:%f \n",nowPoint.x,nowPoint.y);
-    Vector2 targetPos = Vector2(nowPoint.x,nowPoint.y-200);
+    Vec2 targetPos = Vec2(nowPoint.x,nowPoint.y-200);
     log("now X: %f Y:%f \n",targetPos.x,targetPos.y);
     unscheduleAllSelectors();
     this->runAction(
@@ -242,8 +242,8 @@ void BigDude::die()
                                       Spawn::create(
                                                     EaseSineOut::create(MoveTo::create(2, targetPos)),
                                                     EaseSineOut::create(ScaleTo::create(2,0.3)),//TODO: replace with move 3d when possible
-                                                    //EaseBackOut::create(RotateBy::create(2,Vector3(CC_RADIANS_TO_DEGREES((nowPoint-targetPos).getAngle()),CC_RADIANS_TO_DEGREES((nowPoint-targetPos).getAngle())+45,-CC_RADIANS_TO_DEGREES((nowPoint-targetPos).getAngle())+90))),
-                                                    RotateBy::create(2, Vector3(360+CCRANDOM_0_1()*600, 360+CCRANDOM_0_1()*600, 360+CCRANDOM_0_1()*600)),
+                                                    //EaseBackOut::create(RotateBy::create(2,Vec3(CC_RADIANS_TO_DEGREES((nowPoint-targetPos).getAngle()),CC_RADIANS_TO_DEGREES((nowPoint-targetPos).getAngle())+45,-CC_RADIANS_TO_DEGREES((nowPoint-targetPos).getAngle())+90))),
+                                                    RotateBy::create(2, Vec3(360+CCRANDOM_0_1()*600, 360+CCRANDOM_0_1()*600, 360+CCRANDOM_0_1()*600)),
                                                     nullptr
                                                     ),
                                       CallFunc::create(CC_CALLBACK_0(BigDude::fall, this)),
@@ -287,7 +287,7 @@ bool Boss::init()
     {
         _Model->setScale(28);
         addChild(_Model);
-        _Model->setRotation3D(Vector3(90,0,0));
+        _Model->setRotation3D(Vec3(90,0,0));
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.1, Color3B::BLACK);
         _type = kEnemyBoss;
         _HP = 5000;
@@ -297,16 +297,16 @@ bool Boss::init()
         addChild(_Cannon1);
         _Cannon1->addChild(cannon1);
         cannon1->setScale(28);
-        cannon1->setRotation3D(Vector3(90,0,0));
-        _Cannon1->setPosition3D(Vector3(40,-100, 10));
+        cannon1->setRotation3D(Vec3(90,0,0));
+        _Cannon1->setPosition3D(Vec3(40,-100, 10));
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(cannon1), 0.1, Color3B(0,0,0));
         auto cannon2 = Sprite3D::create("bossCannon.obj", "boss.png");
         _Cannon2 = Node::create();
         addChild(_Cannon2);
         _Cannon2->addChild(cannon2);
         cannon2->setScale(28);
-        cannon2->setRotation3D(Vector3(90,0,0));
-        _Cannon2->setPosition3D(Vector3(-40,-100, 10));
+        cannon2->setRotation3D(Vec3(90,0,0));
+        _Cannon2->setPosition3D(Vec3(-40,-100, 10));
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(cannon2), 0.1, Color3B(0,0,0));
         //addChild(_Cannon2);
         //_Cannon2->setPosition(-20,-200);
@@ -322,14 +322,14 @@ bool Boss::init()
 
 void Boss::enterTheBattle()
 {
-    setRotation3D(Vector3(100,0,0));
+    setRotation3D(Vec3(100,0,0));
     setScale(0.2);
     runAction(
               Sequence::create(
                                Spawn::create(
-                                             EaseSineOut::create(MoveTo::create(4, Vector2(0,300))),
+                                             EaseSineOut::create(MoveTo::create(4, Vec2(0,300))),
                                              EaseSineOut::create(ScaleTo::create(4,1)),//TODO: replace with move 3d when possible
-                                             EaseBackOut::create(RotateBy::create(4+0.5,Vector3(-100,0,0))),
+                                             EaseBackOut::create(RotateBy::create(4+0.5,Vec3(-100,0,0))),
                                              nullptr
                                              ),                                             CallFunc::create(std::bind(static_cast<void(Boss::*)(void)>(&Boss::startShooting), this)),
                                CallFunc::create(CC_CALLBACK_0(Boss::_turns,this)),
@@ -343,9 +343,9 @@ void Boss::_turns()
     (
                     Sequence::create
                     (
-                        EaseSineInOut::create(MoveBy::create(2, Vector2(200,0))),
-                        EaseSineInOut::create(MoveBy::create(4, Vector2(-400,0))),
-                        EaseSineInOut::create(MoveBy::create(2, Vector2(200,0))),
+                        EaseSineInOut::create(MoveBy::create(2, Vec2(200,0))),
+                        EaseSineInOut::create(MoveBy::create(4, Vec2(-400,0))),
+                        EaseSineInOut::create(MoveBy::create(2, Vec2(200,0))),
                     nullptr)
      );
     
@@ -386,12 +386,12 @@ void Boss::_dash()
     
     auto array = PointArray::create(6);
     
-    array->addControlPoint(Vector2(0,0));
-    array->addControlPoint(Vector2(80*neg,-300));
-    array->addControlPoint(Vector2(500*neg,-900));
-    array->addControlPoint(Vector2(700*neg,-600));
-    array->addControlPoint(Vector2(500*neg,400));
-    array->addControlPoint(Vector2(0,0));
+    array->addControlPoint(Vec2(0,0));
+    array->addControlPoint(Vec2(80*neg,-300));
+    array->addControlPoint(Vec2(500*neg,-900));
+    array->addControlPoint(Vec2(700*neg,-600));
+    array->addControlPoint(Vec2(500*neg,400));
+    array->addControlPoint(Vec2(0,0));
     
     auto action = CardinalSplineBy::create(5.5, array,0);
     runAction(Sequence::create(
@@ -401,10 +401,10 @@ void Boss::_dash()
               );
     runAction(
               Sequence::create(
-                               EaseSineInOut::create(RotateBy::create(0.5, Vector3(0,30*neg,0))),
-                               RotateBy::create(2.5, Vector3(-30,45*neg,-90*neg)),
-                                RotateBy::create(1, Vector3(0,-35*neg,-200*neg)),
-                               EaseSineInOut::create(RotateBy::create(1.5, Vector3(30,-40*neg,-70*neg))),
+                               EaseSineInOut::create(RotateBy::create(0.5, Vec3(0,30*neg,0))),
+                               RotateBy::create(2.5, Vec3(-30,45*neg,-90*neg)),
+                                RotateBy::create(1, Vec3(0,-35*neg,-200*neg)),
+                               EaseSineInOut::create(RotateBy::create(1.5, Vec3(30,-40*neg,-70*neg))),
                                CallFunc::create(CC_CALLBACK_0(Boss::_next, this)),
               nullptr)
               );
@@ -432,7 +432,7 @@ void Boss::startShooting(float dt)
 void Boss::createRandomExplosion()
 {
     CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("explodeEffect.mp3");
-    EffectManager::createBigExplosion(getPosition()+Vector2(CCRANDOM_MINUS1_1()*200, CCRANDOM_MINUS1_1()*200));
+    EffectManager::createBigExplosion(getPosition()+Vec2(CCRANDOM_MINUS1_1()*200, CCRANDOM_MINUS1_1()*200));
 }
 
 void Boss::dying()
@@ -496,9 +496,9 @@ void Boss::die()
     
 }
 
-Vector2 Boss::_getCannon1Position()
+Vec2 Boss::_getCannon1Position()
 {
-    Vector2 offset = getPosition();
+    Vec2 offset = getPosition();
     float angle = CC_DEGREES_TO_RADIANS(-getRotation()+90);
     float offsetRad = CC_DEGREES_TO_RADIANS(28);
     offset.x += cosf(angle+offsetRad)*-100;
@@ -506,9 +506,9 @@ Vector2 Boss::_getCannon1Position()
     return offset;
 }
 
-Vector2 Boss::_getCannon2Position()
+Vec2 Boss::_getCannon2Position()
 {
-    Vector2 offset = getPosition();
+    Vec2 offset = getPosition();
     float angle = CC_DEGREES_TO_RADIANS(-getRotation()+90);
     float offsetRad = CC_DEGREES_TO_RADIANS(28);
     offset.x += cosf(angle-offsetRad)*-100;
@@ -516,16 +516,16 @@ Vector2 Boss::_getCannon2Position()
     return offset;
 }
 
-Vector2 Boss::_getCannon1Vector()
+Vec2 Boss::_getCannon1Vector()
 {
     float angle = CC_DEGREES_TO_RADIANS(-_Cannon1->getRotation()+90-getRotation());
-    return Vector2(cosf(angle)*-500, sinf(angle)*-500);
+    return Vec2(cosf(angle)*-500, sinf(angle)*-500);
 }
 
-Vector2 Boss::_getCannon2Vector()
+Vec2 Boss::_getCannon2Vector()
 {
     float angle = CC_DEGREES_TO_RADIANS(-_Cannon2->getRotation()+90-getRotation());
-    return Vector2(cosf(angle)*-500, sinf(angle)*-500);
+    return Vec2(cosf(angle)*-500, sinf(angle)*-500);
 }
 
 void Boss::showMuzzle()

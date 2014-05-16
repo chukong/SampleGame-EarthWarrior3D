@@ -44,7 +44,7 @@ LicenseLayer* LicenseLayer::create(const char* type_file_name)
 bool LicenseLayer::init()
 {
     auto window = Sprite::create(type_file_name);
-    //window->setPosition(Vector2(visibleSize.width/2, visibleSize.height/2));
+    //window->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     addChild(window,1);
     window->setScale(0.2f);
     window->runAction(Sequence::create(ScaleTo::create(0.2f, 1.1f),

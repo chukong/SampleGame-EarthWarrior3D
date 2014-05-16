@@ -53,7 +53,7 @@ bool BulletController::init(Node *bulletLayer){
     }
     return false;
 }
-Bullet* BulletController::spawnBullet(int type, Vector2 pos, Vector2 vec)
+Bullet* BulletController::spawnBullet(int type, Vec2 pos, Vec2 vec)
 {
     Bullet *bullet = nullptr;
     switch(type)
@@ -261,7 +261,7 @@ void EnemyController::erase(int i)
 
 void GameController::update(float dt, Player* player)
 {
-    Vector2 temp;
+    Vec2 temp;
     Bullet* b;
     auto list =BulletController::bullets;
     float enemyMoveDist =EnemyController::EnemyMoveDist*dt;

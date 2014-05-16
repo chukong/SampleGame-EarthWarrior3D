@@ -87,22 +87,22 @@ void LoadingScene::InitBk()
     
     //bk
     auto loading_bk=Sprite::createWithSpriteFrameName("loading_bk.png");
-    loading_bk->setPosition(Vector2(visibleSize.width/2, visibleSize.height/2));
+    loading_bk->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     addChild(loading_bk,0);
     
     
     //LabelPercent
     m_pPercent=Label::createWithBMFont("num.fnt","0%");
-    m_pPercent->setPosition(Vector2(visibleSize.width/2,visibleSize.height/2+170));
+    m_pPercent->setPosition(Vec2(visibleSize.width/2,visibleSize.height/2+170));
     this->addChild(m_pPercent,1);
     
     //progress
     auto progress_bk=Sprite::createWithSpriteFrameName("loading_progress_bk.png");
-    progress_bk->setPosition(Vector2(visibleSize.width/2, visibleSize.height/2+300));
+    progress_bk->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2+300));
     addChild(progress_bk);
     
     m_pProgress=Sprite::createWithSpriteFrameName("loading_progress_thumb.png");
-    m_pProgress->setPosition(Vector2(100, visibleSize.height/2+320));
+    m_pProgress->setPosition(Vec2(100, visibleSize.height/2+320));
     addChild(m_pProgress);
 }
 
@@ -112,11 +112,11 @@ void LoadingScene::InitCoco()
     auto coco = Sprite3D::create("coconut.obj", "coco.png");
     if(coco)
     {
-        coco->setPosition(Vector2(visibleSize.width/2, visibleSize.height/2-150));
+        coco->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2-150));
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(coco), 10, Color3B(0,0,0));
         
         addChild(coco,1);
-        coco->runAction(RepeatForever::create(RotateBy::create(0.8f,Vector3(0,360,0))));
+        coco->runAction(RepeatForever::create(RotateBy::create(0.8f,Vec3(0,360,0))));
     }
 }
 
@@ -176,7 +176,7 @@ void LoadingScene::LoadingCallback(Ref* pObj)
 	int percent=(int)(((float)currentNum / totalNum) * 100);
     sprintf(tmp, "%d%%", percent);
     m_pPercent->setString(tmp);
-    m_pProgress->runAction(MoveBy::create(0.01f, Vector2(420/TOTAL_PIC_NUM,0)));
+    m_pProgress->runAction(MoveBy::create(0.01f, Vec2(420/TOTAL_PIC_NUM,0)));
 //    m_pSlider->setValue(percent);
     
 

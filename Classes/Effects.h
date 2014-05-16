@@ -33,8 +33,8 @@ USING_NS_CC_MATH;
 class EffectManager
 {
 public:
-    static void createExplosion(Vector2 pos);
-    static void createBigExplosion(Vector2 pos);
+    static void createExplosion(Vec2 pos);
+    static void createBigExplosion(Vec2 pos);
     static void setLayer(Node* layer);
     static Vector<SmallExplosion*> _smallExplPool;
     static Vector<BigExplosion*> _bigExplPool;

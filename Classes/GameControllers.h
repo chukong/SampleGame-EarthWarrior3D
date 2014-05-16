@@ -40,7 +40,7 @@ class BulletController
 public:
     static void reset();
     static bool init(Node *bulletLayer);
-    static Bullet* spawnBullet(int type, Vector2 pos, Vector2 vec);
+    static Bullet* spawnBullet(int type, Vec2 pos, Vec2 vec);
     //static void update(float dt);
     static Vector<Bullet*> bullets;
     static void erase(Bullet* b); //returns the bullet to the pool

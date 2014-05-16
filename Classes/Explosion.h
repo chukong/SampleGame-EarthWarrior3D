@@ -32,7 +32,7 @@ class SmallExplosion : public cocos2d::Node{
 public:
     CREATE_FUNC(SmallExplosion);
     bool init();
-    void createExplosion(Node* _effectLayer, cocos2d::Vector2 pos);
+    void createExplosion(Node* _effectLayer, cocos2d::Vec2 pos);
     
 private:
     void recycle(float dt);
@@ -46,7 +46,7 @@ class BigExplosion : public cocos2d::Node{
 public:
     CREATE_FUNC(BigExplosion);
     bool init();
-    void createExplosion(Node* _effectLayer,cocos2d::Vector2 pos);
+    void createExplosion(Node* _effectLayer,cocos2d::Vec2 pos);
     cocos2d::ParticleSystemQuad* part1;
     cocos2d::ParticleSystemQuad* part2;
     cocos2d::ParticleSystemQuad* part3;
@@ -60,7 +60,7 @@ class BulletExplosion : public cocos2d::Sprite
 public:
     CREATE_FUNC(BulletExplosion);
     bool init();
-    void showExplosion(cocos2d::Vector2 point);
+    void showExplosion(cocos2d::Vec2 point);
     void explosionFinished(Ref* obj);
 };
 

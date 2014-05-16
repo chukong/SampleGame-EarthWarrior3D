@@ -55,7 +55,7 @@ bool GameOverLayer::init()
     auto visibleSize=Director::getInstance()->getVisibleSize();
     
     auto score_bk=Sprite::createWithSpriteFrameName("gameover_score_bk.png");
-    score_bk->setPosition(Vector2(visibleSize.width/2, visibleSize.height/2));
+    score_bk->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     addChild(score_bk,1);
     score_bk->setScale(0.2f);
     score_bk->runAction(Sequence::create(ScaleTo::create(0.2f, 1.1f),
@@ -98,17 +98,17 @@ void GameOverLayer::ShowScore()
     auto visibleSize=Director::getInstance()->getVisibleSize();
     
     auto score_text=Sprite::createWithSpriteFrameName("gameover_score.png");
-    score_text->setPosition(Vector2(-200, visibleSize.height/2+30));
-    score_text->runAction(MoveTo::create(0.5f, Vector2(visibleSize.width/2,visibleSize.height/2+30)));
+    score_text->setPosition(Vec2(-200, visibleSize.height/2+30));
+    score_text->runAction(MoveTo::create(0.5f, Vec2(visibleSize.width/2,visibleSize.height/2+30)));
     addChild(score_text,2);
     
     char pScore[10];
     sprintf(pScore, "%d",m_score);
     auto score_label=LabelBMFont::create(pScore, "gameover_score_num.fnt");
-    score_label->setAnchorPoint(Vector2(0.5f,0.5f));
-    score_label->setPosition(Vector2(1000,visibleSize.height/2-40));
+    score_label->setAnchorPoint(Vec2(0.5f,0.5f));
+    score_label->setPosition(Vec2(1000,visibleSize.height/2-40));
     score_label->runAction(Sequence::create(
-                           MoveTo::create(0.5f, Vector2(visibleSize.width/2,visibleSize.height/2-30)),
+                           MoveTo::create(0.5f, Vec2(visibleSize.width/2,visibleSize.height/2-30)),
                                             ScaleTo::create(0.1f, 1.3f),
                                             ScaleTo::create(0.1f, 0.98f),
                                             ScaleTo::create(0.1f, 1.2f),NULL));

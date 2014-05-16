@@ -28,7 +28,7 @@ Node* EffectManager::_effectLayer = nullptr;
 Vector<SmallExplosion*> EffectManager::_smallExplPool;
 Vector<BigExplosion*> EffectManager::_bigExplPool;
 
-void EffectManager::createExplosion(Vector2 pos)
+void EffectManager::createExplosion(Vec2 pos)
 {
     if(!_effectLayer)
     {
@@ -52,7 +52,7 @@ void EffectManager::createExplosion(Vector2 pos)
 
 }
 
-void EffectManager::createBigExplosion(Vector2 pos)
+void EffectManager::createBigExplosion(Vec2 pos)
 {
     if(!_effectLayer)
     {

@@ -89,7 +89,7 @@ bool MainMenuScene::init()
     float originY = 159.0f;
     float originZ = 9.0f;
     flare->setTotalParticles(50);
-    flare->setRotation3D(Vector3(-originX,-originY,-originZ));
+    flare->setRotation3D(Vec3(-originX,-originY,-originZ));
     flare->setPosition(-39,0);
     flare->setPositionType(tPositionType::GROUPED);
     flare->setStartColor(Color4F(0,0.99,1,1));
@@ -97,7 +97,7 @@ bool MainMenuScene::init()
     
     auto emis = ParticleSystemQuad::create("menuEmission.plist");
     emis->setScale(3);
-    emis->setRotation3D(Vector3(-originX,-originY,-originZ));
+    emis->setRotation3D(Vec3(-originX,-originY,-originZ));
     emis->setPosition(-40,0);
     emis->setPositionType(tPositionType::GROUPED);
     emis->setRotation(180);
@@ -109,13 +109,13 @@ bool MainMenuScene::init()
     auto plistData = fileUtil->getValueMapFromFile("vanishingPoint.plist");
     //auto sf = SpriteFrame::create("bullets.png", Rect(5,8,24,32));
     auto vanishing = ParticleSystemQuad::create(plistData);
-    vanishing->setAnchorPoint(Vector2(0.5f,0.5f));
+    vanishing->setAnchorPoint(Vec2(0.5f,0.5f));
     vanishing->setPosition(visible_size_macro.width-90,visible_size_macro.height/2 +50);
     this->addChild(vanishing,1,1);
     
     //************* adds background ***********
     auto background = Sprite::createWithSpriteFrameName("mainmenu_BG.png");
-    background->setAnchorPoint(Vector2(0,0));
+    background->setAnchorPoint(Vec2(0,0));
     this->addChild(background,-1,-1);
     
     //************* adds start game ***********
@@ -149,7 +149,7 @@ bool MainMenuScene::init()
 
 void MainMenuScene::update(float dt){
     pRate+=0.01;
-    plane->setPosition3D(Vector3(visible_size_macro.width/2+50,480-20*sin(1.05*pRate),0));
+    plane->setPosition3D(Vec3(visible_size_macro.width/2+50,480-20*sin(1.05*pRate),0));
 }
 
 void MainMenuScene::startgame(Ref* sender)
@@ -178,8 +178,8 @@ void MainMenuScene::credits(Ref* sender){
 void MainMenuScene::credits_callback()
 {
     auto license =LicenseLayer::create("credits_03.png");
-    license->setAnchorPoint(Vector2(0.5f,0.5f));
-    license->setPosition(Vector2(visible_size_macro.width/2, visible_size_macro.height/2));
+    license->setAnchorPoint(Vec2(0.5f,0.5f));
+    license->setPosition(Vec2(visible_size_macro.width/2, visible_size_macro.height/2));
     addChild(license,20);
     license->runAction(Sequence::create(ScaleTo::create(0.2f, 1.1f),
                                         ScaleTo::create(0.1f, 0.9f),
@@ -197,8 +197,8 @@ void MainMenuScene::license(Ref* sender){
 void MainMenuScene::license_callback()
 {
     auto license =LicenseLayer::create("LICENSE_03.png");
-    license->setAnchorPoint(Vector2(0.5f,0.5f));
-    license->setPosition(Vector2(visible_size_macro.width/2, visible_size_macro.height/2));
+    license->setAnchorPoint(Vec2(0.5f,0.5f));
+    license->setPosition(Vec2(visible_size_macro.width/2, visible_size_macro.height/2));
     addChild(license,20);
     license->runAction(Sequence::create(ScaleTo::create(0.2f, 1.1f),
                                         ScaleTo::create(0.1f, 0.9f),

@@ -68,7 +68,7 @@ bool HelloWorld::init()
     auto origin = Director::getInstance()->getVisibleOrigin();
     auto sb = GameLayer::create();
     sb->setTag(123);
-    sb->setPosition(Vector2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    sb->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     addChild(sb);
     auto fog = Sprite::createWithSpriteFrameName("fog.png");
     addChild(fog);
@@ -77,34 +77,34 @@ bool HelloWorld::init()
     
     //HP
     auto lefttopUI = Sprite::createWithSpriteFrameName("hp_empty.png");
-    lefttopUI->setAnchorPoint(Vector2(0,1));
-    lefttopUI->setPosition(Vector2(0, visibleSize.height+origin.y));
+    lefttopUI->setAnchorPoint(Vec2(0,1));
+    lefttopUI->setPosition(Vec2(0, visibleSize.height+origin.y));
     addChild(lefttopUI);
     
     hpView = ProgressTimer::create(Sprite::createWithSpriteFrameName("hp.png"));
     hpView->setType(ProgressTimer::Type::BAR);
-    hpView->setMidpoint(Vector2(0,0));
+    hpView->setMidpoint(Vec2(0,0));
     hpView->setPercentage(1);
-    hpView->setBarChangeRate(Vector2(0, 1));
+    hpView->setBarChangeRate(Vec2(0, 1));
     hpView->setPercentage(100);
-    hpView->setAnchorPoint(Vector2(0,1));
-    hpView->setPosition(Vector2(18, visibleSize.height+origin.y-32));
+    hpView->setAnchorPoint(Vec2(0,1));
+    hpView->setPosition(Vec2(18, visibleSize.height+origin.y-32));
     addChild(hpView);
     
     auto hpAbove = Sprite::createWithSpriteFrameName("hp_above.png");
-    hpAbove->setAnchorPoint(Vector2(0,1));
-    hpAbove->setPosition(Vector2(18, visibleSize.height+origin.y-32));
+    hpAbove->setAnchorPoint(Vec2(0,1));
+    hpAbove->setPosition(Vec2(18, visibleSize.height+origin.y-32));
     addChild(hpAbove);
     
     //Score
     auto rightTopUI = Sprite::createWithSpriteFrameName("right_top_ui.png");
-    rightTopUI->setAnchorPoint(Vector2(1,1));
+    rightTopUI->setAnchorPoint(Vec2(1,1));
     rightTopUI->setPosition(origin+visibleSize);
     this->addChild(rightTopUI);
     
     //the menuitem to show score
     scoreLabel = LabelAtlas::create("0", "score_right_top.png", 23, 28, '0');
-    scoreLabel->setAnchorPoint(Vector2(1,0.5));
+    scoreLabel->setAnchorPoint(Vec2(1,0.5));
     scoreLabel->setPosition(visibleSize.width-40,visibleSize.height-45);
     this->addChild(scoreLabel);
 

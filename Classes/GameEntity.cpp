@@ -30,14 +30,14 @@ Node *GameEntity::getModel(){
     return _Model;
 }
 
-Vector3 GameEntity::getOrientation(){
+Vec3 GameEntity::getOrientation(){
     return _orientation;
 }
 
 void GameEntity::forward(float dist){
     float f = getRotation();
     setPosition(getPosition()
-                +Vector2(
+                +Vec2(
                        sinf(CC_DEGREES_TO_RADIANS(f))*dist,
                        cosf(CC_DEGREES_TO_RADIANS(f))*dist)
                 );
@@ -53,8 +53,8 @@ void GameEntity::UseOutlineEffect(Sprite3D* sprite, float width, Color3B color)
     if(nullptr == sprite)
         CCLOGERROR("Can not apply outline effect to a null Sprite3D");
     
-    Sprite3DOutlineEffect* effect = Sprite3DOutlineEffect::create();
-    sprite->setEffect(effect);
-    effect->setOutlineColor(Vector3(color.r/255.0f, color.g/255.0f, color.b/255.0f));
-    effect->setOutlineWidth(width);
+//    Sprite3DOutlineEffect* effect = Sprite3DOutlineEffect::create();
+//    sprite->setEffect(effect);
+//    effect->setOutlineColor(Vec3(color.r/255.0f, color.g/255.0f, color.b/255.0f));
+//    effect->setOutlineWidth(width);
 }

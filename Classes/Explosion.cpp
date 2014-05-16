@@ -46,12 +46,12 @@ bool SmallExplosion::init(){
     part1->setEmissionRate(9999999999);
     part2->setTotalParticles(3);
     part2->setEmissionRate(9999999999);
-    part1->setRotation3D(Vector3(30,0,0));
-    part2->setRotation3D(Vector3(30,0,0));
+    part1->setRotation3D(Vec3(30,0,0));
+    part2->setRotation3D(Vec3(30,0,0));
     return true;
 }
 
-void SmallExplosion::createExplosion(Node* _effectLayer, Vector2 pos){
+void SmallExplosion::createExplosion(Node* _effectLayer, Vec2 pos){
     
     part1->setTotalParticles(8);
     part1->setEmissionRate(9999999999);
@@ -59,8 +59,8 @@ void SmallExplosion::createExplosion(Node* _effectLayer, Vector2 pos){
     part2->setTotalParticles(5);
     part2->setEmissionRate(9999999999);
     _effectLayer->addChild(this,7);
-    part1->setRotation3D(Vector3(30,0,0));
-    part2->setRotation3D(Vector3(30,0,0));
+    part1->setRotation3D(Vec3(30,0,0));
+    part2->setRotation3D(Vec3(30,0,0));
     this->setPosition(pos);
     this->scheduleOnce(schedule_selector(SmallExplosion::recycle), 1.5);
 }
@@ -96,13 +96,13 @@ bool BigExplosion::init(){
     part3->setTotalParticles(20);
     part3->setEmissionRate(9999999999);
     part3->setScale(1.5);
-    part1->setRotation3D(Vector3(30,0,0));
-    part2->setRotation3D(Vector3(30,0,0));
-    part3->setRotation3D(Vector3(30,0,0));
+    part1->setRotation3D(Vec3(30,0,0));
+    part2->setRotation3D(Vec3(30,0,0));
+    part3->setRotation3D(Vec3(30,0,0));
     return true;
 }
 
-void BigExplosion::createExplosion(Node *_effectLayer, Vector2 pos){
+void BigExplosion::createExplosion(Node *_effectLayer, Vec2 pos){
 
     _effectLayer->addChild(this,6);
     part1->resetSystem();
@@ -127,7 +127,7 @@ bool BulletExplosion::init(){
     return true;
 }
 
-void BulletExplosion::showExplosion(Vector2 point){
+void BulletExplosion::showExplosion(Vec2 point){
     auto animation = AnimationCache::getInstance()->getAnimation("bullet_expl");
     auto animate = Animate::create(animation);
     this->runAction(Sequence::create(animate,
@@ -136,7 +136,7 @@ void BulletExplosion::showExplosion(Vector2 point){
     this->runAction(ScaleBy::create(0.4, 2));
     this->runAction(FadeOut::create(0.4));
     this->setPosition(point);
-    this->setRotation3D(Vector3(30,0,0));
+    this->setRotation3D(Vec3(30,0,0));
     this->setBlendFunc(BlendFunc::ADDITIVE);
     Director::getInstance()->getRunningScene()->getChildByTag(100)->getChildByTag(123)->addChild(this,3);
 }
