@@ -77,6 +77,7 @@ bool Missile::init()
     _Model = Sprite3D::create("daodanv001.obj", "daodan_32.png");
     if(_Model)
     {
+        setTarget(nullptr);
         addChild(_Model);
         _radius=10;
         _type = kPlayerMissiles;

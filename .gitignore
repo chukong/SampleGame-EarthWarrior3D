@@ -39,3 +39,9 @@ xcschememanagement.plist
 ._.*
 xcuserdata/
 DerivedData/
+
+# Win32
+Debug.win32/
+*.opensdf
+*.sdf
+*.suo
