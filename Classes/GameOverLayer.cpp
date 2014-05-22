@@ -29,6 +29,7 @@
 #include "GameControllers.h"
 #include "AirCraft.h"
 #include "Bullets.h"
+#include <sstream>
 
 GameOverLayer* GameOverLayer::create(int score)
 {
@@ -102,9 +103,9 @@ void GameOverLayer::ShowScore()
     score_text->runAction(MoveTo::create(0.5f, Vec2(visibleSize.width/2,visibleSize.height/2+30)));
     addChild(score_text,2);
     
-    char pScore[10];
-    sprintf(pScore, "%d",m_score);
-    auto score_label=LabelBMFont::create(pScore, "gameover_score_num.fnt");
+    std::ostringstream pScore;
+    pScore<<m_score;
+    auto score_label=LabelBMFont::create(pScore.str(), "gameover_score_num.fnt");
     score_label->setAnchorPoint(Vec2(0.5f,0.5f));
     score_label->setPosition(Vec2(1000,visibleSize.height/2-40));
     score_label->runAction(Sequence::create(
