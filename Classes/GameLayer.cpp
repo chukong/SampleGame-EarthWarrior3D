@@ -1,10 +1,26 @@
-//
-//  ScrollingBackground.cpp
-//  Moon3d
-//
-//  Created by Hao Wu on 2/24/14.
-//
-//
+/****************************************************************************
+ Copyright (c) 2014 Chukong Technologies Inc.
+
+ http://github.com/chukong/EarthWarrior3D
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ ****************************************************************************/
 
 #include "GameLayer.h"
 #include "Player.h"
@@ -38,11 +54,16 @@ bool GameLayer::init()
 //    animation->retain();
 //    AnimationCache::getInstance()->addAnimation(animation,"bullet_expl");
     
+	xScroll = 0.0f;
+    speed = -60.0f;
+	_elapsed = 20; //testing purpose, this was set to near boss timer
+    _bossOut = false;
+
     _spr = Sprite::create("groundLevel.jpg");
     addChild(_spr, -5);
     Texture2D::TexParams texRepeat = {GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_REPEAT};
     _spr->getTexture()->setTexParameters(texRepeat);
-    setRotation3D(Vertex3F(-30.0,0.0f,0.0f));
+    //setRotation3D(Vec3(-30.0,0.0f,0.0f));
     _spr->setScale(1.4);
     _spr->setPosition(0.0f,400.0f);
     
@@ -53,7 +74,9 @@ bool GameLayer::init()
     addChild(_streak,3);
     auto emission_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("engine.jpg");
     ValueMap vm_emission=ParticleManager::getInstance()->GetPlistData("emissionPart");
-    _emissionPart = ParticleSystemQuad::create(vm_emission,emission_frame);
+    _emissionPart = ParticleSystemQuad::create(vm_emission);
+    //_emissionPart->setDisplayFrame(emission_frame);
+    _emissionPart->setTextureWithRect(emission_frame->getTexture(), emission_frame->getRect());
     _player->setEmissionPart(_emissionPart);
     addChild(_emissionPart,4);
     _emissionPart->setPositionType(tPositionType::FREE);
@@ -67,12 +90,12 @@ bool GameLayer::init()
     scheduleUpdate();
     
     
-    _player->setPosition(Point(0,-1000));
+    _player->setPosition(Vec2(0,-1000));
     _player->runAction(Sequence::create(
                                         DelayTime::create(0.75),
                        Spawn::create(
-                                     EaseBackOut::create(MoveTo::create(1.7,Point(0,-200))),
-                                     EaseSineOut::create(RotateBy::create(1.7,Vertex3F(0,720,0))),
+                                     EaseBackOut::create(MoveTo::create(1.7,Vec2(0,-200))),
+                                     EaseSineOut::create(RotateBy::create(1.7,Vec3(0,720,0))),
                                      nullptr
                                      ),
                        CallFunc::create(CC_CALLBACK_0(GameLayer::schedulePlayer,this)),nullptr));
@@ -94,37 +117,37 @@ void GameLayer::gameMaster(float dt)
     //if(_elapsed < 10 && enemyCount < 5)
     if(enemyCount < 5 &&_elapsed < 60)
     {
-        Point random = Point(100*CCRANDOM_MINUS1_1(), BOUND_RECT.size.height/2+200);
+        Vec2 random = Vec2(100*CCRANDOM_MINUS1_1(), BOUND_RECT.size.height/2+200);
         for(int i=0; i < 4; i++)
         {
             auto enemy1 = EnemyController::spawnEnemy(kEnemyFodder);
-            enemy1->setPosition(random + Point(60,60)*(i+1));
+            enemy1->setPosition(random + Vec2(60,60)*(i+1));
             static_cast<Fodder*>(enemy1)->setMoveMode(moveMode::kDefault);
             auto enemy2 = EnemyController::spawnEnemy(kEnemyFodder);
-            enemy2->setPosition(random + Point(-60,60)*(i+1));
+            enemy2->setPosition(random + Vec2(-60,60)*(i+1));
             static_cast<Fodder*>(enemy2)->setMoveMode(moveMode::kDefault);
-            enemy1->setRotation3D(Vertex3F(0,0,0));
-            enemy2->setRotation3D(Vertex3F(0,0,0));
+            enemy1->setRotation3D(Vec3::ZERO);
+            enemy2->setRotation3D(Vec3::ZERO);
         }
         auto leader = EnemyController::spawnEnemy(kEnemyFodderL);
         leader->setPosition(random);
-        leader->setRotation3D(Vertex3F(0,0,0));
+        leader->setRotation3D(Vec3::ZERO);
         static_cast<FodderLeader*>(leader)->setTarget(_player);
         static_cast<FodderLeader*>(leader)->setMoveMode(moveMode::kDefault);
     }
     //else if(_elapsed < 20 && enemyCount <5)
     if(_elapsed > 4 && enemyCount <4 &&_elapsed < 60)
     {
-        Point random = Point(-400, BOUND_RECT.size.height/4*CCRANDOM_MINUS1_1()+350);
+        Vec2 random = Vec2(-400, BOUND_RECT.size.height/4*CCRANDOM_MINUS1_1()+350);
         for(int i=0; i < 3; i++)
         {
             float randomAngle = CCRANDOM_MINUS1_1()*70;
             auto enemy = EnemyController::spawnEnemy(kEnemyFodder);
-            enemy->setPosition(random + Point(60,60)*(i+1));
+            enemy->setPosition(random + Vec2(60,60)*(i+1));
             static_cast<Fodder*>(enemy)->setTurnRate(randomAngle*0.5);
             enemy->setRotation(-randomAngle-90);
             auto enemy2 = EnemyController::spawnEnemy(kEnemyFodder);
-            enemy2->setPosition(random + Point(-60,60)*(i+1));
+            enemy2->setPosition(random + Vec2(-60,60)*(i+1));
             static_cast<Fodder*>(enemy2)->setTurnRate(randomAngle*0.5);
             enemy2->setRotation(-randomAngle-90);
         }
@@ -164,21 +187,21 @@ void GameLayer::gameMaster(float dt)
                     break;
             }
             auto enemy = EnemyController::showCaseEnemy(kEnemyBigDude);
-            //enemy->setPosition(Point(100*CCRANDOM_MINUS1_1(), BOUND_RECT.size.height/2+200));
+            //enemy->setPosition(Vec2(100*CCRANDOM_MINUS1_1(), BOUND_RECT.size.height/2+200));
             enemy->setPosition(rX,rY);
-            Point targetPos =Point(BOUND_RECT.size.width/3*CCRANDOM_MINUS1_1(),BOUND_RECT.size.height/3*CCRANDOM_0_1());
+            Vec2 targetPos =Vec2(BOUND_RECT.size.width/3*CCRANDOM_MINUS1_1(),BOUND_RECT.size.height/3*CCRANDOM_0_1());
             enemy->setScale(2*CCRANDOM_MINUS1_1()+2);
             float randomTime = CCRANDOM_0_1()*1+1;
-            enemy->setRotation3D(Vertex3F(300,0,-CC_RADIANS_TO_DEGREES((enemy->getPosition()-targetPos).getAngle())+90));
+            enemy->setRotation3D(Vec3(300,0,-CC_RADIANS_TO_DEGREES((enemy->getPosition()-targetPos).getAngle())+90));
             enemy->runAction(
                              Sequence::create(
                                               Spawn::create(
                                                             EaseSineOut::create(MoveTo::create(randomTime, targetPos)),
                                                             EaseSineOut::create(ScaleTo::create(randomTime,1)),//TODO: replace with move 3d when possible
-                                                            EaseBackOut::create(RotateBy::create(randomTime+0.2,Vertex3F(-300,0,0))),
+                                                            EaseBackOut::create(RotateBy::create(randomTime+0.2,Vec3(-300,0,0))),
                                                             nullptr
                                                             ),
-                                              CallFunc::create(enemy,callfunc_selector(BigDude::showFinished)),
+                                              CallFunc::create(CC_CALLBACK_0(BigDude::showFinished, static_cast<BigDude*>(enemy))),
                                               nullptr
                              ));
         }

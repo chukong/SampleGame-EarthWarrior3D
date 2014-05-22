@@ -1,10 +1,26 @@
-//
-//  Fodder.h
-//  Moon3d
-//
-//  Created by Hao Wu on 2/27/14.
-//
-//
+/****************************************************************************
+ Copyright (c) 2014 Chukong Technologies Inc.
+
+ http://github.com/chukong/EarthWarrior3D
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ ****************************************************************************/
 
 #ifndef __Moon3d__Fodder__
 #define __Moon3d__Fodder__
@@ -15,7 +31,7 @@ enum moveMode{
     kDefault,
     kTurn
 };
-class Sprite3D;
+
 class Fodder : public AirCraft
 {
 public:
@@ -53,8 +69,8 @@ public:
 protected:
     Sprite* muzzle1;
     Sprite* muzzle2;
-    Point _targetPos;
-    float _turnRate = 50;
+    Vec2 _targetPos;
+    float _turnRate;
 };
 
 class Boss : public Fodder
@@ -76,16 +92,16 @@ protected:
     void dismissMuzzle(float dt);
     void _turns();
     void _endGame(float dt);
-    Point _getCannon1Position();
-    Point _getCannon2Position();
-    Point _getCannon1Vector();
-    Point _getCannon2Vector();
+    Vec2 _getCannon1Position();
+    Vec2 _getCannon2Position();
+    Vec2 _getCannon1Vector();
+    Vec2 _getCannon2Vector();
     Node* _Cannon1;
     Node* _Cannon2;
     Sprite* muzzle1;
     Sprite* muzzle2;
     void _dash();
-    cocos2d::SEL_CallFunc _next();
+    void _next();
 };
 
 

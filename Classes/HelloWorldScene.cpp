@@ -1,6 +1,29 @@
+/****************************************************************************
+ Copyright (c) 2014 Chukong Technologies Inc.
+
+ http://github.com/chukong/EarthWarrior3D
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ ****************************************************************************/
+ 
 #include "HelloWorldScene.h"
 #include "GameLayer.h"
-#include "3d/Sprite3D.h"
 #include "HelloWorldScene.h"
 #include "GameOverLayer.h"
 #include "GameControllers.h"
@@ -34,6 +57,13 @@ Scene* HelloWorld::createScene()
     return scene;
 }
 
+HelloWorld::HelloWorld()
+:score(0)
+, hpView(nullptr)
+, scoreLabel(nullptr)
+{
+}
+
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
@@ -42,10 +72,10 @@ bool HelloWorld::init()
         return false;
     }
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    Point origin = Director::getInstance()->getVisibleOrigin();
+    auto origin = Director::getInstance()->getVisibleOrigin();
     auto sb = GameLayer::create();
     sb->setTag(123);
-    sb->setPosition(Point(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    sb->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     addChild(sb);
     auto fog = Sprite::createWithSpriteFrameName("fog.png");
     addChild(fog);
@@ -54,34 +84,34 @@ bool HelloWorld::init()
     
     //HP
     auto lefttopUI = Sprite::createWithSpriteFrameName("hp_empty.png");
-    lefttopUI->setAnchorPoint(Point(0,1));
-    lefttopUI->setPosition(Point(0, visibleSize.height+origin.y));
+    lefttopUI->setAnchorPoint(Vec2(0,1));
+    lefttopUI->setPosition(Vec2(0, visibleSize.height+origin.y));
     addChild(lefttopUI);
     
     hpView = ProgressTimer::create(Sprite::createWithSpriteFrameName("hp.png"));
     hpView->setType(ProgressTimer::Type::BAR);
-    hpView->setMidpoint(Point(0,0));
+    hpView->setMidpoint(Vec2(0,0));
     hpView->setPercentage(1);
-    hpView->setBarChangeRate(Point(0, 1));
+    hpView->setBarChangeRate(Vec2(0, 1));
     hpView->setPercentage(100);
-    hpView->setAnchorPoint(Point(0,1));
-    hpView->setPosition(Point(18, visibleSize.height+origin.y-32));
+    hpView->setAnchorPoint(Vec2(0,1));
+    hpView->setPosition(Vec2(18, visibleSize.height+origin.y-32));
     addChild(hpView);
     
     auto hpAbove = Sprite::createWithSpriteFrameName("hp_above.png");
-    hpAbove->setAnchorPoint(Point(0,1));
-    hpAbove->setPosition(Point(18, visibleSize.height+origin.y-32));
+    hpAbove->setAnchorPoint(Vec2(0,1));
+    hpAbove->setPosition(Vec2(18, visibleSize.height+origin.y-32));
     addChild(hpAbove);
     
     //Score
     auto rightTopUI = Sprite::createWithSpriteFrameName("right_top_ui.png");
-    rightTopUI->setAnchorPoint(Point(1,1));
-    rightTopUI->setPosition(origin+Point(visibleSize));
+    rightTopUI->setAnchorPoint(Vec2(1,1));
+    rightTopUI->setPosition(origin+visibleSize);
     this->addChild(rightTopUI);
     
     //the menuitem to show score
     scoreLabel = LabelAtlas::create("0", "score_right_top.png", 23, 28, '0');
-    scoreLabel->setAnchorPoint(Point(1,0.5));
+    scoreLabel->setAnchorPoint(Vec2(1,0.5));
     scoreLabel->setPosition(visibleSize.width-40,visibleSize.height-45);
     this->addChild(scoreLabel);
 
@@ -95,7 +125,8 @@ bool HelloWorld::init()
     return true;
 }
 
-void HelloWorld::increaseScore(float dt){
+void HelloWorld::increaseScore(float dt)
+{
     this->score++;
     std::stringstream ss;
     std::string str;
@@ -114,7 +145,7 @@ void HelloWorld::ShowGameOver(Ref* pObj)
     addChild(gameoverlayer,10);
 }
 
-void HelloWorld::menuCloseCallback(Ref* pSender)
+void HelloWorld::menuCloseCallback(Ref* sender)
 {
     Director::getInstance()->end();
 

@@ -1,20 +1,36 @@
-//
-//  LoadingScene.cpp
-//  Moon3d
-//
-//  Created by Jacky on 3/10/14.
-//
-//
+/****************************************************************************
+ Copyright (c) 2014 Chukong Technologies Inc.
+
+ http://github.com/chukong/EarthWarrior3D
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ ****************************************************************************/
 
 #include "LoadingScene.h"
 #include "HelloWorldScene.h"
-#include "3d/Sprite3D.h"
 #include "AirCraft.h"
 #include "Enemies.h"
 #include "Bullets.h"
 #include "GameControllers.h"
 #include "ParticleManager.h"
 #include "consts.h"
+#include "Sprite3DEffect.h"
 
 int LoadingScene::updatecount=0;
 int LoadingScene::m_curPreload_fodder_count=0;
@@ -72,35 +88,36 @@ void LoadingScene::InitBk()
     
     //bk
     auto loading_bk=Sprite::createWithSpriteFrameName("loading_bk.png");
-    loading_bk->setPosition(Point(visibleSize.width/2, visibleSize.height/2));
+    loading_bk->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     addChild(loading_bk,0);
     
     
     //LabelPercent
-    m_pPercent=LabelBMFont::create("0%", "num.fnt");
-    m_pPercent->setPosition(Point(visibleSize.width/2,visibleSize.height/2+170));
+    m_pPercent=Label::createWithBMFont("num.fnt","0%");
+    m_pPercent->setPosition(Vec2(visibleSize.width/2,visibleSize.height/2+170));
     this->addChild(m_pPercent,1);
     
     //progress
     auto progress_bk=Sprite::createWithSpriteFrameName("loading_progress_bk.png");
-    progress_bk->setPosition(Point(visibleSize.width/2, visibleSize.height/2+300));
+    progress_bk->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2+300));
     addChild(progress_bk);
     
     m_pProgress=Sprite::createWithSpriteFrameName("loading_progress_thumb.png");
-    m_pProgress->setPosition(Point(100, visibleSize.height/2+320));
+    m_pProgress->setPosition(Vec2(100, visibleSize.height/2+320));
     addChild(m_pProgress);
 }
 
 void LoadingScene::InitCoco()
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    auto coco = Sprite3D::create("coconut.obj", "coco.png");
+    auto coco = EffectSprite3D::createFromObjFileAndTexture("coconut.obj", "coco.png");
     if(coco)
     {
-        coco->setPosition(Point(visibleSize.width/2, visibleSize.height/2-150));
-        coco->setOutline(10,Color3B(0,0,0));
+        coco->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2-150));
+        GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(coco), 0.03, Color3B(0,0,0));
+        
         addChild(coco,1);
-        coco->runAction(RepeatForever::create(RotateBy::create(0.8f,Vertex3F(0,360,0))));
+        coco->runAction(RepeatForever::create(RotateBy::create(0.8f,Vec3(0,360,0))));
     }
 }
 
@@ -160,7 +177,7 @@ void LoadingScene::LoadingCallback(Ref* pObj)
 	int percent=(int)(((float)currentNum / totalNum) * 100);
     sprintf(tmp, "%d%%", percent);
     m_pPercent->setString(tmp);
-    m_pProgress->runAction(MoveBy::create(0.01f, Point(420/TOTAL_PIC_NUM,0)));
+    m_pProgress->runAction(MoveBy::create(0.01f, Vec2(420/TOTAL_PIC_NUM,0)));
 //    m_pSlider->setValue(percent);
     
 

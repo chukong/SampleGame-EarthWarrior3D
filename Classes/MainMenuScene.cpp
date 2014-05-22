@@ -1,10 +1,26 @@
-//
-//  MainMenuScene.cpp
-//  Moon3d
-//
-//  Created by Rye on 14-3-12.
-//
-//
+/****************************************************************************
+ Copyright (c) 2014 Chukong Technologies Inc.
+
+ http://github.com/chukong/EarthWarrior3D
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ ****************************************************************************/
 
 #include "MainMenuScene.h"
 #include "LoadingScene.h"
@@ -37,6 +53,9 @@ bool MainMenuScene::init()
     {
         return false;
     }
+	
+	pRate = 3.1415926/2;
+
     // Music By Matthew Pable (http://www.matthewpablo.com/)
     // Licensed under CC-BY 3.0 (http://creativecommons.org/licenses/by/3.0/)
     CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("Star_Chaser.mp3");
@@ -45,7 +64,7 @@ bool MainMenuScene::init()
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Particle.plist","Particle.png");
     
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    Point origin = Director::getInstance()->getVisibleOrigin();
+    auto origin = Director::getInstance()->getVisibleOrigin();
     Size winSize = Director::getInstance()->getWinSize();
 //    if(){
 //        log("x");
@@ -70,7 +89,7 @@ bool MainMenuScene::init()
     float originY = 159.0f;
     float originZ = 9.0f;
     flare->setTotalParticles(50);
-    flare->setRotation3D(Vertex3F(-originX,-originY,-originZ));
+    flare->setRotation3D(Vec3(-originX,-originY,-originZ));
     flare->setPosition(-39,0);
     flare->setPositionType(tPositionType::GROUPED);
     flare->setStartColor(Color4F(0,0.99,1,1));
@@ -78,7 +97,7 @@ bool MainMenuScene::init()
     
     auto emis = ParticleSystemQuad::create("menuEmission.plist");
     emis->setScale(3);
-    emis->setRotation3D(Vertex3F(-originX,-originY,-originZ));
+    emis->setRotation3D(Vec3(-originX,-originY,-originZ));
     emis->setPosition(-40,0);
     emis->setPositionType(tPositionType::GROUPED);
     emis->setRotation(180);
@@ -90,13 +109,13 @@ bool MainMenuScene::init()
     auto plistData = fileUtil->getValueMapFromFile("vanishingPoint.plist");
     //auto sf = SpriteFrame::create("bullets.png", Rect(5,8,24,32));
     auto vanishing = ParticleSystemQuad::create(plistData);
-    vanishing->setAnchorPoint(Point(0.5f,0.5f));
+    vanishing->setAnchorPoint(Vec2(0.5f,0.5f));
     vanishing->setPosition(visible_size_macro.width-90,visible_size_macro.height/2 +50);
     this->addChild(vanishing,1,1);
     
     //************* adds background ***********
     auto background = Sprite::createWithSpriteFrameName("mainmenu_BG.png");
-    background->setAnchorPoint(Point(0,0));
+    background->setAnchorPoint(Vec2(0,0));
     this->addChild(background,-1,-1);
     
     //************* adds start game ***********
@@ -130,7 +149,7 @@ bool MainMenuScene::init()
 
 void MainMenuScene::update(float dt){
     pRate+=0.01;
-    plane->setPosition3D(Vertex3F(visible_size_macro.width/2+50,480-20*sin(1.05*pRate),0));
+    plane->setPosition3D(Vec3(visible_size_macro.width/2+50,480-20*sin(1.05*pRate),0));
 }
 
 void MainMenuScene::startgame(Ref* sender)
@@ -159,8 +178,8 @@ void MainMenuScene::credits(Ref* sender){
 void MainMenuScene::credits_callback()
 {
     auto license =LicenseLayer::create("credits_03.png");
-    license->setAnchorPoint(Point(0.5f,0.5f));
-    license->setPosition(Point(visible_size_macro.width/2, visible_size_macro.height/2));
+    license->setAnchorPoint(Vec2(0.5f,0.5f));
+    license->setPosition(Vec2(visible_size_macro.width/2, visible_size_macro.height/2));
     addChild(license,20);
     license->runAction(Sequence::create(ScaleTo::create(0.2f, 1.1f),
                                         ScaleTo::create(0.1f, 0.9f),
@@ -178,8 +197,8 @@ void MainMenuScene::license(Ref* sender){
 void MainMenuScene::license_callback()
 {
     auto license =LicenseLayer::create("LICENSE_03.png");
-    license->setAnchorPoint(Point(0.5f,0.5f));
-    license->setPosition(Point(visible_size_macro.width/2, visible_size_macro.height/2));
+    license->setAnchorPoint(Vec2(0.5f,0.5f));
+    license->setPosition(Vec2(visible_size_macro.width/2, visible_size_macro.height/2));
     addChild(license,20);
     license->runAction(Sequence::create(ScaleTo::create(0.2f, 1.1f),
                                         ScaleTo::create(0.1f, 0.9f),

@@ -133,13 +133,48 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Classes\AirCraft.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\Bullets.cpp" />
+    <ClCompile Include="..\Classes\Effects.cpp" />
+    <ClCompile Include="..\Classes\Enemies.cpp" />
+    <ClCompile Include="..\Classes\Explosion.cpp" />
+    <ClCompile Include="..\Classes\GameControllers.cpp" />
+    <ClCompile Include="..\Classes\GameEntity.cpp" />
+    <ClCompile Include="..\Classes\GameLayer.cpp" />
+    <ClCompile Include="..\Classes\GameOverLayer.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\LicenseLayer.cpp" />
+    <ClCompile Include="..\Classes\LoadingScene.cpp" />
+    <ClCompile Include="..\Classes\MainMenuScene.cpp" />
+    <ClCompile Include="..\Classes\ParticleManager.cpp" />
+    <ClCompile Include="..\Classes\Plane.cpp" />
+    <ClCompile Include="..\Classes\Player.cpp" />
+    <ClCompile Include="..\Classes\PublicApi.cpp" />
+    <ClCompile Include="..\Classes\Sprite3DEffect.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Classes\AirCraft.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\Bullets.h" />
+    <ClInclude Include="..\Classes\consts.h" />
+    <ClInclude Include="..\Classes\Effects.h" />
+    <ClInclude Include="..\Classes\Enemies.h" />
+    <ClInclude Include="..\Classes\Explosion.h" />
+    <ClInclude Include="..\Classes\GameControllers.h" />
+    <ClInclude Include="..\Classes\GameEntity.h" />
+    <ClInclude Include="..\Classes\GameLayer.h" />
+    <ClInclude Include="..\Classes\GameOverLayer.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\LicenseLayer.h" />
+    <ClInclude Include="..\Classes\LoadingScene.h" />
+    <ClInclude Include="..\Classes\MainMenuScene.h" />
+    <ClInclude Include="..\Classes\ParticleManager.h" />
+    <ClInclude Include="..\Classes\Plane.h" />
+    <ClInclude Include="..\Classes\Player.h" />
+    <ClInclude Include="..\Classes\PublicApi.h" />
+    <ClInclude Include="..\Classes\Sprite3DEffect.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
