@@ -41,7 +41,8 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
-    
+protected:
+    HelloWorld();
     ~HelloWorld();
 
     

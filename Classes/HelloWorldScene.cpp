@@ -57,6 +57,13 @@ Scene* HelloWorld::createScene()
     return scene;
 }
 
+HelloWorld::HelloWorld()
+:score(0)
+, hpView(nullptr)
+, scoreLabel(nullptr)
+{
+}
+
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
