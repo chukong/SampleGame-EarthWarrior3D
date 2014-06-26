@@ -110,9 +110,11 @@ void LoadingScene::InitBk()
 void LoadingScene::InitCoco()
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    auto coco = EffectSprite3D::createFromObjFileAndTexture("coconut.obj", "coco.png");
+    auto coco = EffectSprite3D::createFromObjFileAndTexture("coconut.c3b", "coco.png");
     if(coco)
     {
+		coco->setRotation3D(Vec3(90,0,0));
+		coco->setRotation3D(Vec3(90,0,180));
         coco->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2-150));
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(coco), 0.03, Color3B(0,0,0));
         

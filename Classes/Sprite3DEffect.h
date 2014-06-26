@@ -79,12 +79,13 @@ class EffectSprite3D : public Sprite3D
 {
 public:
     static EffectSprite3D* createFromObjFileAndTexture(const std::string& objFilePath, const std::string& textureFilePath);
+//	static EffectSprite3D* createFromC3bFileAndTexture(const std::string& objFilePath, const std::string& textureFilePath);
     void setEffect3D(Effect3D* effect);
     void addEffect(Effect3D* effect, ssize_t order);
     void eraseEffect(Effect3D* effect);
     ssize_t getEffectCount() const;
     Effect3D* getEffect(ssize_t index) const;
-    virtual void draw(Renderer *renderer, const Mat4 &transform, bool transformUpdated) override;
+    virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
 protected:
     EffectSprite3D();
     virtual ~EffectSprite3D();

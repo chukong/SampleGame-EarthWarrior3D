@@ -92,7 +92,7 @@ void Bullet::reset()
 
 bool Missile::init()
 {
-    _Model = EffectSprite3D::createFromObjFileAndTexture("daodanv001.obj", "daodan_32.png");
+    _Model = EffectSprite3D::createFromObjFileAndTexture("daodanv001.c3b", "daodan_32.png");
     if(_Model)
     {
 		_accel = 15;
@@ -107,7 +107,7 @@ bool Missile::init()
         _type = kPlayerMissiles;
         _owner = kPlayer;
         _Model->setScale(3);
-        _Model->setRotation3D(Vec3(90,0,0));
+        //_Model->setRotation3D(Vec3(0,0,180));
         _damage = 20;
 		_target = nullptr;
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.01, Color3B(0,0,0));
@@ -175,7 +175,7 @@ void Missile::update(float dt)
     }
     // missiles need to rotate
     _yRotation += _yRotSpeed*dt;
-    _Model->setRotation3D(Vec3(90,_yRotation, 0));
+    _Model->setRotation3D(Vec3(0,_yRotation, 0));
     
     
     

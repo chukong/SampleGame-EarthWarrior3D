@@ -37,11 +37,11 @@ const float Plane::pZA = 7.0f;
 bool Plane::init(){
 
 	pRate = 3.1415926/2;
-    originX = -15.0f;
+    originX = -15.0f - 90.f;
     originY = 159.0f;
     originZ = 9.0f;
 
-    _Model = EffectSprite3D::createFromObjFileAndTexture("playerv002.obj", "playerv002_256.png");
+    _Model = EffectSprite3D::createFromObjFileAndTexture("playerv002.c3b", "playerv002_256.png");
     if(_Model){
         _Model->setScale(55);
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.03, Color3B(0,0,0));
