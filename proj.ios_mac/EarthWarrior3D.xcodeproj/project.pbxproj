@@ -56,6 +56,13 @@
 		50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF629517ECD46A001EB2F8 /* Icon-100.png */; };
 		50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A017ECD613001EB2F8 /* Icon-29.png */; };
 		50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 50EF62A117ECD613001EB2F8 /* Icon-50.png */; };
+		76B5F2F2195C47BC00C15B36 /* boss.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2EB195C47BC00C15B36 /* boss.c3b */; };
+		76B5F2F3195C47BC00C15B36 /* bossCannon.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2EC195C47BC00C15B36 /* bossCannon.c3b */; };
+		76B5F2F4195C47BC00C15B36 /* coconut.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2ED195C47BC00C15B36 /* coconut.c3b */; };
+		76B5F2F5195C47BC00C15B36 /* daodanv001.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2EE195C47BC00C15B36 /* daodanv001.c3b */; };
+		76B5F2F6195C47BC00C15B36 /* diji1_v002.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2EF195C47BC00C15B36 /* diji1_v002.c3b */; };
+		76B5F2F7195C47BC00C15B36 /* dijiyuanv001.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2F0195C47BC00C15B36 /* dijiyuanv001.c3b */; };
+		76B5F2F8195C47BC00C15B36 /* playerv002.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2F1195C47BC00C15B36 /* playerv002.c3b */; };
 		B21386761925C30000A2C310 /* Sprite3DEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21386741925C30000A2C310 /* Sprite3DEffect.cpp */; };
 		B21386771925C30000A2C310 /* Sprite3DEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21386741925C30000A2C310 /* Sprite3DEffect.cpp */; };
 		B213867B1925C60E00A2C310 /* Shaders3D in Resources */ = {isa = PBXBuildFile; fileRef = B213867A1925C60E00A2C310 /* Shaders3D */; };
@@ -393,6 +400,13 @@
 		50EF629517ECD46A001EB2F8 /* Icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-100.png"; sourceTree = "<group>"; };
 		50EF62A017ECD613001EB2F8 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		50EF62A117ECD613001EB2F8 /* Icon-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-50.png"; sourceTree = "<group>"; };
+		76B5F2EB195C47BC00C15B36 /* boss.c3b */ = {isa = PBXFileReference; lastKnownFileType = file; path = boss.c3b; sourceTree = "<group>"; };
+		76B5F2EC195C47BC00C15B36 /* bossCannon.c3b */ = {isa = PBXFileReference; lastKnownFileType = file; path = bossCannon.c3b; sourceTree = "<group>"; };
+		76B5F2ED195C47BC00C15B36 /* coconut.c3b */ = {isa = PBXFileReference; lastKnownFileType = file; path = coconut.c3b; sourceTree = "<group>"; };
+		76B5F2EE195C47BC00C15B36 /* daodanv001.c3b */ = {isa = PBXFileReference; lastKnownFileType = file; path = daodanv001.c3b; sourceTree = "<group>"; };
+		76B5F2EF195C47BC00C15B36 /* diji1_v002.c3b */ = {isa = PBXFileReference; lastKnownFileType = file; path = diji1_v002.c3b; sourceTree = "<group>"; };
+		76B5F2F0195C47BC00C15B36 /* dijiyuanv001.c3b */ = {isa = PBXFileReference; lastKnownFileType = file; path = dijiyuanv001.c3b; sourceTree = "<group>"; };
+		76B5F2F1195C47BC00C15B36 /* playerv002.c3b */ = {isa = PBXFileReference; lastKnownFileType = file; path = playerv002.c3b; sourceTree = "<group>"; };
 		B21386741925C30000A2C310 /* Sprite3DEffect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Sprite3DEffect.cpp; path = ../Classes/Sprite3DEffect.cpp; sourceTree = "<group>"; };
 		B21386751925C30000A2C310 /* Sprite3DEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Sprite3DEffect.h; path = ../Classes/Sprite3DEffect.h; sourceTree = "<group>"; };
 		B213867A1925C60E00A2C310 /* Shaders3D */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shaders3D; sourceTree = "<group>"; };
@@ -712,6 +726,13 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				76B5F2EB195C47BC00C15B36 /* boss.c3b */,
+				76B5F2EC195C47BC00C15B36 /* bossCannon.c3b */,
+				76B5F2ED195C47BC00C15B36 /* coconut.c3b */,
+				76B5F2EE195C47BC00C15B36 /* daodanv001.c3b */,
+				76B5F2EF195C47BC00C15B36 /* diji1_v002.c3b */,
+				76B5F2F0195C47BC00C15B36 /* dijiyuanv001.c3b */,
+				76B5F2F1195C47BC00C15B36 /* playerv002.c3b */,
 				B213867A1925C60E00A2C310 /* Shaders3D */,
 				BB0C48CB190910E60015152C /* boom.mp3 */,
 				BB0C48CC190910E60015152C /* boom2.mp3 */,
@@ -944,7 +965,9 @@
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				BB0C4939190910E70015152C /* glow.plist in Resources */,
 				BB0C4943190910E70015152C /* loadingAndHP.png in Resources */,
+				76B5F2F4195C47BC00C15B36 /* coconut.c3b in Resources */,
 				BB0C4911190910E70015152C /* credits_03.png in Resources */,
+				76B5F2F8195C47BC00C15B36 /* playerv002.c3b in Resources */,
 				BB0C4903190910E70015152C /* boom2.mp3 in Resources */,
 				BB0C4929190910E70015152C /* explodeEffect.mp3 in Resources */,
 				BB0C4921190910E70015152C /* dijiyuanv001.png in Resources */,
@@ -954,6 +977,7 @@
 				50EF629917ECD46A001EB2F8 /* Icon-100.png in Resources */,
 				BB0C4931190910E70015152C /* gameover_score_num_0.png in Resources */,
 				BB0C494B190910E70015152C /* missileFlare.plist in Resources */,
+				76B5F2F3195C47BC00C15B36 /* bossCannon.c3b in Resources */,
 				BB0C4959190910E70015152C /* player_bullet_explosion.png in Resources */,
 				BB0C4933190910E70015152C /* gameover_score_num.fnt in Resources */,
 				B213867B1925C60E00A2C310 /* Shaders3D in Resources */,
@@ -964,14 +988,17 @@
 				BB0C4957190910E70015152C /* Particle.png in Resources */,
 				BB0C490B190910E70015152C /* bullets.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
+				76B5F2F2195C47BC00C15B36 /* boss.c3b in Resources */,
 				BB0C4951190910E70015152C /* num.fnt in Resources */,
 				BB0C495B190910E70015152C /* playerv002_256.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
+				76B5F2F5195C47BC00C15B36 /* daodanv001.c3b in Resources */,
 				BB0C4953190910E70015152C /* Orbital Colossus_0.mp3 in Resources */,
 				BB0C492B190910E70015152C /* flare.plist in Resources */,
 				BB0C4905190910E70015152C /* boss.obj in Resources */,
 				BB0C4923190910E70015152C /* emission.plist in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
+				76B5F2F6195C47BC00C15B36 /* diji1_v002.c3b in Resources */,
 				BB0C493F190910E70015152C /* LICENSE_03.png in Resources */,
 				BB0C494F190910E70015152C /* num_0.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
@@ -983,6 +1010,7 @@
 				BB0C4947190910E70015152C /* menu_scene.png in Resources */,
 				BB0C490D190910E70015152C /* coco.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
+				76B5F2F7195C47BC00C15B36 /* dijiyuanv001.c3b in Resources */,
 				BB0C493D190910E70015152C /* hit.mp3 in Resources */,
 				BB0C492F190910E70015152C /* Marker Felt.ttf in Resources */,
 				BB0C4919190910E70015152C /* diji1_v001.obj in Resources */,
