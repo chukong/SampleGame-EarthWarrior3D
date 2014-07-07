@@ -43,8 +43,6 @@ EffectSprite3D* EffectSprite3D::createFromObjFileAndTexture(const std::string &o
     return nullptr;
 }
 
-
-
 EffectSprite3D::EffectSprite3D()
 : _defaultEffect(nullptr)
 {
@@ -255,5 +253,3 @@ void EffectSprite3D::draw(Renderer *renderer, const Mat4 &transform, uint32_t fl
         
     }
 }
-
-
