@@ -36,12 +36,12 @@ bool Fodder::init()
 {
     _score = 10;
 	_alive = true;
-    _Model = EffectSprite3D::createFromObjFileAndTexture("dijiyuanv001.obj", "dijiyuanv001.png");
+    _Model = EffectSprite3D::createFromObjFileAndTexture("dijiyuanv001.c3b", "dijiyuanv001.png");
     if(_Model)
     {
         _Model->setScale(6);
         addChild(_Model);
-        _Model->setRotation3D(Vec3(90,0,0));
+        //_Model->setRotation3D(Vec3(90,0,0));
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.02, Color3B(0,0,0));
         _type = kEnemyFodder;
         _HP = 10;
@@ -100,12 +100,12 @@ bool FodderLeader::init()
 {
     _score = 20;
 	_alive = true;
-    _Model = EffectSprite3D::createFromObjFileAndTexture("dijiyuanv001.obj", "dijiyuanv001.png");
+    _Model = EffectSprite3D::createFromObjFileAndTexture("dijiyuanv001.c3b", "dijiyuanv001.png");
     if(_Model)
     {
         _Model->setScale(8);
         addChild(_Model);
-        _Model->setRotation3D(Vec3(90,0,0));
+       // _Model->setRotation3D(Vec3(90,0,0));
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.02, Color3B(255,0,0));
         _type = kEnemyFodderL;
         _HP = 20;
@@ -126,12 +126,12 @@ bool BigDude::init()
     _score = 20;
 	_alive = true;
 	_turnRate = 50;
-    _Model = EffectSprite3D::createFromObjFileAndTexture("diji1_v002.obj", "diji02_v002_128.png");
+    _Model = EffectSprite3D::createFromObjFileAndTexture("diji1_v002.c3b", "diji02_v002_128.png");
     if(_Model)
     {
         _Model->setScale(8);
         addChild(_Model);
-        _Model->setRotation3D(Vec3(90,0,0));
+       // _Model->setRotation3D(Vec3(90,0,0));
         //static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B::BLACK);
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.02, Color3B::BLACK);
         _type = kEnemyBigDude;
@@ -282,31 +282,31 @@ bool Boss::init()
 {
     _score = 666;
 	_alive = true;
-    _Model = EffectSprite3D::createFromObjFileAndTexture("boss.obj", "boss.png");
+    _Model = EffectSprite3D::createFromObjFileAndTexture("boss.c3b", "boss.png");
     //auto cannon2 = Sprite3D::create("bossCannon.obj", "boos.png");
     if(_Model)
     {
         _Model->setScale(28);
         addChild(_Model);
-        _Model->setRotation3D(Vec3(90,0,0));
+       // _Model->setRotation3D(Vec3(90,0,0));
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.02, Color3B::BLACK);
         _type = kEnemyBoss;
         _HP = 5000;
         _radius = 150;
-        auto cannon1 = EffectSprite3D::createFromObjFileAndTexture("bossCannon.obj", "boss.png");
+        auto cannon1 = EffectSprite3D::createFromObjFileAndTexture("bossCannon.c3b", "boss.png");
         _Cannon1 = Node::create();
         addChild(_Cannon1);
         _Cannon1->addChild(cannon1);
         cannon1->setScale(28);
-        cannon1->setRotation3D(Vec3(90,0,0));
+        //cannon1->setRotation3D(Vec3(90,0,0));
         _Cannon1->setPosition3D(Vec3(40,-100, 10));
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(cannon1), 0.02, Color3B(0,0,0));
-        auto cannon2 = EffectSprite3D::createFromObjFileAndTexture("bossCannon.obj", "boss.png");
+        auto cannon2 = EffectSprite3D::createFromObjFileAndTexture("bossCannon.c3b", "boss.png");
         _Cannon2 = Node::create();
         addChild(_Cannon2);
         _Cannon2->addChild(cannon2);
         cannon2->setScale(28);
-        cannon2->setRotation3D(Vec3(90,0,0));
+        //cannon2->setRotation3D(Vec3(90,0,0));
         _Cannon2->setPosition3D(Vec3(-40,-100, 10));
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(cannon2), 0.02, Color3B(0,0,0));
         //addChild(_Cannon2);

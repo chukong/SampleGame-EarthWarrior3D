@@ -42,7 +42,7 @@ const float Player::rollReturnThreshold = 1.02;
 
 bool Player::init()
 {
-    _Model = EffectSprite3D::createFromObjFileAndTexture("playerv002.obj", "playerv002_256.png");
+    _Model = EffectSprite3D::createFromObjFileAndTexture("playerv002.c3b", "playerv002_256.png");
     if(_Model)
     {
 		targetAngle = 0;
@@ -51,7 +51,7 @@ bool Player::init()
 
         _Model->setScale(8);
         addChild(_Model);
-        _Model->setRotation3D(Vec3(90,0,0));
+       // _Model->setRotation3D(Vec3(90,0,0));
         _radius = 40;
         _HP = 100;
         _alive = true;
