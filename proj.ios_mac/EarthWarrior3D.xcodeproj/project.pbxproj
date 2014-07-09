@@ -63,6 +63,13 @@
 		76B5F2F6195C47BC00C15B36 /* diji1_v002.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2EF195C47BC00C15B36 /* diji1_v002.c3b */; };
 		76B5F2F7195C47BC00C15B36 /* dijiyuanv001.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2F0195C47BC00C15B36 /* dijiyuanv001.c3b */; };
 		76B5F2F8195C47BC00C15B36 /* playerv002.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2F1195C47BC00C15B36 /* playerv002.c3b */; };
+		AB2EA97A196BF8F2005FC902 /* boss.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2EB195C47BC00C15B36 /* boss.c3b */; };
+		AB2EA97B196BF8F2005FC902 /* bossCannon.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2EC195C47BC00C15B36 /* bossCannon.c3b */; };
+		AB2EA97C196BF8F2005FC902 /* coconut.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2ED195C47BC00C15B36 /* coconut.c3b */; };
+		AB2EA97D196BF8F2005FC902 /* daodanv001.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2EE195C47BC00C15B36 /* daodanv001.c3b */; };
+		AB2EA97E196BF8F2005FC902 /* diji1_v002.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2EF195C47BC00C15B36 /* diji1_v002.c3b */; };
+		AB2EA97F196BF8F2005FC902 /* dijiyuanv001.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2F0195C47BC00C15B36 /* dijiyuanv001.c3b */; };
+		AB2EA980196BF8F2005FC902 /* playerv002.c3b in Resources */ = {isa = PBXBuildFile; fileRef = 76B5F2F1195C47BC00C15B36 /* playerv002.c3b */; };
 		B21386761925C30000A2C310 /* Sprite3DEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21386741925C30000A2C310 /* Sprite3DEffect.cpp */; };
 		B21386771925C30000A2C310 /* Sprite3DEffect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B21386741925C30000A2C310 /* Sprite3DEffect.cpp */; };
 		B213867B1925C60E00A2C310 /* Shaders3D in Resources */ = {isa = PBXBuildFile; fileRef = B213867A1925C60E00A2C310 /* Shaders3D */; };
@@ -1043,6 +1050,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB2EA97A196BF8F2005FC902 /* boss.c3b in Resources */,
+				AB2EA97B196BF8F2005FC902 /* bossCannon.c3b in Resources */,
+				AB2EA97C196BF8F2005FC902 /* coconut.c3b in Resources */,
+				AB2EA97D196BF8F2005FC902 /* daodanv001.c3b in Resources */,
+				AB2EA97E196BF8F2005FC902 /* diji1_v002.c3b in Resources */,
+				AB2EA97F196BF8F2005FC902 /* dijiyuanv001.c3b in Resources */,
+				AB2EA980196BF8F2005FC902 /* playerv002.c3b in Resources */,
 				BB0C490C190910E70015152C /* bullets.png in Resources */,
 				BB0C4938190910E70015152C /* gameover.png in Resources */,
 				BB0C4924190910E70015152C /* emission.plist in Resources */,
