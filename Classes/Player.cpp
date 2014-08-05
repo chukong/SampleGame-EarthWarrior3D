@@ -79,15 +79,136 @@ bool Player::init()
         part->setPosition(0,-30);
         part->setScale(0.6);
         //part->setRotation(90);
+        
+        //以下代码实现通过手柄来控制飞机
+        
+        //需要包含base/CCEventListenerController.h头文件和base/CCController.h文件
+        auto controlListener = EventListenerController::create();
+        
+        controlListener->onKeyDown = CC_CALLBACK_3(Player::onKeyDown,this);
+        
+        controlListener->onKeyUp = CC_CALLBACK_3(Player::onKeyUp,this);
+        
+        controlListener->onAxisEvent = CC_CALLBACK_3(Player::onAxisEvent,this);
+        
+        _eventDispatcher->addEventListenerWithSceneGraphPriority(controlListener,this);
+        
+        Controller::startDiscoveryController();
+        
+        //初始化飞机的偏移
+        this->axisX = 0;
+        this->axisY = 0;
+        this->keyX = 0;
+        this->keyY = 0;
+        
         return true;
     }
     return false;
 }
+
+//当按键按下的时候调用，不包括摇杆
+void Player::onKeyDown(Controller *controller, int keyCode,Event *event)
+{
+    const auto & keyStatus = controller->getKeyStatus(keyCode);
+    switch(keyCode)
+    {
+        case Controller::Key::BUTTON_DPAD_UP:
+            keyY = keyStatus.value;
+            break;
+        case Controller::Key::BUTTON_DPAD_DOWN:
+            keyY = -keyStatus.value;
+            break;
+        case Controller::Key::BUTTON_DPAD_LEFT:
+            keyX = -keyStatus.value;
+            break;
+        case Controller::Key::BUTTON_DPAD_RIGHT:
+            keyX = keyStatus.value;
+            break;
+    }
+}
+
+void Player::onKeyUp(Controller *controller, int keyCode,Event *event)
+{
+    switch(keyCode)
+    {
+        case Controller::Key::BUTTON_DPAD_UP:
+        case Controller::Key::BUTTON_DPAD_DOWN:
+            keyY = 0;
+            break;
+        case Controller::Key::BUTTON_DPAD_LEFT:
+        case Controller::Key::BUTTON_DPAD_RIGHT:
+            keyX = 0;
+            break;
+    }
+}
+
+void Player::onKeyRepeat()
+{
+    Vec2 prev = this->getPosition();
+    Vec2 delta =Vec2(15*keyX,15*keyY);
+    
+    setTargetAngle(targetAngle+delta.x*rollSpeed*(rollReturnThreshold-fabsf(targetAngle)/maxRoll));
+    
+    Vec2 shiftPosition = delta+prev;
+    
+    setPosition(shiftPosition.getClampPoint(Vec2(PLAYER_LIMIT_LEFT,PLAYER_LIMIT_BOT),Vec2(PLAYER_LIMIT_RIGHT,PLAYER_LIMIT_TOP)));
+}
+
+//当摇杆的x或者y值有改变的时候调用，x值y值不变化不会调用
+void Player::onAxisEvent(Controller* controller, int keyCode,Event* event)
+{
+    //当摇杆的值有变化的时候会设置axisX和axisY
+    const auto & keyStatus = controller->getKeyStatus(keyCode);
+#if(CC_TARGET_PLATFORM == CC_TARGET_OS_MAC)
+    switch(keyCode)
+    {
+        case Controller::Key::JOYSTICK_LEFT_X:
+        case Controller::Key::JOYSTICK_RIGHT_X:
+            this->axisX = keyStatus.value;
+            break;
+        case Controller::Key::JOYSTICK_LEFT_Y:
+        case Controller::Key::JOYSTICK_RIGHT_Y:
+            this->axisY = keyStatus.value;
+            break;
+    }
+#else
+    //ios的手柄前后左右倒过来
+    switch(keyCode)
+    {
+//        case Controller::Key::JOYSTICK_LEFT_X:
+        case Controller::Key::JOYSTICK_RIGHT_X:
+            this->axisY = keyStatus.value;
+            break;
+//        case Controller::Key::JOYSTICK_LEFT_Y:
+        case Controller::Key::JOYSTICK_RIGHT_Y:
+            this->axisX = -keyStatus.value;
+            break;
+    }
+#endif
+}
+
+//在update方法中不断轮询该方法，该方法改变飞机的位置
+void Player::onAxisRepeat()
+{
+    Vec2 prev = this->getPosition();
+    Vec2 delta =Vec2(15*axisX,-15*axisY);
+    
+    setTargetAngle(targetAngle+delta.x*rollSpeed*(rollReturnThreshold-fabsf(targetAngle)/maxRoll));
+    
+    Vec2 shiftPosition = delta+prev;
+    
+    setPosition(shiftPosition.getClampPoint(Vec2(PLAYER_LIMIT_LEFT,PLAYER_LIMIT_BOT),Vec2(PLAYER_LIMIT_RIGHT,PLAYER_LIMIT_TOP)));
+}
+
 void Player::update(float dt)
 {
     float smoothedAngle =std::min(std::max(targetAngle*(1-dt*returnSpeed*(rollReturnThreshold-fabsf(targetAngle)/maxRoll)),-maxRoll),maxRoll);
     setRotation3D(Vec3(fabsf(smoothedAngle)*0.15,smoothedAngle, 0));
     targetAngle = getRotation3D().y;
+    
+    //不断轮询onAxisRepeat方法
+    this->onAxisRepeat();
+    this->onKeyRepeat();
 }
 bool Player::onTouchBegan(Touch *touch, Event *event)
 {

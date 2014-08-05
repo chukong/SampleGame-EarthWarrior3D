@@ -28,6 +28,8 @@
 #include "cocos2d.h"
 #include "AirCraft.h"
 
+#include "base/CCEventListenerController.h"
+#include "base/CCController.h"
 
 USING_NS_CC;
 
@@ -57,10 +59,22 @@ public:
     virtual bool hurt(float damage);
     virtual void die();
     void hideWarningLayer(Node* node);
+    
+    //对游戏手柄的响应
+    void onKeyDown(Controller *controller, int keyCode, Event *event);
+    void onKeyUp(Controller *controller, int keyCode,Event *event);
+    void onAxisEvent(Controller* controller, int keyCode,Event* event);
+    void onAxisRepeat();
+    void onKeyRepeat();
 protected:
     float targetAngle;
     Vec2 targetPos;
     Vec2 _trailOffset;
+    
+    float keyX;
+    float keyY;
+    float axisX;
+    float axisY;
     
 };
 

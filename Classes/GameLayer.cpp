@@ -63,13 +63,15 @@ bool GameLayer::init()
     addChild(_spr, -5);
     Texture2D::TexParams texRepeat = {GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_REPEAT};
     _spr->getTexture()->setTexParameters(texRepeat);
-    //setRotation3D(Vec3(-30.0,0.0f,0.0f));
+    setRotation3D(Vec3(-30.0,0.0f,0.0f));
     _spr->setScale(1.4);
     _spr->setPosition(0.0f,400.0f);
     
     _player = Player::create();
     
-    _streak = MotionStreak::create(0.4, 1, 15, Color3B(82,255,253), "streak.png");
+    //拖尾效果，间隐效果
+    _streak = MotionStreak::create(0.4, 1, 15, Color3B(255,255,255), "streak.png");
+    _streak->setBlendFunc(BlendFunc::ADDITIVE);
     _player->setTrail(_streak);
     addChild(_streak,3);
     auto emission_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("engine.jpg");
