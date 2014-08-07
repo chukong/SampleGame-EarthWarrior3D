@@ -28,6 +28,10 @@
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
 
+//添加对游戏手柄的支持
+#include "base/CCEventListenerController.h"
+#include "base/CCController.h"
+
 USING_NS_CC;
 using namespace CocosDenshion;
 
@@ -38,6 +42,9 @@ public:
     static GameOverLayer* create(int score);
     
     virtual bool init();
+    
+    //游戏手柄按键事件
+    void onKeyDown(Controller *controller, int keyCode,Event *event);
     
 private:
     
