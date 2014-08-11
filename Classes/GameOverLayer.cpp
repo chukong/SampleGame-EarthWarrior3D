@@ -91,11 +91,13 @@ bool GameOverLayer::init()
     
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     //返回游戏可以支持游戏手柄
     auto controllListener = EventListenerController::create();
     controllListener->onKeyUp = CC_CALLBACK_3(GameOverLayer::onKeyDown, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(controllListener, this);
     Controller::startDiscoveryController();
+#endif
     
     return true;
 }

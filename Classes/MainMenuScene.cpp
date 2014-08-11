@@ -144,12 +144,14 @@ bool MainMenuScene::init()
     menu->setPosition(origin);
     this->addChild(menu,3);
     
-    //对游戏手柄的响应
+    //support controller
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     auto controllListener = EventListenerController::create();
     controllListener->onKeyUp = CC_CALLBACK_3(MainMenuScene::onKeyUp, this);
     controllListener->onConnected = CC_CALLBACK_2(MainMenuScene::onConnected,this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(controllListener, this);
     Controller::startDiscoveryController();
+#endif
     
     return true;
 }

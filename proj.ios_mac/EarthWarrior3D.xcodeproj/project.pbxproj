@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0437EFB819985B3C003EE06B /* OutLine.frag in Resources */ = {isa = PBXBuildFile; fileRef = 0437EFB619985B3C003EE06B /* OutLine.frag */; };
+		0437EFB919985B3C003EE06B /* OutLine.frag in Resources */ = {isa = PBXBuildFile; fileRef = 0437EFB619985B3C003EE06B /* OutLine.frag */; };
+		0437EFBA19985B3C003EE06B /* OutLine.vert in Resources */ = {isa = PBXBuildFile; fileRef = 0437EFB719985B3C003EE06B /* OutLine.vert */; };
+		0437EFBB19985B3C003EE06B /* OutLine.vert in Resources */ = {isa = PBXBuildFile; fileRef = 0437EFB719985B3C003EE06B /* OutLine.vert */; };
 		1AC6FB1F180E996B004C840B /* libbox2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAFF180E9839004C840B /* libbox2d Mac.a */; };
 		1AC6FB20180E996B004C840B /* libchipmunk Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAFD180E9839004C840B /* libchipmunk Mac.a */; };
 		1AC6FB21180E996B004C840B /* libcocos2dx Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAF9180E9839004C840B /* libcocos2dx Mac.a */; };
@@ -365,6 +369,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0437EFB619985B3C003EE06B /* OutLine.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = OutLine.frag; path = Shaders3D/OutLine.frag; sourceTree = "<group>"; };
+		0437EFB719985B3C003EE06B /* OutLine.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = OutLine.vert; path = Shaders3D/OutLine.vert; sourceTree = "<group>"; };
 		1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = ../cocos2d/build/cocos2d_libs.xcodeproj; sourceTree = "<group>"; };
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = ../Classes/AppDelegate.cpp; sourceTree = "<group>"; };
@@ -733,6 +739,8 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0437EFB619985B3C003EE06B /* OutLine.frag */,
+				0437EFB719985B3C003EE06B /* OutLine.vert */,
 				76B5F2EB195C47BC00C15B36 /* boss.c3b */,
 				76B5F2EC195C47BC00C15B36 /* bossCannon.c3b */,
 				76B5F2ED195C47BC00C15B36 /* coconut.c3b */,
@@ -988,6 +996,7 @@
 				BB0C4959190910E70015152C /* player_bullet_explosion.png in Resources */,
 				BB0C4933190910E70015152C /* gameover_score_num.fnt in Resources */,
 				B213867B1925C60E00A2C310 /* Shaders3D in Resources */,
+				0437EFB819985B3C003EE06B /* OutLine.frag in Resources */,
 				BB0C495F190910E70015152C /* score_right_top.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				BB0C4941190910E70015152C /* loadingAndHP.plist in Resources */,
@@ -1023,6 +1032,7 @@
 				BB0C4919190910E70015152C /* diji1_v001.obj in Resources */,
 				BB0C4935190910E70015152C /* gameover.plist in Resources */,
 				BB0C4913190910E70015152C /* daodan_32.png in Resources */,
+				0437EFBA19985B3C003EE06B /* OutLine.vert in Resources */,
 				BB0C491D190910E70015152C /* diji02_v002_128.png in Resources */,
 				BB0C4925190910E70015152C /* emissionPart.plist in Resources */,
 				BB0C4915190910E70015152C /* daodanv001.obj in Resources */,
@@ -1105,9 +1115,11 @@
 				BB0C4918190910E70015152C /* debris.plist in Resources */,
 				BB0C4966190910E70015152C /* streak.png in Resources */,
 				BB0C4904190910E70015152C /* boom2.mp3 in Resources */,
+				0437EFB919985B3C003EE06B /* OutLine.frag in Resources */,
 				BB0C494C190910E70015152C /* missileFlare.plist in Resources */,
 				BB0C493C190910E70015152C /* groundLevel.jpg in Resources */,
 				BB0C4952190910E70015152C /* num.fnt in Resources */,
+				0437EFBB19985B3C003EE06B /* OutLine.vert in Resources */,
 				BB0C495E190910E70015152C /* playerv002.obj in Resources */,
 				BB0C4954190910E70015152C /* Orbital Colossus_0.mp3 in Resources */,
 				BB0C490E190910E70015152C /* coco.png in Resources */,

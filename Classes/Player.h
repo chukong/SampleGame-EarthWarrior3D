@@ -28,8 +28,11 @@
 #include "cocos2d.h"
 #include "AirCraft.h"
 
+//support controller
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "base/CCEventListenerController.h"
 #include "base/CCController.h"
+#endif
 
 USING_NS_CC;
 
@@ -60,21 +63,26 @@ public:
     virtual void die();
     void hideWarningLayer(Node* node);
     
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     //对游戏手柄的响应
     void onKeyDown(Controller *controller, int keyCode, Event *event);
     void onKeyUp(Controller *controller, int keyCode,Event *event);
     void onAxisEvent(Controller* controller, int keyCode,Event* event);
     void onAxisRepeat();
     void onKeyRepeat();
+#endif
+    
 protected:
     float targetAngle;
     Vec2 targetPos;
     Vec2 _trailOffset;
     
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     float keyX;
     float keyY;
     float axisX;
     float axisY;
+#endif
     
 };
 
