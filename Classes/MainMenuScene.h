@@ -28,7 +28,7 @@
 #include "cocos2d.h"
 #include "Plane.h"
 
-//添加对游戏手柄的支持
+//support controller
 #include "base/CCEventListenerController.h"
 #include "base/CCController.h"
 
@@ -42,7 +42,7 @@ public:
     CREATE_FUNC(MainMenuScene);
     void update(float dt);
     
-    //对游戏手柄的响应
+    
     void onKeyUp(Controller *controller, int keyCode,Event *event);
     void onConnected(Controller* controller, Event* event);
 private:

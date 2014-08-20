@@ -69,7 +69,7 @@ bool GameLayer::init()
     
     _player = Player::create();
     
-    //拖尾效果，间隐效果
+    //Tailing effects
     _streak = MotionStreak::create(0.4, 1, 15, Color3B(255,255,255), "streak.png");
     _streak->setBlendFunc(BlendFunc::ADDITIVE);
     _player->setTrail(_streak);

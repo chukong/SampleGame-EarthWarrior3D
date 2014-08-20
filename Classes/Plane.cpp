@@ -44,7 +44,6 @@ bool Plane::init(){
     _Model = EffectSprite3D::createFromObjFileAndTexture("playerv002.c3b", "playerv002_256.png");
     if(_Model){
         _Model->setScale(55);
-        //描边改细
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.020, Color3B(0,0,0));
         _Model->setRotation3D(Vec3(originX,originY,originZ));
         this->setRotation3D(Vec3(originX, originY, originZ));

@@ -156,7 +156,7 @@ bool MainMenuScene::init()
     return true;
 }
 
-//控制器连接的时候调用
+//controller connect
 void MainMenuScene::onConnected(Controller* controller, Event* event)
 {
     auto size = Director::getInstance()->getWinSize();
@@ -167,14 +167,12 @@ void MainMenuScene::onConnected(Controller* controller, Event* event)
     this->addChild(label);
 }
 
-//响应游戏手柄
 void MainMenuScene::onKeyUp(Controller *controller, int keyCode,Event *event)
 {
     if(this->getChildByTag(20) != nullptr)
     {
         this->getChildByTag(20)->removeFromParent();
     }
-    //不同的按键对应不同的功能调用
     switch (keyCode)
     {
         case Controller::Key::BUTTON_START:
@@ -226,7 +224,7 @@ void MainMenuScene::credits_callback()
     license->setAnchorPoint(Vec2(0.5f,0.5f));
     license->setPosition(Vec2(visible_size_macro.width/2, visible_size_macro.height/2));
     addChild(license,20);
-    //为了在手柄调用的回调函数的时候去除，这里设置tag为20
+    //set tag 20
     license->setTag(20);
     license->runAction(Sequence::create(ScaleTo::create(0.2f, 1.1f),
                                         ScaleTo::create(0.1f, 0.9f),
@@ -247,7 +245,6 @@ void MainMenuScene::license_callback()
     license->setAnchorPoint(Vec2(0.5f,0.5f));
     license->setPosition(Vec2(visible_size_macro.width/2, visible_size_macro.height/2));
     addChild(license,20);
-    //为了在手柄调用的回调函数的时候去除，这里设置tag为20
     license->setTag(20);
     license->runAction(Sequence::create(ScaleTo::create(0.2f, 1.1f),
                                         ScaleTo::create(0.1f, 0.9f),
