@@ -91,16 +91,16 @@ bool GameOverLayer::init()
     
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
-    //返回游戏可以支持游戏手柄
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     auto controllListener = EventListenerController::create();
     controllListener->onKeyUp = CC_CALLBACK_3(GameOverLayer::onKeyDown, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(controllListener, this);
     Controller::startDiscoveryController();
+#endif
     
     return true;
 }
 
-//手柄按键的回调
 void GameOverLayer::onKeyDown(Controller *controller, int keyCode,Event *event)
 {
     if(keyCode == Controller::Key::BUTTON_B)

@@ -80,9 +80,10 @@ bool Player::init()
         part->setScale(0.6);
         //part->setRotation(90);
         
-        //以下代码实现通过手柄来控制飞机
+        //controller support ios and android
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
         
-        //需要包含base/CCEventListenerController.h头文件和base/CCController.h文件
+        //need include base/CCEventListenerController.h and base/CCController.h文件
         auto controlListener = EventListenerController::create();
         
         controlListener->onKeyDown = CC_CALLBACK_3(Player::onKeyDown,this);
@@ -91,22 +92,24 @@ bool Player::init()
         
         controlListener->onAxisEvent = CC_CALLBACK_3(Player::onAxisEvent,this);
         
+        
         _eventDispatcher->addEventListenerWithSceneGraphPriority(controlListener,this);
         
         Controller::startDiscoveryController();
-        
-        //初始化飞机的偏移
+
+        //init
         this->axisX = 0;
         this->axisY = 0;
         this->keyX = 0;
         this->keyY = 0;
+#endif
         
         return true;
     }
     return false;
 }
 
-//当按键按下的时候调用，不包括摇杆
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 void Player::onKeyDown(Controller *controller, int keyCode,Event *event)
 {
     const auto & keyStatus = controller->getKeyStatus(keyCode);
@@ -154,10 +157,8 @@ void Player::onKeyRepeat()
     setPosition(shiftPosition.getClampPoint(Vec2(PLAYER_LIMIT_LEFT,PLAYER_LIMIT_BOT),Vec2(PLAYER_LIMIT_RIGHT,PLAYER_LIMIT_TOP)));
 }
 
-//当摇杆的x或者y值有改变的时候调用，x值y值不变化不会调用
 void Player::onAxisEvent(Controller* controller, int keyCode,Event* event)
 {
-    //当摇杆的值有变化的时候会设置axisX和axisY
     const auto & keyStatus = controller->getKeyStatus(keyCode);
 #if(CC_TARGET_PLATFORM == CC_TARGET_OS_MAC)
     switch(keyCode)
@@ -172,7 +173,7 @@ void Player::onAxisEvent(Controller* controller, int keyCode,Event* event)
             break;
     }
 #else
-    //ios的手柄前后左右倒过来
+    //ios
     switch(keyCode)
     {
 //        case Controller::Key::JOYSTICK_LEFT_X:
@@ -187,7 +188,6 @@ void Player::onAxisEvent(Controller* controller, int keyCode,Event* event)
 #endif
 }
 
-//在update方法中不断轮询该方法，该方法改变飞机的位置
 void Player::onAxisRepeat()
 {
     Vec2 prev = this->getPosition();
@@ -199,6 +199,7 @@ void Player::onAxisRepeat()
     
     setPosition(shiftPosition.getClampPoint(Vec2(PLAYER_LIMIT_LEFT,PLAYER_LIMIT_BOT),Vec2(PLAYER_LIMIT_RIGHT,PLAYER_LIMIT_TOP)));
 }
+#endif
 
 void Player::update(float dt)
 {
@@ -206,9 +207,11 @@ void Player::update(float dt)
     setRotation3D(Vec3(fabsf(smoothedAngle)*0.15,smoothedAngle, 0));
     targetAngle = getRotation3D().y;
     
-    //不断轮询onAxisRepeat方法
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     this->onAxisRepeat();
     this->onKeyRepeat();
+#endif
+    
 }
 bool Player::onTouchBegan(Touch *touch, Event *event)
 {

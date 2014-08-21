@@ -28,7 +28,7 @@
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
 
-//添加对游戏手柄的支持
+//support controller need header files
 #include "base/CCEventListenerController.h"
 #include "base/CCController.h"
 
@@ -43,7 +43,7 @@ public:
     
     virtual bool init();
     
-    //游戏手柄按键事件
+    //event listener
     void onKeyDown(Controller *controller, int keyCode,Event *event);
     
 private:
