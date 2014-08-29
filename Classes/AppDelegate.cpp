@@ -47,7 +47,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
         height = 800;
         width = height*(640.0/960.0);
         
-        glview = GLView::createWithRect("EarthWarrior3D", Rect(0, 0, width, height));
+        glview = GLViewImpl::createWithRect("EarthWarrior3D", Rect(0, 0, width, height));
         
         director->setOpenGLView(glview);
     }
