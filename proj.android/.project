@@ -61,5 +61,25 @@
 			<type>2</type>
 			<locationURI>COCOS2DX/scripting</locationURI>
 		</link>
+		<link>
+			<name>jni/hellocpp/Analytics.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Classes/Analytics.cpp</locationURI>
+		</link>
+		<link>
+			<name>jni/hellocpp/Analytics.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Classes/Analytics.h</locationURI>
+		</link>
+		<link>
+			<name>jni/hellocpp/PluginChannel.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Classes/PluginChannel.cpp</locationURI>
+		</link>
+		<link>
+			<name>jni/hellocpp/PluginChannel.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Classes/PluginChannel.h</locationURI>
+		</link>
 	</linkedResources>
 </projectDescription>

@@ -25,12 +25,18 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/ParticleManager.cpp \
                    ../../Classes/Plane.cpp \
                    ../../Classes/Sprite3DEffect.cpp \
-                   ../../Classes/LicenseLayer.cpp
+                   ../../Classes/LicenseLayer.cpp   \
+                   ../../Classes/PluginChannel.cpp \
+                   ../../Classes/Analytics.cpp 
+                   
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
+       			$(LOCAL_PATH)/../protocols/android	\
+       			$(LOCAL_PATH)/../protocols/include
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static
+LOCAL_WHOLE_STATIC_LIBRARIES += PluginProtocolStatic
 
 # LOCAL_WHOLE_STATIC_LIBRARIES += box2d_static
 # LOCAL_WHOLE_STATIC_LIBRARIES += cocosbuilder_static
@@ -44,6 +50,7 @@ include $(BUILD_SHARED_LIBRARY)
 
 $(call import-module,.)
 $(call import-module,audio/android)
+$(call import-module,protocols/android)
 
 # $(call import-module,Box2D)
 # $(call import-module,editor-support/cocosbuilder)
@@ -51,3 +58,4 @@ $(call import-module,audio/android)
 # $(call import-module,editor-support/cocostudio)
 # $(call import-module,network)
 # $(call import-module,extensions)
+

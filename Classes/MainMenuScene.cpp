@@ -29,6 +29,10 @@
 #include "GameLayer.h"
 #include "HelloWorldScene.h"
 #include "LicenseLayer.h"
+#ifdef ANDROID
+#include "PluginChannel.h"
+#endif
+
 USING_NS_CC;
 
 Scene* MainMenuScene::createScene()
@@ -193,6 +197,16 @@ void MainMenuScene::onKeyUp(Controller *controller, int keyCode,Event *event)
 void MainMenuScene::update(float dt){
     pRate+=0.01;
     plane->setPosition3D(Vec3(visible_size_macro.width/2+50,480-20*sin(1.05*pRate),0));
+#ifdef ANDROID
+    if(PluginChannel::getInstance()->isLogined())
+    {
+        CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+        GameLayer::isDie=false;
+        auto scene = (LoadingScene::audioloaded) ? HelloWorld::createScene() :LoadingScene::createScene();
+        Director::getInstance()->replaceScene(scene);
+    }
+#endif
+
 }
 
 void MainMenuScene::startgame(Ref* sender)
@@ -205,10 +219,19 @@ void MainMenuScene::startgame(Ref* sender)
 
 void MainMenuScene::startgame_callback()
 {
+    CCLOG("login");
+#ifdef ANDROID
+     CCLOG("PluginChannel");
+    PluginChannel::getInstance()->login();
+#else
+    CCLOG("startgame_callback");
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
     GameLayer::isDie=false;
     auto scene = (LoadingScene::audioloaded) ? HelloWorld::createScene() :LoadingScene::createScene();
     Director::getInstance()->replaceScene(scene);
+    CCLOG("startgame_callback");
+#endif
+    
 }
 
 void MainMenuScene::credits(Ref* sender){
