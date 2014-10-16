@@ -11,6 +11,9 @@ public class wrapper {
 	public static native void nativeUnLoadPlugins();
 	public static native void nativeLogin();
 	
+	public static native void nativeStartSession();
+	public static native void nativeStopSession();
+	
 	
 	
 	

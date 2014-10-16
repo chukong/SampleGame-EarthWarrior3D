@@ -49,6 +49,7 @@ public class AppActivity extends Cocos2dxActivity {
 	@Override
 	protected void onResume() {
 		PluginWrapper.onResume();
+		wrapper.nativeStartSession();
 		super.onResume();
 		
 	}
@@ -56,6 +57,7 @@ public class AppActivity extends Cocos2dxActivity {
 	@Override
 	protected void onPause() {
 		PluginWrapper.onPause();
+		wrapper.nativeStopSession();
 		super.onPause();
 		
 	}

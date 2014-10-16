@@ -220,17 +220,17 @@ void MainMenuScene::startgame(Ref* sender)
 void MainMenuScene::startgame_callback()
 {
     CCLOG("login");
-//#ifdef ANDROID
-//     CCLOG("PluginChannel");
-//    PluginChannel::getInstance()->login();
-//#elseif
+#ifdef ANDROID
+     CCLOG("PluginChannel");
+    PluginChannel::getInstance()->login();
+#else
     CCLOG("startgame_callback");
     CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic();
     GameLayer::isDie=false;
     auto scene = (LoadingScene::audioloaded) ? HelloWorld::createScene() :LoadingScene::createScene();
     Director::getInstance()->replaceScene(scene);
     CCLOG("startgame_callback");
-//#endif
+#endif
     
 }
 
