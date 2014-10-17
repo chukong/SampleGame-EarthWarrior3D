@@ -7,6 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0437EFB819985B3C003EE06B /* OutLine.frag in Resources */ = {isa = PBXBuildFile; fileRef = 0437EFB619985B3C003EE06B /* OutLine.frag */; };
+		0437EFB919985B3C003EE06B /* OutLine.frag in Resources */ = {isa = PBXBuildFile; fileRef = 0437EFB619985B3C003EE06B /* OutLine.frag */; };
+		0437EFBA19985B3C003EE06B /* OutLine.vert in Resources */ = {isa = PBXBuildFile; fileRef = 0437EFB719985B3C003EE06B /* OutLine.vert */; };
+		0437EFBB19985B3C003EE06B /* OutLine.vert in Resources */ = {isa = PBXBuildFile; fileRef = 0437EFB719985B3C003EE06B /* OutLine.vert */; };
+		0491ABEE19A4506B00B78CD8 /* AirCraft.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4883190910CE0015152C /* AirCraft.h */; };
+		0491ABEF19A4506B00B78CD8 /* Bullets.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4885190910CE0015152C /* Bullets.h */; };
+		0491ABF019A4506B00B78CD8 /* consts.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4886190910CE0015152C /* consts.h */; };
+		0491ABF119A4506B00B78CD8 /* Effects.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4888190910CE0015152C /* Effects.h */; };
+		0491ABF219A4506B00B78CD8 /* Enemies.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C488A190910CE0015152C /* Enemies.h */; };
+		0491ABF319A4506B00B78CD8 /* Explosion.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C488C190910CE0015152C /* Explosion.h */; };
+		0491ABF419A4506B00B78CD8 /* GameControllers.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C488E190910CE0015152C /* GameControllers.h */; };
+		0491ABF519A4506B00B78CD8 /* GameEntity.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4890190910CE0015152C /* GameEntity.h */; };
+		0491ABF619A4506B00B78CD8 /* GameLayer.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4892190910CE0015152C /* GameLayer.h */; };
+		0491ABF719A4506B00B78CD8 /* GameOverLayer.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4894190910CE0015152C /* GameOverLayer.h */; };
+		0491ABF819A4506B00B78CD8 /* LicenseLayer.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4896190910CE0015152C /* LicenseLayer.h */; };
+		0491ABF919A4506B00B78CD8 /* LoadingScene.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C4898190910CE0015152C /* LoadingScene.h */; };
+		0491ABFA19A4506B00B78CD8 /* MainMenuScene.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C489A190910CE0015152C /* MainMenuScene.h */; };
+		0491ABFB19A4506B00B78CD8 /* ParticleManager.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C489C190910CE0015152C /* ParticleManager.h */; };
+		0491ABFC19A4506B00B78CD8 /* Plane.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C489E190910CE0015152C /* Plane.h */; };
+		0491ABFD19A4506B00B78CD8 /* Player.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C48A0190910CE0015152C /* Player.h */; };
+		0491ABFE19A4506B00B78CD8 /* PublicApi.h in Sources */ = {isa = PBXBuildFile; fileRef = BB0C48A2190910CE0015152C /* PublicApi.h */; };
+		0491ABFF19A4506B00B78CD8 /* AppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 1AFAF8B416D35DE700DB1158 /* AppDelegate.h */; };
+		0491AC0019A4506B00B78CD8 /* HelloWorldScene.h in Sources */ = {isa = PBXBuildFile; fileRef = 1AFAF8B616D35DE700DB1158 /* HelloWorldScene.h */; };
+		0491AC0119A4506B00B78CD8 /* Sprite3DEffect.h in Sources */ = {isa = PBXBuildFile; fileRef = B21386751925C30000A2C310 /* Sprite3DEffect.h */; };
+		0491AC0219A450E900B78CD8 /* GameController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0491ABEC19A44F0900B78CD8 /* GameController.framework */; };
 		1AC6FB1F180E996B004C840B /* libbox2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAFF180E9839004C840B /* libbox2d Mac.a */; };
 		1AC6FB20180E996B004C840B /* libchipmunk Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAFD180E9839004C840B /* libchipmunk Mac.a */; };
 		1AC6FB21180E996B004C840B /* libcocos2dx Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAF9180E9839004C840B /* libcocos2dx Mac.a */; };
@@ -365,6 +390,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0437EFB619985B3C003EE06B /* OutLine.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = OutLine.frag; path = Shaders3D/OutLine.frag; sourceTree = "<group>"; };
+		0437EFB719985B3C003EE06B /* OutLine.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = OutLine.vert; path = Shaders3D/OutLine.vert; sourceTree = "<group>"; };
+		0491ABEC19A44F0900B78CD8 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/GameController.framework; sourceTree = DEVELOPER_DIR; };
+		0491AC0319A450E900B78CD8 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
 		1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = ../cocos2d/build/cocos2d_libs.xcodeproj; sourceTree = "<group>"; };
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = ../Classes/AppDelegate.cpp; sourceTree = "<group>"; };
@@ -517,6 +546,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0491AC0219A450E900B78CD8 /* GameController.framework in Frameworks */,
 				1AC6FB2E180E99EB004C840B /* libbox2d iOS.a in Frameworks */,
 				1AC6FB2F180E99EB004C840B /* libchipmunk iOS.a in Frameworks */,
 				1AC6FB30180E99EB004C840B /* libcocos2dx iOS.a in Frameworks */,
@@ -666,6 +696,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0491AC0319A450E900B78CD8 /* GameKit.framework */,
+				0491ABEC19A44F0900B78CD8 /* GameController.framework */,
 				D6B0611A1803AB670077942B /* CoreMotion.framework */,
 				503AE11A17EB9C5A00D1A890 /* IOKit.framework */,
 				503AE11117EB99EE00D1A890 /* libcurl.dylib */,
@@ -733,6 +765,8 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0437EFB619985B3C003EE06B /* OutLine.frag */,
+				0437EFB719985B3C003EE06B /* OutLine.vert */,
 				76B5F2EB195C47BC00C15B36 /* boss.c3b */,
 				76B5F2EC195C47BC00C15B36 /* bossCannon.c3b */,
 				76B5F2ED195C47BC00C15B36 /* coconut.c3b */,
@@ -988,6 +1022,7 @@
 				BB0C4959190910E70015152C /* player_bullet_explosion.png in Resources */,
 				BB0C4933190910E70015152C /* gameover_score_num.fnt in Resources */,
 				B213867B1925C60E00A2C310 /* Shaders3D in Resources */,
+				0437EFB819985B3C003EE06B /* OutLine.frag in Resources */,
 				BB0C495F190910E70015152C /* score_right_top.png in Resources */,
 				5087E78317EB970100C73F5D /* Icon-152.png in Resources */,
 				BB0C4941190910E70015152C /* loadingAndHP.plist in Resources */,
@@ -1023,6 +1058,7 @@
 				BB0C4919190910E70015152C /* diji1_v001.obj in Resources */,
 				BB0C4935190910E70015152C /* gameover.plist in Resources */,
 				BB0C4913190910E70015152C /* daodan_32.png in Resources */,
+				0437EFBA19985B3C003EE06B /* OutLine.vert in Resources */,
 				BB0C491D190910E70015152C /* diji02_v002_128.png in Resources */,
 				BB0C4925190910E70015152C /* emissionPart.plist in Resources */,
 				BB0C4915190910E70015152C /* daodanv001.obj in Resources */,
@@ -1105,9 +1141,11 @@
 				BB0C4918190910E70015152C /* debris.plist in Resources */,
 				BB0C4966190910E70015152C /* streak.png in Resources */,
 				BB0C4904190910E70015152C /* boom2.mp3 in Resources */,
+				0437EFB919985B3C003EE06B /* OutLine.frag in Resources */,
 				BB0C494C190910E70015152C /* missileFlare.plist in Resources */,
 				BB0C493C190910E70015152C /* groundLevel.jpg in Resources */,
 				BB0C4952190910E70015152C /* num.fnt in Resources */,
+				0437EFBB19985B3C003EE06B /* OutLine.vert in Resources */,
 				BB0C495E190910E70015152C /* playerv002.obj in Resources */,
 				BB0C4954190910E70015152C /* Orbital Colossus_0.mp3 in Resources */,
 				BB0C490E190910E70015152C /* coco.png in Resources */,
@@ -1122,6 +1160,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0491ABEE19A4506B00B78CD8 /* AirCraft.h in Sources */,
+				0491ABEF19A4506B00B78CD8 /* Bullets.h in Sources */,
+				0491ABF019A4506B00B78CD8 /* consts.h in Sources */,
+				0491ABF119A4506B00B78CD8 /* Effects.h in Sources */,
+				0491ABF219A4506B00B78CD8 /* Enemies.h in Sources */,
+				0491ABF319A4506B00B78CD8 /* Explosion.h in Sources */,
+				0491ABF419A4506B00B78CD8 /* GameControllers.h in Sources */,
+				0491ABF519A4506B00B78CD8 /* GameEntity.h in Sources */,
+				0491ABF619A4506B00B78CD8 /* GameLayer.h in Sources */,
+				0491ABF719A4506B00B78CD8 /* GameOverLayer.h in Sources */,
+				0491ABF819A4506B00B78CD8 /* LicenseLayer.h in Sources */,
+				0491ABF919A4506B00B78CD8 /* LoadingScene.h in Sources */,
+				0491ABFA19A4506B00B78CD8 /* MainMenuScene.h in Sources */,
+				0491ABFB19A4506B00B78CD8 /* ParticleManager.h in Sources */,
+				0491ABFC19A4506B00B78CD8 /* Plane.h in Sources */,
+				0491ABFD19A4506B00B78CD8 /* Player.h in Sources */,
+				0491ABFE19A4506B00B78CD8 /* PublicApi.h in Sources */,
+				0491ABFF19A4506B00B78CD8 /* AppDelegate.h in Sources */,
+				0491AC0019A4506B00B78CD8 /* HelloWorldScene.h in Sources */,
+				0491AC0119A4506B00B78CD8 /* Sprite3DEffect.h in Sources */,
 				B21386761925C30000A2C310 /* Sprite3DEffect.cpp in Sources */,
 				BB0C48B1190910CE0015152C /* Explosion.cpp in Sources */,
 				BB0C48BD190910CE0015152C /* LoadingScene.cpp in Sources */,

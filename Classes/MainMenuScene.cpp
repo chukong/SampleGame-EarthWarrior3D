@@ -144,7 +144,50 @@ bool MainMenuScene::init()
     menu->setPosition(origin);
     this->addChild(menu,3);
     
+    //support controller
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    auto controllListener = EventListenerController::create();
+    controllListener->onKeyUp = CC_CALLBACK_3(MainMenuScene::onKeyUp, this);
+    controllListener->onConnected = CC_CALLBACK_2(MainMenuScene::onConnected,this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(controllListener, this);
+    Controller::startDiscoveryController();
+#endif
+    
     return true;
+}
+
+//controller connect
+void MainMenuScene::onConnected(Controller* controller, Event* event)
+{
+    auto size = Director::getInstance()->getWinSize();
+    auto label = Label::createWithTTF("Controller Connected!","fonts/Marker Felt.ttf", 40);
+    label->setPosition(Point(size.width/2,size.height*2/3));
+    label->runAction(Sequence::create(FadeIn::create(1.0f),FadeOut::create(1.0f),NULL));
+    
+    this->addChild(label);
+}
+
+void MainMenuScene::onKeyUp(Controller *controller, int keyCode,Event *event)
+{
+    if(this->getChildByTag(20) != nullptr)
+    {
+        this->getChildByTag(20)->removeFromParent();
+    }
+    switch (keyCode)
+    {
+        case Controller::Key::BUTTON_START:
+            this->startgame(this);
+            break;
+        case Controller::Key::BUTTON_A:
+            Director::getInstance()->end();
+            break;
+        case Controller::Key::BUTTON_X:
+            this->credits(this);
+            break;
+        case Controller::Key::BUTTON_Y:
+            this->license(this);
+            break;
+    }
 }
 
 void MainMenuScene::update(float dt){
@@ -181,6 +224,8 @@ void MainMenuScene::credits_callback()
     license->setAnchorPoint(Vec2(0.5f,0.5f));
     license->setPosition(Vec2(visible_size_macro.width/2, visible_size_macro.height/2));
     addChild(license,20);
+    //set tag 20
+    license->setTag(20);
     license->runAction(Sequence::create(ScaleTo::create(0.2f, 1.1f),
                                         ScaleTo::create(0.1f, 0.9f),
                                         ScaleTo::create(0.1f, 1.0f),
@@ -200,6 +245,7 @@ void MainMenuScene::license_callback()
     license->setAnchorPoint(Vec2(0.5f,0.5f));
     license->setPosition(Vec2(visible_size_macro.width/2, visible_size_macro.height/2));
     addChild(license,20);
+    license->setTag(20);
     license->runAction(Sequence::create(ScaleTo::create(0.2f, 1.1f),
                                         ScaleTo::create(0.1f, 0.9f),
                                         ScaleTo::create(0.1f, 1.0f),

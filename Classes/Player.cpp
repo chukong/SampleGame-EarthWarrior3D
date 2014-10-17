@@ -79,15 +79,139 @@ bool Player::init()
         part->setPosition(0,-30);
         part->setScale(0.6);
         //part->setRotation(90);
+        
+        //controller support ios and android
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+        
+        //need include base/CCEventListenerController.h and base/CCController.h文件
+        auto controlListener = EventListenerController::create();
+        
+        controlListener->onKeyDown = CC_CALLBACK_3(Player::onKeyDown,this);
+        
+        controlListener->onKeyUp = CC_CALLBACK_3(Player::onKeyUp,this);
+        
+        controlListener->onAxisEvent = CC_CALLBACK_3(Player::onAxisEvent,this);
+        
+        
+        _eventDispatcher->addEventListenerWithSceneGraphPriority(controlListener,this);
+        
+        Controller::startDiscoveryController();
+
+        //init
+        this->axisX = 0;
+        this->axisY = 0;
+        this->keyX = 0;
+        this->keyY = 0;
+#endif
+        
         return true;
     }
     return false;
 }
+
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+void Player::onKeyDown(Controller *controller, int keyCode,Event *event)
+{
+    const auto & keyStatus = controller->getKeyStatus(keyCode);
+    switch(keyCode)
+    {
+        case Controller::Key::BUTTON_DPAD_UP:
+            keyY = keyStatus.value;
+            break;
+        case Controller::Key::BUTTON_DPAD_DOWN:
+            keyY = -keyStatus.value;
+            break;
+        case Controller::Key::BUTTON_DPAD_LEFT:
+            keyX = -keyStatus.value;
+            break;
+        case Controller::Key::BUTTON_DPAD_RIGHT:
+            keyX = keyStatus.value;
+            break;
+    }
+}
+
+void Player::onKeyUp(Controller *controller, int keyCode,Event *event)
+{
+    switch(keyCode)
+    {
+        case Controller::Key::BUTTON_DPAD_UP:
+        case Controller::Key::BUTTON_DPAD_DOWN:
+            keyY = 0;
+            break;
+        case Controller::Key::BUTTON_DPAD_LEFT:
+        case Controller::Key::BUTTON_DPAD_RIGHT:
+            keyX = 0;
+            break;
+    }
+}
+
+void Player::onKeyRepeat()
+{
+    Vec2 prev = this->getPosition();
+    Vec2 delta =Vec2(15*keyX,15*keyY);
+    
+    setTargetAngle(targetAngle+delta.x*rollSpeed*(rollReturnThreshold-fabsf(targetAngle)/maxRoll));
+    
+    Vec2 shiftPosition = delta+prev;
+    
+    setPosition(shiftPosition.getClampPoint(Vec2(PLAYER_LIMIT_LEFT,PLAYER_LIMIT_BOT),Vec2(PLAYER_LIMIT_RIGHT,PLAYER_LIMIT_TOP)));
+}
+
+void Player::onAxisEvent(Controller* controller, int keyCode,Event* event)
+{
+    const auto & keyStatus = controller->getKeyStatus(keyCode);
+#if(CC_TARGET_PLATFORM == CC_TARGET_OS_MAC)
+    switch(keyCode)
+    {
+        case Controller::Key::JOYSTICK_LEFT_X:
+        case Controller::Key::JOYSTICK_RIGHT_X:
+            this->axisX = keyStatus.value;
+            break;
+        case Controller::Key::JOYSTICK_LEFT_Y:
+        case Controller::Key::JOYSTICK_RIGHT_Y:
+            this->axisY = keyStatus.value;
+            break;
+    }
+#else
+    //ios
+    switch(keyCode)
+    {
+//        case Controller::Key::JOYSTICK_LEFT_X:
+        case Controller::Key::JOYSTICK_RIGHT_X:
+            this->axisY = keyStatus.value;
+            break;
+//        case Controller::Key::JOYSTICK_LEFT_Y:
+        case Controller::Key::JOYSTICK_RIGHT_Y:
+            this->axisX = -keyStatus.value;
+            break;
+    }
+#endif
+}
+
+void Player::onAxisRepeat()
+{
+    Vec2 prev = this->getPosition();
+    Vec2 delta =Vec2(15*axisX,-15*axisY);
+    
+    setTargetAngle(targetAngle+delta.x*rollSpeed*(rollReturnThreshold-fabsf(targetAngle)/maxRoll));
+    
+    Vec2 shiftPosition = delta+prev;
+    
+    setPosition(shiftPosition.getClampPoint(Vec2(PLAYER_LIMIT_LEFT,PLAYER_LIMIT_BOT),Vec2(PLAYER_LIMIT_RIGHT,PLAYER_LIMIT_TOP)));
+}
+#endif
+
 void Player::update(float dt)
 {
     float smoothedAngle =std::min(std::max(targetAngle*(1-dt*returnSpeed*(rollReturnThreshold-fabsf(targetAngle)/maxRoll)),-maxRoll),maxRoll);
     setRotation3D(Vec3(fabsf(smoothedAngle)*0.15,smoothedAngle, 0));
     targetAngle = getRotation3D().y;
+    
+#if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    this->onAxisRepeat();
+    this->onKeyRepeat();
+#endif
+    
 }
 bool Player::onTouchBegan(Touch *touch, Event *event)
 {

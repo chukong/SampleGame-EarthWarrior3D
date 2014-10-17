@@ -69,8 +69,9 @@ bool GameLayer::init()
     
     _player = Player::create();
     
-    _streak = MotionStreak::create(0.4, 1, 15, Color3B(82,255,253), "streak.png");
-    _streak ->setBlendFunc(BlendFunc::ADDITIVE);
+    //Tailing effects
+    _streak = MotionStreak::create(0.4, 1, 15, Color3B(255,255,255), "streak.png");
+    _streak->setBlendFunc(BlendFunc::ADDITIVE);
     _player->setTrail(_streak);
     addChild(_streak,3);
     auto emission_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("engine.jpg");

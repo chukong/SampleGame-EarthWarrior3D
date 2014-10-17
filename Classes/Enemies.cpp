@@ -36,7 +36,8 @@ bool Fodder::init()
 {
     _score = 10;
 	_alive = true;
-    _Model = EffectSprite3D::createFromObjFileAndTexture("dijiyuanv001.c3b", "dijiyuanv001.png");
+    _Model = EffectSprite3D::createFromObjFileAndTexture("dijiyuanv001.obj", "dijiyuanv001.png");
+//    _Model = EffectSprite3D::createFromObjFileAndTexture("diji1_v002.c3b", "diji02_v002_128.png");
     if(_Model)
     {
         _Model->setScale(6);
@@ -131,7 +132,7 @@ bool BigDude::init()
     {
         _Model->setScale(8);
         addChild(_Model);
-       // _Model->setRotation3D(Vec3(90,0,0));
+        //_Model->setRotation3D(Vec3(90,0,0));
         //static_cast<Sprite3D*>(_Model)->setOutline(0.2, Color3B::BLACK);
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.02, Color3B::BLACK);
         _type = kEnemyBigDude;

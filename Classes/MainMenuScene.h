@@ -28,6 +28,10 @@
 #include "cocos2d.h"
 #include "Plane.h"
 
+//support controller
+#include "base/CCEventListenerController.h"
+#include "base/CCController.h"
+
 USING_NS_CC;
 
 class MainMenuScene : public cocos2d::Layer
@@ -37,6 +41,10 @@ public:
     virtual bool init();
     CREATE_FUNC(MainMenuScene);
     void update(float dt);
+    
+    
+    void onKeyUp(Controller *controller, int keyCode,Event *event);
+    void onConnected(Controller* controller, Event* event);
 private:
     void startgame(cocos2d::Ref* sender);
     void license(cocos2d::Ref* sender);
