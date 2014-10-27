@@ -106,7 +106,7 @@ bool FodderLeader::init()
     {
         _Model->setScale(8);
         addChild(_Model);
-        _Model->setRotation3D(Vec3(90,0,0));
+        //_Model->setRotation3D(Vec3(90,0,0));
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.02, Color3B(255,0,0));
         _type = kEnemyFodderL;
         _HP = 20;
