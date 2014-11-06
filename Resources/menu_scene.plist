@@ -1,74 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-        <key>frames</key>
-        <dict>
-            <key>credits.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{436,645},{215,90}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{215,90}}</string>
-                <key>sourceSize</key>
-                <string>{215,90}</string>
-            </dict>
-            <key>license.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{219,645},{215,90}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{215,90}}</string>
-                <key>sourceSize</key>
-                <string>{215,90}</string>
-            </dict>
-            <key>mainmenu_BG.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,2},{641,964}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{641,964}}</string>
-                <key>sourceSize</key>
-                <string>{641,964}</string>
-            </dict>
-            <key>start_game.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,645},{215,90}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{215,90}}</string>
-                <key>sourceSize</key>
-                <string>{215,90}</string>
-            </dict>
-        </dict>
-        <key>metadata</key>
-        <dict>
-            <key>format</key>
-            <integer>2</integer>
-            <key>realTextureFileName</key>
-            <string>menu_scene.png</string>
-            <key>size</key>
-            <string>{968,737}</string>
-            <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:db555b7f132f8136b7898992ccf55fb8:1cac3d4496c65b08a797fffbdefaa627:f7a06ab55076f34b936dd5f32b31eb72$</string>
-            <key>textureFileName</key>
-            <string>menu_scene.png</string>
-        </dict>
-    </dict>
+<dict>
+	<key>frames</key>
+	<dict>
+		
+		<key>credits.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {215, 90}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{215, 90}</string>
+			<key>spriteSourceSize</key>
+			<string>{215, 90}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 0}, {215, 90}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>license.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {215, 90}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{215, 90}</string>
+			<key>spriteSourceSize</key>
+			<string>{215, 90}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{217, 0}, {215, 90}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>mainmenu_BG.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {963, 640}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{963, 640}</string>
+			<key>spriteSourceSize</key>
+			<string>{963, 640}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 92}, {963, 640}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>start_game.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {215, 90}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{215, 90}</string>
+			<key>spriteSourceSize</key>
+			<string>{215, 90}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{434, 0}, {215, 90}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>version</key>
+		<string>1.5 GM</string>
+		<key>format</key>
+		<integer>3</integer>
+		<key>size</key>
+		<string>{1024, 1024}</string>
+		<key>name</key>
+		<string>Untitled</string>
+		<key>premultipliedAlpha</key>
+		<false/>
+		<key>target</key>
+		<dict>
+			<key>name</key>
+			<string>default</string>
+			<key>textureFileName</key>
+			<string>default</string>
+			<key>textureFileExtension</key>
+			<string>.png</string>
+			<key>coordinatesFileName</key>
+			<string>default</string>
+			<key>coordinatesFileExtension</key>
+			<string>.plist</string>
+			<key>premultipliedAlpha</key>
+			<false/>
+		</dict>
+	</dict>
+</dict>
 </plist>
