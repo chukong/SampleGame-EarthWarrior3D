@@ -56,12 +56,15 @@
 // This method is deprecated on ios6
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return UIInterfaceOrientationIsLandscape( interfaceOrientation );
+//    return UIInterfaceOrientationIsPortrait(interfaceOrientation);
 }
 
 // For ios6, use supportedInterfaceOrientations & shouldAutorotate instead
 - (NSUInteger) supportedInterfaceOrientations{
 #ifdef __IPHONE_6_0
-    return UIInterfaceOrientationMaskAllButUpsideDown;
+//    return UIInterfaceOrientationMaskAllButUpsideDown;
+//    return UIInterfaceOrientationMaskPortrait;
+    return UIInterfaceOrientationMaskLandscape;
 #endif
 }
 

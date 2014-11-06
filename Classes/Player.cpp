@@ -222,6 +222,7 @@ void Player::onTouchMoved(Touch *touch, Event *event)
 {
     Vec2 prev = event->getCurrentTarget()->getPosition();
     Vec2 delta =touch->getDelta();
+    delta = Vec2(-delta.y,delta.x);
     
     setTargetAngle(targetAngle+delta.x*rollSpeed*(rollReturnThreshold-fabsf(targetAngle)/maxRoll));
     

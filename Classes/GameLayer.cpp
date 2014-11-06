@@ -63,8 +63,8 @@ bool GameLayer::init()
     addChild(_spr, -5);
     Texture2D::TexParams texRepeat = {GL_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_REPEAT};
     _spr->getTexture()->setTexParameters(texRepeat);
-    setRotation3D(Vec3(-30.0,0.0f,0.0f));
-    _spr->setScale(1.4);
+    setRotation3D(Vec3(-0.0,-25.0f,90.0f));
+    _spr->setScale(2);
     _spr->setPosition(0.0f,400.0f);
     
     _player = Player::create();
