@@ -80,6 +80,7 @@ bool MainMenuScene::init()
     //************ adds Plane ****************
     plane = Plane::create();
     this->addChild(plane, 10);
+    plane->setScale(0.5);
     this->scheduleUpdate();
     
     //************ adds emission flare ****************
@@ -110,33 +111,34 @@ bool MainMenuScene::init()
     //auto sf = SpriteFrame::create("bullets.png", Rect(5,8,24,32));
     auto vanishing = ParticleSystemQuad::create(plistData);
     vanishing->setAnchorPoint(Vec2(0.5f,0.5f));
-    vanishing->setPosition(visible_size_macro.width-90,visible_size_macro.height/2 +50);
+    vanishing->setPosition(visible_size_macro.width-190,visible_size_macro.height/2 +50);
     this->addChild(vanishing,1,1);
     
     //************* adds background ***********
     auto background = Sprite::createWithSpriteFrameName("mainmenu_BG.png");
-    background->setAnchorPoint(Vec2(0,0));
+//    background->setAnchorPoint(Vec2(0,0));
+    background->setPosition(visible_size_macro.width/2,visible_size_macro.height/2);
     this->addChild(background,-1,-1);
     
     //************* adds start game ***********
     auto start_normal=Sprite::createWithSpriteFrameName("start_game.png");
     auto start_pressed=Sprite::createWithSpriteFrameName("start_game.png");
     startgame_item = MenuItemSprite::create(start_normal, start_pressed, CC_CALLBACK_1(MainMenuScene::startgame, this));
-    startgame_item->setPosition(visibleSize.width/2,200);
-    startgame_item->setScale(1.3);
+    startgame_item->setPosition(visibleSize.width/2,50);
+    startgame_item->setScale(1.0);
     
     //************* license *******************
     auto license_normal=Sprite::createWithSpriteFrameName("license.png");
     auto license_pressed=Sprite::createWithSpriteFrameName("license.png");
     license_item = MenuItemSprite::create(license_normal, license_pressed, CC_CALLBACK_1(MainMenuScene::license, this));
-    license_item->setPosition(visibleSize.width/2-200,100);
+    license_item->setPosition(visibleSize.width/2-300,50);
     license_item->setScale(0.7);
 
     //************* credits ******************
     auto credits_normal=Sprite::createWithSpriteFrameName("credits.png");
     auto credits_pressed=Sprite::createWithSpriteFrameName("credits.png");
     credits_item = MenuItemSprite::create(credits_normal, credits_pressed, CC_CALLBACK_1(MainMenuScene::credits, this));
-    credits_item->setPosition(visibleSize.width/2+200,100);
+    credits_item->setPosition(visibleSize.width/2+300,50);
     credits_item->setScale(0.7);
 
     //************* Menu ******************
@@ -192,7 +194,7 @@ void MainMenuScene::onKeyUp(Controller *controller, int keyCode,Event *event)
 
 void MainMenuScene::update(float dt){
     pRate+=0.01;
-    plane->setPosition3D(Vec3(visible_size_macro.width/2+50,480-20*sin(1.05*pRate),0));
+    plane->setPosition3D(Vec3(visible_size_macro.width/2,240-20*sin(1.05*pRate),0));
 }
 
 void MainMenuScene::startgame(Ref* sender)

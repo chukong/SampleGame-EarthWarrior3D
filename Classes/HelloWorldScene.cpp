@@ -77,10 +77,10 @@ bool HelloWorld::init()
     sb->setTag(123);
     sb->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     addChild(sb);
-    auto fog = Sprite::createWithSpriteFrameName("fog.png");
-    addChild(fog);
-    fog->setPosition(visibleSize.width/2,visibleSize.height/2+285);
-    fog->setScaleX(visibleSize.width/10);
+//    auto fog = Sprite::createWithSpriteFrameName("fog.png");
+//    addChild(fog);
+//    fog->setPosition(visibleSize.width/2,visibleSize.height/2+285);
+//    fog->setScaleX(visibleSize.width/10);
     
     //HP
     auto lefttopUI = Sprite::createWithSpriteFrameName("hp_empty.png");
