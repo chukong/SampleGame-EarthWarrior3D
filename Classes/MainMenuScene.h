@@ -45,6 +45,7 @@ public:
     
     void onKeyUp(Controller *controller, int keyCode,Event *event);
     void onConnected(Controller* controller, Event* event);
+    void onAxisEvent(Controller* controller, int keyCode,Event* event);
 private:
     void startgame(cocos2d::Ref* sender);
     void license(cocos2d::Ref* sender);

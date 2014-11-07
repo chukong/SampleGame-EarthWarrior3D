@@ -82,6 +82,7 @@ protected:
     float keyY;
     float axisX;
     float axisY;
+    bool isShoot;
 #endif
     
 };

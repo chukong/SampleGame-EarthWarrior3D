@@ -70,7 +70,7 @@ bool PlayerBullet::init()
         _radius=10;
         _type = kPlayerBullet;
         _owner = kPlayer;
-        _damage = 2;
+        _damage = 4;
         return true;
     }
     return false;

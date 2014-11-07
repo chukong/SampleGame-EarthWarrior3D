@@ -67,8 +67,11 @@ bool Player::init()
         //scheduleUpdate();
         GameEntity::UseOutlineEffect(static_cast<Sprite3D*>(_Model), 0.02, Color3B(0,0,0));
         
-        schedule(schedule_selector(Player::shootMissile), 1.5, -1, 0);
-        schedule(schedule_selector(Player::shoot), 0.075, -1, 0);
+        if(CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID && CC_TARGET_PLATFORM != CC_PLATFORM_IOS)
+        {
+            schedule(schedule_selector(Player::shootMissile), 1.5, -1, 0);
+            schedule(schedule_selector(Player::shoot), 0.075, -1, 0);
+        }
         
         // engine trail
         auto part_frame=SpriteFrameCache::getInstance()->getSpriteFrameByName("engine2.jpg");
@@ -102,6 +105,7 @@ bool Player::init()
         this->axisY = 0;
         this->keyX = 0;
         this->keyY = 0;
+        isShoot = false;
 #endif
         
         return true;
@@ -127,6 +131,14 @@ void Player::onKeyDown(Controller *controller, int keyCode,Event *event)
         case Controller::Key::BUTTON_DPAD_RIGHT:
             keyX = keyStatus.value;
             break;
+        case Controller::Key::BUTTON_X:
+        case Controller::Key::BUTTON_Y:
+        case Controller::Key::BUTTON_A:
+        case Controller::Key::BUTTON_B:
+            isShoot = true;
+            schedule(schedule_selector(Player::shootMissile), 1.5, -1, 0);
+            schedule(schedule_selector(Player::shoot), 0.075, -1, 0);
+            break;
     }
 }
 
@@ -142,6 +154,13 @@ void Player::onKeyUp(Controller *controller, int keyCode,Event *event)
         case Controller::Key::BUTTON_DPAD_RIGHT:
             keyX = 0;
             break;
+        case Controller::Key::BUTTON_X:
+        case Controller::Key::BUTTON_Y:
+        case Controller::Key::BUTTON_A:
+        case Controller::Key::BUTTON_B:
+            isShoot = false;
+            stop();
+            break;
     }
 }
 
@@ -149,6 +168,7 @@ void Player::onKeyRepeat()
 {
     Vec2 prev = this->getPosition();
     Vec2 delta =Vec2(15*keyX,15*keyY);
+    delta = Vec2(-delta.y,delta.x);
     
     setTargetAngle(targetAngle+delta.x*rollSpeed*(rollReturnThreshold-fabsf(targetAngle)/maxRoll));
     
@@ -176,13 +196,13 @@ void Player::onAxisEvent(Controller* controller, int keyCode,Event* event)
     //ios
     switch(keyCode)
     {
-//        case Controller::Key::JOYSTICK_LEFT_X:
+        case Controller::Key::JOYSTICK_LEFT_X:
         case Controller::Key::JOYSTICK_RIGHT_X:
-            this->axisY = keyStatus.value;
+            this->axisX = keyStatus.value;
             break;
-//        case Controller::Key::JOYSTICK_LEFT_Y:
+        case Controller::Key::JOYSTICK_LEFT_Y:
         case Controller::Key::JOYSTICK_RIGHT_Y:
-            this->axisX = -keyStatus.value;
+            this->axisY = keyStatus.value;
             break;
     }
 #endif
@@ -192,6 +212,7 @@ void Player::onAxisRepeat()
 {
     Vec2 prev = this->getPosition();
     Vec2 delta =Vec2(15*axisX,-15*axisY);
+    delta = Vec2(-delta.y,delta.x);
     
     setTargetAngle(targetAngle+delta.x*rollSpeed*(rollReturnThreshold-fabsf(targetAngle)/maxRoll));
     

@@ -150,6 +150,7 @@ bool MainMenuScene::init()
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     auto controllListener = EventListenerController::create();
     controllListener->onKeyUp = CC_CALLBACK_3(MainMenuScene::onKeyUp, this);
+    controllListener->onAxisEvent = CC_CALLBACK_3(MainMenuScene::onAxisEvent,this);
     controllListener->onConnected = CC_CALLBACK_2(MainMenuScene::onConnected,this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(controllListener, this);
     Controller::startDiscoveryController();
@@ -162,7 +163,7 @@ bool MainMenuScene::init()
 void MainMenuScene::onConnected(Controller* controller, Event* event)
 {
     auto size = Director::getInstance()->getWinSize();
-    auto label = Label::createWithTTF("Controller Connected!","fonts/Marker Felt.ttf", 40);
+    auto label = Label::createWithSystemFont("Controller Connected!","Arial", 40);
     label->setPosition(Point(size.width/2,size.height*2/3));
     label->runAction(Sequence::create(FadeIn::create(1.0f),FadeOut::create(1.0f),NULL));
     
@@ -181,13 +182,44 @@ void MainMenuScene::onKeyUp(Controller *controller, int keyCode,Event *event)
             this->startgame(this);
             break;
         case Controller::Key::BUTTON_A:
-            Director::getInstance()->end();
+            this->startgame(this);
+            break;
+        case Controller::Key::BUTTON_B:
+            this->startgame(this);
+//            Director::getInstance()->end();
             break;
         case Controller::Key::BUTTON_X:
-            this->credits(this);
+            this->startgame(this);
             break;
         case Controller::Key::BUTTON_Y:
+            this->startgame(this);
+            break;
+        case Controller::Key::BUTTON_DPAD_LEFT:
+        case Controller::Key::BUTTON_LEFT_SHOULDER:
             this->license(this);
+            break;
+        case Controller::Key::BUTTON_DPAD_RIGHT:
+        case Controller::Key::BUTTON_RIGHT_SHOULDER:
+            this->credits(this);
+            break;
+    }
+}
+
+void MainMenuScene::onAxisEvent(Controller* controller, int keyCode,Event* event)
+{
+    if(this->getChildByTag(20) != nullptr)
+    {
+        this->getChildByTag(20)->removeFromParent();
+    }
+    switch (keyCode)
+    {
+        case Controller::Key::AXIS_LEFT_TRIGGER:
+            case Controller::Key::BUTTON_LEFT_THUMBSTICK:
+            this->license(this);
+            break;
+        case Controller::Key::AXIS_RIGHT_TRIGGER:
+            case Controller::Key::BUTTON_RIGHT_THUMBSTICK:
+            this->credits(this);
             break;
     }
 }
@@ -214,6 +246,7 @@ void MainMenuScene::startgame_callback()
 }
 
 void MainMenuScene::credits(Ref* sender){
+    credits_item->stopAllActions();
     credits_item->runAction(Sequence::create(ScaleTo::create(0.1f, 0.8f),
                                                ScaleTo::create(0.1f, 0.6f),
                                                ScaleTo::create(0.1f, 0.7f),
@@ -235,6 +268,7 @@ void MainMenuScene::credits_callback()
 }
 
 void MainMenuScene::license(Ref* sender){
+    license_item->stopAllActions();
     license_item->runAction(Sequence::create(ScaleTo::create(0.1f, 0.8f),
                                                ScaleTo::create(0.1f, 0.6f),
                                                ScaleTo::create(0.1f, 0.7f),
