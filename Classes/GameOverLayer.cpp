@@ -103,7 +103,7 @@ bool GameOverLayer::init()
 
 void GameOverLayer::onKeyDown(Controller *controller, int keyCode,Event *event)
 {
-    if(keyCode == Controller::Key::BUTTON_B)
+    if(keyCode == Controller::Key::BUTTON_A)
         this->menu_backtomenu_Callback(this);
 }
 

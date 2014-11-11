@@ -80,6 +80,7 @@ bool MainMenuScene::init()
     //************ adds Plane ****************
     plane = Plane::create();
     this->addChild(plane, 10);
+    plane->setScale(0.5);
     this->scheduleUpdate();
     
     //************ adds emission flare ****************
@@ -110,33 +111,34 @@ bool MainMenuScene::init()
     //auto sf = SpriteFrame::create("bullets.png", Rect(5,8,24,32));
     auto vanishing = ParticleSystemQuad::create(plistData);
     vanishing->setAnchorPoint(Vec2(0.5f,0.5f));
-    vanishing->setPosition(visible_size_macro.width-90,visible_size_macro.height/2 +50);
+    vanishing->setPosition(visible_size_macro.width-190,visible_size_macro.height/2 +50);
     this->addChild(vanishing,1,1);
     
     //************* adds background ***********
     auto background = Sprite::createWithSpriteFrameName("mainmenu_BG.png");
-    background->setAnchorPoint(Vec2(0,0));
+//    background->setAnchorPoint(Vec2(0,0));
+    background->setPosition(visible_size_macro.width/2,visible_size_macro.height/2);
     this->addChild(background,-1,-1);
     
     //************* adds start game ***********
     auto start_normal=Sprite::createWithSpriteFrameName("start_game.png");
     auto start_pressed=Sprite::createWithSpriteFrameName("start_game.png");
     startgame_item = MenuItemSprite::create(start_normal, start_pressed, CC_CALLBACK_1(MainMenuScene::startgame, this));
-    startgame_item->setPosition(visibleSize.width/2,200);
-    startgame_item->setScale(1.3);
+    startgame_item->setPosition(visibleSize.width/2,50);
+    startgame_item->setScale(1.0);
     
     //************* license *******************
     auto license_normal=Sprite::createWithSpriteFrameName("license.png");
     auto license_pressed=Sprite::createWithSpriteFrameName("license.png");
     license_item = MenuItemSprite::create(license_normal, license_pressed, CC_CALLBACK_1(MainMenuScene::license, this));
-    license_item->setPosition(visibleSize.width/2-200,100);
+    license_item->setPosition(visibleSize.width/2-300,50);
     license_item->setScale(0.7);
 
     //************* credits ******************
     auto credits_normal=Sprite::createWithSpriteFrameName("credits.png");
     auto credits_pressed=Sprite::createWithSpriteFrameName("credits.png");
     credits_item = MenuItemSprite::create(credits_normal, credits_pressed, CC_CALLBACK_1(MainMenuScene::credits, this));
-    credits_item->setPosition(visibleSize.width/2+200,100);
+    credits_item->setPosition(visibleSize.width/2+300,50);
     credits_item->setScale(0.7);
 
     //************* Menu ******************
@@ -148,6 +150,7 @@ bool MainMenuScene::init()
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     auto controllListener = EventListenerController::create();
     controllListener->onKeyUp = CC_CALLBACK_3(MainMenuScene::onKeyUp, this);
+    controllListener->onAxisEvent = CC_CALLBACK_3(MainMenuScene::onAxisEvent,this);
     controllListener->onConnected = CC_CALLBACK_2(MainMenuScene::onConnected,this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(controllListener, this);
     Controller::startDiscoveryController();
@@ -160,7 +163,7 @@ bool MainMenuScene::init()
 void MainMenuScene::onConnected(Controller* controller, Event* event)
 {
     auto size = Director::getInstance()->getWinSize();
-    auto label = Label::createWithTTF("Controller Connected!","fonts/Marker Felt.ttf", 40);
+    auto label = Label::createWithSystemFont("Controller Connected!","Arial", 40);
     label->setPosition(Point(size.width/2,size.height*2/3));
     label->runAction(Sequence::create(FadeIn::create(1.0f),FadeOut::create(1.0f),NULL));
     
@@ -179,20 +182,51 @@ void MainMenuScene::onKeyUp(Controller *controller, int keyCode,Event *event)
             this->startgame(this);
             break;
         case Controller::Key::BUTTON_A:
-            Director::getInstance()->end();
+            this->startgame(this);
+            break;
+        case Controller::Key::BUTTON_B:
+            this->startgame(this);
+//            Director::getInstance()->end();
             break;
         case Controller::Key::BUTTON_X:
-            this->credits(this);
+            this->startgame(this);
             break;
         case Controller::Key::BUTTON_Y:
+            this->startgame(this);
+            break;
+        case Controller::Key::BUTTON_DPAD_LEFT:
+        case Controller::Key::BUTTON_LEFT_SHOULDER:
             this->license(this);
+            break;
+        case Controller::Key::BUTTON_DPAD_RIGHT:
+        case Controller::Key::BUTTON_RIGHT_SHOULDER:
+            this->credits(this);
+            break;
+    }
+}
+
+void MainMenuScene::onAxisEvent(Controller* controller, int keyCode,Event* event)
+{
+    if(this->getChildByTag(20) != nullptr)
+    {
+        this->getChildByTag(20)->removeFromParent();
+    }
+    switch (keyCode)
+    {
+        case Controller::Key::AXIS_LEFT_TRIGGER:
+            case Controller::Key::BUTTON_LEFT_THUMBSTICK:
+            this->license(this);
+            break;
+        case Controller::Key::AXIS_RIGHT_TRIGGER:
+            case Controller::Key::BUTTON_RIGHT_THUMBSTICK:
+            this->credits(this);
             break;
     }
 }
 
 void MainMenuScene::update(float dt){
     pRate+=0.01;
-    plane->setPosition3D(Vec3(visible_size_macro.width/2+50,480-20*sin(1.05*pRate),0));
+    plane->setPosition3D(Vec3(visible_size_macro.width/2,240-20*sin(1.05*pRate),0));
 }
 
 void MainMenuScene::startgame(Ref* sender)
@@ -212,6 +246,7 @@ void MainMenuScene::startgame_callback()
 }
 
 void MainMenuScene::credits(Ref* sender){
+    credits_item->stopAllActions();
     credits_item->runAction(Sequence::create(ScaleTo::create(0.1f, 0.8f),
                                                ScaleTo::create(0.1f, 0.6f),
                                                ScaleTo::create(0.1f, 0.7f),
@@ -233,6 +268,7 @@ void MainMenuScene::credits_callback()
 }
 
 void MainMenuScene::license(Ref* sender){
+    license_item->stopAllActions();
     license_item->runAction(Sequence::create(ScaleTo::create(0.1f, 0.8f),
                                                ScaleTo::create(0.1f, 0.6f),
                                                ScaleTo::create(0.1f, 0.7f),

@@ -59,8 +59,8 @@ void SmallExplosion::createExplosion(Node* _effectLayer, Vec2 pos){
     part2->setTotalParticles(5);
     part2->setEmissionRate(9999999999);
     _effectLayer->addChild(this,7);
-    part1->setRotation3D(Vec3(30,0,0));
-    part2->setRotation3D(Vec3(30,0,0));
+    part1->setRotation3D(Vec3(0,30,0));
+    part2->setRotation3D(Vec3(0,30,0));
     this->setPosition(pos);
     this->scheduleOnce(schedule_selector(SmallExplosion::recycle), 1.5);
 }
@@ -96,9 +96,9 @@ bool BigExplosion::init(){
     part3->setTotalParticles(20);
     part3->setEmissionRate(9999999999);
     part3->setScale(1.5);
-    part1->setRotation3D(Vec3(30,0,0));
-    part2->setRotation3D(Vec3(30,0,0));
-    part3->setRotation3D(Vec3(30,0,0));
+    part1->setRotation3D(Vec3(0,30,0));
+    part2->setRotation3D(Vec3(0,30,0));
+    part3->setRotation3D(Vec3(0,30,0));
     return true;
 }
 

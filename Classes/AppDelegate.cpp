@@ -44,14 +44,14 @@ bool AppDelegate::applicationDidFinishLaunching() {
     //glview->setDesignResolutionSize(480,800,ResolutionPolicy::FIXED_HEIGHT);
     if(!glview) {
         int height, width;
-        height = 800;
-        width = height*(640.0/960.0);
+        height = 600;
+        width = height*(960.0/540.0);
         
         glview = GLViewImpl::createWithRect("EarthWarrior3D", Rect(0, 0, width, height));
         
         director->setOpenGLView(glview);
     }
-    glview->setDesignResolutionSize(640, 960, ResolutionPolicy::SHOW_ALL);
+    glview->setDesignResolutionSize(960, 540, ResolutionPolicy::SHOW_ALL);
 
     // turn on display FPS
     director->setDisplayStats(false);

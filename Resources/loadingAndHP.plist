@@ -1,126 +1,192 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-        <key>frames</key>
-        <dict>
-            <key>fog.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{644,391},{10,570}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{10,570}}</string>
-                <key>sourceSize</key>
-                <string>{10,570}</string>
-            </dict>
-            <key>hp.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{851,2},{60,205}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{60,205}}</string>
-                <key>sourceSize</key>
-                <string>{60,205}</string>
-            </dict>
-            <key>hp_above.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{644,2},{60,205}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{60,205}}</string>
-                <key>sourceSize</key>
-                <string>{60,205}</string>
-            </dict>
-            <key>hp_empty.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{656,480},{116,317}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{116,317}}</string>
-                <key>sourceSize</key>
-                <string>{116,317}</string>
-            </dict>
-            <key>loading_bk.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,2},{640,963}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{640,963}}</string>
-                <key>sourceSize</key>
-                <string>{640,963}</string>
-            </dict>
-            <key>loading_progress_bk.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{850,209},{694,72}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{694,72}}</string>
-                <key>sourceSize</key>
-                <string>{694,72}</string>
-            </dict>
-            <key>loading_progress_thumb.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{656,391},{136,87}}</string>
-                <key>offset</key>
-                <string>{0,33}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,9},{136,87}}</string>
-                <key>sourceSize</key>
-                <string>{136,171}</string>
-            </dict>
-            <key>right_top_ui.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{644,64},{204,325}}</string>
-                <key>offset</key>
-                <string>{0,3}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{204,325}}</string>
-                <key>sourceSize</key>
-                <string>{204,331}</string>
-            </dict>
-        </dict>
-        <key>metadata</key>
-        <dict>
-            <key>format</key>
-            <integer>2</integer>
-            <key>realTextureFileName</key>
-            <string>loadingAndHP.png</string>
-            <key>size</key>
-            <string>{924,967}</string>
-            <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8bfd7f3339041af832a641e3dff393bc:19bdda24356f17c17fe67fedafee3eed:c7075d6d293b33f3dbac134af37823d9$</string>
-            <key>textureFileName</key>
-            <string>loadingAndHP.png</string>
-        </dict>
-    </dict>
+<dict>
+	<key>frames</key>
+	<dict>
+		
+		<key>hp.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {60, 205}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{60, 205}</string>
+			<key>spriteSourceSize</key>
+			<string>{60, 205}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{324, 716}, {60, 205}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>hp_above.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {60, 205}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{60, 205}</string>
+			<key>spriteSourceSize</key>
+			<string>{60, 205}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{386, 716}, {60, 205}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>hp_empty.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {116, 317}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{116, 317}</string>
+			<key>spriteSourceSize</key>
+			<string>{116, 317}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{206, 642}, {116, 317}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>loading_bk.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {963, 640}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{963, 640}</string>
+			<key>spriteSourceSize</key>
+			<string>{963, 640}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 0}, {963, 640}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>loading_progress_bk.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {694, 72}}</string>
+			<key>spriteOffset</key>
+			<string>{0, -0}</string>
+			<key>spriteSize</key>
+			<string>{694, 72}</string>
+			<key>spriteSourceSize</key>
+			<string>{694, 72}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{324, 642}, {694, 72}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>loading_progress_thumb.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 10}, {136, 87}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 32}</string>
+			<key>spriteSize</key>
+			<string>{136, 87}</string>
+			<key>spriteSourceSize</key>
+			<string>{136, 171}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{448, 716}, {136, 87}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>right_top_ui.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {204, 325}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 3}</string>
+			<key>spriteSize</key>
+			<string>{204, 325}</string>
+			<key>spriteSourceSize</key>
+			<string>{204, 331}</string>
+			<key>spriteTrimmed</key>
+			<true/>
+			<key>textureRect</key>
+			<string>{{0, 642}, {204, 325}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>version</key>
+		<string>1.5 GM</string>
+		<key>format</key>
+		<integer>3</integer>
+		<key>size</key>
+		<string>{1024, 1024}</string>
+		<key>name</key>
+		<string>Untitled</string>
+		<key>premultipliedAlpha</key>
+		<false/>
+		<key>target</key>
+		<dict>
+			<key>name</key>
+			<string>default</string>
+			<key>textureFileName</key>
+			<string>default</string>
+			<key>textureFileExtension</key>
+			<string>.png</string>
+			<key>coordinatesFileName</key>
+			<string>default</string>
+			<key>coordinatesFileExtension</key>
+			<string>.plist</string>
+			<key>premultipliedAlpha</key>
+			<false/>
+		</dict>
+	</dict>
+</dict>
 </plist>
