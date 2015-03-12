@@ -49,7 +49,7 @@ private:
     void startgame(cocos2d::Ref* sender);
     void license(cocos2d::Ref* sender);
     void credits(cocos2d::Ref* sender);
-    Plane* plane;
+    ::Plane* plane;
     float pRate;
     void startgame_callback();
     void license_callback();

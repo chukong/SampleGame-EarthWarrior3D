@@ -78,7 +78,7 @@ bool MainMenuScene::init()
     
     
     //************ adds Plane ****************
-    plane = Plane::create();
+    plane = ::Plane::create();
     this->addChild(plane, 10);
     this->scheduleUpdate();
     
@@ -117,6 +117,7 @@ bool MainMenuScene::init()
     auto background = Sprite::createWithSpriteFrameName("mainmenu_BG.png");
     background->setAnchorPoint(Vec2(0,0));
     this->addChild(background,-1,-1);
+    background->setGlobalZOrder(-1);
     
     //************* adds start game ***********
     auto start_normal=Sprite::createWithSpriteFrameName("start_game.png");

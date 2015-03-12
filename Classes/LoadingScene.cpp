@@ -119,6 +119,7 @@ void LoadingScene::InitCoco()
         
         addChild(coco,1);
         coco->runAction(RepeatForever::create(RotateBy::create(0.8f,Vec3(0,360,0))));
+        coco->setGlobalZOrder(1);
     }
 }
 

@@ -27,14 +27,14 @@
 #include "Sprite3DEffect.h"
 
 
-const float Plane::pXW = 1.1f;
-const float Plane::pYW = 5.0f;
-const float Plane::pZW = 1.0f;
-const float Plane::pXA = 1.0f;
-const float Plane::pYA = 10.0f;
-const float Plane::pZA = 7.0f;
+const float ::Plane::pXW = 1.1f;
+const float ::Plane::pYW = 5.0f;
+const float ::Plane::pZW = 1.0f;
+const float ::Plane::pXA = 1.0f;
+const float ::Plane::pYA = 10.0f;
+const float ::Plane::pZA = 7.0f;
 
-bool Plane::init(){
+bool ::Plane::init(){
 
 	pRate = 3.1415926/2;
     originX = -15.0f - 90.f;
@@ -53,7 +53,7 @@ bool Plane::init(){
     return true;
 }
 
-void Plane::update(float dt){
+void ::Plane::update(float dt){
     pRate+=0.01;
     _Model->setRotation3D(Vec3(0-pXA*sin(pXW*pRate),0,0-pZA*sin(pZW*pRate)));
 }
