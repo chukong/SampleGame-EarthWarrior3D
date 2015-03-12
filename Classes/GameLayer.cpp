@@ -66,6 +66,7 @@ bool GameLayer::init()
     setRotation3D(Vec3(-30.0,0.0f,0.0f));
     _spr->setScale(1.4);
     _spr->setPosition(0.0f,400.0f);
+    _spr->setGlobalZOrder(-1);
     
     _player = Player::create();
     
