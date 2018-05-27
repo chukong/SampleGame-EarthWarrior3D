@@ -63,7 +63,7 @@ void Fodder::setTurnRate(float turn)
     setRotation3D(Vec3(fabsf(turn)*0.15, turn, 0));
     _turn = turn;
 }
-float Fodder::getTurnRate()
+float Fodder::getTurnRate() const
 {
     return _turn;
 }
